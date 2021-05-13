@@ -9,10 +9,10 @@ using Xamarin.Forms.Xaml;
 
 namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class LoginPage : ContentPage {
-		public LoginPage() {
+	public partial class SignupPage : ContentPage {
+		public SignupPage() {
 			InitializeComponent();
-			this.BindingContext = new LoginViewModel();
+			this.BindingContext = new SignupViewModel();
 		}
 	}
 }

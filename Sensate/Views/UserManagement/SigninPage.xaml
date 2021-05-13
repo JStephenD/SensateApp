@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:viewmodels="clr-namespace:Sensate.ViewModels" 
+			 x:DataType="viewmodels:SigninViewModel"
+             x:Class="Sensate.Views.SigninPage"
+			 mc:Ignorable="d"
+             Shell.NavBarIsVisible="False">
+	<ContentPage.Content>
+		<StackLayout Padding="0" Margin="0" Spacing="0">
+			<Frame 
+				BackgroundColor="#00AEF9" 
+				HeightRequest="200" 
+				VerticalOptions="Fill">
+
+				<StackLayout>
+					<StackLayout
+						Orientation="Horizontal">
+						<ImageButton 
+							HeightRequest="50"
+							WidthRequest="50"
+							HorizontalOptions="StartAndExpand"
+							Source="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Circle_arrow_left_font_awesome.svg/1024px-Circle_arrow_left_font_awesome.svg.png"
+							/>
+						<Label 
+							HorizontalOptions="EndAndExpand"
+							VerticalOptions="Center"
+							Text="Sign Up"
+							TextColor="Black"	
+							FontSize="20"
+							/>
+					</StackLayout>
+					<Label 
+						Text="Sign In"
+						TextColor="Black"
+						FontSize="32"
+						/>
+					<Label 
+						Text="Sign in to Sensate to syncronize your settings and your data."
+						TextColor="Black"
+						FontSize="24"
+						/>
+				</StackLayout>
+			</Frame>
+
+			<Frame 
+				BackgroundColor="#FFFFFF" 
+				VerticalOptions="FillAndExpand">
+				<StackLayout>
+					<!--entry portion-->
+					<StackLayout>
+						<Entry 
+							Placeholder="Username"
+							/>
+						<Entry 
+							Placeholder="Password"
+							/>
+
+						<Label 
+							HorizontalOptions="End"
+							Text="Forgot Password?"
+							TextColor="Blue"
+							/>
+					</StackLayout>
+
+					<!--Bottom portion - login and dots-->
+					<StackLayout VerticalOptions="End">
+						<Button 
+							BackgroundColor="#FF881A"
+							CornerRadius="50"
+							VerticalOptions="Center" 
+							Text="Sign in" 
+							HeightRequest="60"
+							FontSize="24"
+							Command="{Binding SigninCommand}"/>
+
+						<StackLayout 
+							HorizontalOptions="Center"
+							Orientation="Horizontal" >
+							<Ellipse 
+								WidthRequest="17" 
+								HeightRequest="17"
+								Fill="#C4C4C4"
+								/>
+							<Ellipse 
+								WidthRequest="17" 
+								HeightRequest="17"
+								Fill="#C4C4C4"
+								/>
+							<Ellipse 
+								WidthRequest="17" 
+								HeightRequest="17"
+								Fill="#FF881A"
+								/>
+						</StackLayout>
+					</StackLayout>
+				</StackLayout>
+			</Frame>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
