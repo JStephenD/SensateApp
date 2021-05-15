@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:viewmodels="clr-namespace:Sensate.ViewModels"
+			 x:DataType="viewmodels:SensateAboutViewModel"
+             x:Class="Sensate.Views.SensateAboutPage"
+			 >
+	<ContentPage.Content>
+		<StackLayout Padding="0" Margin="0" Spacing="0">
+			<Frame 
+				BackgroundColor="White" 
+				HeightRequest="200" 
+				VerticalOptions="Fill">
+
+				<StackLayout>
+					<Label 
+						Text="About Sensate"
+						TextColor="Black"
+						FontSize="32"
+						/>
+					<Label 
+						Text="Learn more about Sensate and the developers behind the application."
+						TextColor="Black"
+						FontSize="24"
+						/>
+				</StackLayout>
+			</Frame>
+
+			<Frame 
+				BackgroundColor="#00AEF9" 
+				VerticalOptions="FillAndExpand"
+				>
+				<FlexLayout
+					Direction="Column"
+					JustifyContent="Start"
+					>
+					<!--Items portion-->
+					<Frame
+						BackgroundColor="#7AD6FE"
+						Margin="0, 10, 0, 10"
+						>
+						<StackLayout>
+							<Label 
+								Text="Sensate"
+								TextColor="#17749C"
+								FontSize="36"
+								/>
+							<Label 
+								Text="by LightOwls"
+								TextColor="#17749C"
+								FontSize="20"
+								/>
+							<ScrollView
+								HeightRequest="300"
+								VerticalOptions="Start"
+								>
+								<Label 
+									Text=
+										"
+										Lorem ipsum dolor sit amet, consectetur 
+										adipiscing elit, sed do eiusmod tempor 
+										incididunt ut labore et dolore magna aliqua. 
+										Ut enim ad minim veniam, quis nostrud 
+										exercitation ullamco laboris nisi ut aliquip 
+										ex ea commodo consequat. 
+
+										Duis aute irure dolor in reprehenderit in
+											voluptate velit esse cillum dolore eu fugiat 
+										nulla pariatur. Excepteur sint occaecat 
+										upidatat non proident, sunt in culpa qui 
+										officia deserunt mollit anim id est laborum.
+									
+										Lorem ipsum dolor sit amet, consectetur 
+										adipiscing elit, sed do eiusmod tempor 
+										incididunt ut labore et dolore magna aliqua. 
+										Ut enim ad minim veniam, quis nostrud 
+										exercitation ullamco laboris nisi ut aliquip 
+										ex ea commodo consequat. 
+
+										Duis aute irure dolor in reprehenderit in
+											voluptate velit esse cillum dolore eu fugiat 
+										nulla pariatur. Excepteur sint occaecat 
+										upidatat non proident, sunt in culpa qui 
+										officia deserunt mollit anim id est laborum.
+										"
+									TextColor="Black"
+									FontSize="18"
+									/>
+							</ScrollView>
+						</StackLayout>
+					</Frame>
+				</FlexLayout>
+			</Frame>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

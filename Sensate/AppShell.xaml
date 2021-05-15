@@ -90,6 +90,21 @@
 	<FlyoutItem Title="Sign In" Icon="icon_about.png">
 		<ShellContent Route="SigninPage" ContentTemplate="{DataTemplate local:SigninPage}" />
 	</FlyoutItem>
+	<FlyoutItem Title="Quick Profile Setup" Icon="icon_about.png">
+		<ShellContent Route="QuickProfileSetupPage" ContentTemplate="{DataTemplate local:QuickProfileSetupPage}" />
+	</FlyoutItem>
+	<FlyoutItem Title="Tutorial" Icon="icon_about.png">
+		<ShellContent Route="TutorialPage" ContentTemplate="{DataTemplate local:TutorialPage}" />
+	</FlyoutItem>
+	<FlyoutItem Title="FAQs" Icon="icon_about.png">
+		<ShellContent Route="FAQPage" ContentTemplate="{DataTemplate local:FAQPage}" />
+	</FlyoutItem>
+	<FlyoutItem Title="About Sensate" Icon="icon_about.png">
+		<ShellContent Route="SensateAboutPage" ContentTemplate="{DataTemplate local:SensateAboutPage}" />
+	</FlyoutItem>
+	<FlyoutItem Title="Rate and Review" Icon="icon_about.png">
+		<ShellContent Route="RateAndReviewPage" ContentTemplate="{DataTemplate local:RateAndReviewPage}" />
+	</FlyoutItem>
 
 	<!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
     <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">

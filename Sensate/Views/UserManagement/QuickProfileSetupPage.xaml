@@ -1,12 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-			 xmlns:viewmodels="clr-namespace:Sensate.ViewModels" 
-			 x:DataType="viewmodels:SignupViewModel"
-             x:Class="Sensate.Views.SignupPage"
-			 mc:Ignorable="d"
+             x:Class="Sensate.Views.QuickProfileSetupPage"
+			 xmlns:viewmodels="clr-namespace:Sensate.ViewModels"
+			 x:DataType="viewmodels:QuickProfileSetupViewModel"
              Shell.NavBarIsVisible="False">
 	<ContentPage.Content>
 		<StackLayout Padding="0" Margin="0" Spacing="0">
@@ -24,21 +21,14 @@
 							HorizontalOptions="StartAndExpand"
 							Source="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Circle_arrow_left_font_awesome.svg/1024px-Circle_arrow_left_font_awesome.svg.png"
 							/>
-						<Label 
-							HorizontalOptions="EndAndExpand"
-							VerticalOptions="Center"
-							Text="Sign In"
-							TextColor="White"	
-							FontSize="20"
-							/>
 					</StackLayout>
 					<Label 
-						Text="Sign Up"
+						Text="Set your profile"
 						TextColor="White"
 						FontSize="32"
 						/>
 					<Label 
-						Text="Create a free account with Sensate and enjoy its features seamlessly."
+						Text="Thanks for signing up, now let's set some basic information about you."
 						TextColor="White"
 						FontSize="24"
 						/>
@@ -60,7 +50,7 @@
 							Padding="20,5"
 							>
 							<Entry
-								Placeholder="Username"
+								Placeholder="Fullname"
 								PlaceholderColor="Gray"
 								/>
 						</Frame>
@@ -69,8 +59,8 @@
 							BorderColor="Black"
 							Padding="20,5"
 							>
-							<Entry
-								Placeholder="Password"
+							<Entry 
+								Placeholder="Sex"
 								PlaceholderColor="Gray"
 								/>
 						</Frame>
@@ -79,8 +69,8 @@
 							BorderColor="Black"
 							Padding="20,5"
 							>
-							<Entry
-								Placeholder="Confirm Password"
+							<Entry 
+								Placeholder="Age"
 								PlaceholderColor="Gray"
 								/>
 						</Frame>
@@ -92,10 +82,10 @@
 							BackgroundColor="#FF881A"
 							CornerRadius="50"
 							VerticalOptions="Center" 
-							Text="Sign up" 
+							Text="Confirm" 
 							HeightRequest="60"
 							FontSize="24"
-							Command="{Binding SignupCommand}"/>
+							Command="{Binding ConfirmCommand}"/>
 
 						<StackLayout 
 							HorizontalOptions="Center"

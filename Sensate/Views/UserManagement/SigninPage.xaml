@@ -48,15 +48,32 @@
 			<Frame 
 				BackgroundColor="#FFFFFF" 
 				VerticalOptions="FillAndExpand">
-				<StackLayout>
+				<FlexLayout
+					Direction="Column"
+					JustifyContent="SpaceAround"
+					>
 					<!--entry portion-->
 					<StackLayout>
-						<Entry 
-							Placeholder="Username"
-							/>
-						<Entry 
-							Placeholder="Password"
-							/>
+						<Frame
+							CornerRadius="50"
+							BorderColor="Black"
+							Padding="20,5"
+							>
+							<Entry
+								Placeholder="Username"
+								PlaceholderColor="Gray"
+								/>
+						</Frame>
+						<Frame
+							CornerRadius="50"
+							BorderColor="Black"
+							Padding="20,5"
+							>
+							<Entry
+								Placeholder="Password"
+								PlaceholderColor="Gray"
+								/>
+						</Frame>
 
 						<Label 
 							HorizontalOptions="End"
@@ -96,7 +113,7 @@
 								/>
 						</StackLayout>
 					</StackLayout>
-				</StackLayout>
+				</FlexLayout>
 			</Frame>
         </StackLayout>
     </ContentPage.Content>
