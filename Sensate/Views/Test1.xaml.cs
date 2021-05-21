@@ -3,6 +3,7 @@ using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
+using System.Speech.Synthesis;
 using System.Threading.Tasks;
 
 namespace Sensate.Views {
@@ -89,6 +90,11 @@ namespace Sensate.Views {
 					default:
 					case CameraCaptureMode.Default:
 					case CameraCaptureMode.Photo:
+						SpeechSynthesizer synth = new SpeechSynthesizer();
+						synth.SetOutputToDefaultAudioDevice();
+
+						synth.Speak("This example demonstrates a basic use of Speech Synthesizer");
+
 						previewPicture.IsVisible = true;
 						previewPicture.Rotation = e.Rotation;
 						previewPicture.Source = e.Image;
