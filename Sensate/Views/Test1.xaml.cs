@@ -3,8 +3,10 @@ using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
-using System.Speech.Synthesis;
-using System.Threading.Tasks;
+using System.Reflection;
+using System.IO;
+using Google.Cloud.Vision.V1;
+using System.Linq;
 
 namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
@@ -84,16 +86,45 @@ namespace Sensate.Views {
 			}
 		}
 
-		public void CameraView_MediaCaptured(object sender, MediaCapturedEventArgs e) {
+		public async void CameraView_MediaCaptured(object sender, MediaCapturedEventArgs e) {
 			if (permissionGranted) {
 				switch (cameraView.CaptureMode) {
 					default:
 					case CameraCaptureMode.Default:
 					case CameraCaptureMode.Photo:
-						SpeechSynthesizer synth = new SpeechSynthesizer();
-						synth.SetOutputToDefaultAudioDevice();
+						await TextToSpeech.SpeakAsync("Captured Image X D");
 
-						synth.Speak("This example demonstrates a basic use of Speech Synthesizer");
+						var assembly = this.GetType().GetTypeInfo().Assembly;
+						var resources = assembly.GetManifestResourceNames();
+						var resourceName = resources.Single(r => r.EndsWith("Sensate-auth.json", StringComparison.OrdinalIgnoreCase));
+						var stream = assembly.GetManifestResourceStream(resourceName);
+
+						Console.WriteLine(resourceName);
+						string json_creds;
+						using (StreamReader sr = new StreamReader(stream)) {
+							json_creds = await sr.ReadToEndAsync();
+						}
+						Console.WriteLine(json_creds);
+
+
+						ImageAnnotatorClientBuilder builder = new ImageAnnotatorClientBuilder {
+							JsonCredentials = json_creds
+						};
+						ImageAnnotatorClient client = await builder.BuildAsync();
+						AnnotateImageRequest request = new AnnotateImageRequest {
+							Image = Google.Cloud.Vision.V1.Image.FromBytes(
+								e.ImageData.AsMemory().ToArray()),
+							Features = {
+								new Feature { Type = Feature.Types.Type.ObjectLocalization }
+							}
+						};
+						AnnotateImageResponse response = await client.AnnotateAsync(request);
+						foreach (LocalizedObjectAnnotation annotation in response.LocalizedObjectAnnotations) {
+							// string poly = string.Join(" - ", annotation.BoundingPoly.NormalizedVertices.Select(v => $"({v.X}, {v.Y})"));
+							string output = $"Name: {annotation.Name}; ID: {annotation.Mid}; Score: {annotation.Score}; Bounding poly: ";
+							Console.WriteLine(output);
+							await TextToSpeech.SpeakAsync(output);
+						}
 
 						previewPicture.IsVisible = true;
 						previewPicture.Rotation = e.Rotation;
