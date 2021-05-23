@@ -6,15 +6,21 @@ using Xamarin.Forms;
 
 namespace Sensate.ViewModels {
 	public class SigninViewModel : BaseViewModel {
-		public Command SigninCommand { get; }
+		//public Command SigninCommand { get; }
+		public Command SignupCommand { get; }
 
 		public SigninViewModel() {
-			SigninCommand = new Command(OnSigninClicked);
+			//SigninCommand = new Command(OnSigninClicked);
+			SignupCommand = new Command(OnSignupClicked);
 		}
 
-		private async void OnSigninClicked(object obj) {
-			// Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
-			await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
+		//private async void OnSigninClicked(object obj) {
+		//	// Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
+		//	await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
+		//}
+		private async void OnSignupClicked(object obj)
+        {
+			await Shell.Current.GoToAsync($"//{nameof(SignupPage)}");
 		}
 	}
 }

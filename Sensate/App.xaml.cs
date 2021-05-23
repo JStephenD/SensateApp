@@ -1,6 +1,7 @@
 ﻿using System;
 using Sensate.Services;
 using Sensate.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,9 +10,17 @@ namespace Sensate {
 
 		public App() {
 			InitializeComponent();
-
 			DependencyService.Register<MockDataStore>();
-			MainPage = new AppShell();
+			if (!string.IsNullOrEmpty(Preferences.Get("MyFirebaseRefreshToken",""))){
+				MainPage = new AppShell();
+				
+			}
+			else
+			{
+				MainPage = new NavigationPage (new SigninPage());
+				
+			}
+			
 		}
 
 		protected override void OnStart() {

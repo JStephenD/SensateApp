@@ -23,15 +23,18 @@
 							WidthRequest="50"
 							HorizontalOptions="StartAndExpand"
 							Source="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Circle_arrow_left_font_awesome.svg/1024px-Circle_arrow_left_font_awesome.svg.png"
-							/>
-						<Label 
-							HorizontalOptions="EndAndExpand"
-							VerticalOptions="Center"
-							Text="Sign Up"
-							TextColor="Black"	
-							FontSize="20"
-							/>
-					</StackLayout>
+							Clicked="Signup_Clicked"
+                            />
+                        <Button 
+							BackgroundColor="#FF881A"
+                            HorizontalOptions="EndAndExpand"
+							CornerRadius="50"
+							VerticalOptions="Center" 
+							Text="Sign Up" 
+							HeightRequest="40"
+							FontSize="18"
+							Clicked="Signup_Clicked"/>
+                    </StackLayout>
 					<Label 
 						Text="Sign In"
 						TextColor="Black"
@@ -60,7 +63,8 @@
 							Padding="20,5"
 							>
 							<Entry
-								Placeholder="Username"
+								Placeholder="Email"
+                                x:Name="SignInEmail"
 								PlaceholderColor="Gray"
 								/>
 						</Frame>
@@ -71,6 +75,7 @@
 							>
 							<Entry
 								Placeholder="Password"
+                                x:Name="SignInPassword"
 								PlaceholderColor="Gray"
 								/>
 						</Frame>
@@ -91,7 +96,7 @@
 							Text="Sign in" 
 							HeightRequest="60"
 							FontSize="24"
-							Command="{Binding SigninCommand}"/>
+							Clicked="Signin_Clicked"/>
 
 						<StackLayout 
 							HorizontalOptions="Center"
