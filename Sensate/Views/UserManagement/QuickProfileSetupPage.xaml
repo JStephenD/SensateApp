@@ -44,37 +44,41 @@
 					>
 					<!--entry portion-->
 					<StackLayout>
-						<Frame
+                        <Frame
 							CornerRadius="50"
 							BorderColor="Black"
 							Padding="20,5"
 							>
-							<Entry
-								Placeholder="Fullname"
-								PlaceholderColor="Gray"
-								/>
-						</Frame>
-						<Frame
+                            <Entry
+								Placeholder="Name" 
+                                PlaceholderColor="Gray" 
+                                Text="{Binding Username.username}"
+                            />
+                        </Frame>
+
+                        <Frame
 							CornerRadius="50"
 							BorderColor="Black"
 							Padding="20,5"
 							>
-							<Entry 
-								Placeholder="Sex"
-								PlaceholderColor="Gray"
-								/>
-						</Frame>
-						<Frame
-							CornerRadius="50"
+                            <Picker x:Name="Sex" HorizontalOptions="FillAndExpand">
+                                <Picker.Items>
+                                    <x:String>Male</x:String>
+                                    <x:String>Female</x:String>
+                                    <x:String>Others</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </Frame>
+
+                        <Frame
+                            CornerRadius="50"
 							BorderColor="Black"
 							Padding="20,5"
 							>
-							<Entry 
-								Placeholder="Age"
-								PlaceholderColor="Gray"
-								/>
-						</Frame>
-					</StackLayout>
+                            <Button Text="Birthday" CornerRadius="50" BorderColor="Black" Padding="20,5" Clicked="BirthdayButton_Clicked">
+                            </Button>
+                        </Frame>
+                    </StackLayout>
 
 					<!--Bottom portion - singup and dots-->
 					<StackLayout VerticalOptions="End">

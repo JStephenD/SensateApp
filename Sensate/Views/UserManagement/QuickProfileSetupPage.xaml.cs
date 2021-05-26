@@ -15,6 +15,20 @@ namespace Sensate.Views {
 		public QuickProfileSetupPage() {
 			InitializeComponent();
 			this.BindingContext = new QuickProfileSetupViewModel();
+
+
+
 		}
+
+		private void BirthdayButton_Clicked(object sender, EventArgs e)
+        {
+			InitializeComponent();
+		}
+
+
 	}
+
+
+
+
 }
