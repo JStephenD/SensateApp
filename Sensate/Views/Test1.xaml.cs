@@ -92,6 +92,11 @@ namespace Sensate.Views {
 					default:
 					case CameraCaptureMode.Default:
 					case CameraCaptureMode.Photo:
+						previewPicture.IsVisible = true;
+						previewPicture.Rotation = e.Rotation;
+						previewPicture.Source = e.Image;
+						doCameraThings.Text = "Snap Picture";
+
 						await TextToSpeech.SpeakAsync("Captured Image X D");
 
 						var assembly = this.GetType().GetTypeInfo().Assembly;
@@ -121,15 +126,12 @@ namespace Sensate.Views {
 						AnnotateImageResponse response = await client.AnnotateAsync(request);
 						foreach (LocalizedObjectAnnotation annotation in response.LocalizedObjectAnnotations) {
 							// string poly = string.Join(" - ", annotation.BoundingPoly.NormalizedVertices.Select(v => $"({v.X}, {v.Y})"));
-							string output = $"Name: {annotation.Name}; ID: {annotation.Mid}; Score: {annotation.Score}; Bounding poly: ";
+							//string output = $"Object Identified: {annotation.Name}; ID: {annotation.Mid}; Score: {annotation.Score}; Bounding poly: ";
+							string output = $"Object Identified: {annotation.Name} with a certainty of: {annotation.Score * 100} percent";
 							Console.WriteLine(output);
 							await TextToSpeech.SpeakAsync(output);
 						}
-
-						previewPicture.IsVisible = true;
-						previewPicture.Rotation = e.Rotation;
-						previewPicture.Source = e.Image;
-						doCameraThings.Text = "Snap Picture";
+						
 						break;
 					case CameraCaptureMode.Video:
 						previewPicture.IsVisible = false;

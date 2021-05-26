@@ -74,6 +74,9 @@
 							Padding="20,5"
 							>
 							<Entry
+								Text="{Binding Password}"
+								TextColor="Black"
+								IsPassword="True"
 								Placeholder="Password"
                                 x:Name="SignUpPassword"
 								PlaceholderColor="Gray"
@@ -85,11 +88,22 @@
 							Padding="20,5"
 							>
 							<Entry
+								Text="{Binding PasswordRepeat}"
+								IsPassword="True"
+								TextColor="Black"
 								Placeholder="Confirm Password"
                                 x:Name="SignUpConfirmPassword"
 								PlaceholderColor="Gray"
 								/>
 						</Frame>
+
+						<Label 
+							x:Name="Result"
+							HorizontalOptions="Center"
+							Text="{Binding Result}"
+							TextColor="Green"
+							FontSize="24"
+							/>
 					</StackLayout>
 
 					<!--Bottom portion - singup and dots-->

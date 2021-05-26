@@ -14,40 +14,35 @@ using Firebase.Auth;
 namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SignupPage : ContentPage {
+
 		public SignupPage() {
 			InitializeComponent();
+
 			this.BindingContext = new SignupViewModel();
 		}
 
 		public string FirebaseAPIKey = "AIzaSyCzPHs2jYwNCC_IQRc9j7qOCQUMue_fB0o";
 
-		async private void Signin_Clicked(object sender, EventArgs e)
-        {
+		async private void Signin_Clicked(object sender, EventArgs e) {
 			await Navigation.PushModalAsync(new SigninPage());
 		}
-		async private void Signup_Clicked(object sender, EventArgs e)
-        {
-			try
-			{
+		async private void Signup_Clicked(object sender, EventArgs e) {
+			try {
 				//credential checker pa kulang
 				var authProvider = new FirebaseAuthProvider(new FirebaseConfig(FirebaseAPIKey));
-				if (SignUpPassword.Text == SignUpConfirmPassword.Text){
-					var auth= await authProvider.CreateUserWithEmailAndPasswordAsync(SignUpEmail.Text, SignUpPassword.Text);
+				if (SignUpPassword.Text == SignUpConfirmPassword.Text) {
+					var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(SignUpEmail.Text, SignUpPassword.Text);
 					//string gettoken = auth.FirebaseToken;
 					await this.DisplayAlert("Success!", "Welcome to Sensate.", "OK");
 					await Navigation.PushModalAsync(new AppShell());
 
+				} else {
+					await this.DisplayAlert("Alert", "Password does not match.", "Ok");
 				}
-				
-				else
-				{
-					await this.DisplayAlert("Alert","Password does not match.", "Ok");
-				}
-			}
-			catch (Exception ex){
+			} catch (Exception ex) {
 				await this.DisplayAlert("Alert", ex.Message, "Ok");
 			}
 
 		}
-    }
+	}
 }

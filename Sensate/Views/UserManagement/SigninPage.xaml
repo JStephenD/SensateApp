@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 			 xmlns:viewmodels="clr-namespace:Sensate.ViewModels" 
 			 x:DataType="viewmodels:SigninViewModel"
-             x:Class="Sensate.Views.SigninPage"
+			 x:Class="Sensate.Views.SigninPage"
 			 mc:Ignorable="d"
              Shell.NavBarIsVisible="False">
 	<ContentPage.Content>
@@ -66,6 +66,7 @@
 								Placeholder="Email"
                                 x:Name="SignInEmail"
 								PlaceholderColor="Gray"
+								TextColor="Black"
 								/>
 						</Frame>
 						<Frame
@@ -74,9 +75,12 @@
 							Padding="20,5"
 							>
 							<Entry
+								Text="{Binding Password}"
+								IsPassword="True"
 								Placeholder="Password"
                                 x:Name="SignInPassword"
 								PlaceholderColor="Gray"
+								TextColor="Black"
 								/>
 						</Frame>
 
@@ -84,6 +88,14 @@
 							HorizontalOptions="End"
 							Text="Forgot Password?"
 							TextColor="Blue"
+							/>
+
+						<Label 
+							x:Name="Result"
+							HorizontalOptions="Center"
+							Text="{Binding Result}"
+							TextColor="Green"
+							FontSize="24"
 							/>
 					</StackLayout>
 

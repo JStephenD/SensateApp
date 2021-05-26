@@ -7,19 +7,27 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="FirebaseAuthentication.net" Version="3.7.1" />
     <PackageReference Include="Google.Cloud.Vision.V1" Version="2.3.0" />
-    <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.1.0" />
+	<PackageReference Include="Grpc.Core" Version="2.38.0" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\Intro\IntroPage3.xaml.cs">
+      <DependentUpon>IntroPage3.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Intro\IntroPage2.xaml.cs">
+      <DependentUpon>IntroPage2.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Intro\IntroPage.xaml.cs">
+      <DependentUpon>IntroPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\UserManagement\SigninPage.xaml.cs">
       <DependentUpon>SigninPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\UserManagement\SignUpPage.xaml.cs">
+    <Compile Update="Views\UserManagement\SignupPage.xaml.cs">
       <DependentUpon>SignupPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>

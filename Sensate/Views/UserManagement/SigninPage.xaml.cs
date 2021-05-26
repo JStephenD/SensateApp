@@ -17,8 +17,10 @@ using Newtonsoft.Json;
 namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SigninPage : ContentPage {
+
 		public SigninPage() {
 			InitializeComponent();
+
 			this.BindingContext = new SigninViewModel();
 		}
 
