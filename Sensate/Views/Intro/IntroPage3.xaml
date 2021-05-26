@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:local="clr-namespace:Sensate"
+			 xmlns:vm="clr-namespace:Sensate.ViewModels" 
+			 x:DataType="vm:Intro3ViewModel"
+			 x:Class="Sensate.Views.IntroPage3"
+			 Shell.NavBarIsVisible="False"
+			 >
+    <ContentPage.Content>
+		<FlexLayout
+			Direction="Column"
+			BackgroundColor="#00567A"
+			AlignItems="Center"
+			JustifyContent="SpaceAround"
+			>
+			<Image 
+				WidthRequest="130"
+				HeightRequest="210"
+				Source="{local:ImageResource Sensate.Assets.sensate-logo2.png}"
+				/>
+			<Label 
+				Text="You are recommended to create an account.This may help you to sync your future configurations. Would you like to proceed?"
+				TextColor="White"
+				FontFamily="Abel"
+				FontSize="20"
+				/>
+			<Button 
+				BackgroundColor="#00AEF9"
+				CornerRadius="25"
+				VerticalOptions="Center" 
+				Text="Sign Up" 
+				TextColor="White"
+				HeightRequest="85"
+				WidthRequest="200"
+				FontSize="24"
+				Command="{Binding SignupCommand}"/>
+			<Button 
+				BackgroundColor="Transparent"
+				BorderColor="White"
+				BorderWidth="2"
+				CornerRadius="25"
+				VerticalOptions="Center" 
+				Text="Not Now" 
+				TextColor="White"
+				HeightRequest="85"
+				WidthRequest="200"
+				FontSize="24"
+				Command="{Binding NotNowCommand}"/>
+
+			<StackLayout 
+				HorizontalOptions="Center"
+				Orientation="Horizontal" 
+				>
+				<Ellipse 
+					WidthRequest="17" 
+					HeightRequest="17"
+					Fill="#C4C4C4"
+					/>
+				<Ellipse 
+					WidthRequest="17" 
+					HeightRequest="17"
+					Fill="#FF881A"
+					/>
+				<Ellipse 
+					WidthRequest="17" 
+					HeightRequest="17"
+					Fill="#C4C4C4"
+					/>
+			</StackLayout>
+
+			<FlexLayout.GestureRecognizers>
+				<SwipeGestureRecognizer Direction="Left" Command="{Binding SwipeCommand}" CommandParameter="left"/>
+				<SwipeGestureRecognizer Direction="Right" Command="{Binding SwipeCommand}" CommandParameter="right"/>
+			</FlexLayout.GestureRecognizers>
+		</FlexLayout>
+    </ContentPage.Content>
+</ContentPage>

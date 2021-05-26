@@ -7,9 +7,28 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FirebaseAuthentication.net" Version="3.7.1" />
     <PackageReference Include="Google.Cloud.Vision.V1" Version="2.3.0" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+	  
+    <None Remove="Assets\loading.png" />
+    <None Remove="Assets\Sensate-auth.json" />
+    <None Remove="Assets\sensate-logo1.png" />
+    <None Remove="Assets\sensate-logo2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\loading.png" />
+    <EmbeddedResource Include="Assets\Sensate-auth.json" />
+    <EmbeddedResource Include="Assets\sensate-logo1.png" />
+    <EmbeddedResource Include="Assets\sensate-logo2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Cloud.Vision.V1" Version="2.3.0" />
+    <PackageReference Include="Grpc.Core" Version="2.38.0" />
+
     <PackageReference Include="Xamarin.CommunityToolkit" Version="1.1.0" />
-	<PackageReference Include="Grpc.Core" Version="2.38.0" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
