@@ -33,6 +33,7 @@ namespace Sensate.Views {
 				email = SignUpEmail.Text;
 				pword = SignUpPassword.Text;
 				conf_pword = SignUpConfirmPassword.Text;
+				var authProvider = new FirebaseAuthProvider(new FirebaseConfig(FirebaseAPIKey));
 
 				if (email != null){
 					if(pword != null && conf_pword!= null && pword.Length > 5){
