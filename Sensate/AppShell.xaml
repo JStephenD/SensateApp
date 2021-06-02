@@ -78,35 +78,123 @@
         FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
         https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
     -->
-	<FlyoutItem Title="About" Icon="icon_about.png">
-		<ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
-	</FlyoutItem>
-	<FlyoutItem Title="Test1" Icon="icon_about.png">
-		<ShellContent Route="Test1" ContentTemplate="{DataTemplate local:Test1}" />
-	</FlyoutItem>
-	<FlyoutItem Title="Sign Up" Icon="icon_about.png">
-		<ShellContent Route="SignupPage" ContentTemplate="{DataTemplate local:SignupPage}" />
-	</FlyoutItem>
-	<FlyoutItem Title="Sign In" Icon="icon_about.png">
-		<ShellContent Route="SigninPage" ContentTemplate="{DataTemplate local:SigninPage}" />
-	</FlyoutItem>
-	<FlyoutItem Title="Quick Profile Setup" Icon="icon_about.png">
-		<ShellContent Route="QuickProfileSetupPage" ContentTemplate="{DataTemplate local:QuickProfileSetupPage}" />
-	</FlyoutItem>
-	<FlyoutItem Title="Tutorial" Icon="icon_about.png">
-		<ShellContent Route="TutorialPage" ContentTemplate="{DataTemplate local:TutorialPage}" />
-	</FlyoutItem>
-	<FlyoutItem Title="FAQs" Icon="icon_about.png">
-		<ShellContent Route="FAQPage" ContentTemplate="{DataTemplate local:FAQPage}" />
-	</FlyoutItem>
-	<FlyoutItem Title="About Sensate" Icon="icon_about.png">
-		<ShellContent Route="SensateAboutPage" ContentTemplate="{DataTemplate local:SensateAboutPage}" />
-	</FlyoutItem>
-	<FlyoutItem Title="Rate and Review" Icon="icon_about.png">
-		<ShellContent Route="RateAndReviewPage" ContentTemplate="{DataTemplate local:RateAndReviewPage}" />
-	</FlyoutItem>
 
-	<!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
+    <FlyoutItem Title="Test1" Icon="icon_about.png">
+        <ShellContent Route="Test1" ContentTemplate="{DataTemplate local:Test1}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Sign Up" Icon="icon_about.png">
+        <ShellContent Route="SignupPage" ContentTemplate="{DataTemplate local:SignupPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Sign In" Icon="icon_about.png">
+        <ShellContent Route="SigninPage" ContentTemplate="{DataTemplate local:SigninPage}" />
+    </FlyoutItem>
+
+
+    <!--Sidebar-->
+
+    <!--COLOR ENHANCEMENT MODE TAB-->
+    <FlyoutItem Title="Color Enhancement">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="Helvetica"
+                Glyph="{x:Static local:IconFont.Accoun}"
+                Color="Black"
+                Size="16"/>
+        </FlyoutItem.Icon>
+        <ShellContent Route="QuickProfileSetupPage" ContentTemplate="{DataTemplate local:QuickProfileSetupPage}" />
+    </FlyoutItem>
+
+
+    <!--ACCOUNT tab-->
+    <FlyoutItem Title="Account">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="Helvetica"
+                Glyph="{x:Static local:IconFont.Account}"
+                Color="Black"
+                Size="16"/>
+        </FlyoutItem.Icon>
+        <ShellContent Route="QuickProfileSetupPage" ContentTemplate="{DataTemplate local:QuickProfileSetupPage}" />
+    </FlyoutItem>
+
+
+    <!--PERSONALIZATION-FEEDBACK SETTINGS tab-->
+    <FlyoutItem Title="Settings">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="Helvetica"
+                Glyph="{x:Static local:IconFont.waves}"
+                Color="Black"
+                Size="16"/>
+        </FlyoutItem.Icon>
+        <ShellContent Route="FeedbackSettingsPage" ContentTemplate="{DataTemplate local:FeedbackSettingsPage}" />
+    </FlyoutItem>
+
+    <!--PERSONALIZATION-NAVIGATION SETTINGS tab-->
+    <FlyoutItem Title="Settings">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="Helvetica"
+                Glyph="{x:Static local:IconFont.Navigation}"
+                Color="Black"
+                Size="16"/>
+        </FlyoutItem.Icon>
+        <ShellContent Route="NavigationsSettingsPage" ContentTemplate="{DataTemplate local:NavigationsSettingsPage}" />
+    </FlyoutItem>
+
+    <!--TUTORIAL tab-->
+    <FlyoutItem Title="Tutorial">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="Helvetica"
+                Glyph="{x:Static local:IconFont.Tutorial}"
+                Color="Black"
+                Size="16"/>
+        </FlyoutItem.Icon>
+        <ShellContent Route="TutorialPage" ContentTemplate="{DataTemplate local:TutorialPage}" />
+    </FlyoutItem>
+
+
+    <!--FAQs tab-->
+    <FlyoutItem Title="FAQs">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="Helvetica"
+                Glyph="{x:Static local:IconFont.FAQs}"
+                Color="Black"
+                Size="16"/>
+        </FlyoutItem.Icon>
+        <ShellContent Route="FAQPage" ContentTemplate="{DataTemplate local:FAQPage}" />
+    </FlyoutItem>
+
+
+    <!--REVIEW tab-->
+    <FlyoutItem Title="Review">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="Helvetica"
+                Glyph="{x:Static local:IconFont.Review}"
+                Color="Black"
+                Size="16"/>
+        </FlyoutItem.Icon>
+        <ShellContent Route="RateAndReviewPage" ContentTemplate="{DataTemplate local:RateAndReviewPage}" />
+    </FlyoutItem>
+
+
+    <!--ABOUT tab-->
+    <FlyoutItem Title="About">
+        <FlyoutItem.Icon>
+            <FontImageSource
+                FontFamily="Helvetica"
+                Glyph="{x:Static local:IconFont.About}"
+                Color="Black"
+                Size="16"/>
+        </FlyoutItem.Icon>
+        <ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
+    </FlyoutItem>
+
+
+    <!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
     <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
     </MenuItem>
 
@@ -119,12 +207,12 @@
     -->
     <TabBar>
         <ShellContent Route="SigninPage" ContentTemplate="{DataTemplate local:SigninPage}" />
-	</TabBar>
-	<TabBar>
-		<ShellContent Route="SignupPage" ContentTemplate="{DataTemplate local:SignupPage}" />
-	</TabBar>
+    </TabBar>
+    <TabBar>
+        <ShellContent Route="SignupPage" ContentTemplate="{DataTemplate local:SignupPage}" />
+    </TabBar>
 
-	<!-- Optional Templates 
+    <!-- Optional Templates 
     // These may be provided inline as below or as separate classes.
 
     // This header appears at the top of the Flyout.
