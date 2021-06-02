@@ -11,7 +11,7 @@ namespace Sensate {
 		public App() {
 			InitializeComponent();
 			DependencyService.Register<MockDataStore>();
-			MainPage = new CategoryColorBlindPage();
+			MainPage = new NavigationPage(new CategorizePage());
 			//if (!string.IsNullOrEmpty(Preferences.Get("MyFirebaseRefreshToken", ""))) {
 			//	MainPage = new AppShell();
 

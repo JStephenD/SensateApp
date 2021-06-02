@@ -36,6 +36,11 @@
 						FontSize="30"
 						/>
 				</StackLayout>
+				<Frame.GestureRecognizers>
+					<TapGestureRecognizer
+						Tapped="ClickLowVision"
+						NumberOfTapsRequired="1" />
+				</Frame.GestureRecognizers>
 			</Frame>
 
 			<Frame 
@@ -58,6 +63,11 @@
 						FontSize="30"
 						/>
 				</StackLayout>
+				<Frame.GestureRecognizers>
+					<TapGestureRecognizer
+						Tapped="ClickColorBlind"
+						NumberOfTapsRequired="1" />
+				</Frame.GestureRecognizers>
 			</Frame>
 
 			<Frame 
@@ -80,6 +90,11 @@
 						FontSize="30"
 						/>
 				</StackLayout>
+				<Frame.GestureRecognizers>
+					<TapGestureRecognizer
+						Tapped="ClickNormal"
+						NumberOfTapsRequired="1" />
+				</Frame.GestureRecognizers>
 			</Frame>
 
 			<StackLayout 

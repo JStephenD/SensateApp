@@ -45,13 +45,22 @@
 					<StackLayout
 						Orientation="Horizontal"
 						>
-						<Label 
-							Text="Color Blindness Type"
-							TextColor="Black"
-							HorizontalOptions="StartAndExpand"
-							VerticalOptions="Center"
-							FontSize="22"
-							/>
+						<Picker x:Name="CBType"
+								Title="Color Blindness Type"
+								TitleColor="Gray"
+								TextColor="Black"
+								HorizontalOptions="StartAndExpand"
+								VerticalOptions="Center"
+								FontSize="22"
+							>
+							<Picker.ItemsSource>
+								<x:Array Type="{x:Type x:String}">
+									<x:String>Blue</x:String>
+									<x:String>Red</x:String>
+									<x:String>Green</x:String>
+								</x:Array>
+							</Picker.ItemsSource>
+						</Picker>
 						<Label 
 							Text=">"
 							TextColor="Black"
@@ -70,13 +79,21 @@
 					<StackLayout
 						Orientation="Horizontal"
 						>
-						<Label 
-							Text="Assistance Level"
-							TextColor="Black"
-							HorizontalOptions="StartAndExpand"
-							VerticalOptions="Center"
-							FontSize="22"
-							/>
+						<Picker x:Name="AssistanceLevel"
+								Title="Assistance Level"
+								TitleColor="Gray"
+								TextColor="Black"
+								HorizontalOptions="StartAndExpand"
+								VerticalOptions="Center"
+								FontSize="22"
+							>
+							<Picker.ItemsSource>
+								<x:Array Type="{x:Type x:String}">
+									<x:String>With Assistance</x:String>
+									<x:String>No Assistance</x:String>
+								</x:Array>
+							</Picker.ItemsSource>
+						</Picker>
 						<Label 
 							Text=">"
 							TextColor="Black"
@@ -99,6 +116,11 @@
 					FontSize="28"
 					HorizontalTextAlignment="Center"
 					/>
+				<Frame.GestureRecognizers>
+					<TapGestureRecognizer
+						Tapped="Confirm"
+						NumberOfTapsRequired="1" />
+				</Frame.GestureRecognizers>
 			</Frame>
 
 			<StackLayout 

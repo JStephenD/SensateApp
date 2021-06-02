@@ -43,38 +43,22 @@
 					<StackLayout
 						Orientation="Horizontal"
 						>
-						<Label 
-							Text="Cause of Low Vision"
-							TextColor="Black"
-							HorizontalOptions="StartAndExpand"
-							VerticalOptions="Center"
-							FontSize="22"
-							/>
-						<Label 
-							Text=">"
-							TextColor="Black"
-							HorizontalOptions="End"
-							FontSize="30"
-							/>
-					</StackLayout>
-				</Frame>
-
-				<Frame 
-					BackgroundColor="White"
-					BorderColor="Black"
-					CornerRadius="25"
-					Padding="20,10"
-					>
-					<StackLayout
-						Orientation="Horizontal"
-						>
-						<Label 
-							Text="Severity of Condition"
-							TextColor="Black"
-							HorizontalOptions="StartAndExpand"
-							VerticalOptions="Center"
-							FontSize="22"
-							/>
+						<Picker x:Name="LVCause"
+								Title="Cause of Low Vision"
+								TitleColor="Gray"
+								TextColor="Black"
+								HorizontalOptions="StartAndExpand"
+								VerticalOptions="Center"
+								FontSize="22"
+							>
+							<Picker.ItemsSource>
+								<x:Array Type="{x:Type x:String}">
+									<x:String>From Birth</x:String>
+									<x:String>From Accident</x:String>
+									<x:String>From Disease</x:String>
+								</x:Array>
+							</Picker.ItemsSource>
+						</Picker>
 						<Label 
 							Text=">"
 							TextColor="Black"
@@ -93,13 +77,55 @@
 					<StackLayout
 						Orientation="Horizontal"
 						>
+						<Picker x:Name="LVSeverity"
+								Title="Severity of Condition"
+								TitleColor="Gray"
+								TextColor="Black"
+								HorizontalOptions="StartAndExpand"
+								VerticalOptions="Center"
+								FontSize="22"
+							>
+							<Picker.ItemsSource>
+								<x:Array Type="{x:Type x:String}">
+									<x:String>Near Sighted</x:String>
+									<x:String>Far Sighted</x:String>
+									<x:String>Blurry Vision</x:String>
+								</x:Array>
+							</Picker.ItemsSource>
+						</Picker>
 						<Label 
-							Text="Assistance Level"
+							Text=">"
 							TextColor="Black"
-							HorizontalOptions="StartAndExpand"
-							VerticalOptions="Center"
-							FontSize="22"
+							HorizontalOptions="End"
+							FontSize="30"
 							/>
+					</StackLayout>
+				</Frame>
+
+				<Frame 
+					BackgroundColor="White"
+					BorderColor="Black"
+					CornerRadius="25"
+					Padding="20,10"
+					>
+					<StackLayout
+						Orientation="Horizontal"
+						>
+						<Picker x:Name="AssistanceLevel"
+								Title="Assistance Level"
+								TitleColor="Gray"
+								TextColor="Black"
+								HorizontalOptions="StartAndExpand"
+								VerticalOptions="Center"
+								FontSize="22"
+							>
+							<Picker.ItemsSource>
+								<x:Array Type="{x:Type x:String}">
+									<x:String>With Assistance</x:String>
+									<x:String>No Assistance</x:String>
+								</x:Array>
+							</Picker.ItemsSource>
+						</Picker>
 						<Label 
 							Text=">"
 							TextColor="Black"
@@ -122,6 +148,11 @@
 					FontSize="28"
 					HorizontalTextAlignment="Center"
 					/>
+				<Frame.GestureRecognizers>
+					<TapGestureRecognizer
+						Tapped="Confirm"
+						NumberOfTapsRequired="1" />
+				</Frame.GestureRecognizers>
 			</Frame>
 
 			<StackLayout 

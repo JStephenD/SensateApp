@@ -43,13 +43,22 @@
 					<StackLayout
 						Orientation="Horizontal"
 						>
-						<Label 
-							Text="Purpose of Installing"
-							TextColor="Black"
-							HorizontalOptions="StartAndExpand"
-							VerticalOptions="Center"
-							FontSize="22"
-							/>
+						<Picker x:Name="Purpose"
+								Title="Purpose of Installing"
+								TitleColor="Gray"
+								TextColor="Black"
+								HorizontalOptions="StartAndExpand"
+								VerticalOptions="Center"
+								FontSize="22"
+							>
+							<Picker.ItemsSource>
+								<x:Array Type="{x:Type x:String}">
+									<x:String>Research</x:String>
+									<x:String>Assist Others</x:String>
+									<x:String>Simulation</x:String>
+								</x:Array>
+							</Picker.ItemsSource>
+						</Picker>
 						<Label 
 							Text=">"
 							TextColor="Black"
@@ -72,6 +81,11 @@
 					FontSize="28"
 					HorizontalTextAlignment="Center"
 					/>
+				<Frame.GestureRecognizers>
+					<TapGestureRecognizer
+						Tapped="Confirm"
+						NumberOfTapsRequired="1" />
+				</Frame.GestureRecognizers>
 			</Frame>
 
 			<StackLayout 
