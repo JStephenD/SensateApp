@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sensate.Views.CategoryNormalPage"
+			 xmlns:viewmodels="clr-namespace:Sensate.ViewModels"
+             Shell.NavBarIsVisible="False">
+	<ContentPage.Content>
+		<StackLayout Padding="20" Margin="20" Spacing="20">
+			<Frame 
+				BackgroundColor="#FF881A"
+				CornerRadius="25"
+				Margin="0,20,0,0"
+				>
+				<StackLayout
+					Orientation="Horizontal"
+					HorizontalOptions="Center"
+					>
+					<Label 
+						Text="Normal Vision"
+						TextColor="White"
+						FontSize="32"
+						/>
+				</StackLayout>
+			</Frame>
+			
+			
+			<Label 
+				Text="Let us learn about you more. Please answer  the following..."
+				TextColor="Black"
+				FontSize="22"
+				/>
+			<FlexLayout
+				Direction="Column"
+				VerticalOptions="FillAndExpand"
+				JustifyContent="SpaceAround"
+				>
+				<Frame 
+					BackgroundColor="White"
+					BorderColor="Black"
+					CornerRadius="25"
+					Padding="20,10"
+					>
+					<StackLayout
+						Orientation="Horizontal"
+						>
+						<Label 
+							Text="Purpose of Installing"
+							TextColor="Black"
+							HorizontalOptions="StartAndExpand"
+							VerticalOptions="Center"
+							FontSize="22"
+							/>
+						<Label 
+							Text=">"
+							TextColor="Black"
+							HorizontalOptions="End"
+							FontSize="30"
+							/>
+					</StackLayout>
+				</Frame>
+			</FlexLayout>
+
+			<Frame
+				BackgroundColor="#FF881A"
+				CornerRadius="25"
+				VerticalOptions="EndAndExpand"
+				Padding="20,10"
+				>
+				<Label
+					Text="Confirm"
+					TextColor="White"
+					FontSize="28"
+					HorizontalTextAlignment="Center"
+					/>
+			</Frame>
+
+			<StackLayout 
+				HorizontalOptions="Center"
+				VerticalOptions="EndAndExpand"
+				Orientation="Horizontal" 
+				>
+				<Ellipse 
+					WidthRequest="17" 
+					HeightRequest="17"
+					Fill="#C4C4C4"
+					/>
+				<Ellipse 
+					WidthRequest="17" 
+					HeightRequest="17"
+					Fill="#00AEF9"
+					/>
+				<Ellipse 
+					WidthRequest="17" 
+					HeightRequest="17"
+					Fill="#C4C4C4"
+					/>
+			</StackLayout>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

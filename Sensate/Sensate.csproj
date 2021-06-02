@@ -44,6 +44,18 @@
     <Compile Update="Views\Intro\IntroPage.xaml.cs">
       <DependentUpon>IntroPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Personalization\CategoryColorBlindPage.xaml.cs">
+      <DependentUpon>CategoryColorBlindPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Personalization\CategoryLowVisionPage.xaml.cs">
+      <DependentUpon>CategoryLowVisionPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Personalization\CategoryNormalPage.xaml.cs">
+      <DependentUpon>CategoryNormalPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Personalization\CategorizePage.xaml.cs">
+      <DependentUpon>CategorizePage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\UserManagement\SigninPage.xaml.cs">
       <DependentUpon>SigninPage.xaml</DependentUpon>
     </Compile>
@@ -71,5 +83,9 @@
     <EmbeddedResource Update="Views\UserManagement\QuickProfileSetupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\Personalization\" />
   </ItemGroup>
 </Project>

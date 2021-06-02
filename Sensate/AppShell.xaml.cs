@@ -13,6 +13,11 @@ namespace Sensate {
 			Routing.RegisterRoute(nameof(SignupPage), typeof(SignupPage));
 			Routing.RegisterRoute(nameof(QuickProfileSetupPage), typeof(QuickProfileSetupPage));
 
+			Routing.RegisterRoute(nameof(CategorizePage), typeof(CategorizePage));
+			Routing.RegisterRoute(nameof(CategoryLowVisionPage), typeof(CategoryLowVisionPage));
+			Routing.RegisterRoute(nameof(CategoryColorBlindPage), typeof(CategoryColorBlindPage));
+			Routing.RegisterRoute(nameof(CategoryNormalPage), typeof(CategoryNormalPage));
+
 			Routing.RegisterRoute(nameof(FAQPage), typeof(FAQPage));
 			Routing.RegisterRoute(nameof(RateAndReviewPage), typeof(RateAndReviewPage));
 			Routing.RegisterRoute(nameof(SensateAboutPage), typeof(SensateAboutPage));

@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sensate.Views.CategorizePage"
+			 xmlns:viewmodels="clr-namespace:Sensate.ViewModels"
+             Shell.NavBarIsVisible="False">
+	<ContentPage.Content>
+		<StackLayout Padding="20" Margin="20" Spacing="20">
+			<Label 
+				Text="Let's categorize you..."
+				TextColor="Black"
+				FontSize="28"
+				/>
+			<Label 
+				Text="Sensate works on the two types of visual impairment. Choose your own classification."
+				TextColor="Black"
+				FontSize="22"
+				/>
+			<Frame 
+				BackgroundColor="#00AEF9"
+				CornerRadius="25"
+				>
+				<StackLayout
+					Orientation="Horizontal"
+					>
+					<Label 
+						Text="Low Vision"
+						TextColor="White"
+						HorizontalOptions="StartAndExpand"
+						FontSize="32"
+						/>
+					<Label 
+						Text=">"
+						TextColor="White"
+						HorizontalOptions="End"
+						FontSize="30"
+						/>
+				</StackLayout>
+			</Frame>
+
+			<Frame 
+				BackgroundColor="#17749C"
+				CornerRadius="25"
+				>
+				<StackLayout
+					Orientation="Horizontal"
+					>
+					<Label 
+						Text="Color Blind"
+						TextColor="White"
+						HorizontalOptions="StartAndExpand"
+						FontSize="32"
+						/>
+					<Label 
+						Text=">"
+						TextColor="White"
+						HorizontalOptions="End"
+						FontSize="30"
+						/>
+				</StackLayout>
+			</Frame>
+
+			<Frame 
+				BackgroundColor="#FF881A"
+				CornerRadius="25"
+				>
+				<StackLayout
+					Orientation="Horizontal"
+					>
+					<Label 
+						Text="Normal Vision"
+						TextColor="White"
+						HorizontalOptions="StartAndExpand"
+						FontSize="32"
+						/>
+					<Label 
+						Text=">"
+						TextColor="White"
+						HorizontalOptions="End"
+						FontSize="30"
+						/>
+				</StackLayout>
+			</Frame>
+
+			<StackLayout 
+				HorizontalOptions="Center"
+				VerticalOptions="EndAndExpand"
+				Orientation="Horizontal" 
+				>
+				<Ellipse 
+					WidthRequest="17" 
+					HeightRequest="17"
+					Fill="#00AEF9"
+					/>
+				<Ellipse 
+					WidthRequest="17" 
+					HeightRequest="17"
+					Fill="#C4C4C4"
+					/>
+				<Ellipse 
+					WidthRequest="17" 
+					HeightRequest="17"
+					Fill="#C4C4C4"
+					/>
+			</StackLayout>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

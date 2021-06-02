@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,20 +10,10 @@ namespace Sensate.Views {
 		public QuickProfileSetupPage() {
 			InitializeComponent();
 			this.BindingContext = new QuickProfileSetupViewModel();
-
-
-
 		}
 
-		private void BirthdayButton_Clicked(object sender, EventArgs e)
-        {
-			InitializeComponent();
+		private void BirthdayButton_Clicked(object sender, EventArgs e) {
+			//InitializeComponent();
 		}
-
-
 	}
-
-
-
-
 }

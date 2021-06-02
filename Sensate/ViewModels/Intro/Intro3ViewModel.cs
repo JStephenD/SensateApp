@@ -17,10 +17,11 @@ namespace Sensate.ViewModels {
 			NotNowCommand = new Command(OnClickNotNow);
 		}
 
-		private void OnSwiped(string direction) {
+		private async void OnSwiped(string direction) {
 			switch (direction) {
 				case "left":
-					Application.Current.MainPage = new SigninPage();
+					Application.Current.MainPage = new AppShell();
+					await Shell.Current.GoToAsync(nameof(SignupPage));
 					break;
 				case "right":
 					Application.Current.MainPage = new IntroPage2();

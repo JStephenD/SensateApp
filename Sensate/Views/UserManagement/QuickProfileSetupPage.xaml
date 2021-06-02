@@ -52,7 +52,8 @@
                             <Entry
 								Placeholder="Name" 
                                 PlaceholderColor="Gray" 
-                                Text="{Binding Username.username}"
+                                Text=""
+								TextColor="Black"
                             />
                         </Frame>
 
