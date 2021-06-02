@@ -5,7 +5,7 @@
 			 xmlns:viewmodels="clr-namespace:Sensate.ViewModels"
              Shell.NavBarIsVisible="False">
 	<ContentPage.Content>
-		<StackLayout Padding="20" Margin="20" Spacing="20">
+		<StackLayout Padding="40" Spacing="20" Background="White">
 			<Frame 
 				BackgroundColor="#00AEF9"
 				CornerRadius="25"

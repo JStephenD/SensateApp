@@ -24,6 +24,8 @@
 				TextColor="White"
 				FontFamily="Abel"
 				FontSize="20"
+				HorizontalTextAlignment="Center"
+				Padding="20,0"
 				/>
 			<Button 
 				BackgroundColor="#00AEF9"

@@ -28,8 +28,10 @@
 			<Label 
 				Text="We're here to help you see the world. We recommend you to have an assistant for setting up this app."
 				TextColor="White"
+				HorizontalTextAlignment="Center"
 				FontFamily="Abel"
 				FontSize="18"
+				Padding="20,0"
 				/>
 			<StackLayout 
 				HorizontalOptions="Center"

@@ -11,7 +11,12 @@ namespace Sensate {
 		public App() {
 			InitializeComponent();
 			DependencyService.Register<MockDataStore>();
-			MainPage = new NavigationPage(new CategorizePage());
+
+			//MainPage = new NavigationPage(new NavigationsSettingsPage());
+			MainPage = new IntroPage();
+
+
+
 			//if (!string.IsNullOrEmpty(Preferences.Get("MyFirebaseRefreshToken", ""))) {
 			//	MainPage = new AppShell();
 

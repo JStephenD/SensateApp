@@ -18,6 +18,8 @@ namespace Sensate.Views {
 			} else { 
 				Preferences.Set("CBType", CBType.SelectedItem.ToString(), "CBSettings");
 				Preferences.Set("AssistanceLevel", AssistanceLevel.SelectedItem.ToString(), "GeneralSettings");
+
+				Navigation.PushAsync(new FeedbackSettingsPage());
 			}
 		}
 	}

@@ -36,7 +36,8 @@ namespace Sensate.ViewModels {
 		private void OnClickSignup() { 
 
 		}
-		private void OnClickNotNow() { 
+		private void OnClickNotNow() {
+			Application.Current.MainPage = new NavigationPage(new CategorizePage());
 
 		}
 	}

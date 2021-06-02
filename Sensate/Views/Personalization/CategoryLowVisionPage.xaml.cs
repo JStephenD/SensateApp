@@ -21,6 +21,8 @@ namespace Sensate.Views {
 				Preferences.Set("LVCause", LVCause.SelectedItem.ToString(), "LVSettings");
 				Preferences.Set("LVSeverity", LVSeverity.SelectedItem.ToString(), "LVSettings");
 				Preferences.Set("AssistanceLevel", AssistanceLevel.SelectedItem.ToString(), "GeneralSettings");
+		
+				Navigation.PushAsync(new FeedbackSettingsPage());
 			}
 		}
 	}

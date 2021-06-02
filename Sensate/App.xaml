@@ -27,6 +27,11 @@
                     </VisualStateGroupList>
                 </Setter>
             </Style>
-        </ResourceDictionary>        
+
+			<!--Custom Navigation Page Color Background-->
+			<Style TargetType="NavigationPage">
+				<Setter Property="BarBackgroundColor" Value="#00AEF9"/>
+			</Style>
+		</ResourceDictionary>        
     </Application.Resources>
 </Application>

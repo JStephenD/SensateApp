@@ -13,17 +13,17 @@ namespace Sensate.Views {
 		}
 
 		private async void ClickLowVision(object sender, EventArgs e) {
-			Preferences.Set("UserCategory", "LowVision", "UserCategoryName");
+			Preferences.Set("UserCategory", "LowVision", "GeneralSettings");
 			await Navigation.PushAsync(new CategoryLowVisionPage());
 		}
 
 		private async void ClickColorBlind(object sender, EventArgs e) {
-			Preferences.Set("UserCategory", "ColorBlind", "UserCategoryName");
+			Preferences.Set("UserCategory", "ColorBlind", "GeneralSettings");
 			await Navigation.PushAsync(new CategoryColorBlindPage());
 		}
 
 		private async void ClickNormal(object sender, EventArgs e) {
-			Preferences.Set("UserCategory", "Normal", "UserCategoryName");
+			Preferences.Set("UserCategory", "Normal", "GeneralSettings");
 			await Navigation.PushAsync(new CategoryNormalPage());
 		}
 	}

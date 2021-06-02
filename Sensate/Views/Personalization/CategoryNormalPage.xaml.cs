@@ -16,6 +16,8 @@ namespace Sensate.Views {
 				DisplayAlert("Error!", "Some Entries are Missing", "Ok");
 			} else {
 				Preferences.Set("LVCause", Purpose.SelectedItem.ToString(), "GeneralSettings");
+				
+				Navigation.PushAsync(new FeedbackSettingsPage());
 			}
 		}
 	}

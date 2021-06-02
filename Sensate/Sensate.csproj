@@ -11,18 +11,41 @@
     <PackageReference Include="Google.Cloud.Vision.V1" Version="2.3.0" />
     <PackageReference Include="Grpc.Core.Xamarin" Version="2.38.0" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+    <None Remove="Assets\arrow-down-circle.png" />
+    <None Remove="Assets\arrow-down.png" />
+    <None Remove="Assets\arrow-left-circle.png" />
+    <None Remove="Assets\arrow-left.png" />
+    <None Remove="Assets\arrow-right-circle.png" />
+    <None Remove="Assets\arrow-right.png" />
+    <None Remove="Assets\arrow-up-circle.png" />
+    <None Remove="Assets\arrow-up.png" />
+    <None Remove="Assets\info-small.png" />
 	  
     <None Remove="Assets\loading.png" />
+	  
+    <None Remove="Assets\navigation-settings.png" />
     <None Remove="Assets\Sensate-auth.json" />
     <None Remove="Assets\sensate-logo1.png" />
     <None Remove="Assets\sensate-logo2.png" />
+    <None Remove="Assets\waves.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Assets\arrow-down-circle.png" />
+    <EmbeddedResource Include="Assets\arrow-down.png" />
+    <EmbeddedResource Include="Assets\arrow-left-circle.png" />
+    <EmbeddedResource Include="Assets\arrow-left.png" />
+    <EmbeddedResource Include="Assets\arrow-right-circle.png" />
+    <EmbeddedResource Include="Assets\arrow-right.png" />
+    <EmbeddedResource Include="Assets\arrow-up-circle.png" />
+    <EmbeddedResource Include="Assets\arrow-up.png" />
+    <EmbeddedResource Include="Assets\info-small.png" />
     <EmbeddedResource Include="Assets\loading.png" />
+    <EmbeddedResource Include="Assets\navigation-settings.png" />
     <EmbeddedResource Include="Assets\Sensate-auth.json" />
     <EmbeddedResource Include="Assets\sensate-logo1.png" />
     <EmbeddedResource Include="Assets\sensate-logo2.png" />
+    <EmbeddedResource Include="Assets\waves.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,6 +66,12 @@
     </Compile>
     <Compile Update="Views\Intro\IntroPage.xaml.cs">
       <DependentUpon>IntroPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Personalization\NavigationsSettingsPage.xaml.cs">
+      <DependentUpon>NavigationsSettingsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Personalization\FeedbackSettingsPage.xaml.cs">
+      <DependentUpon>FeedbackSettingsPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Personalization\CategoryColorBlindPage.xaml.cs">
       <DependentUpon>CategoryColorBlindPage.xaml</DependentUpon>
