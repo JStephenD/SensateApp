@@ -57,25 +57,31 @@
 								<Label 
 									Text=
 										"
-										Sensate is an assistive application made for people who endures low vision or color blindess.
-										This application provides user the necessary accessibility needed for an everyday use which ranges from
-										certain decision making, object identification, text reading, product identifier, facial recognition, 
-										as well as color recognition.
-										
-										What makes Sensate standout to other application is the establishment of the required features for users to use.
-										This includes the two main function of vision which is to discern objects and recognize colors which is the two main
-										features of the application. Other functionalities also includes account management, for a flexible usage, 
-										and the use of synchronization across of the users devices. 
-										Interactive personalization and settings to accomodate the various types of users ranging from low vision,
-										color blind, and normal users. The integration of feed back and navigation settings makes this application even more
-										accessible to the various needs of users.
-                                    
-										At the core of the Sensate was to provide accessibility to people with disability through the use of mobile technology.
-										The developers believed that technology is made for everybody and should be used by everbody. 
-										
-										Sensate was made by three students who are passionate to make a difference in the world 
-										by creating solutions to problems close to their hearts.
-										
+										Lorem ipsum dolor sit amet, consectetur 
+										adipiscing elit, sed do eiusmod tempor 
+										incididunt ut labore et dolore magna aliqua. 
+										Ut enim ad minim veniam, quis nostrud 
+										exercitation ullamco laboris nisi ut aliquip 
+										ex ea commodo consequat. 
+
+										Duis aute irure dolor in reprehenderit in
+											voluptate velit esse cillum dolore eu fugiat 
+										nulla pariatur. Excepteur sint occaecat 
+										upidatat non proident, sunt in culpa qui 
+										officia deserunt mollit anim id est laborum.
+									
+										Lorem ipsum dolor sit amet, consectetur 
+										adipiscing elit, sed do eiusmod tempor 
+										incididunt ut labore et dolore magna aliqua. 
+										Ut enim ad minim veniam, quis nostrud 
+										exercitation ullamco laboris nisi ut aliquip 
+										ex ea commodo consequat. 
+
+										Duis aute irure dolor in reprehenderit in
+											voluptate velit esse cillum dolore eu fugiat 
+										nulla pariatur. Excepteur sint occaecat 
+										upidatat non proident, sunt in culpa qui 
+										officia deserunt mollit anim id est laborum.
 										"
 									TextColor="Black"
 									FontSize="18"
