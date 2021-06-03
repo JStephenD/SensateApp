@@ -23,7 +23,9 @@ namespace Sensate {
 			Routing.RegisterRoute(nameof(SensateAboutPage), typeof(SensateAboutPage));
 			Routing.RegisterRoute(nameof(TutorialPage), typeof(TutorialPage));
 
-			Routing.RegisterRoute(nameof(IntroPage), typeof(IntroPage));	
+			Routing.RegisterRoute(nameof(IntroPage), typeof(IntroPage));
+			Routing.RegisterRoute(nameof(IntroPage2), typeof(IntroPage2));
+			Routing.RegisterRoute(nameof(IntroPage3), typeof(IntroPage3));
 		}
 
 		private async void OnMenuItemClicked(object sender, EventArgs e) {

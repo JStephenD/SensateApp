@@ -13,7 +13,7 @@ namespace Sensate {
 			DependencyService.Register<MockDataStore>();
 
 			//MainPage = new NavigationPage(new NavigationsSettingsPage());
-			MainPage = new IntroPage();
+			MainPage = new DisplaySettingsPage();
 
 
 
