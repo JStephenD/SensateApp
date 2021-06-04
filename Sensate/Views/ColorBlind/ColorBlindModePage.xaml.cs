@@ -15,6 +15,7 @@ namespace Sensate.Views {
 	public partial class ColorBlindModePage : ContentPage {
 		
 		private SKBitmap bitmap;
+		private string cbmode;
 
 		private static float[] Protanopia = {
 			0.567F, 0.433F,         0F, 0F, 0,
@@ -56,7 +57,6 @@ namespace Sensate.Views {
 			InitializeComponent();
 
 			cameraView.CaptureMode = CameraCaptureMode.Photo;
-			preview.IsVisible = false;
 			cameraView.IsVisible = true;
 			canvasView.IsVisible = true;
 
@@ -70,8 +70,6 @@ namespace Sensate.Views {
 		}
 
 		private void CameraView_MediaCaptured(object sender, MediaCapturedEventArgs e) {
-			rotation = e.Rotation;
-
 			MemoryStream ms = new MemoryStream(e.ImageData);
 			bitmap = SKBitmap.Decode(ms);
 		}
