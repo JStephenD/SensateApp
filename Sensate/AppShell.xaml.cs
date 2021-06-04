@@ -23,9 +23,20 @@ namespace Sensate {
 			Routing.RegisterRoute(nameof(SensateAboutPage), typeof(SensateAboutPage));
 			Routing.RegisterRoute(nameof(TutorialPage), typeof(TutorialPage));
 
+			Routing.RegisterRoute(nameof(CategorizePage), typeof(CategorizePage));
+			Routing.RegisterRoute(nameof(CategoryColorBlindPage), typeof(CategoryColorBlindPage));
+			Routing.RegisterRoute(nameof(CategoryLowVisionPage), typeof(CategoryLowVisionPage));
+			Routing.RegisterRoute(nameof(CategoryNormalPage), typeof(CategoryNormalPage));
+
+			Routing.RegisterRoute(nameof(DisplaySettingsPage), typeof(DisplaySettingsPage));
+			Routing.RegisterRoute(nameof(FeedbackSettingsPage), typeof(FeedbackSettingsPage));
+			Routing.RegisterRoute(nameof(NavigationsSettingsPage), typeof(NavigationsSettingsPage));
+
 			Routing.RegisterRoute(nameof(IntroPage), typeof(IntroPage));
 			Routing.RegisterRoute(nameof(IntroPage2), typeof(IntroPage2));
 			Routing.RegisterRoute(nameof(IntroPage3), typeof(IntroPage3));
+
+			Routing.RegisterRoute(nameof(ColorBlindModePage), typeof(ColorBlindModePage));
 		}
 
 		private async void OnMenuItemClicked(object sender, EventArgs e) {

@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sensate.Views.ColorBlindModePage"
+			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+			 xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             Shell.NavBarIsVisible="True">
+	<ContentPage.Content>
+		<Grid RowDefinitions="auto, 50" ColumnDefinitions="*, 2*, *"
+			  BackgroundColor="white">
+			<xct:CameraView
+				Grid.Row="0"
+				Grid.ColumnSpan="3"
+				
+                x:Name="cameraView"
+                CaptureMode="Video"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand" 
+				MediaCaptured="CameraView_MediaCaptured"
+                OnAvailable="CameraView_OnAvailable"
+				
+				/>
+
+			<skia:SKCanvasView 
+				Grid.Row="0"
+				Grid.ColumnSpan="3"
+				
+				x:Name="canvasView"
+				PaintSurface="canvasView_PaintSurface"
+				HeightRequest="500"
+				WidthRequest="500"
+				
+				/>
+
+			<Image
+				Grid.Row="0"
+				Grid.ColumnSpan="3"
+								
+                x:Name="preview"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                BackgroundColor="Transparent"/>
+			
+			
+			<Button 
+				Grid.Row="1"
+				Grid.Column="1"				
+				
+				x:Name="captureButton"
+				Text="Capture"
+				Clicked="captureButtonClicked"
+				/>
+		</Grid>
+	</ContentPage.Content>
+</ContentPage>

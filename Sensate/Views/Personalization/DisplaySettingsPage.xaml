@@ -67,12 +67,10 @@
 							FontSize="22"
 							/>
 						<Frame BackgroundColor="#80D7FC" CornerRadius="30">
-							<StackLayout Orientation="Horizontal">
-								<Slider x:Name="ContrastIntensity"
-										Minimum="0"
-										Maximum="10"
-										ValueChanged="ChangeContrastIntensity"/>
-							</StackLayout>
+							<Slider x:Name="ContrastIntensity"
+									Minimum="0"
+									Maximum="10"
+									ValueChanged="ChangeContrastIntensity"/>
 						</Frame>
 
 						<Label 
@@ -80,11 +78,12 @@
 							TextColor="Black"
 							FontSize="22"
 							/>
-						<Slider x:Name="TextSize"
-								Minimum="0"
-								Maximum="10"
-								ValueChanged="ChangeTextSize"/>
-						
+						<Frame BackgroundColor="#80D7FC" CornerRadius="30">
+							<Slider x:Name="TextSize"
+									Minimum="0"
+									Maximum="10"
+									ValueChanged="ChangeTextSize"/>
+						</Frame>
 						
 					</StackLayout>
 				</StackLayout>
