@@ -1,111 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-			 xmlns:viewmodels="clr-namespace:Sensate.ViewModels"
-			 x:DataType="viewmodels:FAQViewModel"
 			 x:Class="Sensate.Views.FAQPage">
     <ContentPage.Content>
-		<StackLayout Padding="0" Margin="0" Spacing="0">
-			<Frame 
+        <StackLayout Padding="0" Margin="0" Spacing="0" BackgroundColor="#00AEF9">
+            <Frame 
 				BackgroundColor="White" 
 				HeightRequest="200" 
 				VerticalOptions="Fill">
 
-				<StackLayout>
-					<Label 
+                <StackLayout>
+                    <Label 
 						Text="FAQs"
 						TextColor="Black"
 						FontSize="32"
 						/>
-					<Label 
+                    <Label 
 						Text="Frequently asked questions about Sensate."
 						TextColor="Black"
 						FontSize="24"
 						/>
-				</StackLayout>
-			</Frame>
+                </StackLayout>
+            </Frame>
 
-			<Frame 
-				BackgroundColor="#00AEF9" 
-				VerticalOptions="FillAndExpand"
-				>
-				<FlexLayout
-					Direction="Column"
-					JustifyContent="Start"
-					>
-					<!--Items portion-->
-					<Frame
-						BackgroundColor="#7AD6FE"
-						Margin="0, 10, 0, 10"
-						>
-						<StackLayout>
-							<FlexLayout 
-								Direction="Row"
-								JustifyContent="SpaceBetween"
-								>
-								<Label
-									Text="What is Sensate ?"
-									TextColor="White"
-									FontSize="20"
-									/>
-								<Label
-									Text="^"
-									TextColor="#055572"
-									FontSize="24"
-									/>
-							</FlexLayout>
-							<Label 
-								Text="Sensate is an AI driven application which utilizes object recognition technology to aid those who are low in vision or color blind, providing assistance. "
-								TextColor="Black"
-								/>
-						</StackLayout>
-					</Frame>
-					<Frame
-						BackgroundColor="#7AD6FE"
-						Margin="0, 10, 0, 10"
-						>
-						<StackLayout>
-							<FlexLayout 
-								Direction="Row"
-								JustifyContent="SpaceBetween"
-								>
-								<Label
-									Text="How to delete my account ?"
-									TextColor="Black"
-									FontSize="20"
-									/>
-								<Label
-									Text="^"
-									TextColor="#055572"
-									FontSize="24"
-									/>
-							</FlexLayout>
-						</StackLayout>
-					</Frame>
-					<Frame
-						BackgroundColor="#7AD6FE"
-						Margin="0, 10, 0, 10"
-						>
-						<StackLayout>
-							<FlexLayout 
-								Direction="Row"
-								JustifyContent="SpaceBetween"
-								>
-								<Label
-									Text="How to change my classification ?"
-									TextColor="Black"
-									FontSize="18"
-									/>
-								<Label
-									Text="^"
-									TextColor="#055572"
-									FontSize="24"
-									/>
-							</FlexLayout>
-						</StackLayout>
-					</Frame>
-				</FlexLayout>
-			</Frame>
+            <ListView Grid.Row="1" BackgroundColor="#00AEF9" Margin="10,20,10,10" Footer="" x:Name="MyListView" 
+			GroupDisplayBinding="{Binding Title}"
+			HasUnevenRows="true"
+			SeparatorVisibility="None"
+			IsGroupingEnabled="true">
+                <ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell Height="150">
+							<Frame BorderColor="White" CornerRadius="0" HasShadow="false" Padding="10,10,10,10">
+								<ScrollView>
+                                    <StackLayout>
+										<Label TextColor="Black" FontSize="Medium" VerticalTextAlignment="Start" Text="{Binding Description}"/>
+									</StackLayout>
+								</ScrollView>
+							</Frame>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+
+				<ListView.GroupHeaderTemplate>
+					<DataTemplate>
+						<ViewCell Height="90">
+							<Frame HasShadow="false" BackgroundColor="#7AD6FE" Margin="0,10,0,10" CornerRadius="0" Padding="20,10,10,10">
+								<StackLayout Orientation="Horizontal" VerticalOptions="EndAndExpand" >
+									<Label Text="{Binding Title}"
+											VerticalTextAlignment="Center"
+											TextColor="Black"
+                                            FontSize="Medium"
+                                     
+											VerticalOptions="FillAndExpand"/>
+									<Button HorizontalOptions="EndAndExpand" Image="{Binding StateIcon}"
+											VerticalOptions="FillAndExpand"
+											BackgroundColor="Transparent"
+											BorderColor="White"
+											BorderWidth="2"
+                                            WidthRequest="30"
+                                            
+                                            CornerRadius="10"
+											Clicked="HeaderTapped"
+											CommandParameter="{Binding .}"/>
+								</StackLayout>
+							</Frame>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.GroupHeaderTemplate>
+			</ListView>
+
+
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

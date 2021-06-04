@@ -77,7 +77,7 @@
 							BorderColor="Black"
 							Padding="20,5"
 							>
-                            <!--this can be changed into age nlng para eazy-->
+                            
                             <!--
                             <Button Text="Birthday" CornerRadius="50" BorderColor="Black" Padding="20,5" Clicked="BirthdayButton_Clicked">
                             </Button>-->
