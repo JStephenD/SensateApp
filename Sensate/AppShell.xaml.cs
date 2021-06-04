@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Sensate.ViewModels;
 using Sensate.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Sensate {
@@ -37,9 +38,21 @@ namespace Sensate {
 			Routing.RegisterRoute(nameof(IntroPage3), typeof(IntroPage3));
 
 			Routing.RegisterRoute(nameof(ColorBlindModePage), typeof(ColorBlindModePage));
+
+
+			if (Preferences.Get("UserCategory", "Normal", "GeneralSettings") == "LowVision") {
+				MainFeature.Route = nameof(Test1);
+				MainFeature.ContentTemplate = new DataTemplate(typeof(Test1));
+				MainFeatureTitle.Title = "Low Vision Mode";
+			} else {
+				MainFeature.Route = nameof(ColorBlindModePage);
+				MainFeature.ContentTemplate = new DataTemplate(typeof(ColorBlindModePage));
+				MainFeatureTitle.Title = "Color Blind Mode";
+			}
 		}
 
 		private async void OnMenuItemClicked(object sender, EventArgs e) {
+			Preferences.Set("MyFirebaseRefreshToken", "");
 			await Current.GoToAsync($"{nameof(SigninPage)}");
 		}
 	}

@@ -81,8 +81,8 @@
 	<FlyoutItem Title="About" Icon="icon_about.png">
 		<ShellContent Route="AboutPage" ContentTemplate="{DataTemplate local:AboutPage}" />
 	</FlyoutItem>
-	<FlyoutItem Title="Test1" Icon="icon_about.png">
-		<ShellContent Route="Test1" ContentTemplate="{DataTemplate local:Test1}" />
+	<FlyoutItem x:Name="MainFeatureTitle" Title="Test1" Icon="icon_about.png">
+		<ShellContent x:Name="MainFeature" Route="Test1" ContentTemplate="{DataTemplate local:Test1}" />
 	</FlyoutItem>
 	<FlyoutItem Title="Sign Up" Icon="icon_about.png">
 		<ShellContent Route="SignupPage" ContentTemplate="{DataTemplate local:SignupPage}" />

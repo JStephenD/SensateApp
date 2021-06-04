@@ -15,18 +15,18 @@ namespace Sensate.Views {
 			this.BindingContext = new AboutViewModel();
 			RefreshToken();
 		}
-		async private void RefreshToken(){
+		async private void RefreshToken() {
 			var authProvider = new FirebaseAuthProvider(new FirebaseConfig(FirebaseAPIKey));
-			try{
-				var savedfirebaseauth = JsonConvert.DeserializeObject<Firebase.Auth.FirebaseAuth>(Preferences.Get("MyFirebaseRefreshToken",""));
+			try {
+				var savedfirebaseauth = JsonConvert.DeserializeObject<Firebase.Auth.FirebaseAuth>(Preferences.Get("MyFirebaseRefreshToken", ""));
 				var refreshedContent = await authProvider.RefreshAuthAsync(savedfirebaseauth);
 				Preferences.Set("MyFirebaseRefreshToken", JsonConvert.SerializeObject(refreshedContent));
-			}catch (Exception ex){
+			} catch (Exception ex) {
+				Console.WriteLine($"EXCEPTION: {ex.Message}");
 				await this.DisplayAlert("Alert!", "Token Expired.", "Ok");
 			}
 		}
-		private void Logout_Clicked(System.Object sender, System.EventArgs e)
-        {
+		private void Logout_Clicked(System.Object sender, System.EventArgs e) {
 			Preferences.Remove("MyFirebaseRefreshToken");
 			App.Current.MainPage = new NavigationPage(new SigninPage());
 

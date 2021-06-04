@@ -13,9 +13,8 @@ using System.Collections.Generic;
 namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ColorBlindModePage : ContentPage {
-
-		SKBitmap bitmap;
-		double rotation;
+		
+		private SKBitmap bitmap;
 
 		private static float[] Protanopia = {
 			0.567F, 0.433F,         0F, 0F, 0,
@@ -38,17 +37,16 @@ namespace Sensate.Views {
 			0,0,0,1,0
 		};
 
-		SKPaint paintProtanopia = new SKPaint{ 
+		private SKPaint paintProtanopia = new SKPaint {
 			ColorFilter = SKColorFilter.CreateColorMatrix(Protanopia),
 			Style = SKPaintStyle.Fill
 		};
 
-		SKPaint paintDeuteranopia = new SKPaint {
+		private SKPaint paintDeuteranopia = new SKPaint {
 			ColorFilter = SKColorFilter.CreateColorMatrix(Deuteranopia),
 			Style = SKPaintStyle.Fill
 		};
-
-		SKPaint paintTritanopia = new SKPaint {
+		private SKPaint paintTritanopia = new SKPaint {
 			ColorFilter = SKColorFilter.CreateColorMatrix(Tritanopia),
 			Style = SKPaintStyle.Fill
 		};
@@ -61,6 +59,8 @@ namespace Sensate.Views {
 			preview.IsVisible = false;
 			cameraView.IsVisible = true;
 			canvasView.IsVisible = true;
+
+			cbmode = Preferences.Get("CBType", "Protanopia", "CBSettings");
 
 			Device.StartTimer(TimeSpan.FromSeconds(1f / 30), () => {
 				canvasView.InvalidateSurface();
@@ -93,7 +93,17 @@ namespace Sensate.Views {
 			
 			if (bitmap != null) {
 				SKBitmap rotatedBitmap = Rotate2(bitmap, 90);
-				canvas.DrawBitmap(rotatedBitmap, info.Rect, BitmapStretch.Uniform, paint: paintDeuteranopia);
+				switch (cbmode) {
+					case "Protanopia":
+						canvas.DrawBitmap(rotatedBitmap, info.Rect, BitmapStretch.UniformToFill, paint: paintProtanopia);
+						break;
+					case "Deuteranopia":
+						canvas.DrawBitmap(rotatedBitmap, info.Rect, BitmapStretch.UniformToFill, paint: paintDeuteranopia);
+						break;
+					case "Tritanopia":
+						canvas.DrawBitmap(rotatedBitmap, info.Rect, BitmapStretch.UniformToFill, paint: paintTritanopia);
+						break;
+				}
 			}
 		}
 

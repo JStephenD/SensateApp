@@ -12,104 +12,83 @@ namespace Sensate.ViewModels {
 
 		public event PropertyChangedEventHandler PropertyChanged;
 
-		public SignupViewModel() {}
+		public SignupViewModel() { }
 
 		private string email;
-		public string Email
-		{
+		public string Email {
 			get { return email; }
-			set
-			{
+			set {
 				email = value;
 				PropertyChanged(this, new PropertyChangedEventArgs("Email"));
 			}
 		}
 
 		private string password;
-		public string Password
-		{
+		public string Password {
 			get { return password; }
-			set
-			{
+			set {
 				password = value;
 				PropertyChanged(this, new PropertyChangedEventArgs("Password"));
 			}
 		}
 
 		private string confirmpassword;
-		public string ConfirmPassword
-		{
+		public string ConfirmPassword {
 			get { return confirmpassword; }
-			set
-			{
+			set {
 				password = value;
 				PropertyChanged(this, new PropertyChangedEventArgs("ConfirmPassword"));
 			}
 		}
 
-		public Command SigninCommand
-		{
+		public Command SigninCommand {
 			get { return new Command(OnSigninClicked); }
 		}
 
-		public Command SignupCommand
-		{
+		public Command SignupCommand {
 			get { return new Command(OnSignupClicked); }
 		}
 
-		private async void OnSigninClicked(object obj)
-		{
+		private async void OnSigninClicked(object obj) {
 			await App.Current.MainPage.Navigation.PushModalAsync(new SigninPage());
 		}
 
 		public string FirebaseAPIKey = "AIzaSyCCVSTuyUOF9KVv6fZJywVHckk4PttsUw8";
 
-		private async void OnSignupClicked(object obj)
-		{
+		private async void OnSignupClicked(object obj) {
 			// Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
 			//await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
-			try{
+			try {
 				//credential checker 
-				
+
 				var authProvider = new FirebaseAuthProvider(new FirebaseConfig(FirebaseAPIKey));
 
-				if (email != null)
-				{
-					if (password != null && confirmpassword != null && password.Length > 5)
-					{
-						if (password == confirmpassword)
-						{
+				if (email != null) {
+					if (password != null && confirmpassword != null && password.Length > 5) {
+						if (password == confirmpassword) {
 							var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(email, password);
 							//string gettoken = auth.FirebaseToken;
 							await App.Current.MainPage.DisplayAlert("Success!", "Welcome to Sensate! Please remember your credentials for future log-ins.", "OK");
 							//redirect to quick profile
 							await App.Current.MainPage.Navigation.PushModalAsync(new AppShell());
-						}
-						else
-						{
+						} else {
 							await App.Current.MainPage.DisplayAlert("Alert", "Password and confirm password don't not match.", "OK");
 						}
-					}
-					else
-					{
+					} else {
 						await App.Current.MainPage.DisplayAlert("Alert!", "Password must contain atleast 6 characters.", "OK");
 					}
-				}
-				else
-				{
+				} else {
 					await App.Current.MainPage.DisplayAlert("Alert!", "Email must not be empty.", "OK");
 				}
 
-			}
-			catch (Exception ex)
-			{
+			} catch (Exception ex) {
 				await App.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
 			}
 
 		}
-		
 
-		
+
+
 	}
 }
 
