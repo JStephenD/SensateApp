@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "435083263546",
+    "project_id": "sensatefirebase",
+    "storage_bucket": "sensatefirebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:435083263546:android:ce08a18915477928a03f03",
+        "android_client_info": {
+          "package_name": "com.companyname.sensate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "435083263546-ruok6419omcc3udfbl8r1epe87mhgvhu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkjJgw71VdquyPId-QwFYQEJuPLSOroxQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "435083263546-ruok6419omcc3udfbl8r1epe87mhgvhu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

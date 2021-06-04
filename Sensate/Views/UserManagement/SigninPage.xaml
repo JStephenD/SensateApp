@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-			 xmlns:viewmodels="clr-namespace:Sensate.ViewModels" 
-			 x:Class="Sensate.Views.SigninPage"
+			 xmlns:viewmodels="clr-namespace:Sensate.ViewModels" x:DataType="viewmodels:SigninViewModel"
+             x:Class="Sensate.Views.SigninPage"
 			 mc:Ignorable="d"
              Shell.NavBarIsVisible="False">
 	<ContentPage.Content>
@@ -22,7 +22,6 @@
 							WidthRequest="50"
 							HorizontalOptions="StartAndExpand"
 							Source="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Circle_arrow_left_font_awesome.svg/1024px-Circle_arrow_left_font_awesome.svg.png"
-							Clicked="Signup_Clicked"
                             />
                         <Button 
 							BackgroundColor="#FF881A"
@@ -32,7 +31,7 @@
 							Text="Sign Up" 
 							HeightRequest="40"
 							FontSize="18"
-							Clicked="Signup_Clicked"/>
+							Command="{Binding SignupCommand}"/>
                     </StackLayout>
 					<Label 
 						Text="Sign In"
@@ -62,6 +61,7 @@
 							Padding="20,5"
 							>
 							<Entry
+								Text = "{Binding Email}" 
 								Placeholder="Email"
                                 x:Name="SignInEmail"
 								PlaceholderColor="Gray"
@@ -74,7 +74,7 @@
 							Padding="20,5"
 							>
 							<Entry
-								Text=""
+								Text = "{Binding Password}" 
 								IsPassword="True"
 								Placeholder="Password"
                                 x:Name="SignInPassword"
@@ -89,13 +89,14 @@
 							TextColor="Blue"
 							/>
 
-						<Label 
+                        <!--
+                        <Label 
 							x:Name="Result"
 							HorizontalOptions="Center"
 							Text="succ"
 							TextColor="Green"
 							FontSize="24"
-							/>
+							/>-->
 					</StackLayout>
 
 					<!--Bottom portion - login and dots-->
@@ -107,7 +108,8 @@
 							Text="Sign in" 
 							HeightRequest="60"
 							FontSize="24"
-							Clicked="Signin_Clicked"/>
+							Command = "{Binding SigninCommand}"
+							/>
 
 						<StackLayout 
 							HorizontalOptions="Center"

@@ -12,20 +12,22 @@ namespace Sensate {
 			InitializeComponent();
 			DependencyService.Register<MockDataStore>();
 
-			//MainPage = new NavigationPage(new NavigationsSettingsPage());
-			MainPage = new DisplaySettingsPage();
+            //MainPage = new NavigationPage(new NavigationsSettingsPage());
+            //MainPage = new SigninPage();
 
 
 
-			//if (!string.IsNullOrEmpty(Preferences.Get("MyFirebaseRefreshToken", ""))) {
-			//	MainPage = new AppShell();
-
-			//} else {
-			//	MainPage = new NavigationPage(new SigninPage());
-
-			//}
-			//MainPage = new AppShell();
-		}
+            if (!string.IsNullOrEmpty(Preferences.Get("MyFirebaseRefreshToken", "")))
+            {
+                MainPage = new AppShell();
+            }
+            else
+            {
+                //MainPage = new NavigationPage(new SigninPage());
+                MainPage = new NavigationPage(new IntroPage());
+            }
+            //MainPage = new AppShell();
+        }
 
 		protected override void OnStart() {
 		}
