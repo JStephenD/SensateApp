@@ -8,7 +8,7 @@
 	<ContentPage.Content>
 		<Grid RowDefinitions="auto, 50" ColumnDefinitions="*, 2*, *"
 			  Padding="0" Margin="0" BackgroundColor="blue">
-			  <xct:CameraView
+			<xct:CameraView
 				Grid.Row="0"
 				Grid.ColumnSpan="3"
 				
@@ -18,8 +18,7 @@
                 VerticalOptions="FillAndExpand"
 				MediaCaptured="CameraView_MediaCaptured"
                 OnAvailable="CameraView_OnAvailable"
-				
-				/>
+			/>
 
 			<skia:SKCanvasView 
 				Grid.Row="0"

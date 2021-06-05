@@ -33,34 +33,6 @@ namespace Sensate.Views {
 			}
 		}
 
-		public void VideoSwitch_Toggled(object sender, ToggledEventArgs e) {
-			if (permissionGranted) {
-				var captureVideo = e.Value;
-
-				if (captureVideo)
-					cameraView.CaptureMode = CameraCaptureMode.Video;
-				else
-					cameraView.CaptureMode = CameraCaptureMode.Photo;
-
-				previewPicture.IsVisible = !captureVideo;
-
-				doCameraThings.Text = e.Value ? "Start Recording"
-					: "Snap Picture";
-			}
-		}
-
-		// You can also set it to Default and External
-		public void FrontCameraSwitch_Toggled(object sender, ToggledEventArgs e) {
-			if (permissionGranted)
-				cameraView.CameraOptions = e.Value ? CameraOptions.Front : CameraOptions.Back;
-		}
-
-		// You can also set it to Torch (always on) and Auto
-		public void FlashSwitch_Toggled(object sender, ToggledEventArgs e) {
-			if (permissionGranted)
-				cameraView.FlashMode = e.Value ? CameraFlashMode.On : CameraFlashMode.Off;
-		}
-
 		public void DoCameraThings_Clicked(object sender, EventArgs e) {
 			if (permissionGranted) {
 				cameraView.Shutter();
@@ -87,6 +59,11 @@ namespace Sensate.Views {
 		}
 
 		public async void CameraView_MediaCaptured(object sender, MediaCapturedEventArgs e) {
+			if (Mode.SelectedIndex == -1) { 
+				await Application.Current.MainPage.DisplayAlert("Error", "Select Mode", "OK");
+				return;
+			}
+
 			if (permissionGranted) {
 				switch (cameraView.CaptureMode) {
 					default:
@@ -97,7 +74,7 @@ namespace Sensate.Views {
 						previewPicture.Source = e.Image;
 						doCameraThings.Text = "Snap Picture";
 
-						await TextToSpeech.SpeakAsync("Captured Image X D");
+						await TextToSpeech.SpeakAsync("Captured Image");
 
 						var assembly = this.GetType().GetTypeInfo().Assembly;
 						var resources = assembly.GetManifestResourceNames();
@@ -120,18 +97,36 @@ namespace Sensate.Views {
 							Image = Google.Cloud.Vision.V1.Image.FromBytes(
 								e.ImageData.AsMemory().ToArray()),
 							Features = {
-								new Feature { Type = Feature.Types.Type.ObjectLocalization }
+								new Feature {
+									Type = (Mode.SelectedItem.ToString() == "General Object Detection") ?
+										Feature.Types.Type.ObjectLocalization :
+										Feature.Types.Type.LabelDetection
+								}
 							}
 						};
 						AnnotateImageResponse response = await client.AnnotateAsync(request);
-						foreach (LocalizedObjectAnnotation annotation in response.LocalizedObjectAnnotations) {
-							// string poly = string.Join(" - ", annotation.BoundingPoly.NormalizedVertices.Select(v => $"({v.X}, {v.Y})"));
-							//string output = $"Object Identified: {annotation.Name}; ID: {annotation.Mid}; Score: {annotation.Score}; Bounding poly: ";
-							string output = $"Object Identified: {annotation.Name} with a certainty of: {annotation.Score * 100} percent";
-							Console.WriteLine(output);
-							await TextToSpeech.SpeakAsync(output);
+						if (Mode.SelectedItem.ToString() == "General Object Detection") {
+							foreach (LocalizedObjectAnnotation annotation in response.LocalizedObjectAnnotations) {
+								// string poly = string.Join(" - ", annotation.BoundingPoly.NormalizedVertices.Select(v => $"({v.X}, {v.Y})"));
+								//string output = $"Object Identified: {annotation.Name}; ID: {annotation.Mid}; Score: {annotation.Score}; Bounding poly: ";
+								string output = $"Object Identified: {annotation.Name} with a certainty of: {annotation.Score * 100} percent";
+								Console.WriteLine(output);
+								await TextToSpeech.SpeakAsync(output);
+							}
+						} else {
+							var limit = 5;
+							foreach (EntityAnnotation annotation in response.LabelAnnotations) {
+								// string poly = string.Join(" - ", annotation.BoundingPoly.NormalizedVertices.Select(v => $"({v.X}, {v.Y})"));
+								//string output = $"Object Identified: {annotation.Name}; ID: {annotation.Mid}; Score: {annotation.Score}; Bounding poly: ";
+								string output = $"Object Identified: {annotation.Description} with a certainty of: {annotation.Score * 100} percent";
+								Console.WriteLine(output);
+								await TextToSpeech.SpeakAsync(output);
+								limit --;
+								if (limit <= 0)
+									break;
+							}
 						}
-						
+
 						break;
 					case CameraCaptureMode.Video:
 						previewPicture.IsVisible = false;
