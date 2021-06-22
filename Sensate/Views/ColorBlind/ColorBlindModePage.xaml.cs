@@ -61,12 +61,16 @@ namespace Sensate.Views {
 			canvasView.IsVisible = true;
 
 			cbmode = Preferences.Get("CBType", "Protanopia", "CBSettings");
-
-			Device.StartTimer(TimeSpan.FromSeconds(1f / 30), () => {
-				canvasView.InvalidateSurface();
-				cameraView.Shutter();
-				return true;
-			});
+			
+			if (Preferences.Get("UserCategory", "Normal", "GeneralSettings") == "Normal") {
+				canvasView.IsVisible = false;
+			} else {
+				Device.StartTimer(TimeSpan.FromSeconds(1f / 30), () => {
+					canvasView.InvalidateSurface();
+					cameraView.Shutter();
+					return true;
+				});
+			}
 		}
 
 		private void CameraView_MediaCaptured(object sender, MediaCapturedEventArgs e) {

@@ -50,9 +50,9 @@
 							Padding="20,5"
 							>
                             <Entry
-								Placeholder="FullName" 
+								Placeholder="Name" 
                                 PlaceholderColor="Gray" 
-                                Text="{Binding Name}"
+                                Text=""
 								TextColor="Black"
                             />
                         </Frame>
@@ -62,7 +62,6 @@
 							BorderColor="Black"
 							Padding="20,5"
 							>
-                            <!--paano di mag binding command?-->
                             <Picker x:Name="Sex" HorizontalOptions="FillAndExpand">
                                 <Picker.Items>
                                     <x:String>Male</x:String>
@@ -72,16 +71,22 @@
                             </Picker>
                         </Frame>
 
+                        <DatePicker x:Name="DatePicker"/>
+                        <Button x:Name="Birthdate"
+                                    BackgroundColor="#005A81"
+                                    HeightRequest="50"
+                                    Text="Get Age"
+                                    Clicked="Birthdate_Clicked" />
+
                         <Frame
-                            CornerRadius="50"
+							CornerRadius="50"
 							BorderColor="Black"
 							Padding="20,5"
 							>
-                            
-                            <!--
-                            <Button Text="Birthday" CornerRadius="50" BorderColor="Black" Padding="20,5" Clicked="BirthdayButton_Clicked">
-                            </Button>-->
+
                         </Frame>
+
+
                     </StackLayout>
 
 					<!--Bottom portion - singup and dots-->

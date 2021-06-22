@@ -7,7 +7,7 @@
              Shell.NavBarIsVisible="True">
 	<ContentPage.Content>
 		<Grid RowDefinitions="auto, 50" ColumnDefinitions="*, 2*, *"
-			  Padding="0" Margin="0" BackgroundColor="blue">
+			  Padding="0" Margin="0" BackgroundColor="white">
 			<xct:CameraView
 				Grid.Row="0"
 				Grid.ColumnSpan="3"
@@ -16,6 +16,7 @@
 				CaptureMode="Photo"
 				HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand"
+				HeightRequest="600"
 				MediaCaptured="CameraView_MediaCaptured"
                 OnAvailable="CameraView_OnAvailable"
 			/>
@@ -28,7 +29,7 @@
 				PaintSurface="canvasView_PaintSurface"
 				HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand"
-				HeightRequest="500"
+				HeightRequest="600"
 				WidthRequest="500"
 			/>
 

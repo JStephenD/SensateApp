@@ -109,7 +109,7 @@ namespace Sensate.Views {
 							foreach (LocalizedObjectAnnotation annotation in response.LocalizedObjectAnnotations) {
 								// string poly = string.Join(" - ", annotation.BoundingPoly.NormalizedVertices.Select(v => $"({v.X}, {v.Y})"));
 								//string output = $"Object Identified: {annotation.Name}; ID: {annotation.Mid}; Score: {annotation.Score}; Bounding poly: ";
-								string output = $"Object Identified: {annotation.Name} with a certainty of: {annotation.Score * 100} percent";
+								string output = $"Object Identified: {annotation.Name} with a certainty of: {annotation.Score * 100:0.00} percent";
 								Console.WriteLine(output);
 								await TextToSpeech.SpeakAsync(output);
 							}
@@ -118,7 +118,7 @@ namespace Sensate.Views {
 							foreach (EntityAnnotation annotation in response.LabelAnnotations) {
 								// string poly = string.Join(" - ", annotation.BoundingPoly.NormalizedVertices.Select(v => $"({v.X}, {v.Y})"));
 								//string output = $"Object Identified: {annotation.Name}; ID: {annotation.Mid}; Score: {annotation.Score}; Bounding poly: ";
-								string output = $"Object Identified: {annotation.Description} with a certainty of: {annotation.Score * 100} percent";
+								string output = $"Object Identified: {annotation.Description} with a certainty of: {annotation.Score * 100:0.00} percent";
 								Console.WriteLine(output);
 								await TextToSpeech.SpeakAsync(output);
 								limit --;

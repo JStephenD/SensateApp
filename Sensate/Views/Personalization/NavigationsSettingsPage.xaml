@@ -5,9 +5,8 @@
 			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              Shell.NavBarIsVisible="False">
 	<ContentPage.Content>
-		<StackLayout Spacing="0" Background="White">
-			<Frame	BackgroundColor="#00AEF9"
-				>
+		<StackLayout Spacing="0" Background="White" x:Name="MainWrapper">
+			<Frame	BackgroundColor="#00AEF9" x:Name="Header">
 				<StackLayout Orientation="Horizontal" Spacing="20">
 					<Image	Source="{xct:ImageResource Id=Sensate.Assets.navigation-settings.png}" 
 							HeightRequest="45"
@@ -19,28 +18,30 @@
 				</StackLayout>
 			</Frame>
 
-			<ScrollView
-				VerticalOptions="FillAndExpand"
-				>
+			<ScrollView VerticalOptions="FillAndExpand" x:Name="ContentWrapper_Scroll">
 				<StackLayout	Padding="30,20,30,0"
 								BackgroundColor="white"
 								VerticalOptions="FillAndExpand"
+								x:Name="ContentWrapper"
 							 >
 					<Label 
 						Text=
 							"Based on your type, we recommend you this configuration. Please check and confirm. You can also edit."
-							TextColor="Black"
-							FontSize="16"
+						TextColor="Black"
+						FontSize="16"
+						x:Name="InfoText1"
 						/>
 					<Label 
 						Text="(Turning off shortcuts means navigation is display or toggle-based.)"
-							TextColor="Black"
-							FontSize="16"
+						TextColor="Black"
+						FontSize="16"
+						x:Name="InfoText2"
 						/>
 					<StackLayout Margin="0,20,0,0"
 						>
 						<Frame	BackgroundColor="#80D7FC"
 								CornerRadius="30"
+								x:Name="ShortcutsFrame"
 							>
 							<StackLayout Orientation="Horizontal">
 								<Label 
@@ -49,8 +50,7 @@
 									HorizontalOptions="StartAndExpand"
 									FontSize="24"
 								/>
-								<Switch	x:Name="Shortcuts"
-										Toggled="ToggledShortcuts"/>
+								<Switch	x:Name="Shortcuts" InputTransparent="True"/>
 							</StackLayout>
 						</Frame>
 						<StackLayout Spacing="10" x:Name="MoreShortcutsSettings" Margin="0,10">
@@ -65,6 +65,7 @@
 										CornerRadius="30"
 										HorizontalOptions="FillAndExpand"
 										Padding="20,0"
+										x:Name="GestureFrame"
 									>
 									<StackLayout Orientation="Horizontal">
 										<Label
@@ -75,7 +76,7 @@
 											FontSize="22"
 											/>
 										<Switch	x:Name="Gesture" HorizontalOptions="EndAndExpand"
-												Toggled="ToggledGesture"/>
+												InputTransparent="True"/>
 										<Image HeightRequest="20" HorizontalOptions="End"
 											   Source="{xct:ImageResource Id=Sensate.Assets.info-small.png}" />
 									</StackLayout>
@@ -93,6 +94,7 @@
 										CornerRadius="30"
 										HorizontalOptions="FillAndExpand"
 										Padding="20,0"
+										x:Name="HardwareButtonsFrame"
 									>
 									<StackLayout Orientation="Horizontal">
 										<Label
@@ -103,7 +105,7 @@
 											FontSize="22"
 											/>
 										<Switch	x:Name="HardwareButtons" HorizontalOptions="EndAndExpand"
-												Toggled="ToggledHardwareButtons"/>
+												InputTransparent="True"/>
 										<Image HeightRequest="20" HorizontalOptions="End"
 											   Source="{xct:ImageResource Id=Sensate.Assets.info-small.png}" />
 									</StackLayout>
@@ -114,12 +116,15 @@
 				</StackLayout>
 			</ScrollView>
 
-			<ImageButton 
-				VerticalOptions="End" HorizontalOptions="End"
-				HeightRequest="45" Margin="20" BorderWidth="0" BorderColor="Transparent"
-				Clicked="Next"
-				Source="{xct:ImageResource Id=Sensate.Assets.arrow-right-circle.png}"/>
-			
+			<Frame	x:Name="NextFrame"
+					HorizontalOptions="End"
+				>
+				<ImageButton 
+					VerticalOptions="End" HorizontalOptions="End"
+					HeightRequest="45" Margin="20" BorderWidth="0" BorderColor="Transparent"
+					Source="{xct:ImageResource Id=Sensate.Assets.arrow-right-circle.png}"/>
+			</Frame>
+
 			<Frame
 				Padding="0,0,0,20"
 				VerticalOptions="End"

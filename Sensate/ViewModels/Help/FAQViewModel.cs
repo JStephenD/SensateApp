@@ -6,6 +6,8 @@ using Sensate.Models;
 using Sensate.Views;
 using System.Linq;
 using System.Text;
+using Sensate;
+using System.Reflection;
 
 using Xamarin.Forms;
 
@@ -13,7 +15,7 @@ namespace Sensate.ViewModels {
 	public class FAQViewModel : ObservableCollection<FAQClassModel>, INotifyPropertyChanged {
 		private bool _expanded;
 		public string Title { get; set; }
-		public string Name { get; set; }
+		public string Name { get; set; }		
 
 		public bool Expanded{
 			get { return _expanded; }
@@ -25,8 +27,13 @@ namespace Sensate.ViewModels {
 				}
 			}
 		}
-		public string StateIcon{
-			get { return Expanded ? "../Assets/arrow-down.png" : "../Assets/arrow-up.png"; }
+		public ImageSource StateIcon{
+			//get { return Expanded ? "../Assets/arrow-down.png" : "../Assets/arrow-up.png"; }
+			get {
+				return Expanded ?
+					ImageSource.FromResource("Sensate.Assets.arrow-down.png", typeof(ImageResourceExtension).GetTypeInfo().Assembly) :
+					ImageSource.FromResource("Sensate.Assets.arrow-up.png", typeof(ImageResourceExtension).GetTypeInfo().Assembly);
+			}
 		}
 
 		public int FAQItems { get; set; }

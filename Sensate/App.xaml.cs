@@ -16,17 +16,15 @@ namespace Sensate {
 			//MainPage = new SigninPage();
 
 
-			if (!string.IsNullOrEmpty(Preferences.Get("MyFirebaseRefreshToken", "")))
-            {
-                MainPage = new AppShell();
-            }
-            else
-            {
-                //MainPage = new NavigationPage(new SigninPage());
-                MainPage = new NavigationPage(new IntroPage());
-            }
-            //MainPage = new AppShell();
-        }
+			if (!string.IsNullOrEmpty(Preferences.Get("MyFirebaseRefreshToken", ""))) {
+				MainPage = new AppShell();
+				Shell.Current.GoToAsync(nameof(NavigationsSettingsPage));
+			} else {
+				MainPage = new NavigationPage(new NavigationsSettingsPage());
+				//MainPage = new NavigationPage(new IntroPage());
+			}
+			//MainPage = new AppShell();
+		}
 
 		protected override void OnStart() {
 		}
