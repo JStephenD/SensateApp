@@ -12,6 +12,7 @@ namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Test1 : ContentPage {
 		private bool permissionGranted;
+		string mode;
 
 		public Test1() {
 			var cameraPermissionsStatus = Permissions.CheckStatusAsync<Permissions.Camera>();
@@ -21,15 +22,11 @@ namespace Sensate.Views {
 			permissionGranted = cameraPermissionsStatus.Result == PermissionStatus.Granted;
 
 			InitializeComponent();
-
-			if (permissionGranted)
-				zoomLabel.Text = string.Format("Zoom: {0}", zoomSlider.Value);
 		}
 
 		public void ZoomSlider_ValueChanged(object sender, ValueChangedEventArgs e) {
 			if (permissionGranted) {
 				cameraView.Zoom = zoomSlider.Value;
-				zoomLabel.Text = string.Format("Zoom: {0}", Math.Round(zoomSlider.Value));
 			}
 		}
 
@@ -59,11 +56,6 @@ namespace Sensate.Views {
 		}
 
 		public async void CameraView_MediaCaptured(object sender, MediaCapturedEventArgs e) {
-			if (Mode.SelectedIndex == -1) { 
-				await Application.Current.MainPage.DisplayAlert("Error", "Select Mode", "OK");
-				return;
-			}
-
 			if (permissionGranted) {
 				switch (cameraView.CaptureMode) {
 					default:
@@ -73,6 +65,7 @@ namespace Sensate.Views {
 						previewPicture.Rotation = e.Rotation;
 						previewPicture.Source = e.Image;
 						doCameraThings.Text = "Snap Picture";
+						mode = "General Object Detection";
 
 						await TextToSpeech.SpeakAsync("Captured Image");
 
@@ -98,14 +91,14 @@ namespace Sensate.Views {
 								e.ImageData.AsMemory().ToArray()),
 							Features = {
 								new Feature {
-									Type = (Mode.SelectedItem.ToString() == "General Object Detection") ?
+									Type = (mode == "General Object Detection") ?
 										Feature.Types.Type.ObjectLocalization :
 										Feature.Types.Type.LabelDetection
 								}
 							}
 						};
 						AnnotateImageResponse response = await client.AnnotateAsync(request);
-						if (Mode.SelectedItem.ToString() == "General Object Detection") {
+						if (mode == "General Object Detection") {
 							foreach (LocalizedObjectAnnotation annotation in response.LocalizedObjectAnnotations) {
 								// string poly = string.Join(" - ", annotation.BoundingPoly.NormalizedVertices.Select(v => $"({v.X}, {v.Y})"));
 								//string output = $"Object Identified: {annotation.Name}; ID: {annotation.Mid}; Score: {annotation.Score}; Bounding poly: ";

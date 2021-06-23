@@ -18,7 +18,7 @@ namespace Sensate {
 
 			if (!string.IsNullOrEmpty(Preferences.Get("MyFirebaseRefreshToken", ""))) {
 				MainPage = new AppShell();
-				Shell.Current.GoToAsync(nameof(NavigationsSettingsPage));
+				Shell.Current.GoToAsync(nameof(Test1));
 			} else {
 				MainPage = new NavigationPage(new NavigationsSettingsPage());
 				//MainPage = new NavigationPage(new IntroPage());

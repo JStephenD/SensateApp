@@ -5,58 +5,73 @@
 			 xmlns:views="clr-namespace:Sensate.Views"
 			 x:DataType="views:Test1"
 			 x:Class="Sensate.Views.Test1">
-	<ScrollView>
-	    <StackLayout>
-		    <xct:CameraView 
-		    x:Name="cameraView"
-            CaptureMode="Photo"
-            FlashMode="Off"
-            HorizontalOptions="FillAndExpand"
-            MediaCaptured="CameraView_MediaCaptured"
-            OnAvailable="CameraView_OnAvailable"
-            VerticalOptions="FillAndExpand" />
+	<!--<ScrollView>-->
+		<StackLayout Spacing="0">
+			<StackLayout	Orientation="Horizontal" Background="#004867"
+							Padding="10">
+				<Frame	CornerRadius="50" HorizontalOptions="Start" BackgroundColor="White"
+						WidthRequest="23" HeightRequest="23">
+					<Label Text="a" />
+				</Frame>
+				<Frame	CornerRadius="50" HorizontalOptions="Start" BackgroundColor="White"
+						WidthRequest="23" HeightRequest="23">
+					<Label Text="b" />
+				</Frame>
 
-		    <StackLayout Grid.Row="1" Orientation="Horizontal">
-			    <Label TextColor="{StaticResource Primary}" x:Name="zoomLabel" />
-			    <Slider
-                x:Name="zoomSlider"
-                Margin="5,0"
-                IsEnabled="False"
-                Maximum="10"
-                Minimum="1"
-                HorizontalOptions="FillAndExpand"
-                ValueChanged="ZoomSlider_ValueChanged"
-                Value="1" />
-		    </StackLayout>
+				<Frame	CornerRadius="50" HorizontalOptions="EndAndExpand" BackgroundColor="#FF881A"
+						WidthRequest="23" HeightRequest="23">
+					<Label Text="z" />
+				</Frame>
+				<Frame	CornerRadius="50" HorizontalOptions="End" BackgroundColor="#FF881A"
+						WidthRequest="23" HeightRequest="23">
+					<Label Text="y" />
+				</Frame>
+			</StackLayout>
 
-			<StackLayout>
-				<Picker x:Name="Mode"
-						Title="Mode"
-						TitleColor="Gray"
-						TextColor="Black"
-						HorizontalOptions="StartAndExpand"
-						VerticalOptions="Center"
-						FontSize="22"
-					>
-					<Picker.ItemsSource>
-						<x:Array Type="{x:Type x:String}">
-							<x:String>General Object Detection</x:String>
-							<x:String>Label Detection</x:String>
-						</x:Array>
-					</Picker.ItemsSource>
-				</Picker>
-				<Button
-                x:Name="doCameraThings"
-                Command="{Binding ShutterCommand, Source={x:Reference cameraView}}"
-                IsEnabled="False"
-                Text="Snap Picture" />
-			    <Image
-                x:Name="previewPicture"
-                Aspect="AspectFit"
-                BackgroundColor="LightGray"
-                HeightRequest="250"
-                IsVisible="False" />
-		    </StackLayout>
-	    </StackLayout>
-	</ScrollView>
+			<xct:CameraView 
+				x:Name="cameraView"
+				CaptureMode="Photo"
+				FlashMode="Off"
+				HorizontalOptions="FillAndExpand"
+				MediaCaptured="CameraView_MediaCaptured"
+				OnAvailable="CameraView_OnAvailable"
+				VerticalOptions="FillAndExpand" />
+
+			<StackLayout BackgroundColor="#004867">
+				<StackLayout Orientation="Horizontal" Padding="30,10,30,0">
+					<Frame	CornerRadius="50" HorizontalOptions="End" BackgroundColor="#FF881A"
+						WidthRequest="23" HeightRequest="23">
+					<Label Text="-" TextColor="White" FontSize="20"
+							   HorizontalTextAlignment="Center"/>
+					</Frame>
+					<Slider
+						x:Name="zoomSlider" Margin="5,0" IsEnabled="False"
+						Maximum="10" Minimum="1" HorizontalOptions="FillAndExpand"
+						ValueChanged="ZoomSlider_ValueChanged"
+						Value="1" />
+					<Frame	CornerRadius="50" HorizontalOptions="End" BackgroundColor="#FF881A"
+						WidthRequest="23" HeightRequest="23">
+					<Label Text="+" TextColor="White" FontSize="25"
+							   HorizontalTextAlignment="Center"/>
+				</Frame>
+				</StackLayout>
+
+				<Frame HorizontalOptions="Center" WidthRequest="35" HeightRequest="35"
+					   CornerRadius="50" Margin="0,0,0,15">
+					<Button
+						x:Name="doCameraThings"
+						Command="{Binding ShutterCommand, Source={x:Reference cameraView}}"
+						IsEnabled="False"
+						Text="Snap" />
+				</Frame>
+			</StackLayout>
+
+			<Image
+				x:Name="previewPicture"
+				Aspect="AspectFit"
+				BackgroundColor="LightGray"
+				HeightRequest="250"
+				IsVisible="False" />
+		</StackLayout>
+	<!--</ScrollView>-->
 </ContentPage>
