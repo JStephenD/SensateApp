@@ -4,6 +4,7 @@ using Xamarin.Forms.Xaml;
 using Xamarin.CommunityToolkit.UI.Views;
 using Xamarin.Essentials;
 using SkiaSharp.Views.Forms;
+using Xamarin.CommunityToolkit.Effects;
 
 using Sensate.ViewModels;
 using SkiaSharp;
@@ -13,7 +14,8 @@ using System.Collections.Generic;
 namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ColorBlindModePage : ContentPage {
-		
+
+		#region variables
 		private SKBitmap bitmap;
 		private string cbmode;
 
@@ -51,10 +53,32 @@ namespace Sensate.Views {
 			ColorFilter = SKColorFilter.CreateColorMatrix(Tritanopia),
 			Style = SKPaintStyle.Fill
 		};
-
+		#endregion variables
 
 		public ColorBlindModePage() {
 			InitializeComponent();
+
+			Shell.SetNavBarIsVisible(this, false);
+
+			#region gesturerecognizers
+			var zoominframeclick = new TapGestureRecognizer();
+			var zoomoutframeclick = new TapGestureRecognizer();
+			zoominframeclick.Tapped += ZoomInClick;
+			zoomoutframeclick.Tapped += ZoomOutClick;
+			zoomInFrame.GestureRecognizers.Add(zoominframeclick);
+			zoomOutFrame.GestureRecognizers.Add(zoomoutframeclick);
+
+			var opennavbarclick = new TapGestureRecognizer();
+			opennavbarclick.Tapped += OpenNavBarClick;
+			OpenNavFrame.GestureRecognizers.Add(opennavbarclick);
+
+			var cameraframeclick = new TapGestureRecognizer();
+			var uploadframeclick = new TapGestureRecognizer();
+			cameraframeclick.Tapped += CameraFrameClick;
+			uploadframeclick.Tapped += UploadFrameClick;
+			cameraFrame.GestureRecognizers.Add(cameraframeclick);
+			uploadFrame.GestureRecognizers.Add(uploadframeclick);
+			#endregion gesturerecognizers
 
 			cameraView.CaptureMode = CameraCaptureMode.Photo;
 			cameraView.IsVisible = true;
@@ -73,17 +97,54 @@ namespace Sensate.Views {
 			}
 		}
 
+		#region zooming
+		private void ZoomSlider_ValueChanged(object sender, ValueChangedEventArgs e) {
+			cameraView.Zoom = zoomSlider.Value;
+		}
+
+		public void ZoomInClick(object s, EventArgs e) {
+			double currval = zoomSlider.Value, maxzoom = cameraView.MaxZoom;
+			cameraView.Zoom = Math.Min(currval + 1, maxzoom);
+			zoomSlider.Value = cameraView.Zoom;
+		}
+
+		public void ZoomOutClick(object s, EventArgs e) {
+			double currval = zoomSlider.Value, minzoom = 1;
+			cameraView.Zoom = Math.Max(currval - 1, minzoom);
+			zoomSlider.Value = cameraView.Zoom;
+		}
+		#endregion zooming
+
+		#region navigation
+		public void OpenNavBarClick(object s, EventArgs e) {
+			Shell.Current.FlyoutIsPresented = true;
+		}
+		#endregion navigation
+
+		#region imagemode
+		public void CameraFrameClick(object s, EventArgs e) { 
+			cameraFrame.BackgroundColor = Color.FromHex("#FF881A");
+			uploadFrame.BackgroundColor = Color.FromHex("#EFEFEF");
+			IconTintColorEffect.SetTintColor(cameraImage, Color.White);
+			IconTintColorEffect.SetTintColor(uploadImage, Color.FromHex("#00384F"));
+
+		}
+		public void UploadFrameClick(object s, EventArgs e) {
+			uploadFrame.BackgroundColor = Color.FromHex("#FF881A");
+			cameraFrame.BackgroundColor = Color.FromHex("#EFEFEF");
+			IconTintColorEffect.SetTintColor(uploadImage, Color.White);
+			IconTintColorEffect.SetTintColor(cameraImage, Color.FromHex("#00384F"));
+		}
+		#endregion imagemode
+
+		#region camera
 		private void CameraView_MediaCaptured(object sender, MediaCapturedEventArgs e) {
 			MemoryStream ms = new MemoryStream(e.ImageData);
 			bitmap = SKBitmap.Decode(ms);
 		}
 
 		private void CameraView_OnAvailable(object sender, bool e) {
-			captureButton.IsEnabled = e;
-		}
 
-		private void captureButtonClicked(object sender, EventArgs e) {
-			cameraView.Shutter();
 		}
 
 		private void canvasView_PaintSurface(object sender, SKPaintSurfaceEventArgs e) {
@@ -140,5 +201,6 @@ namespace Sensate.Views {
 
 			return rotated;
 		}
+		#endregion camera
 	}
 }

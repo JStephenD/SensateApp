@@ -122,6 +122,7 @@ namespace Sensate.Views {
 			if (GestureEnabled) {
 
 			} else {
+				Preferences.Set("IntroDone", true);
 				Application.Current.MainPage = new AppShell();
 			}
 		}

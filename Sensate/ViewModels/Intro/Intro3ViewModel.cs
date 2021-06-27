@@ -3,6 +3,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 using Sensate.Views;
+using Xamarin.Essentials;
 
 namespace Sensate.ViewModels {
 	public class Intro3ViewModel : BaseViewModel {
@@ -39,7 +40,6 @@ namespace Sensate.ViewModels {
 		}
 		private void OnClickNotNow() {
 			Application.Current.MainPage = new NavigationPage(new CategorizePage());
-
 		}
 	}
 }

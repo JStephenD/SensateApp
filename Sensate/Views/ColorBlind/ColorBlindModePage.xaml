@@ -6,41 +6,92 @@
 			 xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              Shell.NavBarIsVisible="True">
 	<ContentPage.Content>
-		<Grid RowDefinitions="auto, 50" ColumnDefinitions="*, 2*, *"
-			  Padding="0" Margin="0" BackgroundColor="white">
-			<xct:CameraView
-				Grid.Row="0"
-				Grid.ColumnSpan="3"
-				
-                x:Name="cameraView"
-				CaptureMode="Photo"
-				HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand"
-				HeightRequest="600"
-				MediaCaptured="CameraView_MediaCaptured"
-                OnAvailable="CameraView_OnAvailable"
-			/>
+		<StackLayout	Spacing="0">
+			<StackLayout	Orientation="Horizontal" Background="#004867"
+							Padding="10">
+				<Frame	CornerRadius="50" HorizontalOptions="Start" BackgroundColor="Transparent"
+						WidthRequest="23" HeightRequest="23" x:Name="OpenNavFrame">
+					<Image Source="{xct:ImageResource Id=Sensate.Assets.hamburger.png}"
+						   Aspect="AspectFill" Scale="1.8"/>
+				</Frame>
+				<Frame	CornerRadius="50" HorizontalOptions="Start" BackgroundColor="White"
+						WidthRequest="23" HeightRequest="23">
+					<Image Source="{xct:ImageResource Id=Sensate.Assets.colors.png}"
+						   Aspect="AspectFill" Scale="1.8"/>
+				</Frame>
 
-			<skia:SKCanvasView 
-				Grid.Row="0"
-				Grid.ColumnSpan="3"
-				
-				x:Name="canvasView"
-				PaintSurface="canvasView_PaintSurface"
-				HorizontalOptions="FillAndExpand"
-                VerticalOptions="FillAndExpand"
-				HeightRequest="600"
-				WidthRequest="500"
-			/>
+				<Frame	CornerRadius="50" HorizontalOptions="EndAndExpand" BackgroundColor="#FF881A"
+						WidthRequest="23" HeightRequest="23" Padding="20,15">
+					<Image Source="{xct:ImageResource Id=Sensate.Assets.flash.png}" 
+						   Aspect="AspectFill"/>
+				</Frame>
+				<Frame	CornerRadius="50" HorizontalOptions="End" BackgroundColor="#FF881A"
+						WidthRequest="23" HeightRequest="23" Padding="20,20">
+					<Image Source="{xct:ImageResource Id=Sensate.Assets.rotate-cam.png}" 
+						   Aspect="AspectFill"/>
+				</Frame>
+			</StackLayout>
 
-			<Button 
-				Grid.Row="1"
-				Grid.Column="1"
+			<Grid	RowDefinitions="*" ColumnDefinitions="*"
+					Padding="0" Margin="0" BackgroundColor="white" 
+					VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+				<xct:CameraView
+					Grid.Row="0"
+					Grid.ColumnSpan="3"
 				
-				x:Name="captureButton"
-				Text="Capture"
-				Clicked="captureButtonClicked"
+					x:Name="cameraView"
+					CaptureMode="Photo"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					MediaCaptured="CameraView_MediaCaptured"
+					OnAvailable="CameraView_OnAvailable"
 				/>
-		</Grid>
+
+				<skia:SKCanvasView 
+					Grid.Row="0"
+					Grid.ColumnSpan="3"
+				
+					x:Name="canvasView"
+					PaintSurface="canvasView_PaintSurface"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+				/>
+			</Grid>
+
+			<StackLayout BackgroundColor="#004867">
+				<StackLayout Orientation="Horizontal" Padding="30,10,30,0">
+					<Frame	CornerRadius="50" HorizontalOptions="End" BackgroundColor="#FF881A"
+						WidthRequest="23" HeightRequest="23" x:Name="zoomOutFrame">
+						<Image Source="{xct:ImageResource Id=Sensate.Assets.zoom-out.png}" 
+						   Aspect="AspectFit" Scale="2"/>
+					</Frame>
+					<Slider
+						x:Name="zoomSlider" Margin="5,0" IsEnabled="False"
+						Maximum="10" Minimum="1" HorizontalOptions="FillAndExpand"
+						ThumbColor="White" HeightRequest="5"
+						ValueChanged="ZoomSlider_ValueChanged" Value="1"/>
+					<Frame	CornerRadius="50" HorizontalOptions="End" BackgroundColor="#FF881A"
+						WidthRequest="23" HeightRequest="23" x:Name="zoomInFrame">
+						<Image Source="{xct:ImageResource Id=Sensate.Assets.zoom-in.png}" 
+						   Aspect="AspectFit" Scale="2"/>
+					</Frame>
+				</StackLayout>
+
+				<StackLayout Orientation="Horizontal" HorizontalOptions="Center" 
+							 Margin="0,0,0,15" Spacing="25" HeightRequest="50">
+					<Frame HorizontalOptions="Center" WidthRequest="35" HeightRequest="15" Padding="20,0"
+						   CornerRadius="20" x:Name="cameraFrame" BackgroundColor="#FF881A">
+						<Image Source="{xct:ImageResource Id=Sensate.Assets.camera.png}"
+							   Aspect="AspectFit" x:Name="cameraImage"/>
+					</Frame>
+
+					<Frame HorizontalOptions="Center" WidthRequest="35" HeightRequest="15" Padding="20,0"
+						   CornerRadius="20" x:Name="uploadFrame" BackgroundColor="#EFEFEF">
+						<Image Source="{xct:ImageResource Id=Sensate.Assets.upload.png}"
+							   Aspect="AspectFit" x:Name="uploadImage"/>
+					</Frame>
+				</StackLayout>
+			</StackLayout>
+		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

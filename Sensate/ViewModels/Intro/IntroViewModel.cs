@@ -3,6 +3,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 
 using Sensate.Views;
+using Xamarin.Essentials;
 
 namespace Sensate.ViewModels {
 	public class IntroViewModel : BaseViewModel {
@@ -18,6 +19,9 @@ namespace Sensate.ViewModels {
 			Console.WriteLine(nameof(SignupPage));
 			switch (direction) {
 				case "left":
+					Preferences.Set("Shortcuts", false, "GeneralSettings");
+					Preferences.Set("Gesture", false, "GeneralSettings");
+					Preferences.Set("HardwareButtons", false, "GeneralSettings");
 					Application.Current.MainPage = new IntroPage2();
 					break;
 				case "right":

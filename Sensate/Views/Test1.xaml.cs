@@ -22,20 +22,56 @@ namespace Sensate.Views {
 			permissionGranted = cameraPermissionsStatus.Result == PermissionStatus.Granted;
 
 			InitializeComponent();
+
+			Shell.SetNavBarIsVisible(this, false);
+
+			#region gesturerecognizers
+			var zoominframeclick = new TapGestureRecognizer();
+			var zoomoutframeclick = new TapGestureRecognizer();
+			zoominframeclick.Tapped += ZoomInClick;
+			zoomoutframeclick.Tapped += ZoomOutClick;
+
+			zoomInFrame.GestureRecognizers.Add(zoominframeclick);
+			zoomOutFrame.GestureRecognizers.Add(zoomoutframeclick);
+
+			var opennavbarclick = new TapGestureRecognizer();
+			opennavbarclick.Tapped += OpenNavBarClick;
+
+			OpenNavFrame.GestureRecognizers.Add(opennavbarclick);
+			#endregion gesturerecognizers
 		}
 
+		#region zooming
 		public void ZoomSlider_ValueChanged(object sender, ValueChangedEventArgs e) {
 			if (permissionGranted) {
 				cameraView.Zoom = zoomSlider.Value;
 			}
 		}
 
+		public void ZoomInClick(object s, EventArgs e) {
+			double currval = zoomSlider.Value, maxzoom = cameraView.MaxZoom;
+			cameraView.Zoom = Math.Min(currval + 1, maxzoom);
+			zoomSlider.Value = cameraView.Zoom;
+		}
+
+		public void ZoomOutClick(object s, EventArgs e) {
+			double currval = zoomSlider.Value, minzoom = 1;
+			cameraView.Zoom = Math.Max(currval - 1, minzoom);
+			zoomSlider.Value = cameraView.Zoom;
+		}
+
+		#endregion zooming
+
+		#region navigation
+		public void OpenNavBarClick(object s, EventArgs e) {
+			Shell.Current.FlyoutIsPresented = true;
+		}
+		#endregion navigation
+
+		#region camera
 		public void DoCameraThings_Clicked(object sender, EventArgs e) {
 			if (permissionGranted) {
 				cameraView.Shutter();
-				doCameraThings.Text = cameraView.CaptureMode == CameraCaptureMode.Video
-					? "Stop Recording"
-					: "Snap Picture";
 			}
 		}
 
@@ -61,10 +97,6 @@ namespace Sensate.Views {
 					default:
 					case CameraCaptureMode.Default:
 					case CameraCaptureMode.Photo:
-						previewPicture.IsVisible = true;
-						previewPicture.Rotation = e.Rotation;
-						previewPicture.Source = e.Image;
-						doCameraThings.Text = "Snap Picture";
 						mode = "General Object Detection";
 
 						await TextToSpeech.SpeakAsync("Captured Image");
@@ -114,7 +146,7 @@ namespace Sensate.Views {
 								string output = $"Object Identified: {annotation.Description} with a certainty of: {annotation.Score * 100:0.00} percent";
 								Console.WriteLine(output);
 								await TextToSpeech.SpeakAsync(output);
-								limit --;
+								limit--;
 								if (limit <= 0)
 									break;
 							}
@@ -122,11 +154,11 @@ namespace Sensate.Views {
 
 						break;
 					case CameraCaptureMode.Video:
-						previewPicture.IsVisible = false;
-						doCameraThings.Text = "Start Recording";
 						break;
 				}
 			}
 		}
+		#endregion camera
+
 	}
 }

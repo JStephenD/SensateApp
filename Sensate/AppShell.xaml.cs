@@ -43,11 +43,11 @@ namespace Sensate {
 			if (Preferences.Get("UserCategory", "Normal", "GeneralSettings") == "LowVision") {
 				MainFeature.Route = nameof(Test1);
 				MainFeature.ContentTemplate = new DataTemplate(typeof(Test1));
-				MainFeatureTitle.Title = "Low Vision Mode";
+				MainFeatureTitle.Title = "Recognition Mode";
 			} else {
 				MainFeature.Route = nameof(ColorBlindModePage);
 				MainFeature.ContentTemplate = new DataTemplate(typeof(ColorBlindModePage));
-				MainFeatureTitle.Title = "Color Blind Mode";
+				MainFeatureTitle.Title = "Colorblind Mode";
 			}
 		}
 

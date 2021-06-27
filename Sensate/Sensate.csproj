@@ -22,16 +22,26 @@
     <None Remove="Assets\arrow-right.png" />
     <None Remove="Assets\arrow-up-circle.png" />
     <None Remove="Assets\arrow-up.png" />
+    <None Remove="Assets\camera.png" />
+    <None Remove="Assets\colors.png" />
     <None Remove="Assets\display-settings.png" />
+    <None Remove="Assets\flash.png" />
+    <None Remove="Assets\hamburger.png" />
     <None Remove="Assets\info-small.png" />
 	  
     <None Remove="Assets\loading.png" />
 	  
     <None Remove="Assets\navigation-settings.png" />
+	  
+    <None Remove="Assets\rotate-cam.png" />
     <None Remove="Assets\Sensate-auth.json" />
     <None Remove="Assets\sensate-logo1.png" />
     <None Remove="Assets\sensate-logo2.png" />
+    <None Remove="Assets\shutter.png" />
+    <None Remove="Assets\upload.png" />
     <None Remove="Assets\waves.png" />
+    <None Remove="Assets\zoom-in.png" />
+    <None Remove="Assets\zoom-out.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -43,14 +53,23 @@
     <EmbeddedResource Include="Assets\arrow-right.png" />
     <EmbeddedResource Include="Assets\arrow-up-circle.png" />
     <EmbeddedResource Include="Assets\arrow-up.png" />
+    <EmbeddedResource Include="Assets\camera.png" />
+    <EmbeddedResource Include="Assets\colors.png" />
     <EmbeddedResource Include="Assets\display-settings.png" />
+    <EmbeddedResource Include="Assets\flash.png" />
+    <EmbeddedResource Include="Assets\hamburger.png" />
     <EmbeddedResource Include="Assets\info-small.png" />
     <EmbeddedResource Include="Assets\loading.png" />
     <EmbeddedResource Include="Assets\navigation-settings.png" />
+    <EmbeddedResource Include="Assets\rotate-cam.png" />
     <EmbeddedResource Include="Assets\Sensate-auth.json" />
     <EmbeddedResource Include="Assets\sensate-logo1.png" />
     <EmbeddedResource Include="Assets\sensate-logo2.png" />
+    <EmbeddedResource Include="Assets\shutter.png" />
+    <EmbeddedResource Include="Assets\upload.png" />
     <EmbeddedResource Include="Assets\waves.png" />
+    <EmbeddedResource Include="Assets\zoom-in.png" />
+    <EmbeddedResource Include="Assets\zoom-out.png" />
   </ItemGroup>
 
   <ItemGroup>
