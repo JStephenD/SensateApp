@@ -94,6 +94,9 @@
     <Compile Update="Views\Intro\IntroPage.xaml.cs">
       <DependentUpon>IntroPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Personalization\MainSettingsPage.xaml.cs">
+      <DependentUpon>MainSettingsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Personalization\DisplaySettingsPage.xaml.cs">
       <DependentUpon>DisplaySettingsPage.xaml</DependentUpon>
     </Compile>

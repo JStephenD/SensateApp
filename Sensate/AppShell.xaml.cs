@@ -29,6 +29,7 @@ namespace Sensate {
 			Routing.RegisterRoute(nameof(CategoryLowVisionPage), typeof(CategoryLowVisionPage));
 			Routing.RegisterRoute(nameof(CategoryNormalPage), typeof(CategoryNormalPage));
 
+			Routing.RegisterRoute(nameof(MainSettingsPage), typeof(MainSettingsPage));
 			Routing.RegisterRoute(nameof(DisplaySettingsPage), typeof(DisplaySettingsPage));
 			Routing.RegisterRoute(nameof(FeedbackSettingsPage), typeof(FeedbackSettingsPage));
 			Routing.RegisterRoute(nameof(NavigationsSettingsPage), typeof(NavigationsSettingsPage));
@@ -38,6 +39,7 @@ namespace Sensate {
 			Routing.RegisterRoute(nameof(IntroPage3), typeof(IntroPage3));
 
 			Routing.RegisterRoute(nameof(ColorBlindModePage), typeof(ColorBlindModePage));
+			Routing.RegisterRoute(nameof(Test1), typeof(Test1));
 
 
 			if (Preferences.Get("UserCategory", "Normal", "GeneralSettings") == "LowVision") {

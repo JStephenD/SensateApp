@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sensate.Views.MainSettingsPage"
+			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             Shell.NavBarIsVisible="False"
+			 NavigationPage.HasNavigationBar="False">
+	<ContentPage.Content>
+		<StackLayout Spacing="0" Background="White">
+			<Image Source="{xct:ImageResource Id=Sensate.Assets.hamburger.png}"
+				   WidthRequest="50" HeightRequest="50" x:Name="hamburger"
+				   HorizontalOptions="Start" Margin="10"/>
+
+			<Label Text="Interactive Settings"
+				   FontSize="40" TextColor="Black"
+				   Margin="10"/>
+
+			<StackLayout Spacing="0" Margin="0,20,0,0"
+						 BackgroundColor="#00AEF9" VerticalOptions="FillAndExpand">
+				<Frame x:Name="FeedbackFrame" BackgroundColor="#00AEF9">
+					<StackLayout Orientation="Horizontal" Spacing="20" BackgroundColor="#00AEF9">
+						<Image Source="{xct:ImageResource Id=Sensate.Assets.waves.png}" 
+							   xct:IconTintColorEffect.TintColor="#00577D"
+							   WidthRequest="70" HeightRequest="70" />
+						<Label Text="Feedback" FontSize="32" TextColor="White"
+							   VerticalOptions="Center"/>
+						<Image Source="{xct:ImageResource Id=Sensate.Assets.arrow-right.png}" 
+							   xct:IconTintColorEffect.TintColor="#007AAE"
+							   HorizontalOptions="EndAndExpand"
+							   WidthRequest="30" HeightRequest="30" />
+					</StackLayout>	
+				</Frame>
+
+				<Frame x:Name="NavigationFrame" BackgroundColor="#00AEF9">
+					<StackLayout Orientation="Horizontal" Spacing="20" BackgroundColor="#00AEF9">
+						<Image Source="{xct:ImageResource Id=Sensate.Assets.navigation-settings.png}" 
+							   xct:IconTintColorEffect.TintColor="#00577D"
+							   WidthRequest="70" HeightRequest="70" />
+						<Label Text="Navigation" FontSize="32" TextColor="White"
+							   VerticalOptions="Center"/>
+						<Image Source="{xct:ImageResource Id=Sensate.Assets.arrow-right.png}" 
+							   xct:IconTintColorEffect.TintColor="#007AAE"
+							   HorizontalOptions="EndAndExpand"
+							   WidthRequest="30" HeightRequest="30" />
+					</StackLayout>
+				</Frame>
+
+				<Frame x:Name="DisplayFrame" BackgroundColor="#00AEF9">
+					<StackLayout Orientation="Horizontal" Spacing="20" BackgroundColor="#00AEF9">
+						<Image Source="{xct:ImageResource Id=Sensate.Assets.display-settings.png}" 
+							   xct:IconTintColorEffect.TintColor="#00577D"
+							   WidthRequest="70" HeightRequest="70" />
+						<Label Text="Display" FontSize="32" TextColor="White"
+							   VerticalOptions="Center"/>
+						<Image Source="{xct:ImageResource Id=Sensate.Assets.arrow-right.png}" 
+							   xct:IconTintColorEffect.TintColor="#007AAE"
+							   HorizontalOptions="EndAndExpand"
+							   WidthRequest="30" HeightRequest="30" />
+					</StackLayout>
+				</Frame>
+			</StackLayout>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>
