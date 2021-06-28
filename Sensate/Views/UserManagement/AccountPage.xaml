@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="Sensate.Views.AccountPage"
+			 mc:Ignorable="d"
+             Shell.NavBarIsVisible="False">
+	<ContentPage.Content>
+		<StackLayout Padding="0" Margin="0" Spacing="0" BackgroundColor="#005A81">
+			<Image Source="{xct:ImageResource Id=Sensate.Assets.hamburger.png}"
+				   WidthRequest="50" HeightRequest="50" x:Name="hamburger"
+				   HorizontalOptions="Start" Margin="10"/>
+
+			<xct:AvatarView Text="A" Source="{xct:ImageResource Id=Sensate.Assets.default-avatar.png}"
+							Size="100" Margin="10,10,10,10" HorizontalOptions="Center"/>
+
+			<StackLayout Spacing="24" BackgroundColor="#00AEF9" VerticalOptions="EndAndExpand">
+				<Frame BackgroundColor="#7BD7FF" CornerRadius="30" Margin="40,40,40,0">
+					<Label Text="Johnny Appleseed" x:Name="accountName"
+						   FontSize="24"/>
+				</Frame>
+
+				<FlexLayout Direction="Row" JustifyContent="SpaceEvenly">
+					<Frame BackgroundColor="#7BD7FF" CornerRadius="30">
+						<Image Source="{xct:ImageResource Id=Sensate.Assets.gender-male.png}"
+							   xct:IconTintColorEffect.TintColor="#36668B"/>
+					</Frame>
+
+					<Frame BackgroundColor="#7BD7FF" CornerRadius="30">
+						<Image Source="{xct:ImageResource Id=Sensate.Assets.eye-censored.png}"
+							   xct:IconTintColorEffect.TintColor="#36668B"/>
+					</Frame>
+
+					<Frame BackgroundColor="#7BD7FF" CornerRadius="30">
+						<Label Text="18" FontSize="24" TextColor="#36668B"/>
+					</Frame>
+				</FlexLayout>
+
+				<FlexLayout Direction="Row" JustifyContent="SpaceEvenly">
+					<Frame BackgroundColor="#005A81" CornerRadius="30" x:Name="synchronizeFrame">
+						<Label Text="Synchronize" FontSize="24" TextColor="White"
+							   HorizontalOptions="Center" VerticalOptions="Center"/>
+					</Frame>
+
+					<Frame BackgroundColor="#005A81" CornerRadius="30" x:Name="editprofileFrame">
+						<Label Text="Edit Profile" FontSize="24" TextColor="White"
+							   HorizontalOptions="Center" VerticalOptions="Center"/>
+					</Frame>
+				</FlexLayout>
+
+				<Frame BackgroundColor="#000000" CornerRadius="30" x:Name="logoutframe" Margin="60,0">
+					<Label Text="Log out" FontSize="24" TextColor="#00AEF9"
+						   HorizontalOptions="Center" VerticalOptions="Center"/>
+				</Frame>
+
+				<Label Text="Delete Account" FontSize="18" TextColor="Red"
+						HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,20"/>
+			</StackLayout>
+		</StackLayout>
+    </ContentPage.Content>
+</ContentPage>

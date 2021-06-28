@@ -24,8 +24,11 @@
     <None Remove="Assets\arrow-up.png" />
     <None Remove="Assets\camera.png" />
     <None Remove="Assets\colors.png" />
+    <None Remove="Assets\default-avatar.png" />
     <None Remove="Assets\display-settings.png" />
+    <None Remove="Assets\eye-censored.png" />
     <None Remove="Assets\flash.png" />
+    <None Remove="Assets\gender-male.png" />
     <None Remove="Assets\hamburger.png" />
     <None Remove="Assets\info-small.png" />
 	  
@@ -55,8 +58,10 @@
     <EmbeddedResource Include="Assets\arrow-up.png" />
     <EmbeddedResource Include="Assets\camera.png" />
     <EmbeddedResource Include="Assets\colors.png" />
+    <EmbeddedResource Include="Assets\default-avatar.png" />
     <EmbeddedResource Include="Assets\display-settings.png" />
     <EmbeddedResource Include="Assets\flash.png" />
+    <EmbeddedResource Include="Assets\gender-male.png" />
     <EmbeddedResource Include="Assets\hamburger.png" />
     <EmbeddedResource Include="Assets\info-small.png" />
     <EmbeddedResource Include="Assets\loading.png" />
@@ -118,6 +123,9 @@
     <Compile Update="Views\Personalization\CategorizePage.xaml.cs">
       <DependentUpon>CategorizePage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\UserManagement\AccountPage.xaml.cs">
+      <DependentUpon>AccountPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\UserManagement\SigninPage.xaml.cs">
       <DependentUpon>SigninPage.xaml</DependentUpon>
     </Compile>
@@ -150,5 +158,9 @@
   <ItemGroup>
     <Folder Include="ViewModels\Personalization\" />
     <Folder Include="Views\LowVision\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\eye-censored.png" />
   </ItemGroup>
 </Project>

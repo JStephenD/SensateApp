@@ -11,6 +11,8 @@ namespace Sensate.Views {
 		public MainSettingsPage() {
 			InitializeComponent();
 
+			Shell.SetNavBarIsVisible(this, false);
+
 			#region gesturerecognizers
 			var feedbackframeclick = new TapGestureRecognizer();
 			feedbackframeclick.Tapped += FeedbackFrameClick;
