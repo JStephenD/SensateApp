@@ -45,7 +45,7 @@ namespace Sensate.Views {
 			DisplayAlert("","Saved","ok");
 		}
 		public void BackClick(object s, EventArgs e) {
-			Shell.Current.GoToAsync("..");
+			Shell.Current.GoToAsync(nameof(AccountPage));
 		}
 		public void DeleteAccountClick(object s, EventArgs e) {
 			Console.WriteLine("a");

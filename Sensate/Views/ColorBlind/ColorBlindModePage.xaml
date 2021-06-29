@@ -6,7 +6,7 @@
 			 xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              Shell.NavBarIsVisible="True">
 	<ContentPage.Content>
-		<StackLayout	Spacing="0">
+		<StackLayout	Spacing="0" BackgroundColor="#17749C">
 			<StackLayout	Orientation="Horizontal" Background="#004867"
 							Padding="10">
 				<Frame	CornerRadius="50" HorizontalOptions="Start" BackgroundColor="Transparent"
@@ -21,12 +21,12 @@
 				</Frame>
 
 				<Frame	CornerRadius="50" HorizontalOptions="EndAndExpand" BackgroundColor="#FF881A"
-						WidthRequest="23" HeightRequest="23" Padding="20,15">
+						WidthRequest="23" HeightRequest="23" Padding="20,15" x:Name="flashFrame">
 					<Image Source="{xct:ImageResource Id=Sensate.Assets.flash.png}" 
 						   Aspect="AspectFill"/>
 				</Frame>
 				<Frame	CornerRadius="50" HorizontalOptions="End" BackgroundColor="#FF881A"
-						WidthRequest="23" HeightRequest="23" Padding="20,20">
+						WidthRequest="23" HeightRequest="23" Padding="20,20" x:Name="rotatecamFrame">
 					<Image Source="{xct:ImageResource Id=Sensate.Assets.rotate-cam.png}" 
 						   Aspect="AspectFill"/>
 				</Frame>
@@ -56,7 +56,16 @@
 					HorizontalOptions="FillAndExpand"
 					VerticalOptions="FillAndExpand"
 				/>
+
+				<Image Grid.Row="0" Grid.ColumnSpan="3"
+					x:Name="debugimage" Source="{xct:ImageResource Id=Sensate.Assets.hamburger.png}"
+					   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"/>
 			</Grid>
+
+			<Frame x:Name="togglefilterFrame" BackgroundColor="#FF8819" CornerRadius="20"
+				   HorizontalOptions="Center">
+				<Switch x:Name="togglefilter" HorizontalOptions="Center" Toggled="togglefilter_Toggled"/>
+			</Frame>
 
 			<StackLayout BackgroundColor="#004867">
 				<StackLayout Orientation="Horizontal" Padding="30,10,30,0">

@@ -44,7 +44,6 @@ namespace Sensate {
 			Routing.RegisterRoute(nameof(ColorBlindModePage), typeof(ColorBlindModePage));
 			Routing.RegisterRoute(nameof(Test1), typeof(Test1));
 
-
 			if (Preferences.Get("UserCategory", "Normal", "GeneralSettings") == "LowVision") {
 				MainFeature.Route = nameof(Test1);
 				MainFeature.ContentTemplate = new DataTemplate(typeof(Test1));
@@ -59,6 +58,18 @@ namespace Sensate {
 		private async void OnMenuItemClicked(object sender, EventArgs e) {
 			Preferences.Set("MyFirebaseRefreshToken", "");
 			await Current.GoToAsync($"{nameof(SigninPage)}");
+		}
+
+		protected override void OnAppearing() {
+			if (Preferences.Get("UserCategory", "Normal", "GeneralSettings") == "LowVision") {
+				MainFeature.Route = nameof(Test1);
+				MainFeature.ContentTemplate = new DataTemplate(typeof(Test1));
+				MainFeatureTitle.Title = "Recognition Mode";
+			} else {
+				MainFeature.Route = nameof(ColorBlindModePage);
+				MainFeature.ContentTemplate = new DataTemplate(typeof(ColorBlindModePage));
+				MainFeatureTitle.Title = "Colorblind Mode";
+			}
 		}
 	}
 }

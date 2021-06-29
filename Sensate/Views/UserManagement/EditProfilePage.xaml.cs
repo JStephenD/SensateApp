@@ -44,16 +44,19 @@ namespace Sensate.Views {
 		}
 
 		#region gesturerecognizer functions
-		public void ConfirmButtonClick(object s, EventArgs e) {
+		public async void ConfirmButtonClick(object s, EventArgs e) {
 			Preferences.Set("AccountName", accountName.Text, "UserAccount");
 			Preferences.Set("AccountGender", gender.SelectedItem.ToString(), "UserAccount");
 			Preferences.Set("AccountBirthdate", birthdate.Date.ToString(), "UserAccount");
 			Preferences.Set("UserCategory", usertype.SelectedItem.ToString(), "GeneralSettings");
 
-			DisplayAlert("","Saved","ok");
+			await DisplayAlert("","Saved","ok");
+
+			Application.Current.MainPage = new AppShell();
+			await Shell.Current.GoToAsync(nameof(EditProfilePage));
 		}
 		public void BackClick(object s, EventArgs e) {
-			Shell.Current.GoToAsync("..");
+			Shell.Current.GoToAsync(nameof(AccountPage));
 		}
 		public void EditAccountClick(object s, EventArgs e) {
 			Shell.Current.GoToAsync(nameof(EditAccountPage));

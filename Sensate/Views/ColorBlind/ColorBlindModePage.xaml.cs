@@ -10,6 +10,9 @@ using Sensate.ViewModels;
 using SkiaSharp;
 using System.IO;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Reflection;
+using System.Linq;
 
 namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
@@ -17,7 +20,11 @@ namespace Sensate.Views {
 
 		#region variables
 		private SKBitmap bitmap;
-		private string cbmode;
+		private string cbmode, cbmodeorig;
+		private bool iscapturemode = true;
+		private bool isuploadmode = false;
+		private bool isbusy = false;
+		private Assembly assembly;
 
 		private static float[] Protanopia = {
 			0.567F, 0.433F,         0F, 0F, 0,
@@ -27,16 +34,16 @@ namespace Sensate.Views {
 		};
 
 		private static float[] Deuteranopia = {
-			0.625f,0.375f,0,0,0, 
-			0.7f,0.3f,0,0,0, 
-			0,0.3f,0.7f,0,0, 
+			0.625f,0.375f,0,0,0,
+			0.7f,0.3f,0,0,0,
+			0,0.3f,0.7f,0,0,
 			0,0,0,1,0
 		};
 
 		private static float[] Tritanopia = {
-			0.95f,0.05f,0,0,0, 
-			0,0.433f,0.567f,0,0, 
-			0,0.475f,0.525f,0,0, 
+			0.95f,0.05f,0,0,0,
+			0,0.433f,0.567f,0,0,
+			0,0.475f,0.525f,0,0,
 			0,0,0,1,0
 		};
 
@@ -78,22 +85,31 @@ namespace Sensate.Views {
 			uploadframeclick.Tapped += UploadFrameClick;
 			cameraFrame.GestureRecognizers.Add(cameraframeclick);
 			uploadFrame.GestureRecognizers.Add(uploadframeclick);
+
+			var rotatecamframeclick = new TapGestureRecognizer();
+			rotatecamframeclick.Tapped += RotateCamFrameClick;
+			rotatecamFrame.GestureRecognizers.Add(rotatecamframeclick);
+			
+			var flashframeclick = new TapGestureRecognizer();
+			flashframeclick.Tapped += FlashFrameClick;
+			flashFrame.GestureRecognizers.Add(flashframeclick);
 			#endregion gesturerecognizers
 
 			cameraView.CaptureMode = CameraCaptureMode.Photo;
 			cameraView.IsVisible = true;
 			canvasView.IsVisible = true;
 
-			cbmode = Preferences.Get("CBType", "Protanopia", "CBSettings");
-			
+			togglefilter.IsVisible = false;
+			togglefilterFrame.IsVisible = false;
+
+			debugimage.IsVisible = false;
+
+			cbmode = cbmodeorig = Preferences.Get("CBType", "Protanopia", "CBSettings");
+
 			if (Preferences.Get("UserCategory", "Normal", "GeneralSettings") == "Normal") {
 				canvasView.IsVisible = false;
 			} else {
-				Device.StartTimer(TimeSpan.FromSeconds(1f / 30), () => {
-					canvasView.InvalidateSurface();
-					cameraView.Shutter();
-					return true;
-				});
+				StartCaptureMode();
 			}
 		}
 
@@ -119,23 +135,105 @@ namespace Sensate.Views {
 		public void OpenNavBarClick(object s, EventArgs e) {
 			Shell.Current.FlyoutIsPresented = true;
 		}
+		public void RotateCamFrameClick(object s, EventArgs e) {
+			if (cameraView.CameraOptions == CameraOptions.Back)
+				cameraView.CameraOptions = CameraOptions.Front;
+			else
+				cameraView.CameraOptions = CameraOptions.Back;
+		}
+		public void FlashFrameClick(object s, EventArgs e) {
+			if (cameraView.FlashMode == CameraFlashMode.Off)
+				cameraView.FlashMode = CameraFlashMode.Torch;
+			else
+				cameraView.FlashMode = CameraFlashMode.Off;
+		}
 		#endregion navigation
 
 		#region imagemode
-		public void CameraFrameClick(object s, EventArgs e) { 
+		public void CameraFrameClick(object s, EventArgs e) {
 			cameraFrame.BackgroundColor = Color.FromHex("#FF881A");
 			uploadFrame.BackgroundColor = Color.FromHex("#EFEFEF");
 			IconTintColorEffect.SetTintColor(cameraImage, Color.White);
 			IconTintColorEffect.SetTintColor(uploadImage, Color.FromHex("#00384F"));
 
+			togglefilter.IsVisible = false;
+			togglefilterFrame.IsVisible = false;
+			Task.Run(StartCaptureMode);
+			iscapturemode = true;
+			isuploadmode = false;
 		}
-		public void UploadFrameClick(object s, EventArgs e) {
+		public async void UploadFrameClick(object s, EventArgs e) {
 			uploadFrame.BackgroundColor = Color.FromHex("#FF881A");
 			cameraFrame.BackgroundColor = Color.FromHex("#EFEFEF");
 			IconTintColorEffect.SetTintColor(uploadImage, Color.White);
 			IconTintColorEffect.SetTintColor(cameraImage, Color.FromHex("#00384F"));
+
+			togglefilter.IsVisible = true;
+			togglefilterFrame.IsVisible = true;
+			iscapturemode = false;
+			isuploadmode = true;
+
+			assembly = this.GetType().GetTypeInfo().Assembly;
+			var resources = assembly.GetManifestResourceNames();
+			var resourceName = resources.Single(r => r.EndsWith("upload-image-default.png", StringComparison.OrdinalIgnoreCase));
+			var stream = assembly.GetManifestResourceStream(resourceName);
+
+			bitmap = SKBitmap.Decode(stream);
+
+			await MediaPicker.PickPhotoAsync()
+				.ContinueWith(async t => { 
+					if (t.IsCanceled)
+						return;
+					var result = t.Result;
+					MemoryStream ms = new MemoryStream();
+					Stream st = await result.OpenReadAsync();
+					debugimage.IsVisible = true;
+					debugimage.Source = ImageSource.FromStream(() => st);
+
+					st.CopyTo(ms);
+					bitmap = SKBitmap.Decode(ms);
+					//StartUploadMode();
+
+					Console.WriteLine(st.CanRead);
+					Console.WriteLine(result.FullPath);
+
+					ms.Close();
+					st.Close();
+				});
+		}
+		private void togglefilter_Toggled(object sender, ToggledEventArgs e) {
+			if (e.Value)
+				cbmode = "";
+			else
+				cbmode = cbmodeorig;
 		}
 		#endregion imagemode
+
+		#region threading
+		private void StartCaptureMode() {
+			Device.StartTimer(TimeSpan.FromMilliseconds(1000 / 60), CaptureAndApplyFilter);
+		}
+		private bool CaptureAndApplyFilter() {
+			if (!isbusy) { 
+				isbusy = true;
+				cameraView.Shutter();
+				canvasView.InvalidateSurface();
+				isbusy = false;
+			}
+			return iscapturemode;
+		}
+		private void StartUploadMode() {
+			Device.StartTimer(TimeSpan.FromMilliseconds(1000 / 60), UploadAndApplyFilter);
+		}
+		private bool UploadAndApplyFilter() {
+			if (!isbusy) {
+				isbusy = true;
+				canvasView.InvalidateSurface();
+				isbusy = false;
+			}
+			return isuploadmode;
+		}
+		#endregion threading
 
 		#region camera
 		private void CameraView_MediaCaptured(object sender, MediaCapturedEventArgs e) {
@@ -152,10 +250,16 @@ namespace Sensate.Views {
 			SKSurface surface = e.Surface;
 			SKCanvas canvas = surface.Canvas;
 
-			canvas.Clear(SKColors.White);
-			
+			canvas.Clear();
+
 			if (bitmap != null) {
-				SKBitmap rotatedBitmap = Rotate2(bitmap, 90);
+				SKBitmap rotatedBitmap;
+				if (cameraView.CameraOptions == CameraOptions.Back)
+					rotatedBitmap = Rotate2(bitmap, 90);
+				else
+					rotatedBitmap = Rotate2(bitmap, -90);
+
+
 				switch (cbmode) {
 					case "Protanopia":
 						canvas.DrawBitmap(rotatedBitmap, info.Rect, BitmapStretch.UniformToFill, paint: paintProtanopia);
@@ -165,6 +269,9 @@ namespace Sensate.Views {
 						break;
 					case "Tritanopia":
 						canvas.DrawBitmap(rotatedBitmap, info.Rect, BitmapStretch.UniformToFill, paint: paintTritanopia);
+						break;
+					default:
+						canvas.DrawBitmap(rotatedBitmap, info.Rect, BitmapStretch.UniformToFill);
 						break;
 				}
 			}
@@ -195,7 +302,7 @@ namespace Sensate.Views {
 
 			using (var surface = new SKCanvas(rotated)) {
 				surface.Translate(rotated.Width, 0);
-				surface.RotateDegrees((float)angle);
+				surface.RotateDegrees((float) angle);
 				surface.DrawBitmap(bitmap, 0, 0);
 			}
 

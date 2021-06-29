@@ -84,14 +84,11 @@
 	<FlyoutItem x:Name="MainFeatureTitle" Title="Test1" Icon="icon_about.png">
 		<ShellContent x:Name="MainFeature" Route="Test1" ContentTemplate="{DataTemplate local:Test1}" />
 	</FlyoutItem>
-	<FlyoutItem Title="Sign Up" Icon="icon_about.png">
-		<ShellContent Route="SignupPage" ContentTemplate="{DataTemplate local:SignupPage}" />
+	<FlyoutItem Title="Account" Icon="icon_about.png">
+		<ShellContent Route="AccountPage" ContentTemplate="{DataTemplate local:AccountPage}" />
 	</FlyoutItem>
-	<FlyoutItem Title="Sign In" Icon="icon_about.png">
-		<ShellContent Route="SigninPage" ContentTemplate="{DataTemplate local:SigninPage}" />
-	</FlyoutItem>
-	<FlyoutItem Title="Quick Profile Setup" Icon="icon_about.png">
-		<ShellContent Route="QuickProfileSetupPage" ContentTemplate="{DataTemplate local:QuickProfileSetupPage}" />
+	<FlyoutItem Title="Settings" Icon="icon_about.png">
+		<ShellContent Route="MainSettingsPage" ContentTemplate="{DataTemplate local:MainSettingsPage}" />
 	</FlyoutItem>
 	<FlyoutItem Title="Tutorial" Icon="icon_about.png">
 		<ShellContent Route="TutorialPage" ContentTemplate="{DataTemplate local:TutorialPage}" />
@@ -99,16 +96,16 @@
 	<FlyoutItem Title="FAQs" Icon="icon_about.png">
 		<ShellContent Route="FAQPage" ContentTemplate="{DataTemplate local:FAQPage}" />
 	</FlyoutItem>
+	<FlyoutItem Title="Review" Icon="icon_about.png">
+		<ShellContent Route="RateAndReviewPage" ContentTemplate="{DataTemplate local:RateAndReviewPage}" />
+	</FlyoutItem>
 	<FlyoutItem Title="About Sensate" Icon="icon_about.png">
 		<ShellContent Route="SensateAboutPage" ContentTemplate="{DataTemplate local:SensateAboutPage}" />
 	</FlyoutItem>
-	<FlyoutItem Title="Rate and Review" Icon="icon_about.png">
-		<ShellContent Route="RateAndReviewPage" ContentTemplate="{DataTemplate local:RateAndReviewPage}" />
-	</FlyoutItem>
 
 	<!-- When the Flyout is visible this will be a menu item you can tie a click behavior to  -->
-    <MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
-    </MenuItem>
+    <!--<MenuItem Text="Logout" StyleClass="MenuItemLayoutStyle" Clicked="OnMenuItemClicked">
+    </MenuItem>-->
 
     <!--
         TabBar lets you define content that won't show up in a flyout menu. When this content is active

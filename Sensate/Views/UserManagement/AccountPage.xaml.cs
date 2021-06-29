@@ -35,6 +35,10 @@ namespace Sensate.Views {
 			hamburgerclick.Tapped += HamburgerClick;
 			hamburger.GestureRecognizers.Add(hamburgerclick);
 			#endregion gesturerecognizers
+
+			#region defaults
+			accountName.Text = Preferences.Get("AccountName", "", "UserAccount");
+			#endregion defaults
 		}
 
 		#region gesturerecognizer functions
@@ -42,7 +46,7 @@ namespace Sensate.Views {
 			Console.WriteLine("a");
 		}
 		public void EditAccountFrameClick(object s, EventArgs e) {
-			Console.WriteLine("b");
+			Shell.Current.GoToAsync(nameof(EditProfilePage));
 		}
 		public void LogoutFrameClick(object s, EventArgs e) {
 			Console.WriteLine("c");
