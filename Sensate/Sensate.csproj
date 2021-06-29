@@ -37,6 +37,14 @@
 	  
     <None Remove="Assets\navigation-settings.png" />
 	  
+    <None Remove="Assets\recognition-face.png" />
+	  
+    <None Remove="Assets\recognition-general.png" />
+	  
+    <None Remove="Assets\recognition-product.png" />
+	  
+    <None Remove="Assets\recognition-text.png" />
+	  
     <None Remove="Assets\rotate-cam.png" />
     <None Remove="Assets\Sensate-auth.json" />
     <None Remove="Assets\sensate-logo1.png" />
@@ -69,6 +77,10 @@
     <EmbeddedResource Include="Assets\info-small.png" />
     <EmbeddedResource Include="Assets\loading.png" />
     <EmbeddedResource Include="Assets\navigation-settings.png" />
+    <EmbeddedResource Include="Assets\recognition-face.png" />
+    <EmbeddedResource Include="Assets\recognition-general.png" />
+    <EmbeddedResource Include="Assets\recognition-product.png" />
+    <EmbeddedResource Include="Assets\recognition-text.png" />
     <EmbeddedResource Include="Assets\rotate-cam.png" />
     <EmbeddedResource Include="Assets\Sensate-auth.json" />
     <EmbeddedResource Include="Assets\sensate-logo1.png" />
@@ -127,6 +139,9 @@
     <Compile Update="Views\Personalization\CategorizePage.xaml.cs">
       <DependentUpon>CategorizePage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Recognition\RecognitionModePage.xaml.cs">
+      <DependentUpon>RecognitionModePage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\UserManagement\EditAccountPage.xaml.cs">
       <DependentUpon>EditAccountPage.xaml</DependentUpon>
     </Compile>
@@ -157,7 +172,7 @@
     <EmbeddedResource Update="Views\Help\RateAndReviewPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Test1.xaml">
+    <EmbeddedResource Update="Views\Recognition\RecognitionModePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\UserManagement\QuickProfileSetupPage.xaml">

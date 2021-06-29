@@ -42,11 +42,11 @@ namespace Sensate {
 			Routing.RegisterRoute(nameof(IntroPage3), typeof(IntroPage3));
 
 			Routing.RegisterRoute(nameof(ColorBlindModePage), typeof(ColorBlindModePage));
-			Routing.RegisterRoute(nameof(Test1), typeof(Test1));
+			Routing.RegisterRoute(nameof(RecognitionModePage), typeof(RecognitionModePage));
 
 			if (Preferences.Get("UserCategory", "Normal", "GeneralSettings") == "LowVision") {
-				MainFeature.Route = nameof(Test1);
-				MainFeature.ContentTemplate = new DataTemplate(typeof(Test1));
+				MainFeature.Route = nameof(RecognitionModePage);
+				MainFeature.ContentTemplate = new DataTemplate(typeof(RecognitionModePage));
 				MainFeatureTitle.Title = "Recognition Mode";
 			} else {
 				MainFeature.Route = nameof(ColorBlindModePage);
@@ -62,8 +62,8 @@ namespace Sensate {
 
 		protected override void OnAppearing() {
 			if (Preferences.Get("UserCategory", "Normal", "GeneralSettings") == "LowVision") {
-				MainFeature.Route = nameof(Test1);
-				MainFeature.ContentTemplate = new DataTemplate(typeof(Test1));
+				MainFeature.Route = nameof(RecognitionModePage);
+				MainFeature.ContentTemplate = new DataTemplate(typeof(RecognitionModePage));
 				MainFeatureTitle.Title = "Recognition Mode";
 			} else {
 				MainFeature.Route = nameof(ColorBlindModePage);

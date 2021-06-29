@@ -52,7 +52,8 @@
 							   HorizontalOptions="EndAndExpand">
 							<DatePicker x:Name="birthdate"
 										Format="MM/dd/yyyy" MinimumDate="01/01/1970"
-										TextColor="Black" FontSize="18"/>
+										TextColor="Black" FontSize="18" Visual="Material"
+										Style="{DynamicResource DatePicker}"/>
 						</Frame>
 					</FlexLayout>
 
@@ -60,6 +61,7 @@
 						BorderColor="Black" CornerRadius="30">
 						<Picker x:Name="usertype"
 								Title="User Type" TitleColor="Gray"
+								TextColor="Black"
 								FontSize="18">
 							<Picker.ItemsSource>
 								<x:Array Type="{x:Type x:String}">
