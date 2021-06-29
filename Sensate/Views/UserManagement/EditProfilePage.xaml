@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="Sensate.Views.EditProfilePage"
+			 mc:Ignorable="d"
+             Shell.NavBarIsVisible="False">
+	<ContentPage.Content>
+		<StackLayout Padding="0" Margin="0" Spacing="0" BackgroundColor="#005A81">
+			<Image Source="{xct:ImageResource Id=Sensate.Assets.arrow-back.png}"
+				   WidthRequest="50" HeightRequest="50" x:Name="back"
+				   HorizontalOptions="Start" Margin="10"/>
+
+			<StackLayout Spacing="0" Margin="20,10">
+				<Label Text="Edit Profile" TextColor="white" FontSize="28"/>
+				<Label Text="You can now edit your profile." TextColor="white" FontSize="18"/>
+				<Label Text="If you have low vision, please" TextColor="white" FontSize="18"/>
+				<Label Text="find an assistant." TextColor="white" FontSize="18"/>
+			</StackLayout>
+
+
+			<ScrollView BackgroundColor="White" VerticalOptions="FillAndExpand">
+				<StackLayout Spacing="18" Margin="20,0" Padding="0,20,0,20">
+					<Frame x:Name="accountnameFrame"
+						BorderColor="Black" CornerRadius="30">
+						<Entry x:Name="accountName" Placeholder="Account Name"
+							   TextColor="Black" PlaceholderColor="Gray"
+							   FontSize="18"/>
+					</Frame>
+
+					<FlexLayout Direction="Row" JustifyContent="SpaceBetween">
+						<Frame x:Name="genderFrame"
+							   BorderColor="Black" CornerRadius="30"
+							   HorizontalOptions="StartAndExpand">
+							<Picker x:Name="gender"
+									Title="Gender" TitleColor="Gray"
+									TextColor="Black" FontSize="18">
+								<Picker.ItemsSource>
+									<x:Array Type="{x:Type x:String}">
+										<x:String>Male</x:String>
+										<x:String>Female</x:String>
+										<x:String>Prefer Not to Say</x:String>
+									</x:Array>
+								</Picker.ItemsSource>
+							</Picker>
+						</Frame>
+
+						<Frame x:Name="birthdateFrame"
+							BorderColor="Black" CornerRadius="30"
+							   HorizontalOptions="EndAndExpand">
+							<DatePicker x:Name="birthdate"
+										Format="MM/dd/yyyy" MinimumDate="01/01/1970"
+										TextColor="Black" FontSize="18"/>
+						</Frame>
+					</FlexLayout>
+
+					<Frame x:Name="usertypeFrame"
+						BorderColor="Black" CornerRadius="30">
+						<Picker x:Name="usertype"
+								Title="User Type" TitleColor="Gray"
+								FontSize="18">
+							<Picker.ItemsSource>
+								<x:Array Type="{x:Type x:String}">
+									<x:String>LowVision</x:String>
+									<x:String>ColorBlind</x:String>
+									<x:String>Normal</x:String>
+								</x:Array>
+							</Picker.ItemsSource>
+						</Picker>
+					</Frame>
+
+					<Frame x:Name="confirmbuttonFrame"
+							BorderColor="Black" CornerRadius="30" BackgroundColor="#FF881A"
+							   HorizontalOptions="Center">
+						<Button x:Name="confirmbutton" Text="Confirm"
+								BackgroundColor="Transparent" FontSize="20"/>
+					</Frame>
+
+					<Label	x:Name="editAccount"
+							Text="Edit Account" FontSize="18" TextColor="Red"
+							HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,20"/>
+				</StackLayout>
+			</ScrollView>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

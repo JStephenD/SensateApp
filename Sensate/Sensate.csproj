@@ -14,6 +14,7 @@
     <PackageReference Include="SkiaSharp" Version="2.80.2" />
     <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.2" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+    <None Remove="Assets\arrow-back.png" />
     <None Remove="Assets\arrow-down-circle.png" />
     <None Remove="Assets\arrow-down.png" />
     <None Remove="Assets\arrow-left-circle.png" />
@@ -48,6 +49,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Assets\arrow-back.png" />
     <EmbeddedResource Include="Assets\arrow-down-circle.png" />
     <EmbeddedResource Include="Assets\arrow-down.png" />
     <EmbeddedResource Include="Assets\arrow-left-circle.png" />
@@ -122,6 +124,12 @@
     </Compile>
     <Compile Update="Views\Personalization\CategorizePage.xaml.cs">
       <DependentUpon>CategorizePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\UserManagement\EditAccountPage.xaml.cs">
+      <DependentUpon>EditAccountPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\UserManagement\EditProfilePage.xaml.cs">
+      <DependentUpon>EditProfilePage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\UserManagement\AccountPage.xaml.cs">
       <DependentUpon>AccountPage.xaml</DependentUpon>
