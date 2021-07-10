@@ -3,91 +3,59 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sensate.Views.QuickProfileSetupPage"
 			 xmlns:viewmodels="clr-namespace:Sensate.ViewModels"
-			 x:DataType="viewmodels:QuickProfileSetupViewModel"
+			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              Shell.NavBarIsVisible="False">
 	<ContentPage.Content>
 		<StackLayout Padding="0" Margin="0" Spacing="0">
 			<Frame 
-				BackgroundColor="#005A81" 
-				HeightRequest="200" 
-				VerticalOptions="Fill">
+				BackgroundColor="#005A81" HeightRequest="200" VerticalOptions="Fill">
 
 				<StackLayout>
-					<StackLayout
-						Orientation="Horizontal">
+					<StackLayout Orientation="Horizontal">
 						<ImageButton 
-							HeightRequest="50"
-							WidthRequest="50"
-							HorizontalOptions="StartAndExpand"
-							Source="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Circle_arrow_left_font_awesome.svg/1024px-Circle_arrow_left_font_awesome.svg.png"
-							/>
+							HeightRequest="50" WidthRequest="50" HorizontalOptions="StartAndExpand"
+							BackgroundColor="Transparent"
+							Source="{xct:ImageResource Id=Sensate.Assets.arrow-back.png}"/>
 					</StackLayout>
 					<Label 
 						Text="Set your profile"
-						TextColor="White"
-						FontSize="32"
-						/>
+						TextColor="White" FontSize="32"/>
 					<Label 
 						Text="Thanks for signing up, now let's set some basic information about you."
-						TextColor="White"
-						FontSize="24"
-						/>
+						TextColor="White" FontSize="24"/>
 				</StackLayout>
 			</Frame>
 
-			<Frame 
-				BackgroundColor="#FFFFFF" 
-				VerticalOptions="FillAndExpand">
-				<FlexLayout
-					Direction="Column"
-					JustifyContent="SpaceAround"
-					>
+			<Frame  BackgroundColor="#FFFFFF"  VerticalOptions="FillAndExpand">
+				<FlexLayout Direction="Column" JustifyContent="SpaceAround">
 					<!--entry portion-->
 					<StackLayout>
-                        <Frame
-							CornerRadius="50"
-							BorderColor="Black"
-							Padding="20,5"
-							>
-                            <Entry
-								Placeholder="Name" 
-                                PlaceholderColor="Gray" 
-                                Text=""
-								TextColor="Black"
-                            />
+                        <Frame CornerRadius="50" BorderColor="Black" Padding="20,5">
+                            <Entry Placeholder="Name" PlaceholderColor="Gray" 
+                                Text="" TextColor="Black" x:Name="accountname"/>
                         </Frame>
 
-                        <Frame
-							CornerRadius="50"
-							BorderColor="Black"
-							Padding="20,5"
-							>
-                            <Picker x:Name="Sex" HorizontalOptions="FillAndExpand">
-                                <Picker.Items>
-                                    <x:String>Male</x:String>
-                                    <x:String>Female</x:String>
-                                    <x:String>Others</x:String>
-                                </Picker.Items>
-                            </Picker>
-                        </Frame>
+						<FlexLayout JustifyContent="SpaceBetween">
+							<Frame CornerRadius="30" BorderColor="Black" Padding="20,5">
+								<Picker x:Name="gender" HorizontalOptions="StartAndExpand"
+									Title="Gender" TitleColor="Gray">
+									<Picker.Items>
+										<x:String>Male</x:String>
+										<x:String>Female</x:String>
+										<x:String>Others</x:String>
+									</Picker.Items>
+								</Picker>
+							</Frame>
 
-                        <DatePicker x:Name="DatePicker"/>
-                        <Button x:Name="Birthdate"
-                                    BackgroundColor="#005A81"
-                                    HeightRequest="50"
-                                    Text="Get Age"
-                                    Clicked="Birthdate_Clicked" />
-
-                        <Frame
-							CornerRadius="50"
-							BorderColor="Black"
-							Padding="20,5"
-							>
-
-                        </Frame>
-
-
-                    </StackLayout>
+							<Frame x:Name="birthdateFrame" BorderColor="Black" CornerRadius="30"
+								   HorizontalOptions="EndAndExpand">
+								<DatePicker x:Name="birthdate"
+											Format="MM/dd/yyyy" MinimumDate="01/01/1970"
+											TextColor="Black" FontSize="18" Visual="Material"
+											Style="{DynamicResource DatePicker}"/>
+							</Frame>
+						</FlexLayout>
+					</StackLayout>
 
 					<!--Bottom portion - singup and dots-->
 					<StackLayout VerticalOptions="End">

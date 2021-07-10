@@ -59,7 +59,9 @@ namespace Sensate.ViewModels {
 							//string gettoken = auth.FirebaseToken;
 							await App.Current.MainPage.DisplayAlert("Success!", "Welcome to Sensate! Please remember your credentials for future log-ins.", "OK");
 							//redirect to quick profile
-							await App.Current.MainPage.Navigation.PushModalAsync(new AppShell());
+							//await App.Current.MainPage.Navigation.PushModalAsync(new AppShell());
+							Application.Current.MainPage = new AppShell();
+							await Shell.Current.GoToAsync(nameof(QuickProfileSetupPage));
 						} else {
 							await App.Current.MainPage.DisplayAlert("Alert", "Password and confirm password don't not match.", "OK");
 						}

@@ -143,7 +143,7 @@
 			<ImageButton 
 				VerticalOptions="End" HorizontalOptions="End"
 				HeightRequest="45" Margin="20" BorderWidth="0" BorderColor="Transparent"
-				Clicked="Next"
+				Clicked="Next" BackgroundColor="Transparent"
 				Source="{xct:ImageResource Id=Sensate.Assets.arrow-right-circle.png}"/>
 
 			<Frame

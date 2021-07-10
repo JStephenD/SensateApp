@@ -106,6 +106,9 @@
     <Compile Update="Views\ColorBlind\ColorBlindModePage.xaml.cs">
       <DependentUpon>ColorBlindModePage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Help\TestFirestore.xaml.cs">
+      <DependentUpon>TestFirestore.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Intro\IntroPage3.xaml.cs">
       <DependentUpon>IntroPage3.xaml</DependentUpon>
     </Compile>

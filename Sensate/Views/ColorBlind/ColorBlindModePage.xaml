@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Sensate.Views.ColorBlindModePage"
 			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
 			 xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             x:Class="Sensate.Views.ColorBlindModePage"
              Shell.NavBarIsVisible="True">
 	<ContentPage.Content>
 		<StackLayout	Spacing="0" BackgroundColor="#17749C">
@@ -15,10 +15,17 @@
 						   Aspect="AspectFill" Scale="1.8"/>
 				</Frame>
 				<Frame	CornerRadius="50" HorizontalOptions="Start" BackgroundColor="White"
-						WidthRequest="23" HeightRequest="23">
+						WidthRequest="23" HeightRequest="23" x:Name="colormodeFrame">
 					<Image Source="{xct:ImageResource Id=Sensate.Assets.colors.png}"
 						   Aspect="AspectFill" Scale="1.8"/>
 				</Frame>
+				<Picker IsVisible="False" x:Name="colormode" SelectedIndexChanged="ColorModeChange">
+					<Picker.Items>
+						<x:String>Protanopia</x:String>
+						<x:String>Deuteranopia</x:String>
+						<x:String>Tritanopia</x:String>
+					</Picker.Items>
+				</Picker>
 
 				<Frame	CornerRadius="50" HorizontalOptions="EndAndExpand" BackgroundColor="#FF881A"
 						WidthRequest="23" HeightRequest="23" Padding="20,15" x:Name="flashFrame">
@@ -75,7 +82,7 @@
 						   Aspect="AspectFit" Scale="2"/>
 					</Frame>
 					<Slider
-						x:Name="zoomSlider" Margin="5,0" IsEnabled="False"
+						x:Name="zoomSlider" Margin="5,0"
 						Maximum="10" Minimum="1" HorizontalOptions="FillAndExpand"
 						ThumbColor="White" HeightRequest="5"
 						ValueChanged="ZoomSlider_ValueChanged" Value="1"/>

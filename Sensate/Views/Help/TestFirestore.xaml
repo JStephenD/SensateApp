@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+			 xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+			 x:Class="Sensate.Views.TestFirestore">
+	<ContentPage.Content>
+		<StackLayout Padding="0" Margin="0" Spacing="0" BackgroundColor="#00AEF9">
+			<ImageButton Source="{xct:ImageResource Id=Sensate.Assets.upload-image-default.png}" 
+						 Clicked="ImageButton_Clicked" WidthRequest="100" HeightRequest="100"/>
+
+			<skia:SKCanvasView x:Name="canvasView" PaintSurface="canvasView_PaintSurface" 
+							   HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+							   MinimumHeightRequest="500" HeightRequest="500"/>
+
+			<Switch Toggled="Switch_Toggled"/>
+
+			<StackLayout>
+				<ScrollView>
+					
+					<StackLayout HorizontalOptions="Center">
+						<Label Margin="0,0,0,10" Text="Firebase Realtime Database" FontAttributes="Bold" FontSize="Large" TextColor="Gray" HorizontalTextAlignment="Center" ></Label>
+						<Entry x:Name="txtId" Placeholder="ID"></Entry>
+						<Entry x:Name="txtName" Placeholder="Enter Name"></Entry>
+						<StackLayout  HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+							<Button x:Name="btnAdd" WidthRequest="200" Text="Add" Clicked="BtnAdd_Clicked"/>
+							<Button x:Name="btnRetrive" WidthRequest="200" Text="Retrive" />
+						</StackLayout>
+						<StackLayout HorizontalOptions="CenterAndExpand" Orientation="Horizontal">
+							<Button x:Name="btnUpdate" WidthRequest="200" Text="Update"  />
+							<Button x:Name="btnDelete" WidthRequest="200" Text="Delete" />
+						</StackLayout>
+
+
+						<StackLayout Spacing="0">
+							<ListView x:Name="lstPersons">
+								<ListView.ItemTemplate>
+									<DataTemplate>
+										<TextCell Text="{Binding Name}"></TextCell>
+									</DataTemplate>
+								</ListView.ItemTemplate>
+							</ListView>
+
+							<ListView x:Name="listSettings">
+								<ListView.ItemTemplate>
+									<DataTemplate>
+										<ViewCell>
+											<StackLayout Orientation="Horizontal">
+												<Label TextColor="Black" Text="{Binding UserType}"></Label>
+												<Label TextColor="Black" Text="{Binding AccountName}"></Label>
+												<Label TextColor="Black" Text="{Binding AccountBirthdate}"></Label>
+											</StackLayout>
+										</ViewCell>
+									</DataTemplate>
+								</ListView.ItemTemplate>
+							</ListView>
+						</StackLayout>
+					</StackLayout>
+
+				</ScrollView>
+			</StackLayout>
+
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

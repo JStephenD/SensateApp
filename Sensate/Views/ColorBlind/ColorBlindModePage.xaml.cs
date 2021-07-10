@@ -20,6 +20,7 @@ namespace Sensate.Views {
 
 		#region variables
 		private SKBitmap bitmap;
+		private byte[] imagebytearray;
 		private string cbmode, cbmodeorig;
 		private bool iscapturemode = true;
 		private bool isuploadmode = false;
@@ -89,10 +90,19 @@ namespace Sensate.Views {
 			var rotatecamframeclick = new TapGestureRecognizer();
 			rotatecamframeclick.Tapped += RotateCamFrameClick;
 			rotatecamFrame.GestureRecognizers.Add(rotatecamframeclick);
-			
+
 			var flashframeclick = new TapGestureRecognizer();
 			flashframeclick.Tapped += FlashFrameClick;
 			flashFrame.GestureRecognizers.Add(flashframeclick);
+
+			var colormodeframeclick = new TapGestureRecognizer();
+			colormodeframeclick.Tapped += ColorModeFrameClick;
+			colormodeFrame.GestureRecognizers.Add(colormodeframeclick);
+
+			var testclicktap = new TapGestureRecognizer();
+			testclicktap.Tapped += testclick;
+			canvasView.GestureRecognizers.Add(testclicktap);
+			cameraView.GestureRecognizers.Add(testclicktap);
 			#endregion gesturerecognizers
 
 			cameraView.CaptureMode = CameraCaptureMode.Photo;
@@ -107,10 +117,14 @@ namespace Sensate.Views {
 			cbmode = cbmodeorig = Preferences.Get("CBType", "Protanopia", "CBSettings");
 
 			if (Preferences.Get("UserCategory", "Normal", "GeneralSettings") == "Normal") {
-				canvasView.IsVisible = false;
+				//canvasView.IsVisible = false;
 			} else {
 				StartCaptureMode();
 			}
+		}
+
+		public void testclick(object s, EventArgs e) {
+			Console.WriteLine(s.ToString());
 		}
 
 		#region zooming
@@ -147,6 +161,12 @@ namespace Sensate.Views {
 			else
 				cameraView.FlashMode = CameraFlashMode.Off;
 		}
+		public void ColorModeFrameClick(object s, EventArgs e) {
+			colormode.Focus();
+		}
+		public void ColorModeChange(object s, EventArgs e) {
+			cbmode = cbmodeorig = colormode.SelectedItem.ToString();
+		}
 		#endregion navigation
 
 		#region imagemode
@@ -158,9 +178,11 @@ namespace Sensate.Views {
 
 			togglefilter.IsVisible = false;
 			togglefilterFrame.IsVisible = false;
-			Task.Run(StartCaptureMode);
+			StartCaptureMode();
 			iscapturemode = true;
 			isuploadmode = false;
+
+			debugimage.IsVisible = false;
 		}
 		public async void UploadFrameClick(object s, EventArgs e) {
 			uploadFrame.BackgroundColor = Color.FromHex("#FF881A");
@@ -172,49 +194,49 @@ namespace Sensate.Views {
 			togglefilterFrame.IsVisible = true;
 			iscapturemode = false;
 			isuploadmode = true;
+			cbmode = "";
 
 			assembly = this.GetType().GetTypeInfo().Assembly;
 			var resources = assembly.GetManifestResourceNames();
 			var resourceName = resources.Single(r => r.EndsWith("upload-image-default.png", StringComparison.OrdinalIgnoreCase));
-			var stream = assembly.GetManifestResourceStream(resourceName);
 
-			bitmap = SKBitmap.Decode(stream);
+			//debugimage.IsVisible = true;
+			//debugimage.Source = ImageSource.FromStream(() => assembly.GetManifestResourceStream(resourceName));
+			Console.WriteLine("uploading");
 
 			await MediaPicker.PickPhotoAsync()
-				.ContinueWith(async t => { 
+				.ContinueWith(async t => {
 					if (t.IsCanceled)
 						return;
 					var result = t.Result;
-					MemoryStream ms = new MemoryStream();
-					Stream st = await result.OpenReadAsync();
-					debugimage.IsVisible = true;
-					debugimage.Source = ImageSource.FromStream(() => st);
 
-					st.CopyTo(ms);
-					bitmap = SKBitmap.Decode(ms);
-					//StartUploadMode();
-
-					Console.WriteLine(st.CanRead);
-					Console.WriteLine(result.FullPath);
-
-					ms.Close();
-					st.Close();
+					using (MemoryStream ms = new MemoryStream()) {
+						using (Stream stream = await result.OpenReadAsync()) {
+							stream.CopyTo(ms);
+							imagebytearray = ms.ToArray();
+							bitmap = SKBitmap.Decode(imagebytearray);
+							debugimage.IsVisible = false;
+							Console.WriteLine("uploaded");
+							StartUploadMode();
+							//debugimage.Source = ImageSource.FromStream(() => new memo);
+						}
+					}
 				});
 		}
 		private void togglefilter_Toggled(object sender, ToggledEventArgs e) {
 			if (e.Value)
-				cbmode = "";
-			else
 				cbmode = cbmodeorig;
+			else
+				cbmode = "";
 		}
 		#endregion imagemode
 
 		#region threading
 		private void StartCaptureMode() {
-			Device.StartTimer(TimeSpan.FromMilliseconds(1000 / 60), CaptureAndApplyFilter);
+			Device.StartTimer(TimeSpan.FromMilliseconds(1000 / 10), CaptureAndApplyFilter);
 		}
 		private bool CaptureAndApplyFilter() {
-			if (!isbusy) { 
+			if (!isbusy) {
 				isbusy = true;
 				cameraView.Shutter();
 				canvasView.InvalidateSurface();
@@ -223,7 +245,7 @@ namespace Sensate.Views {
 			return iscapturemode;
 		}
 		private void StartUploadMode() {
-			Device.StartTimer(TimeSpan.FromMilliseconds(1000 / 60), UploadAndApplyFilter);
+			Device.StartTimer(TimeSpan.FromMilliseconds(1000 / 30), UploadAndApplyFilter);
 		}
 		private bool UploadAndApplyFilter() {
 			if (!isbusy) {
@@ -236,12 +258,14 @@ namespace Sensate.Views {
 		#endregion threading
 
 		#region camera
-		private void CameraView_MediaCaptured(object sender, MediaCapturedEventArgs e) {
-			MemoryStream ms = new MemoryStream(e.ImageData);
-			bitmap = SKBitmap.Decode(ms);
+		public void CameraView_MediaCaptured(object sender, MediaCapturedEventArgs e) {
+			if (!isbusy) {
+				Console.WriteLine("captured");
+				bitmap = SKBitmap.Decode(e.ImageData);
+			}
 		}
 
-		private void CameraView_OnAvailable(object sender, bool e) {
+		public void CameraView_OnAvailable(object sender, bool e) {
 
 		}
 
@@ -250,29 +274,25 @@ namespace Sensate.Views {
 			SKSurface surface = e.Surface;
 			SKCanvas canvas = surface.Canvas;
 
-			canvas.Clear();
+			canvas.Clear(SKColors.White);
 
 			if (bitmap != null) {
-				SKBitmap rotatedBitmap;
-				if (cameraView.CameraOptions == CameraOptions.Back)
+				if (isuploadmode) {
+					Console.WriteLine(cbmode);
+					canvas.DrawBitmap(bitmap, info.Rect, BitmapStretch.AspectFit, 
+						paint: (cbmode == "Protanopia") ? paintProtanopia :
+								(cbmode == "Deuteranopia") ? paintDeuteranopia :
+								(cbmode == "Tritanopia") ? paintDeuteranopia :
+								null);
+				} else {
+					SKBitmap rotatedBitmap;
 					rotatedBitmap = Rotate2(bitmap, 90);
-				else
-					rotatedBitmap = Rotate2(bitmap, -90);
-
-
-				switch (cbmode) {
-					case "Protanopia":
-						canvas.DrawBitmap(rotatedBitmap, info.Rect, BitmapStretch.UniformToFill, paint: paintProtanopia);
-						break;
-					case "Deuteranopia":
-						canvas.DrawBitmap(rotatedBitmap, info.Rect, BitmapStretch.UniformToFill, paint: paintDeuteranopia);
-						break;
-					case "Tritanopia":
-						canvas.DrawBitmap(rotatedBitmap, info.Rect, BitmapStretch.UniformToFill, paint: paintTritanopia);
-						break;
-					default:
-						canvas.DrawBitmap(rotatedBitmap, info.Rect, BitmapStretch.UniformToFill);
-						break;
+					canvas.DrawBitmap(rotatedBitmap, info.Rect, BitmapStretch.AspectFill,
+						paint: (cbmode == "Protanopia") ? paintProtanopia :
+								(cbmode == "Deuteranopia") ? paintDeuteranopia :
+								(cbmode == "Tritanopia") ? paintDeuteranopia :
+								null);
+					
 				}
 			}
 		}

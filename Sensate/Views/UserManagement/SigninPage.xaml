@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 			 xmlns:viewmodels="clr-namespace:Sensate.ViewModels" x:DataType="viewmodels:SigninViewModel"
+			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="Sensate.Views.SigninPage"
 			 mc:Ignorable="d"
              Shell.NavBarIsVisible="False">
@@ -18,11 +19,9 @@
 					<StackLayout
 						Orientation="Horizontal">
 						<ImageButton 
-							HeightRequest="50"
-							WidthRequest="50"
-							HorizontalOptions="StartAndExpand"
-							Source="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Circle_arrow_left_font_awesome.svg/1024px-Circle_arrow_left_font_awesome.svg.png"
-                            />
+							HeightRequest="50" WidthRequest="50" HorizontalOptions="StartAndExpand"
+							BackgroundColor="Transparent"
+							Source="{xct:ImageResource Id=Sensate.Assets.arrow-back.png}"/>
                         <Button 
 							BackgroundColor="#FF881A"
                             HorizontalOptions="EndAndExpand"

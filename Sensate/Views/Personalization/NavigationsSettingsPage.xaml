@@ -116,12 +116,11 @@
 				</StackLayout>
 			</ScrollView>
 
-			<Frame	x:Name="NextFrame"
-					HorizontalOptions="End"
-				>
+			<Frame	x:Name="NextFrame" HorizontalOptions="End">
 				<ImageButton 
 					VerticalOptions="End" HorizontalOptions="End"
 					HeightRequest="45" Margin="20" BorderWidth="0" BorderColor="Transparent"
+					BackgroundColor="Transparent" x:Name="nextbutton" Clicked="Next"
 					Source="{xct:ImageResource Id=Sensate.Assets.arrow-right-circle.png}"/>
 			</Frame>
 

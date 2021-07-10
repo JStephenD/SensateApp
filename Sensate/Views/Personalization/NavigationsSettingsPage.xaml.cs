@@ -118,7 +118,7 @@ namespace Sensate.Views {
 			}
 		}
 
-		private void Next() {
+		private void Next(object s = null, EventArgs e = null) {
 			if (GestureEnabled) {
 
 			} else {
