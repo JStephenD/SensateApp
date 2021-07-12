@@ -14,29 +14,29 @@ namespace Sensate.ViewModels {
 		public event PropertyChangedEventHandler PropertyChanged;
 		public SigninViewModel() { }
 
-		private string email;  
-        public string Email {  
-            get { return email; }  
-            set {  
-                email = value;  
-                PropertyChanged(this, new PropertyChangedEventArgs("Email"));}  
-        }
+		private string email;
+		public string Email {
+			get { return email; }
+			set {
+				email = value;
+				PropertyChanged(this, new PropertyChangedEventArgs("Email"));
+			}
+		}
 
-		private string password;  
-        public string Password {  
-            get { return password; }  
-            set {  
-                password = value;  
-                PropertyChanged(this, new PropertyChangedEventArgs("Password"));}  
-        }
-		
-		public Command SigninCommand
-        {
+		private string password;
+		public string Password {
+			get { return password; }
+			set {
+				password = value;
+				PropertyChanged(this, new PropertyChangedEventArgs("Password"));
+			}
+		}
+
+		public Command SigninCommand {
 			get { return new Command(OnSigninClicked); }
-        }
+		}
 
-		public Command SignupCommand
-		{
+		public Command SignupCommand {
 			get { return new Command(OnSignupClicked); }
 		}
 
@@ -46,19 +46,18 @@ namespace Sensate.ViewModels {
 			// Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
 			//await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
 			var authProvider = new FirebaseAuthProvider(new FirebaseConfig(FirebaseAPIKey));
-			try
-			{ 
+			try {
 				var auth = await authProvider.SignInWithEmailAndPasswordAsync(email, password);
 				var content = await auth.GetFreshAuthAsync();
 				var serializedcontent = JsonConvert.SerializeObject(content);
+				Preferences.Set("UID", auth.User.LocalId);
 				Preferences.Set("MyFirebaseRefreshToken", serializedcontent);
 				await App.Current.MainPage.DisplayAlert("Welcome back!", "You are logged in again.", "OK");
 				//enters the homepage
 				//await App.Current.MainPage.Navigation.PushModalAsync(new AppShell());
 				Application.Current.MainPage = new AppShell();
 
-			}
-			catch (Exception){
+			} catch (Exception) {
 				await App.Current.MainPage.DisplayAlert("Alert!", "Invalid Email/Password.", "Ok");
 			}
 		}

@@ -34,7 +34,7 @@
 					</Frame>
 
 					<Frame BackgroundColor="#7BD7FF" CornerRadius="30">
-						<Label Text="18" FontSize="24" TextColor="#36668B"/>
+						<Label Text="18" FontSize="24" TextColor="#36668B" x:Name="ageText"/>
 					</Frame>
 				</FlexLayout>
 
@@ -51,7 +51,7 @@
 				</FlexLayout>
 
 				<Frame BackgroundColor="#000000" CornerRadius="30" x:Name="logoutframe" Margin="60,0">
-					<Label Text="Log out" FontSize="24" TextColor="#00AEF9"
+					<Label Text="Log out" FontSize="24" TextColor="#00AEF9" x:Name="logoutFrameText"
 						   HorizontalOptions="Center" VerticalOptions="Center"/>
 				</Frame>
 

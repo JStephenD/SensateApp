@@ -46,6 +46,7 @@ namespace Sensate.Views {
 		public void HamburgerClick(object s, EventArgs e) { 
 			Shell.Current.FlyoutIsPresented = true;
 		}
+
 		#endregion gesturerecognizer functions
 	}
 }

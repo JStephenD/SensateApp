@@ -38,7 +38,7 @@
 						<FlexLayout JustifyContent="SpaceBetween">
 							<Frame CornerRadius="30" BorderColor="Black" Padding="20,5">
 								<Picker x:Name="gender" HorizontalOptions="StartAndExpand"
-									Title="Gender" TitleColor="Gray">
+									Title="Gender" TitleColor="Gray" TextColor="Black">
 									<Picker.Items>
 										<x:String>Male</x:String>
 										<x:String>Female</x:String>
@@ -66,7 +66,7 @@
 							Text="Confirm" 
 							HeightRequest="60"
 							FontSize="24"
-							Command="{Binding ConfirmCommand}"/>
+							Clicked="ConfirmCommand"/>
 
 						<StackLayout 
 							HorizontalOptions="Center"

@@ -6,74 +6,43 @@
              Shell.NavBarIsVisible="False">
 	<ContentPage.Content>
 		<StackLayout Spacing="0" Background="White">
-			<Frame	BackgroundColor="#00AEF9"
-				>
+			<Frame	BackgroundColor="#00AEF9">
 				<StackLayout Orientation="Horizontal" Spacing="20">
 					<Image	Source="{xct:ImageResource Id=Sensate.Assets.waves.png}" 
-							HeightRequest="45"
-							/>
-					<Label	Text="Feedback Settings"
-							TextColor="Black"
-							FontSize="28"
-						/>
+							HeightRequest="45"/>
+					<Label	Text="Feedback Settings" TextColor="Black" FontSize="28"
+							x:Name="textTitle"/>
 				</StackLayout>
 			</Frame>
 
-			<ScrollView
-				VerticalOptions="FillAndExpand"
-				>
-				<StackLayout	Padding="30,20,30,0"
-								BackgroundColor="white"
-								VerticalOptions="FillAndExpand"
-							 >
-					<Label 
-						Text=
+			<ScrollView VerticalOptions="FillAndExpand">
+				<StackLayout	Padding="30,20,30,0" BackgroundColor="white" VerticalOptions="FillAndExpand">
+					<Label	Text=
 							"Based on your type, we recommend you this configuration. Please check and confirm. You can also edit."
-							TextColor="Black"
-							FontSize="16"
-						/>
-					<Label 
-						Text="(Audio feedback reads what you access on screen.)"
-							TextColor="Black"
-							FontSize="16"
-						/>
-					<StackLayout Margin="0,20,0,0"
-						>
-						<Frame	BackgroundColor="#80D7FC"
-								CornerRadius="30"
-							>
+							TextColor="Black" FontSize="16" x:Name="textInfo1"/>
+					<Label	Text="(Audio feedback reads what you access on screen.)"
+							TextColor="Black" FontSize="16" x:Name="textInfo2"/>
+					<StackLayout Margin="0,20,0,0">
+						<Frame	BackgroundColor="#80D7FC" CornerRadius="30">
 							<StackLayout Orientation="Horizontal">
-								<Label 
-									Text="Audio Feedback"
-									TextColor="Black"
-									HorizontalOptions="StartAndExpand"
-									FontSize="24"
-								/>
+								<Label	Text="Audio Feedback" TextColor="Black" 
+										HorizontalOptions="StartAndExpand" FontSize="24"
+										x:Name="textAudioFeedback"/>
 								<Switch	x:Name="AudioFeedback"
 										Toggled="ToggledAudio"/>
 							</StackLayout>
 						</Frame>
 						<StackLayout Spacing="10" x:Name="MoreAudioSettings" Margin="0,10">
 							<StackLayout Orientation="Horizontal" Spacing="20" Margin="20,0,0,0">
-								<Ellipse WidthRequest="17" 
-										HeightRequest="17"
-										Fill="#80D7FC"
-										 VerticalOptions="Center"
-									/>
-								<Frame	BackgroundColor="#FF881A" Opacity="50"
-										CornerRadius="30"
-										HorizontalOptions="FillAndExpand"
-										Padding="20,0"
-									>
+								<Ellipse	WidthRequest="17" HeightRequest="17" Fill="#80D7FC"
+											VerticalOptions="Center"/>
+								<Frame	BackgroundColor="#FF881A" Opacity="50" CornerRadius="30"
+										HorizontalOptions="FillAndExpand" Padding="20,0">
 									<StackLayout Orientation="Horizontal">
-										<Picker x:Name="VoiceGender"
-												Title="Voice Gender"
-												TitleColor="Black"
-												TextColor="Black"
-												HorizontalOptions="Start"
-												VerticalOptions="Center"
-												FontSize="22"
-											>
+										<Picker x:Name="VoiceGender" Title="Voice Gender"
+												TitleColor="Black" TextColor="Black"
+												HorizontalOptions="Start" VerticalOptions="Center"
+												FontSize="22">
 											<Picker.ItemsSource>
 												<x:Array Type="{x:Type x:String}">
 													<x:String>Male</x:String>
@@ -88,25 +57,16 @@
 							</StackLayout>
 
 							<StackLayout Orientation="Horizontal" Spacing="20" Margin="20,0,0,0">
-								<Ellipse WidthRequest="17" 
-										HeightRequest="17"
-										Fill="#80D7FC"
-										 VerticalOptions="Center"
-									/>
+								<Ellipse	WidthRequest="17" HeightRequest="17"
+											Fill="#80D7FC" VerticalOptions="Center"/>
 								<Frame	BackgroundColor="#FF881A" Opacity="50"
-										CornerRadius="30"
-										HorizontalOptions="FillAndExpand"
-										Padding="20,0"
-									>
+										CornerRadius="30" HorizontalOptions="FillAndExpand"
+										Padding="20,0">
 									<StackLayout Orientation="Horizontal">
 										<Picker x:Name="VoiceSpeed"
-												Title="Voice Speed"
-												TitleColor="Black"
-												TextColor="Black"
-												HorizontalOptions="StartAndExpand"
-												VerticalOptions="Center"
-												FontSize="22"
-											>
+												Title="Voice Speed" TitleColor="Black"
+												TextColor="Black" HorizontalOptions="StartAndExpand"
+												VerticalOptions="Center" FontSize="22">
 											<Picker.ItemsSource>
 												<x:Array Type="{x:Type x:String}">
 													<x:String>Slow</x:String>
@@ -122,16 +82,11 @@
 							</StackLayout>
 						</StackLayout>
 
-						<Frame	BackgroundColor="#80D7FC" Opacity="50"
-								CornerRadius="30"
-							>
+						<Frame	BackgroundColor="#80D7FC" Opacity="50" CornerRadius="30">
 							<StackLayout Orientation="Horizontal">
-								<Label 
-									Text="Vibration Feedback"
-									TextColor="Black"
-									HorizontalOptions="StartAndExpand"
-									FontSize="24"
-								/>
+								<Label	Text="Vibration Feedback" TextColor="Black"
+										HorizontalOptions="StartAndExpand" FontSize="24"
+										x:Name="textVibrationFeedback"/>
 								<Switch	x:Name="VibrationFeedback"
 										Toggled="ToggledVibration"/>
 							</StackLayout>
@@ -146,30 +101,12 @@
 				Clicked="Next" BackgroundColor="Transparent"
 				Source="{xct:ImageResource Id=Sensate.Assets.arrow-right-circle.png}"/>
 
-			<Frame
-				Padding="0,0,0,20"
-				VerticalOptions="End"
-				BackgroundColor="white"
-				>
-				<StackLayout 
-						HorizontalOptions="Center"
-						Orientation="Horizontal" 
-						>
-					<Ellipse 
-							WidthRequest="17" 
-							HeightRequest="17"
-							Fill="#C4C4C4"
-							/>
-					<Ellipse 
-							WidthRequest="17" 
-							HeightRequest="17"
-							Fill="#C4C4C4"
-							/>
-					<Ellipse 
-							WidthRequest="17" 
-							HeightRequest="17"
-							Fill="#00AEF9"
-							/>
+			<Frame	Padding="0,0,0,20" VerticalOptions="End"
+					BackgroundColor="white">
+				<StackLayout	HorizontalOptions="Center" Orientation="Horizontal" >
+					<Ellipse	WidthRequest="17" HeightRequest="17" Fill="#C4C4C4"/>
+					<Ellipse	WidthRequest="17" HeightRequest="17" Fill="#C4C4C4"/>
+					<Ellipse	WidthRequest="17" HeightRequest="17" Fill="#00AEF9"/>
 				</StackLayout>
 			</Frame>
 		</StackLayout>

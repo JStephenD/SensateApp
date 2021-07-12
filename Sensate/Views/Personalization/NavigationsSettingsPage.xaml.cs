@@ -11,15 +11,38 @@ namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class NavigationsSettingsPage : ContentPage {
 
+		#region variables
+		private Label[] labels;
+		private bool isBold, isNight, isVibration, isAudio, isShortcut, isGesture, isHardware;
+
+
 		bool GestureEnabled = Preferences.Get("Gesture", false, "GeneralSettings");
 		List<Frame> frames;
 		Frame currentFrame;
 		int currentFrameIndex;
 		ArrayList elements;
+		#endregion variables
+
 
 		public NavigationsSettingsPage() {
 			InitializeComponent();
 
+			#region initalize variables
+			labels = new Label[] {
+				textTitle, InfoText1, InfoText2, textShortcuts, textGesture, textHardware, 
+			};
+			isVibration = Preferences.Get("VibrationFeedback", false, "GeneralSettings");
+			isAudio = Preferences.Get("AudioFeedback", false, "GeneralSettings");
+
+			isBold = Preferences.Get("BoldText", false, "GeneralSettings");
+			isNight = Preferences.Get("NightMode", false, "GeneralSettings");
+
+			isShortcut = Preferences.Get("Shortcuts", false, "GeneralSettings");
+			isGesture = Preferences.Get("Gesture", false, "GeneralSettings");
+			isHardware = Preferences.Get("HardwareButtons", false, "GeneralSettings");
+			#endregion initalize variables
+
+			#region gesture
 			frames = new List<Frame> { // list gesture-navigable components
 				ShortcutsFrame,
 				GestureFrame,
@@ -46,8 +69,10 @@ namespace Sensate.Views {
 
 			if (GestureEnabled)
 				currentFrame.BorderColor = Color.Green;
-			
+			#endregion gesture
+
 			// add gesture recognizers for general view components
+			#region gesturerecognizers
 			var gestureswiperecognizer_l = new SwipeGestureRecognizer() { Direction = SwipeDirection.Left };
 			gestureswiperecognizer_l.Swiped += GestureSwipe;
 			var gestureswiperecognizer_r = new SwipeGestureRecognizer() { Direction = SwipeDirection.Right };
@@ -75,12 +100,29 @@ namespace Sensate.Views {
 			HardwareButtonsFrame.GestureRecognizers.Add(taphandler);
 			NextFrame.GestureRecognizers.Add(taphandler);
 
+			#endregion gesturerecognizers
+
+
 			// set toggled status on start
 			Shortcuts.IsToggled = Preferences.Get("Shortcuts", false, "GeneralSettings");
 			Gesture.IsToggled = GestureEnabled;
 			HardwareButtons.IsToggled = Preferences.Get("HardwareButtons", false, "GeneralSettings");
 
 			MoreShortcutsSettings.IsVisible = Shortcuts.IsToggled;
+		}
+
+		protected override void OnAppearing() {
+			base.OnAppearing();
+
+			foreach (var lab in labels)
+				if (isBold)
+					lab.FontAttributes = FontAttributes.Bold;
+				else
+					lab.FontAttributes = FontAttributes.None;
+
+			Shortcuts.IsToggled = isShortcut;
+			Gesture.IsToggled = isGesture;
+			HardwareButtons.IsToggled = isHardware;
 		}
 
 		private void ToggledShortcuts() {

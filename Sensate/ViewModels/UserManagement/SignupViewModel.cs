@@ -4,7 +4,9 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 using Firebase.Auth;
+using Newtonsoft.Json;
 using Sensate.Views;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Sensate.ViewModels {
@@ -56,6 +58,10 @@ namespace Sensate.ViewModels {
 					if (password != null && confirmpassword != null && password.Length > 5) {
 						if (password == confirmpassword) {
 							var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(email, password);
+							var content = await auth.GetFreshAuthAsync();
+							var serializedcontent = JsonConvert.SerializeObject(content);
+							Preferences.Set("UID", auth.User.LocalId);
+							Preferences.Set("MyFirebaseRefreshToken", serializedcontent);
 							//string gettoken = auth.FirebaseToken;
 							await App.Current.MainPage.DisplayAlert("Success!", "Welcome to Sensate! Please remember your credentials for future log-ins.", "OK");
 							//redirect to quick profile

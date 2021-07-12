@@ -8,21 +8,58 @@ using Sensate.ViewModels;
 namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DisplaySettingsPage : ContentPage {
+
+		#region variables
+		private Label[] labels;
+		private bool isBold, isNight, isVibration, isAudio, isShortcut, isGesture, isHardware;
+		#endregion variables
+
+
 		public DisplaySettingsPage() {
 			InitializeComponent();
 
-			//AudioFeedback.IsToggled = Preferences.Get("AudioFeedback", false, "GeneralSettings");
-			//VibrationFeedback.IsToggled = Preferences.Get("VibrationFeedback", false, "GeneralSettings");
+			#region initialize variables
+			labels = new Label[] { 
+				textTitle, textBased, textBold, textContrast, textNight, textTextSize
+			};
+			isVibration = Preferences.Get("VibrationFeedback", false, "GeneralSettings");
+			isAudio = Preferences.Get("AudioFeedback", false, "GeneralSettings");
 
-			//MoreAudioSettings.IsVisible = AudioFeedback.IsToggled;
+			isBold = Preferences.Get("BoldText", false, "GeneralSettings");
+			isNight = Preferences.Get("NightMode", false, "GeneralSettings");
+
+			isShortcut = Preferences.Get("Shortcuts", false, "GeneralSettings");
+			isGesture = Preferences.Get("Gesture", false, "GeneralSettings");
+			isHardware = Preferences.Get("HardwareButtons", false, "GeneralSettings");
+			#endregion initialize variables
+
 		}
 
-		private void ToggledBoldText(object sender, ToggledEventArgs e) {
+		protected override void OnAppearing() {
+			base.OnAppearing();
 
+			foreach (var lab in labels)
+				if (isBold)
+					lab.FontAttributes = FontAttributes.Bold;
+				else
+					lab.FontAttributes = FontAttributes.None;
+
+			BoldText.IsToggled = isBold;
+			NightMode.IsToggled = isNight;
 		}
 
-		private void ToggledNightMode(object sender, ToggledEventArgs e) {
+		private async void ToggledBoldText(object sender, ToggledEventArgs e) {
+			isBold = e.Value;
+			Preferences.Set("BoldText", isBold, "GeneralSettings");
+			OnAppearing();
+			await SyncHelper.UploadSettings();
+		}
 
+		private async void ToggledNightMode(object sender, ToggledEventArgs e) {
+			isNight = e.Value;
+			Preferences.Set("BoldText", isNight, "GeneralSettings");
+			OnAppearing();
+			await SyncHelper.UploadSettings();
 		}
 
 		private void ChangeContrastIntensity(object sender, ValueChangedEventArgs e) {

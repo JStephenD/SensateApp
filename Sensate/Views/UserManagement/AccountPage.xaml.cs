@@ -41,15 +41,37 @@ namespace Sensate.Views {
 			#endregion defaults
 		}
 
+		protected override void OnAppearing() { 
+			base.OnAppearing();
+			if (Preferences.Get("UID", "") == "") { 
+				logoutFrameText.Text = "Sign in";
+			} else { 
+				logoutFrameText.Text = "Log out";
+			}
+			var birthdate = Preferences.Get("AccountBirthdate", DateTime.Now.ToString(), "UserAccount");
+			ageText.Text = (DateTime.Now.Year - DateTime.Parse(birthdate).Year).ToString();
+			accountName.Text = Preferences.Get("AccountName", "", "UserAccount");
+		}
+
 		#region gesturerecognizer functions
 		public void SynchronizeFrameClick(object s, EventArgs e) {
-			Console.WriteLine("a");
+			if (Preferences.Get("UID", "") == "") {
+				// not logged in
+			} else { 
+				SyncHelper.LoadSettings();
+				this.OnAppearing();
+			}
 		}
 		public void EditAccountFrameClick(object s, EventArgs e) {
 			Shell.Current.GoToAsync(nameof(EditProfilePage));
 		}
 		public void LogoutFrameClick(object s, EventArgs e) {
-			Console.WriteLine("c");
+			if (logoutFrameText.Text == "Sign in") { 
+				Shell.Current.GoToAsync(nameof(SigninPage));
+			} else { 
+				Preferences.Set("UID", "");
+				this.OnAppearing();
+			}
 		}
 		public void HamburgerClick(object s, EventArgs e) {
 			Shell.Current.FlyoutIsPresented = true;

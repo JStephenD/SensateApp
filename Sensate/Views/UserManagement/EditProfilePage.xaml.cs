@@ -34,7 +34,10 @@ namespace Sensate.Views {
 			editaccountclick.Tapped += EditAccountClick;
 			editAccount.GestureRecognizers.Add(editaccountclick);
 			#endregion gesturerecognizers
+		}
 
+		protected override void OnAppearing() {
+			base.OnAppearing();
 			#region defaults
 			accountName.Text = Preferences.Get("AccountName", "", "UserAccount");
 			gender.SelectedItem = Preferences.Get("AccountGender", "", "UserAccount");
@@ -52,8 +55,9 @@ namespace Sensate.Views {
 
 			await DisplayAlert("","Saved","ok");
 
-			Application.Current.MainPage = new AppShell();
-			await Shell.Current.GoToAsync(nameof(EditProfilePage));
+			SyncHelper.UploadSettings();
+
+			this.OnAppearing();
 		}
 		public void BackClick(object s, EventArgs e) {
 			Shell.Current.GoToAsync(nameof(AccountPage));
