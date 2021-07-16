@@ -13,7 +13,8 @@ namespace Sensate.Views {
 
 		#region variables
 		private Label[] labels;
-		private bool isBold, isNight, isVibration, isAudio, isShortcut, isGesture, isHardware;
+		private bool isBold, isNight, isVibration, isAudio, isShortcut, isGesture, isHardware,
+			introDone;
 
 
 		bool GestureEnabled = Preferences.Get("Gesture", false, "GeneralSettings");
@@ -40,6 +41,8 @@ namespace Sensate.Views {
 			isShortcut = Preferences.Get("Shortcuts", false, "GeneralSettings");
 			isGesture = Preferences.Get("Gesture", false, "GeneralSettings");
 			isHardware = Preferences.Get("HardwareButtons", false, "GeneralSettings");
+
+			introDone = Preferences.Get("IntroDone", false);
 			#endregion initalize variables
 
 			#region gesture
@@ -114,48 +117,54 @@ namespace Sensate.Views {
 		protected override void OnAppearing() {
 			base.OnAppearing();
 
-			foreach (var lab in labels)
-				if (isBold)
-					lab.FontAttributes = FontAttributes.Bold;
-				else
-					lab.FontAttributes = FontAttributes.None;
+			SettingsHelper.ApplyDisplaySettings(labels: labels);
 
 			Shortcuts.IsToggled = isShortcut;
 			Gesture.IsToggled = isGesture;
 			HardwareButtons.IsToggled = isHardware;
+
+			if (introDone) {
+				confirmFrame.IsVisible = true;
+				NextFrame.IsVisible = false;
+			} else {
+				confirmFrame.IsVisible = false;
+				NextFrame.IsVisible = true;
+			}
 		}
 
 		private void ToggledShortcuts() {
 			if (GestureEnabled) {
-
+				Shortcuts.IsToggled = !Shortcuts.IsToggled;
 			} else {
 				Shortcuts.IsToggled = !Shortcuts.IsToggled;
-				var istoggled = Shortcuts.IsToggled;
+			}
+			var istoggled = Shortcuts.IsToggled;
 
-				Preferences.Set("Shortcuts", istoggled, "GeneralSettings");
+			Preferences.Set("Shortcuts", istoggled, "GeneralSettings");
 
-				if (istoggled) {
-					MoreShortcutsSettings.IsVisible = true;
-				} else {
-					MoreShortcutsSettings.IsVisible = false;
-				}
+			if (istoggled) {
+				MoreShortcutsSettings.IsVisible = true;
+			} else {
+				MoreShortcutsSettings.IsVisible = false;
 			}
 		}
 
 		private void ToggledGesture() {
 			// if gesture is enabled, do not allow direct taps to activate functions
 			if (GestureEnabled) {
-
+				Gesture.IsToggled = !Gesture.IsToggled;
 			} else {
-				Preferences.Set("Gesture", Gesture.IsToggled, "GeneralSettings");
-				GestureEnabled = Gesture.IsToggled;
+				Gesture.IsToggled = !Gesture.IsToggled;
 			}
+			Preferences.Set("Gesture", Gesture.IsToggled, "GeneralSettings");
+			GestureEnabled = Gesture.IsToggled;
 		}
 
 		private void ToggledHardwareButtons() {
 			if (GestureEnabled) {
 
 			} else {
+				HardwareButtons.IsToggled = ! HardwareButtons.IsToggled;
 				Preferences.Set("HardwareButtons", HardwareButtons.IsToggled, "GeneralSettings");
 			}
 		}
@@ -171,13 +180,13 @@ namespace Sensate.Views {
 
 		private void ElementTapHandler(object sender, EventArgs e) {
 			Console.WriteLine("from tap handler");
-			if (sender == ShortcutsFrame)
+			if (sender.Equals(ShortcutsFrame))
 				ToggledShortcuts();
-			if (sender == GestureFrame)
+			if (sender.Equals(GestureFrame))
 				ToggledGesture();
-			if (sender == HardwareButtonsFrame)
+			if (sender.Equals(HardwareButtonsFrame))
 				ToggledHardwareButtons();
-			if (sender == NextFrame)
+			if (sender.Equals(NextFrame))
 				Next();
 		}
 
@@ -216,6 +225,14 @@ namespace Sensate.Views {
 			}
 		}
 
+		private async void Confirm(object sender, EventArgs e) {
+			try {
+				await SyncHelper.UploadSettings();
+				Console.WriteLine("Confirm button");
+			} catch {
+
+			}
+		}
 		private void Speak() {
 			
 		}

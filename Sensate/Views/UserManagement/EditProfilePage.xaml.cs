@@ -55,7 +55,7 @@ namespace Sensate.Views {
 
 			await DisplayAlert("","Saved","ok");
 
-			SyncHelper.UploadSettings();
+			await SyncHelper.UploadSettings();
 
 			this.OnAppearing();
 		}

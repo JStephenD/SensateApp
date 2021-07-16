@@ -153,31 +153,64 @@ namespace Sensate.Views {
 							(mode == "Face Detection") ? Feature.Types.Type.FaceDetection :
 							(mode == "Product Detection") ? Feature.Types.Type.LogoDetection :
 								Feature.Types.Type.LabelDetection
+					},
+					new Feature {
+						Type =
+							(mode == "General Object Detection") ? Feature.Types.Type.ObjectLocalization :
+							Feature.Types.Type.Unspecified
 					}
 				}
 			};
 
 			AnnotateImageResponse response = await client.AnnotateAsync(request);
 			if (mode == "General Object Detection") {
-				Console.WriteLine(response.LabelAnnotations);
-				foreach (EntityAnnotation annotation in response.LabelAnnotations) {
-					string output = $"Object Identified: {annotation.Description}";
+				var detectedlabel = false;
+				var detectedobject = false;
+
+				Console.WriteLine(response.LocalizedObjectAnnotations);
+				foreach (LocalizedObjectAnnotation annotation in response.LocalizedObjectAnnotations) {
+					detectedobject = true;
+					string output = $"Object Identified: {annotation.Name}";
 					Console.WriteLine(output);
-					if (annotation.Score >= .80)
-						await TextToSpeech.SpeakAsync(output);
+					//if (annotation.Score >= .80)
+					await TextToSpeech.SpeakAsync(output);
 				}
-			} 
+
+				Console.WriteLine(response.LabelAnnotations);
+				if (detectedobject) await TextToSpeech.SpeakAsync("Related terms to Object can be");
+				foreach (EntityAnnotation annotation in response.LabelAnnotations) {
+					detectedlabel = true;
+					string output;
+					if (detectedobject) {
+						output = $"{annotation.Description}";
+					} else {
+						output = $"Object Identified: {annotation.Description}";
+					}
+					Console.WriteLine(output);
+					//if (annotation.Score >= .80)
+					await TextToSpeech.SpeakAsync(output);
+				}
+				
+				if (!detectedlabel && !detectedobject) 
+					await TextToSpeech.SpeakAsync("No object found in the captured image.");
+			}
 			if (mode == "Text Detection") {
+				var detected = false;
 				Console.WriteLine(response.TextAnnotations);
 				foreach (EntityAnnotation text in response.TextAnnotations) {
+					detected = true;
 					Console.WriteLine($"Description: {text.Description}");
 					await TextToSpeech.SpeakAsync(text.Description);
 					break;
 				}
-			} 
+				if (!detected) await TextToSpeech.SpeakAsync("No text found in the captured image.");
+
+			}
 			if (mode == "Face Detection") {
+				var detected = false;
 				Console.WriteLine(response.FaceAnnotations);
 				foreach (FaceAnnotation face in response.FaceAnnotations) {
+					detected = true;
 					if (face.JoyLikelihood >= Likelihood.Possible)
 						await TextToSpeech.SpeakAsync("It looks like a joyful person");
 					if (face.AngerLikelihood >= Likelihood.Possible)
@@ -186,18 +219,23 @@ namespace Sensate.Views {
 						await TextToSpeech.SpeakAsync("It looks like a sad person");
 					if (face.SurpriseLikelihood >= Likelihood.Possible)
 						await TextToSpeech.SpeakAsync("It looks like a surprised person");
-
 					if (face.HeadwearLikelihood >= Likelihood.Possible)
 						await TextToSpeech.SpeakAsync("It also seems like the person is wearing a headgear");
 				}
+				if (!detected) await TextToSpeech.SpeakAsync("No face found in the captured image.");
+
 			}
 			if (mode == "Product Detection") {
+				var detected = false;
 				Console.WriteLine(response.LogoAnnotations);
 				foreach (EntityAnnotation logo in response.LogoAnnotations) {
+					detected = true;
 					Console.WriteLine($"Description: {logo.Description}");
 					await TextToSpeech.SpeakAsync($"Possible Brand: {logo.Description}");
 				}
-			} 
+				if (!detected) await TextToSpeech.SpeakAsync("No logo found in the captured image.");
+
+			}
 		}
 		#endregion camera
 	}

@@ -22,7 +22,7 @@ namespace Sensate.ViewModels {
 					Preferences.Set("Shortcuts", false, "GeneralSettings");
 					Preferences.Set("Gesture", false, "GeneralSettings");
 					Preferences.Set("HardwareButtons", false, "GeneralSettings");
-					Application.Current.MainPage = new IntroPage2();
+					Shell.Current.GoToAsync(nameof(IntroPage2));
 					break;
 				case "right":
 					break;

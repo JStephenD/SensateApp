@@ -41,8 +41,7 @@ namespace Sensate.Views {
 			Preferences.Set("AccountBirthdate", birthdate.Date.ToString(), "UserAccount");
 
 			//go to personalization 
-			Application.Current.MainPage = new AppShell();
-			await Shell.Current.GoToAsync(nameof(AccountPage));
+			await Shell.Current.GoToAsync(nameof(CategorizePage));
 		}
 	}
 }

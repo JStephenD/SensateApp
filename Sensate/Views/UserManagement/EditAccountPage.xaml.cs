@@ -41,10 +41,10 @@ namespace Sensate.Views {
 		}
 
 		#region gesturerecognizer functions
-		public void ConfirmButtonClick(object s, EventArgs e) {
-			DisplayAlert("","Saved","ok");
+		public async void ConfirmButtonClick(object s, EventArgs e) {
+			await DisplayAlert("","Saved","ok");
 
-			SyncHelper.UploadSettings();
+			await SyncHelper.UploadSettings();
 		}
 		public void BackClick(object s, EventArgs e) {
 			Shell.Current.GoToAsync(nameof(AccountPage));

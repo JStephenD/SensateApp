@@ -18,7 +18,8 @@ namespace Sensate {
 			if (Preferences.Get("IntroDone", false)) { // if done intro, proceed to main shell
 				MainPage = new AppShell();
 			} else {
-				MainPage = new NavigationsSettingsPage();
+				MainPage = new AppShell();
+				Shell.Current.GoToAsync(nameof(IntroPage));
 			}
 		}
 

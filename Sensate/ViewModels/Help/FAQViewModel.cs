@@ -71,6 +71,7 @@ namespace Sensate.ViewModels {
 				new FAQViewModel("Is it necessary to use internet?"){
 					new FAQClassModel { Description = "Internet has been a necessity nowadays and it is true that Sensate relies on it. Sensate utilizes Google Vision API for the recognition mode and an online cloud for account management and configurations synchronization. Without the internet, Sensate's functionalities may not be maximized.   "}
 				
+				} 
 			};
 			Contents = Items;
 		}

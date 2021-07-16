@@ -54,7 +54,6 @@ namespace Sensate.ViewModels {
 				Preferences.Set("MyFirebaseRefreshToken", serializedcontent);
 				await App.Current.MainPage.DisplayAlert("Welcome back!", "You are logged in again.", "OK");
 				//enters the homepage
-				//await App.Current.MainPage.Navigation.PushModalAsync(new AppShell());
 				Application.Current.MainPage = new AppShell();
 
 			} catch (Exception) {

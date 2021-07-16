@@ -82,6 +82,16 @@
 					Source="{xct:ImageResource Id=Sensate.Assets.arrow-right-circle.png}"/>
 			</Frame>
 
+			<Frame	BackgroundColor="#FF881A" CornerRadius="25" VerticalOptions="Center"
+					Padding="20,10" Margin="50,10" x:Name="confirmFrame" IsVisible="false">
+				<Label Text="Confirm" TextColor="White" FontSize="28" HorizontalTextAlignment="Center"/>
+				<Frame.GestureRecognizers>
+					<TapGestureRecognizer
+						Tapped="Confirm"
+						NumberOfTapsRequired="1" />
+				</Frame.GestureRecognizers>
+			</Frame>
+
 			<Frame	Padding="0,0,0,20" VerticalOptions="End" BackgroundColor="white">
 				<StackLayout	HorizontalOptions="Center" Orientation="Horizontal">
 					<Ellipse	WidthRequest="17" HeightRequest="17" Fill="#C4C4C4"/>

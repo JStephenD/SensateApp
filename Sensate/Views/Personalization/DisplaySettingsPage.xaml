@@ -56,13 +56,20 @@
 
 						<Label  Text="Text Size" TextColor="Black"
 								FontSize="22" x:Name="textTextSize"/>
-						<Frame BackgroundColor="#80D7FC" CornerRadius="30">
+						<Frame BackgroundColor="#80D7FC" CornerRadius="30" x:Name="textsizeFrame">
 							<Slider x:Name="TextSize"
-									Minimum="0"
-									Maximum="10"
+									Minimum="0" Maximum="2" Value="1"
 									ValueChanged="ChangeTextSize"/>
 						</Frame>
-						
+						<StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+							<Label  Text="Small" TextColor="Black" HorizontalOptions="Start"
+								FontSize="22" x:Name="textSizeSmall"/>
+							<Label  Text="Normal" TextColor="Black" HorizontalOptions="CenterAndExpand"
+								FontSize="22" x:Name="textSizeNormal"/>
+							<Label  Text="Large" TextColor="Black" HorizontalOptions="End"
+								FontSize="22" x:Name="textSizeLarge"/>
+						</StackLayout>
+
 					</StackLayout>
 				</StackLayout>
 			</ScrollView>
@@ -72,8 +79,18 @@
 			<ImageButton 
 				VerticalOptions="End" HorizontalOptions="End"
 				HeightRequest="45" Margin="20" BorderWidth="0" BorderColor="Transparent"
-				Clicked="Next" BackgroundColor="Transparent"
+				Clicked="Next" BackgroundColor="Transparent" x:Name="nextimagebutton"
 				Source="{xct:ImageResource Id=Sensate.Assets.arrow-right-circle.png}"/>
+
+			<Frame	BackgroundColor="#FF881A" CornerRadius="25" VerticalOptions="Center"
+					Padding="20,10" Margin="50,10" x:Name="confirmFrame" IsVisible="false">
+				<Label Text="Confirm" TextColor="White" FontSize="28" HorizontalTextAlignment="Center"/>
+				<Frame.GestureRecognizers>
+					<TapGestureRecognizer
+						Tapped="Confirm"
+						NumberOfTapsRequired="1" />
+				</Frame.GestureRecognizers>
+			</Frame>
 
 			<Frame	Padding="0,0,0,20" VerticalOptions="End"
 					BackgroundColor="white">

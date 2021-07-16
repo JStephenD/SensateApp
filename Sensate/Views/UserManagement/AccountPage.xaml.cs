@@ -54,11 +54,11 @@ namespace Sensate.Views {
 		}
 
 		#region gesturerecognizer functions
-		public void SynchronizeFrameClick(object s, EventArgs e) {
+		public async void SynchronizeFrameClick(object s, EventArgs e) {
 			if (Preferences.Get("UID", "") == "") {
 				// not logged in
 			} else { 
-				SyncHelper.LoadSettings();
+				await SyncHelper.LoadSettings();
 				this.OnAppearing();
 			}
 		}

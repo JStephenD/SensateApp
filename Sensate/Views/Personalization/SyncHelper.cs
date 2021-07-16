@@ -21,6 +21,8 @@ namespace Sensate.Views {
 		private static string UID = Preferences.Get("UID", "");
 
 		public static async Task UploadSettings() {
+			if (UID == "") return;
+			
 			var toupdateuser = (await firebase
 				.Child("Users")
 				.OnceAsync<Users>()).Where(a => a.Object.UID == UID).FirstOrDefault();

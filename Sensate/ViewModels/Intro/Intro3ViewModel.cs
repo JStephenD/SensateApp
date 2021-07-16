@@ -21,11 +21,10 @@ namespace Sensate.ViewModels {
 		private async void OnSwiped(string direction) {
 			switch (direction) {
 				case "left":
-					Application.Current.MainPage = new AppShell();
 					await Shell.Current.GoToAsync(nameof(SignupPage));
 					break;
 				case "right":
-					Application.Current.MainPage = new IntroPage2();
+					await Shell.Current.GoToAsync(nameof(IntroPage2));
 					break;
 				case "up":
 					break;
@@ -35,11 +34,10 @@ namespace Sensate.ViewModels {
 		}
 
 		private void OnClickSignup() { 
-			Application.Current.MainPage = new AppShell();
 			Shell.Current.GoToAsync(nameof(SignupPage));
 		}
 		private void OnClickNotNow() {
-			Application.Current.MainPage = new NavigationPage(new CategorizePage());
+			Shell.Current.GoToAsync(nameof(CategorizePage));
 		}
 	}
 }

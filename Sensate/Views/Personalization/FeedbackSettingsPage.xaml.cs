@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
+using System.Speech.Synthesis;
 
 using Sensate.ViewModels;
 
@@ -11,7 +12,8 @@ namespace Sensate.Views {
 
 		#region variables
 		private Label[] labels;
-		private bool isBold, isNight, isVibration, isAudio, isShortcut, isGesture, isHardware;
+		private bool isBold, isNight, isVibration, isAudio, isShortcut, isGesture, isHardware, 
+			introDone;
 		#endregion variables
 
 		public FeedbackSettingsPage() {
@@ -30,44 +32,70 @@ namespace Sensate.Views {
 			isShortcut = Preferences.Get("Shortcuts", false, "GeneralSettings");
 			isGesture = Preferences.Get("Gesture", false, "GeneralSettings");
 			isHardware = Preferences.Get("HardwareButtons", false, "GeneralSettings");
+
+			introDone = Preferences.Get("IntroDone", false);
 			#endregion initalize variables
 		}
 
 		protected override void OnAppearing() {
 			base.OnAppearing();
 
-			foreach (var lab in labels)
-				if (isBold)
-					lab.FontAttributes = FontAttributes.Bold;
-				else
-					lab.FontAttributes = FontAttributes.None;
+			SettingsHelper.ApplyDisplaySettings(labels: labels);
 
 			AudioFeedback.IsToggled = Preferences.Get("AudioFeedback", false, "GeneralSettings");
 			VibrationFeedback.IsToggled = Preferences.Get("VibrationFeedback", false, "GeneralSettings");
 			MoreAudioSettings.IsVisible = AudioFeedback.IsToggled;
+			if (introDone) { 
+				confirmFrame.IsVisible = true;
+				nextFrame.IsVisible = false;
+			} else {
+				confirmFrame.IsVisible = false;
+				nextFrame.IsVisible = true;
+			}
 		}
 
-		private async void ToggledAudio(object sender, ToggledEventArgs e) {
-			var istoggled = AudioFeedback.IsToggled;
+		private void ToggledAudio(object sender, ToggledEventArgs e) {
+			try {
+				isAudio = e.Value;
+				Preferences.Set("AudioFeedback", isAudio, "GeneralSettings");
 
-			Preferences.Set("AudioFeedback", istoggled, "GeneralSettings");
-			
-			if (istoggled) { 
-				MoreAudioSettings.IsVisible = true;
-			} else {
-				MoreAudioSettings.IsVisible = false;
+				OnAppearing();
+			} catch {
+				Console.WriteLine("toggled audio error");
 			}
-
-			OnAppearing();
-			await SyncHelper.UploadSettings();
 		}
 
 		private void ToggledVibration(object sender, ToggledEventArgs e) {
-			Preferences.Set("VibrationFeedback", VibrationFeedback.IsToggled, "GeneralSettings");
+			try {
+				isVibration = e.Value;
+				Preferences.Set("VibrationFeedback", isVibration, "GeneralSettings");
+
+				OnAppearing();
+			} catch {
+				Console.WriteLine("toggeld vibration error");
+			}
 		}
 
-		private void Next(object sender, EventArgs e) {
-			Navigation.PushAsync(new NavigationsSettingsPage());
+		private async void Next(object sender, EventArgs e) {
+			if (isVibration) { 
+				Vibration.Vibrate();
+			}
+			if (isAudio) {
+				await TextToSpeech.SpeakAsync("hello");
+			}
+			Console.WriteLine("hello world");
+			await SyncHelper.UploadSettings();
+
+			//Navigation.PushAsync(new NavigationsSettingsPage());
+		}
+
+		private async void Confirm(object sender, EventArgs e) {
+			try {
+				await SyncHelper.UploadSettings();
+				Console.WriteLine("Confirm button");
+			} catch { 
+
+			}
 		}
 	}
 }

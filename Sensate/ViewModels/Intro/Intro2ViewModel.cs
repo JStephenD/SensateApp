@@ -16,7 +16,7 @@ namespace Sensate.ViewModels {
 		private void OnSwiped(string direction) {
 			switch (direction) {
 				case "left":
-					Application.Current.MainPage = new IntroPage3();
+					Shell.Current.GoToAsync(nameof(IntroPage3));
 					break;
 				case "right":
 					break;

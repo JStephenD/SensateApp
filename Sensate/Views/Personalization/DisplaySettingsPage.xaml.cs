@@ -4,6 +4,7 @@ using Xamarin.Forms.Xaml;
 using Xamarin.Essentials;
 
 using Sensate.ViewModels;
+using System.Threading.Tasks;
 
 namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
@@ -11,7 +12,9 @@ namespace Sensate.Views {
 
 		#region variables
 		private Label[] labels;
-		private bool isBold, isNight, isVibration, isAudio, isShortcut, isGesture, isHardware;
+		private bool isBold, isNight, isVibration, isAudio, isShortcut, isGesture, isHardware,
+			introDone;
+		private string textSize;
 		#endregion variables
 
 
@@ -19,47 +22,75 @@ namespace Sensate.Views {
 			InitializeComponent();
 
 			#region initialize variables
-			labels = new Label[] { 
-				textTitle, textBased, textBold, textContrast, textNight, textTextSize
+			labels = new Label[] {
+				textTitle, textBased, textBold, textContrast, textNight, textTextSize,
+				textSizeSmall, textSizeNormal, textSizeLarge
 			};
 			isVibration = Preferences.Get("VibrationFeedback", false, "GeneralSettings");
 			isAudio = Preferences.Get("AudioFeedback", false, "GeneralSettings");
 
 			isBold = Preferences.Get("BoldText", false, "GeneralSettings");
 			isNight = Preferences.Get("NightMode", false, "GeneralSettings");
+			textSize = Preferences.Get("TextSize", "1", "GeneralSettings");
 
 			isShortcut = Preferences.Get("Shortcuts", false, "GeneralSettings");
 			isGesture = Preferences.Get("Gesture", false, "GeneralSettings");
 			isHardware = Preferences.Get("HardwareButtons", false, "GeneralSettings");
+
+			introDone = Preferences.Get("IntroDone", false);
 			#endregion initialize variables
 
+			#region gesturerecognizers
+			var tapslide = new TapGestureRecognizer();
+			tapslide.Tapped += SliderDone;
+			var dragslide = new DragGestureRecognizer();
+			dragslide.DropCompleted += SliderDone;
+			TextSize.GestureRecognizers.Add(tapslide);
+			TextSize.GestureRecognizers.Add(dragslide);
+			textsizeFrame.GestureRecognizers.Add(tapslide);
+			textsizeFrame.GestureRecognizers.Add(dragslide);
+			#endregion gesturerecognizers
 		}
+
+		#region gesturerecognizers
+		public void SliderDone(object s, EventArgs e) { 
+			var val = TextSize.Value;
+			TextSize.Value = Math.Round(val);
+			Console.WriteLine("sliderdone");
+		}
+		#endregion gesturerecognizers
 
 		protected override void OnAppearing() {
 			base.OnAppearing();
 
-			foreach (var lab in labels)
-				if (isBold)
-					lab.FontAttributes = FontAttributes.Bold;
-				else
-					lab.FontAttributes = FontAttributes.None;
+			SettingsHelper.ApplyDisplaySettings(labels: labels);
 
 			BoldText.IsToggled = isBold;
 			NightMode.IsToggled = isNight;
+
+			if (introDone) {
+				confirmFrame.IsVisible = true;
+				nextimagebutton.IsVisible = false;
+			} else {
+				confirmFrame.IsVisible = false;
+				nextimagebutton.IsVisible = true;
+			}
 		}
 
-		private async void ToggledBoldText(object sender, ToggledEventArgs e) {
-			isBold = e.Value;
-			Preferences.Set("BoldText", isBold, "GeneralSettings");
-			OnAppearing();
-			await SyncHelper.UploadSettings();
+		private void ToggledBoldText(object sender, ToggledEventArgs e) {
+			try {
+				isBold = e.Value;
+				Preferences.Set("BoldText", isBold, "GeneralSettings");
+				OnAppearing();
+			} catch {
+				Console.WriteLine("error 1 here");
+			}
 		}
 
-		private async void ToggledNightMode(object sender, ToggledEventArgs e) {
+		private void ToggledNightMode(object sender, ToggledEventArgs e) {
 			isNight = e.Value;
-			Preferences.Set("BoldText", isNight, "GeneralSettings");
+			Preferences.Set("NightMode", isNight, "GeneralSettings");
 			OnAppearing();
-			await SyncHelper.UploadSettings();
 		}
 
 		private void ChangeContrastIntensity(object sender, ValueChangedEventArgs e) {
@@ -67,11 +98,27 @@ namespace Sensate.Views {
 		}
 
 		private void ChangeTextSize(object sender, ValueChangedEventArgs e) {
-
+			try {
+				textSize = Math.Round(e.NewValue).ToString();
+				Preferences.Set("TextSize", textSize, "GeneralSettings");
+				OnAppearing();
+			} catch {
+				Console.WriteLine("error here");
+			}
 		}
 
-		private void Next(object sender, EventArgs e) {
-			Navigation.PushAsync(new NavigationsSettingsPage());
+		private async void Next(object sender, EventArgs e) {
+			await SyncHelper.UploadSettings();
+			await Navigation.PushAsync(new NavigationsSettingsPage());
+		}
+
+		private async void Confirm(object sender, EventArgs e) {
+			try {
+				await SyncHelper.UploadSettings();
+				Console.WriteLine("Confirm button");
+			} catch {
+
+			}
 		}
 	}
 }
