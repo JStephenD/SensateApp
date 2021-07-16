@@ -12,7 +12,7 @@ namespace Sensate {
 			InitializeComponent();
 			DependencyService.Register<MockDataStore>();
 
-			Preferences.Set("IntroDone", false);
+			//Preferences.Set("IntroDone", false);
 
 			//if (!string.IsNullOrEmpty(Preferences.Get("MyFirebaseRefreshToken", ""))) {
 			if (Preferences.Get("IntroDone", false)) { // if done intro, proceed to main shell

@@ -46,8 +46,8 @@ namespace Sensate.Views {
 
 			await SyncHelper.UploadSettings();
 		}
-		public void BackClick(object s, EventArgs e) {
-			Shell.Current.GoToAsync(nameof(AccountPage));
+		public async void BackClick(object s, EventArgs e) {
+			await Shell.Current.GoToAsync($"//{nameof(AccountPage)}");
 		}
 		public void DeleteAccountClick(object s, EventArgs e) {
 			Console.WriteLine("a");

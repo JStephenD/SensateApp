@@ -11,13 +11,13 @@ namespace Sensate.Views {
 			InitializeComponent();
 		}
 
-		private void Confirm(object sender, EventArgs e) {
+		private async void Confirm(object sender, EventArgs e) {
 			if (Purpose.SelectedIndex == -1) {
-				DisplayAlert("Error!", "Some Entries are Missing", "Ok");
+				await DisplayAlert("Error!", "Some Entries are Missing", "Ok");
 			} else {
 				Preferences.Set("LVCause", Purpose.SelectedItem.ToString(), "GeneralSettings");
 				
-				Navigation.PushAsync(new FeedbackSettingsPage());
+				await Shell.Current.GoToAsync(nameof(FeedbackSettingsPage));
 			}
 		}
 	}

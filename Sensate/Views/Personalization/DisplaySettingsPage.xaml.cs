@@ -108,14 +108,16 @@ namespace Sensate.Views {
 		}
 
 		private async void Next(object sender, EventArgs e) {
+			Preferences.Set("IntroDone", true);
 			await SyncHelper.UploadSettings();
-			await Navigation.PushAsync(new NavigationsSettingsPage());
+			Application.Current.MainPage = new AppShell();
 		}
 
 		private async void Confirm(object sender, EventArgs e) {
 			try {
 				await SyncHelper.UploadSettings();
 				Console.WriteLine("Confirm button");
+				await Shell.Current.GoToAsync($"//{nameof(MainSettingsPage)}");
 			} catch {
 
 			}

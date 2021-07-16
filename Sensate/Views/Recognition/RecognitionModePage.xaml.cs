@@ -124,6 +124,10 @@ namespace Sensate.Views {
 		}
 		#endregion navigation
 
+		#region hardware
+		
+		#endregion hardware
+
 		#region camera
 		private void DoCameraThingsClicked(object sender, EventArgs e) {
 			cameraView.Shutter();

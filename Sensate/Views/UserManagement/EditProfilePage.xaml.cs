@@ -57,13 +57,13 @@ namespace Sensate.Views {
 
 			await SyncHelper.UploadSettings();
 
-			this.OnAppearing();
+			OnAppearing();
 		}
-		public void BackClick(object s, EventArgs e) {
-			Shell.Current.GoToAsync(nameof(AccountPage));
+		public async void BackClick(object s, EventArgs e) {
+			await Shell.Current.GoToAsync($"//{nameof(AccountPage)}");
 		}
-		public void EditAccountClick(object s, EventArgs e) {
-			Shell.Current.GoToAsync(nameof(EditAccountPage));
+		public async void EditAccountClick(object s, EventArgs e) {
+			await Shell.Current.GoToAsync($"{nameof(EditAccountPage)}");
 		}
 		#endregion gesturerecognizer functions
 	}

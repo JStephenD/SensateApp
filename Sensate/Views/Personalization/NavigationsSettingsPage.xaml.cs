@@ -169,12 +169,12 @@ namespace Sensate.Views {
 			}
 		}
 
-		private void Next(object s = null, EventArgs e = null) {
+		private async void Next(object s = null, EventArgs e = null) {
+			await SyncHelper.UploadSettings();
 			if (GestureEnabled) {
 
 			} else {
-				Preferences.Set("IntroDone", true);
-				Application.Current.MainPage = new AppShell();
+				await Shell.Current.GoToAsync(nameof(DisplaySettingsPage));
 			}
 		}
 
@@ -229,6 +229,7 @@ namespace Sensate.Views {
 			try {
 				await SyncHelper.UploadSettings();
 				Console.WriteLine("Confirm button");
+				await Shell.Current.GoToAsync($"//{nameof(MainSettingsPage)}");
 			} catch {
 
 			}

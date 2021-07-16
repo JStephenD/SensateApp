@@ -86,14 +86,15 @@ namespace Sensate.Views {
 			Console.WriteLine("hello world");
 			await SyncHelper.UploadSettings();
 
-			//Navigation.PushAsync(new NavigationsSettingsPage());
+			await Shell.Current.GoToAsync(nameof(NavigationsSettingsPage));
 		}
 
 		private async void Confirm(object sender, EventArgs e) {
 			try {
 				await SyncHelper.UploadSettings();
 				Console.WriteLine("Confirm button");
-			} catch { 
+				await Shell.Current.GoToAsync($"//{nameof(MainSettingsPage)}");
+			} catch {
 
 			}
 		}
