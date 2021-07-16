@@ -42,7 +42,7 @@
 										<Picker x:Name="VoiceGenderPicker" Title="Voice Gender"
 												TitleColor="Black" TextColor="Black"
 												HorizontalOptions="Start" VerticalOptions="Center"
-												FontSize="22">
+												FontSize="18">
 											<Picker.ItemsSource>
 												<x:Array Type="{x:Type x:String}">
 													<x:String>Male</x:String>
@@ -64,14 +64,14 @@
 										Padding="20,0">
 									<StackLayout Orientation="Horizontal">
 										<Picker x:Name="VoiceSpeed"
-												Title="Voice Speed" TitleColor="Black"
+												Title="Voice Speed (Normal)" TitleColor="Black"
 												TextColor="Black" HorizontalOptions="StartAndExpand"
-												VerticalOptions="Center" FontSize="22">
+												VerticalOptions="Center" FontSize="18">
 											<Picker.ItemsSource>
 												<x:Array Type="{x:Type x:String}">
-													<x:String>Slow</x:String>
-													<x:String>Normal</x:String>
-													<x:String>Fast</x:String>
+													<x:String>Voice Speed (Slow)</x:String>
+													<x:String>Voice Speed (Normal)</x:String>
+													<x:String>Voice Speed (Fast)</x:String>
 												</x:Array>
 											</Picker.ItemsSource>
 										</Picker>

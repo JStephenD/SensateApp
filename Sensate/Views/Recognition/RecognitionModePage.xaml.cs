@@ -16,6 +16,7 @@ namespace Sensate.Views {
 		string[] resources;
 		string vision_authfile;
 		string json_creds;
+		bool isVibration;
 		Xamarin.Forms.ImageSource icon_general, icon_text, icon_face, icon_product;
 
 		public RecognitionModePage() {
@@ -67,6 +68,8 @@ namespace Sensate.Views {
 
 			detectionmode.SelectedIndex = 0;
 			mode = detectionmode.SelectedItem.ToString();
+
+			isVibration = Preferences.Get("VibrationFeedback", false, "GeneralSettings");
 			#endregion defaults
 		}
 
@@ -140,6 +143,7 @@ namespace Sensate.Views {
 		public async void CameraView_MediaCaptured(object sender, MediaCapturedEventArgs e) {
 			mode = detectionmode.SelectedItem.ToString();
 
+			if (isVibration) Vibration.Vibrate();
 			await TextToSpeech.SpeakAsync("Captured Image");
 
 			ImageAnnotatorClientBuilder builder = new ImageAnnotatorClientBuilder {

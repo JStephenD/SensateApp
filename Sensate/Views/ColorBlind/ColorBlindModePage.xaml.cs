@@ -25,6 +25,7 @@ namespace Sensate.Views {
 		private bool iscapturemode = true;
 		private bool isuploadmode = false;
 		private bool isbusy = false;
+		private bool isVibration;
 		private Assembly assembly;
 
 		private static float[] Protanopia = {
@@ -121,6 +122,8 @@ namespace Sensate.Views {
 			} else {
 				StartCaptureMode();
 			}
+
+			isVibration = Preferences.Get("VibrationFeedback", false, "GeneralSettings");
 		}
 
 		public void testclick(object s, EventArgs e) {
@@ -200,8 +203,8 @@ namespace Sensate.Views {
 			var resources = assembly.GetManifestResourceNames();
 			var resourceName = resources.Single(r => r.EndsWith("upload-image-default.png", StringComparison.OrdinalIgnoreCase));
 
-			//debugimage.IsVisible = true;
-			//debugimage.Source = ImageSource.FromStream(() => assembly.GetManifestResourceStream(resourceName));
+			if (isVibration) Vibration.Vibrate();
+
 			Console.WriteLine("uploading");
 
 			await MediaPicker.PickPhotoAsync()
@@ -218,7 +221,7 @@ namespace Sensate.Views {
 							debugimage.IsVisible = false;
 							Console.WriteLine("uploaded");
 							StartUploadMode();
-							//debugimage.Source = ImageSource.FromStream(() => new memo);
+							if (isVibration) Vibration.Vibrate();
 						}
 					}
 				});

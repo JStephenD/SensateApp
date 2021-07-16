@@ -14,6 +14,7 @@ namespace Sensate.Views {
 		private Label[] labels;
 		private bool isBold, isNight, isVibration, isAudio, isShortcut, isGesture, isHardware, 
 			introDone;
+		private int voiceSpeed;
 		#endregion variables
 
 		public FeedbackSettingsPage() {
@@ -26,6 +27,8 @@ namespace Sensate.Views {
 			isVibration = Preferences.Get("VibrationFeedback", false, "GeneralSettings");
 			isAudio = Preferences.Get("AudioFeedback", false, "GeneralSettings");
 
+			voiceSpeed = Preferences.Get("VoiceSpeed", 1, "GeneralSettings");
+
 			isBold = Preferences.Get("BoldText", false, "GeneralSettings");
 			isNight = Preferences.Get("NightMode", false, "GeneralSettings");
 
@@ -34,8 +37,13 @@ namespace Sensate.Views {
 			isHardware = Preferences.Get("HardwareButtons", false, "GeneralSettings");
 
 			introDone = Preferences.Get("IntroDone", false);
+
+			VoiceSpeed.SelectedIndexChanged += VoiceSpeedChange;
+			VoiceSpeed.SelectedIndex = voiceSpeed;
 			#endregion initalize variables
 		}
+
+		
 
 		protected override void OnAppearing() {
 			base.OnAppearing();
@@ -74,6 +82,17 @@ namespace Sensate.Views {
 			} catch {
 				Console.WriteLine("toggeld vibration error");
 			}
+		}
+
+		private void VoiceSpeedChange(object s, EventArgs e) {
+			Console.WriteLine("voice speed change");
+
+			var newval = ((Picker)s).SelectedIndex;
+			Preferences.Set("VoiceSpeed", newval, "GeneralSettings");
+			OnAppearing();
+
+			SpeechOptions options = new SpeechOptions() { };
+			TextToSpeech.SpeakAsync("");
 		}
 
 		private async void Next(object sender, EventArgs e) {
