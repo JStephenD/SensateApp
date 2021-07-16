@@ -25,10 +25,10 @@
             </Frame>
 
             <ListView Grid.Row="1" BackgroundColor="#00AEF9" Margin="10,20,10,10" Footer="" x:Name="MyListView" 
-			GroupDisplayBinding="{Binding Title}"
-			HasUnevenRows="true"
-			SeparatorVisibility="None"
-			IsGroupingEnabled="true">
+				GroupDisplayBinding="{Binding Title}"
+				HasUnevenRows="true"
+				SeparatorVisibility="None"
+				IsGroupingEnabled="true">
                 <ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell Height="150">
@@ -52,8 +52,8 @@
 											VerticalTextAlignment="Center"
 											TextColor="Black"
                                             FontSize="Medium"
-                                     
 											VerticalOptions="FillAndExpand"/>
+									
 									<Button HorizontalOptions="EndAndExpand" Image="{Binding StateIcon}"
 											VerticalOptions="FillAndExpand"
 											BackgroundColor="Transparent"

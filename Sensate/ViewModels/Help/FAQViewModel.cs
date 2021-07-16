@@ -28,11 +28,10 @@ namespace Sensate.ViewModels {
 			}
 		}
 		public ImageSource StateIcon{
-			//get { return Expanded ? "../Assets/arrow-down.png" : "../Assets/arrow-up.png"; }
 			get {
 				return Expanded ?
-					ImageSource.FromResource("Sensate.Assets.arrow-down.png", typeof(ImageResourceExtension).GetTypeInfo().Assembly) :
-					ImageSource.FromResource("Sensate.Assets.arrow-up.png", typeof(ImageResourceExtension).GetTypeInfo().Assembly);
+					ImageSource.FromResource("Sensate.Assets.faq-down.png", typeof(ImageResourceExtension).GetTypeInfo().Assembly) :
+					ImageSource.FromResource("Sensate.Assets.faq-up.png", typeof(ImageResourceExtension).GetTypeInfo().Assembly);
 			}
 		}
 

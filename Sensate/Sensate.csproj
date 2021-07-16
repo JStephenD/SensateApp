@@ -28,6 +28,8 @@
     <None Remove="Assets\default-avatar.png" />
     <None Remove="Assets\display-settings.png" />
     <None Remove="Assets\eye-censored.png" />
+    <None Remove="Assets\faq-down.png" />
+    <None Remove="Assets\faq-up.png" />
     <None Remove="Assets\flash.png" />
     <None Remove="Assets\gender-male.png" />
     <None Remove="Assets\hamburger.png" />
@@ -71,6 +73,8 @@
     <EmbeddedResource Include="Assets\colors.png" />
     <EmbeddedResource Include="Assets\default-avatar.png" />
     <EmbeddedResource Include="Assets\display-settings.png" />
+    <EmbeddedResource Include="Assets\faq-down.png" />
+    <EmbeddedResource Include="Assets\faq-up.png" />
     <EmbeddedResource Include="Assets\flash.png" />
     <EmbeddedResource Include="Assets\gender-male.png" />
     <EmbeddedResource Include="Assets\hamburger.png" />
