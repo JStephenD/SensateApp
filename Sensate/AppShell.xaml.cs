@@ -65,11 +65,17 @@ namespace Sensate {
 				MainFeature.Route = nameof(RecognitionModePage);
 				MainFeature.ContentTemplate = new DataTemplate(typeof(RecognitionModePage));
 				MainFeatureTitle.Title = "Recognition Mode";
+				MainFeatureTitle.Icon = ImageSource.FromResource("icon_lv.png");
 			} else {
 				MainFeature.Route = nameof(ColorBlindModePage);
 				MainFeature.ContentTemplate = new DataTemplate(typeof(ColorBlindModePage));
 				MainFeatureTitle.Title = "Colorblind Mode";
+				MainFeatureTitle.Icon = ImageSource.FromResource("icon_cb.png");
 			}
+		}
+
+		public void CloseMenu(object s, EventArgs e) { 
+			Shell.Current.FlyoutIsPresented = false;
 		}
 	}
 }
