@@ -47,6 +47,7 @@
 					MediaCaptured="CameraView_MediaCaptured" OnAvailable="CameraView_OnAvailable" />
 				<Image	Grid.Row="0" Grid.Column="0"
 						IsVisible="false" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+						Aspect="AspectFill"
 						x:Name="previewImage"/>
 			</Grid>
 

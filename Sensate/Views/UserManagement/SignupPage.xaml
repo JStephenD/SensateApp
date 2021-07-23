@@ -27,7 +27,7 @@
                             HorizontalOptions="EndAndExpand"
 							CornerRadius="50"
 							VerticalOptions="Center" 
-							Text="Sign In" 
+							Text="SIGN IN" 
 							HeightRequest="40"
 							FontSize="18"
 							Command="{Binding SigninCommand}"/>

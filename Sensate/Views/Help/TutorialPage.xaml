@@ -20,14 +20,60 @@
 						<!--Items portion-->
 
 						<Frame BackgroundColor="#7AD6FE" CornerRadius="50" HeightRequest="20" 
-								Margin="10, 10" x:Name="tutorial1">
-							<FlexLayout  Direction="Row" JustifyContent="SpaceBetween">
-								<Label Text="General Object Detection" TextColor="#004867"/>
-								<ImageButton Source="{xct:ImageResource Id=Sensate.Assets.arrow-down.png}"
-											 BackgroundColor="Transparent" Clicked="ToggleTutorial"/>
-							</FlexLayout>
+								Margin="20, 10" HasShadow="True"
+							   x:Name="tutorial1Frame">
+							<StackLayout Orientation="Horizontal" Spacing="20" Margin="20,0,0,0">
+								<ImageButton 
+									Source="icon_account.png"
+									BackgroundColor="Transparent" Scale="1.4"/>
+								<Label Text="Account Management" TextColor="#004867" x:Name="textTutorial1"/>
+							</StackLayout>
 						</Frame>
-						<StackLayout x:Name="tutorial1Content" HeightRequest="500">
+
+						<Frame BackgroundColor="#7AD6FE" CornerRadius="50" HeightRequest="20" 
+								Margin="20, 10" HasShadow="True"
+							   x:Name="tutorial2Frame">
+							<StackLayout Orientation="Horizontal" Spacing="20" Margin="20,0,0,0">
+								<ImageButton 
+									Source="{xct:ImageResource Id=Sensate.Assets.display-settings.png}"
+									BackgroundColor="Transparent" Scale="1.4"/>
+								<Label Text="Recognition Mode" TextColor="#004867" x:Name="textTutorial2"/>
+							</StackLayout>
+						</Frame>
+
+						<Frame BackgroundColor="#7AD6FE" CornerRadius="50" HeightRequest="20" 
+								Margin="20, 10" HasShadow="True"
+							   x:Name="tutorial3Frame">
+							<StackLayout Orientation="Horizontal" Spacing="20" Margin="20,0,0,0">
+								<ImageButton 
+									Source="{xct:ImageResource Id=Sensate.Assets.display-settings.png}"
+									BackgroundColor="Transparent" Scale="1.4"/>
+								<Label Text="Color Enhancement" TextColor="#004867" x:Name="textTutorial3"/>
+							</StackLayout>
+						</Frame>
+
+						<Frame BackgroundColor="#7AD6FE" CornerRadius="50" HeightRequest="20" 
+								Margin="20, 10" HasShadow="True"
+							   x:Name="tutorial4Frame">
+							<StackLayout Orientation="Horizontal" Spacing="20" Margin="20,0,0,0">
+								<ImageButton 
+									Source="icon_settings.png"
+									BackgroundColor="Transparent" Scale="1.4"/>
+								<Label Text="Interactive Settings" TextColor="#004867" x:Name="textTutorial4"/>
+							</StackLayout>
+						</Frame>
+
+						<Frame BackgroundColor="#7AD6FE" CornerRadius="50" HeightRequest="20" 
+								Margin="20, 10" HasShadow="True"
+							   x:Name="tutorial5Frame">
+							<StackLayout Orientation="Horizontal" Spacing="20" Margin="20,0,0,0">
+								<ImageButton 
+									Source="{xct:ImageResource Id=Sensate.Assets.navigation-settings.png}"
+									BackgroundColor="Transparent" Scale="1.4"/>
+								<Label Text="Shortcuts and Navigation" TextColor="#004867" x:Name="textTutorial5"/>
+							</StackLayout>
+						</Frame>
+						<!--<StackLayout x:Name="tutorial1Content" HeightRequest="500">
 							<CarouselView ItemsSource="{Binding Tutorial1Content}">
 								<CarouselView.ItemTemplate>
 									<DataTemplate>
@@ -40,16 +86,8 @@
 									</DataTemplate>
 								</CarouselView.ItemTemplate>
 							</CarouselView>
-						</StackLayout>
+						</StackLayout>-->
 						
-						<Frame BackgroundColor="#7AD6FE" CornerRadius="50" HeightRequest="20" 
-								Margin="0, 10, 0, 10" x:Name="tutorial2">
-							<FlexLayout Direction="Row" JustifyContent="SpaceBetween">
-								<Label Text="How to use Sensate 2" TextColor="#004867"/>
-								<ImageButton Source="{xct:ImageResource Id=Sensate.Assets.arrow-down.png}"
-											BackgroundColor="Transparent"/>
-							</FlexLayout>
-						</Frame>
 					</StackLayout>
 				</ScrollView>
 			</StackLayout>

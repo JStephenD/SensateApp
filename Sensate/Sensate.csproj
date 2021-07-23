@@ -58,6 +58,11 @@
     <None Remove="Assets\sensate-logo1.png" />
     <None Remove="Assets\sensate-logo2.png" />
     <None Remove="Assets\shutter.png" />
+    <None Remove="Assets\star.png" />
+    <None Remove="Assets\tutorial\tutorial1_01.jpg" />
+    <None Remove="Assets\tutorial\tutorial1_02.jpg" />
+    <None Remove="Assets\tutorial\tutorial1_03.jpg" />
+    <None Remove="Assets\tutorial\tutorial1_04.jpg" />
     <None Remove="Assets\upload-image-default.png" />
     <None Remove="Assets\upload.png" />
     <None Remove="Assets\waves.png" />
@@ -100,6 +105,11 @@
     <EmbeddedResource Include="Assets\sensate-logo1.png" />
     <EmbeddedResource Include="Assets\sensate-logo2.png" />
     <EmbeddedResource Include="Assets\shutter.png" />
+    <EmbeddedResource Include="Assets\star.png" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial1_01.jpg" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial1_02.jpg" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial1_03.jpg" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial1_04.jpg" />
     <EmbeddedResource Include="Assets\upload-image-default.png" />
     <EmbeddedResource Include="Assets\upload.png" />
     <EmbeddedResource Include="Assets\waves.png" />
@@ -200,7 +210,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\tutorial\" />
     <Folder Include="ViewModels\Personalization\" />
     <Folder Include="Views\LowVision\" />
   </ItemGroup>
