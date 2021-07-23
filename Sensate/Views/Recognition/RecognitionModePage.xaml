@@ -23,7 +23,7 @@
 						<x:String>General Object Detection</x:String>
 						<x:String>Text Detection</x:String>
 						<x:String>Face Detection</x:String>
-						<x:String>Product Detection</x:String>
+						<x:String>Logo Detection</x:String>
 					</Picker.Items>
 				</Picker>
 
@@ -39,15 +39,16 @@
 				</Frame>
 			</StackLayout>
 
-			<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-				<xct:CameraView 
-				x:Name="cameraView"
-				CaptureMode="Photo"
-				HorizontalOptions="FillAndExpand"
-				VerticalOptions="FillAndExpand" 
-				MediaCaptured="CameraView_MediaCaptured"
-				OnAvailable="CameraView_OnAvailable" />
-			</StackLayout>
+			<Grid RowDefinitions="*" ColumnDefinitions="*"
+				HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+				<xct:CameraView Grid.Row="0" Grid.Column="0"
+					x:Name="cameraView" CaptureMode="Photo" 
+					HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+					MediaCaptured="CameraView_MediaCaptured" OnAvailable="CameraView_OnAvailable" />
+				<Image	Grid.Row="0" Grid.Column="0"
+						IsVisible="false" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+						x:Name="previewImage"/>
+			</Grid>
 
 			<StackLayout BackgroundColor="#004867">
 				<StackLayout Orientation="Horizontal" Padding="30,10,30,0">
@@ -56,10 +57,20 @@
 						<Image Source="{xct:ImageResource Id=Sensate.Assets.zoom-out.png}" 
 						   Aspect="AspectFit" Scale="2"/>
 					</Frame>
-					<Slider x:Name="zoomSlider" Margin="5,0"
-						Maximum="10" Minimum="1" HorizontalOptions="FillAndExpand"
-						ThumbColor="White" HeightRequest="5"
-						ValueChanged="ZoomSlider_ValueChanged" Value="1"/>
+
+					<Grid RowSpacing="0" ColumnSpacing="0"
+						  RowDefinitions="*,*,*" ColumnDefinitions="*"
+						  HorizontalOptions="FillAndExpand">
+						<Label Grid.Row="0" Grid.Column="0" HorizontalOptions="Center"
+								Text="Zoom" FontSize="16" TextColor="#C4C4C4"/>
+						<Slider Grid.Row="1" Grid.Column="0"
+							x:Name="zoomSlider" Margin="5,0"
+							Maximum="10" Minimum="1" HorizontalOptions="FillAndExpand"
+							ThumbColor="White" HeightRequest="5"
+							ValueChanged="ZoomSlider_ValueChanged" Value="1"/>
+					</Grid>
+					
+					
 					<Frame	CornerRadius="50" HorizontalOptions="End" BackgroundColor="#FF881A"
 						WidthRequest="23" HeightRequest="23" x:Name="zoomInFrame">
 						<Image Source="{xct:ImageResource Id=Sensate.Assets.zoom-in.png}" 
@@ -67,12 +78,17 @@
 					</Frame>
 				</StackLayout>
 
-				<StackLayout Orientation="Horizontal" HorizontalOptions="Center" 
-							 Margin="0,0,0,15" Spacing="25" HeightRequest="50">
-					<ImageButton	Source="{xct:ImageResource Id=Sensate.Assets.shutter.png}"
+				<Grid RowSpacing="0" ColumnSpacing="0"
+					  RowDefinitions="*" ColumnDefinitions="*,*,*"
+					  Margin="15,0,15,10">
+					<Image Grid.Row="0" Grid.Column="0"
+							Source="{xct:ImageResource Id=Sensate.Assets.For_Darkblue_Background.png}"
+						   WidthRequest="50" HorizontalOptions="Start"/>
+					<ImageButton Grid.Row="0" Grid.Column="1"	
+								Source="{xct:ImageResource Id=Sensate.Assets.shutter.png}"
 								Aspect="AspectFit" BackgroundColor="Transparent"
-								x:Name="doCameraThings" Scale="1.5"/>
-				</StackLayout>
+								x:Name="doCameraThings" Scale="1.5" HorizontalOptions="CenterAndExpand"/>
+				</Grid>
 			</StackLayout>
 		</StackLayout>
 	</ContentPage.Content>

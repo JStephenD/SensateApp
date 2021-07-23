@@ -22,17 +22,17 @@ namespace Sensate.Views {
 		private byte[] imagebytearray;
 		private bool istoggled = false;
 
-		private static string firestore_url = @"https://sensatefirebase-a7ef8-default-rtdb.asia-southeast1.firebasedatabase.app/";
-		private FirebaseClient firebase = new FirebaseClient(firestore_url);
+		private static readonly string firestore_url = @"https://sensatefirebase-a7ef8-default-rtdb.asia-southeast1.firebasedatabase.app/";
+		private readonly FirebaseClient firebase = new FirebaseClient(firestore_url);
 
-		private static float[] Protanopia = {
+		private static readonly float[] Protanopia = {
 			0.567F, 0.433F,         0F, 0F, 0,
 			0.558F, 0.442F,         0F, 0F, 0,
 					0F, 0.242F, 0.758F, 0F, 0,
 					0F,         0F,        0F, 1F, 0,
 		};
 
-		private SKPaint paintProtanopia = new SKPaint {
+		private readonly SKPaint paintProtanopia = new SKPaint {
 			ColorFilter = SKColorFilter.CreateColorMatrix(Protanopia),
 			Style = SKPaintStyle.Fill
 		};
@@ -134,7 +134,7 @@ namespace Sensate.Views {
 				});
 		}
 
-		private async void canvasView_PaintSurface(object sender, SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs e) {
+		private void canvasView_PaintSurface(object sender, SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs e) {
 			SKImageInfo info = e.Info;
 			SKSurface surface = e.Surface;
 			SKCanvas canvas = surface.Canvas;

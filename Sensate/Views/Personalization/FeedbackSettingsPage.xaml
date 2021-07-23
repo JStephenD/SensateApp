@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sensate.Views.FeedbackSettingsPage"
 			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             Shell.NavBarIsVisible="False">
+             Shell.NavBarIsVisible="False"
+			 Title="FeedbackSettings">
 	<ContentPage.Content>
 		<StackLayout Spacing="0" Background="White">
 			<Frame	BackgroundColor="#00AEF9">

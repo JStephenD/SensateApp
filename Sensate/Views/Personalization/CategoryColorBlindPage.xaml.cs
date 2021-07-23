@@ -19,6 +19,18 @@ namespace Sensate.Views {
 				Preferences.Set("CBType", CBType.SelectedItem.ToString(), "CBSettings");
 				Preferences.Set("AssistanceLevel", AssistanceLevel.SelectedItem.ToString(), "GeneralSettings");
 
+				if (AssistanceLevel.SelectedIndex == 0) {
+					Preferences.Set("VibrationFeedback", true, "GeneralSettings");
+					Preferences.Set("BoldText", false, "GeneralSettings");
+					Preferences.Set("Shortcuts", false, "GeneralSettings");
+					Preferences.Set("TextSize", 1, "GeneralSettings");
+				} else if (AssistanceLevel.SelectedIndex == 1) {
+					Preferences.Set("VibrationFeedback", true, "GeneralSettings");
+					Preferences.Set("BoldText", true, "GeneralSettings");
+					Preferences.Set("Shortcuts", true, "GeneralSettings");
+					Preferences.Set("TextSize", 1, "GeneralSettings");
+				}
+
 				await Shell.Current.GoToAsync(nameof(FeedbackSettingsPage));
 			}
 		}

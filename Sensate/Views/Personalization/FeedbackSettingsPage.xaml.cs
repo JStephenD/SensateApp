@@ -12,9 +12,8 @@ namespace Sensate.Views {
 
 		#region variables
 		private Label[] labels;
-		private bool isBold, isNight, isVibration, isAudio, isShortcut, isGesture, isHardware, 
-			introDone;
-		private int voiceSpeed;
+		private SyncHelper.Settings _settings;
+		private bool introDone;
 		#endregion variables
 
 		public FeedbackSettingsPage() {
@@ -24,22 +23,11 @@ namespace Sensate.Views {
 			labels = new Label[] {
 				textTitle, textInfo1, textInfo2, textAudioFeedback, textVibrationFeedback
 			};
-			isVibration = Preferences.Get("VibrationFeedback", false, "GeneralSettings");
-			isAudio = Preferences.Get("AudioFeedback", false, "GeneralSettings");
-
-			voiceSpeed = Preferences.Get("VoiceSpeed", 1, "GeneralSettings");
-
-			isBold = Preferences.Get("BoldText", false, "GeneralSettings");
-			isNight = Preferences.Get("NightMode", false, "GeneralSettings");
-
-			isShortcut = Preferences.Get("Shortcuts", false, "GeneralSettings");
-			isGesture = Preferences.Get("Gesture", false, "GeneralSettings");
-			isHardware = Preferences.Get("HardwareButtons", false, "GeneralSettings");
+			_settings = SyncHelper.GetCurrentSettings();
 
 			introDone = Preferences.Get("IntroDone", false);
 
 			VoiceSpeed.SelectedIndexChanged += VoiceSpeedChange;
-			VoiceSpeed.SelectedIndex = voiceSpeed;
 			#endregion initalize variables
 		}
 
@@ -48,11 +36,15 @@ namespace Sensate.Views {
 		protected override void OnAppearing() {
 			base.OnAppearing();
 
+			_settings = SyncHelper.GetCurrentSettings();
 			SettingsHelper.ApplyDisplaySettings(labels: labels);
 
 			AudioFeedback.IsToggled = Preferences.Get("AudioFeedback", false, "GeneralSettings");
 			VibrationFeedback.IsToggled = Preferences.Get("VibrationFeedback", false, "GeneralSettings");
+
 			MoreAudioSettings.IsVisible = AudioFeedback.IsToggled;
+			VoiceSpeed.SelectedIndex = Preferences.Get("VoiceSpeed", 1, "GeneralSettings");
+
 			if (introDone) { 
 				confirmFrame.IsVisible = true;
 				nextFrame.IsVisible = false;
@@ -64,8 +56,8 @@ namespace Sensate.Views {
 
 		private void ToggledAudio(object sender, ToggledEventArgs e) {
 			try {
-				isAudio = e.Value;
-				Preferences.Set("AudioFeedback", isAudio, "GeneralSettings");
+				var newval = e.Value;
+				Preferences.Set("AudioFeedback", newval, "GeneralSettings");
 
 				OnAppearing();
 			} catch {
@@ -75,8 +67,8 @@ namespace Sensate.Views {
 
 		private void ToggledVibration(object sender, ToggledEventArgs e) {
 			try {
-				isVibration = e.Value;
-				Preferences.Set("VibrationFeedback", isVibration, "GeneralSettings");
+				var newval = e.Value;
+				Preferences.Set("VibrationFeedback", newval, "GeneralSettings");
 
 				OnAppearing();
 			} catch {
@@ -90,18 +82,9 @@ namespace Sensate.Views {
 			var newval = ((Picker)s).SelectedIndex;
 			Preferences.Set("VoiceSpeed", newval, "GeneralSettings");
 			OnAppearing();
-
-			SpeechOptions options = new SpeechOptions() { };
-			TextToSpeech.SpeakAsync("");
 		}
 
 		private async void Next(object sender, EventArgs e) {
-			if (isVibration) { 
-				Vibration.Vibrate();
-			}
-			if (isAudio) {
-				await TextToSpeech.SpeakAsync("hello");
-			}
 			Console.WriteLine("hello world");
 			await SyncHelper.UploadSettings();
 

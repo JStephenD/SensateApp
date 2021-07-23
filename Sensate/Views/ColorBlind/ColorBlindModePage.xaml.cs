@@ -28,37 +28,37 @@ namespace Sensate.Views {
 		private bool isVibration;
 		private Assembly assembly;
 
-		private static float[] Protanopia = {
+		private static readonly float[] Protanopia = {
 			0.567F, 0.433F,         0F, 0F, 0,
 			0.558F, 0.442F,         0F, 0F, 0,
 					0F, 0.242F, 0.758F, 0F, 0,
 					0F,         0F,        0F, 1F, 0,
 		};
 
-		private static float[] Deuteranopia = {
+		private static readonly float[] Deuteranopia = {
 			0.625f,0.375f,0,0,0,
 			0.7f,0.3f,0,0,0,
 			0,0.3f,0.7f,0,0,
 			0,0,0,1,0
 		};
 
-		private static float[] Tritanopia = {
+		private static readonly float[] Tritanopia = {
 			0.95f,0.05f,0,0,0,
 			0,0.433f,0.567f,0,0,
 			0,0.475f,0.525f,0,0,
 			0,0,0,1,0
 		};
 
-		private SKPaint paintProtanopia = new SKPaint {
+		private readonly SKPaint paintProtanopia = new SKPaint {
 			ColorFilter = SKColorFilter.CreateColorMatrix(Protanopia),
 			Style = SKPaintStyle.Fill
 		};
 
-		private SKPaint paintDeuteranopia = new SKPaint {
+		private readonly SKPaint paintDeuteranopia = new SKPaint {
 			ColorFilter = SKColorFilter.CreateColorMatrix(Deuteranopia),
 			Style = SKPaintStyle.Fill
 		};
-		private SKPaint paintTritanopia = new SKPaint {
+		private readonly SKPaint paintTritanopia = new SKPaint {
 			ColorFilter = SKColorFilter.CreateColorMatrix(Tritanopia),
 			Style = SKPaintStyle.Fill
 		};
@@ -112,6 +112,7 @@ namespace Sensate.Views {
 
 			togglefilter.IsVisible = false;
 			togglefilterFrame.IsVisible = false;
+			toggleFilterStackFrame.IsVisible = false;
 
 			debugimage.IsVisible = false;
 
@@ -181,6 +182,7 @@ namespace Sensate.Views {
 
 			togglefilter.IsVisible = false;
 			togglefilterFrame.IsVisible = false;
+			toggleFilterStackFrame.IsVisible = false;
 			StartCaptureMode();
 			iscapturemode = true;
 			isuploadmode = false;
@@ -195,6 +197,7 @@ namespace Sensate.Views {
 
 			togglefilter.IsVisible = true;
 			togglefilterFrame.IsVisible = true;
+			toggleFilterStackFrame.IsVisible = true;
 			iscapturemode = false;
 			isuploadmode = true;
 			cbmode = "";
@@ -285,7 +288,7 @@ namespace Sensate.Views {
 					canvas.DrawBitmap(bitmap, info.Rect, BitmapStretch.AspectFit, 
 						paint: (cbmode == "Protanopia") ? paintProtanopia :
 								(cbmode == "Deuteranopia") ? paintDeuteranopia :
-								(cbmode == "Tritanopia") ? paintDeuteranopia :
+								(cbmode == "Tritanopia") ? paintTritanopia :
 								null);
 				} else {
 					SKBitmap rotatedBitmap;
@@ -293,7 +296,7 @@ namespace Sensate.Views {
 					canvas.DrawBitmap(rotatedBitmap, info.Rect, BitmapStretch.AspectFill,
 						paint: (cbmode == "Protanopia") ? paintProtanopia :
 								(cbmode == "Deuteranopia") ? paintDeuteranopia :
-								(cbmode == "Tritanopia") ? paintDeuteranopia :
+								(cbmode == "Tritanopia") ? paintTritanopia :
 								null);
 					
 				}

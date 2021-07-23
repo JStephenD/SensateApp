@@ -8,6 +8,9 @@ using Sensate.ViewModels;
 namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class MainSettingsPage : ContentPage {
+
+		private Label[] labels;
+
 		public MainSettingsPage() {
 			InitializeComponent();
 
@@ -28,19 +31,32 @@ namespace Sensate.Views {
 			hamburgerclick.Tapped += HamburgerClick;
 			hamburger.GestureRecognizers.Add(hamburgerclick);
 			#endregion gesturerecognizers
+
+			labels = new Label[] { textTitle, textFeedbackOption, textNavigationOption, textDisplayOption };
+		}
+
+		protected override void OnAppearing() {
+			base.OnAppearing();
+
+			SettingsHelper.ApplyDisplaySettings(labels: labels);
 		}
 
 		#region gesturerecognizer functions
-		public void FeedbackFrameClick(object s, EventArgs e) { 
-			Shell.Current.GoToAsync(nameof(FeedbackSettingsPage));
+		public async void FeedbackFrameClick(object s, EventArgs e) {
+			Console.WriteLine("feedbackclick");
+			try {
+				await Shell.Current.GoToAsync(nameof(FeedbackSettingsPage)); 
+			} catch (Exception myexception) {
+				Console.WriteLine(myexception.Message);
+			}
 		}
 
-		public void NavigationFrameClick(object s, EventArgs e) {
-			Shell.Current.GoToAsync(nameof(NavigationsSettingsPage));
+		public async void NavigationFrameClick(object s, EventArgs e) {
+			await Shell.Current.GoToAsync(nameof(NavigationsSettingsPage));
 		}
 
-		public void DisplayFrameClick(object s, EventArgs e) {
-			Shell.Current.GoToAsync(nameof(DisplaySettingsPage));
+		public async void DisplayFrameClick(object s, EventArgs e) {
+			await Shell.Current.GoToAsync(nameof(DisplaySettingsPage));
 		}
 
 		public void HamburgerClick(object s, EventArgs e) { 

@@ -9,110 +9,68 @@
     
 	<ContentPage.Content>
 		<StackLayout Padding="0" Margin="0" Spacing="0">
-			<Frame 
-				BackgroundColor="White" 
-				HeightRequest="100" 
-				VerticalOptions="Fill">
-
+			<Frame  BackgroundColor="White" HeightRequest="100" VerticalOptions="Fill">
 				<StackLayout>
-					<Label 
-                        
-						Text="About Us!"
-						TextColor="Black"
-						FontSize="32"
-                        FontAttributes="Bold"
-						/>
-					<Label 
-						Text="Learn more about Sensate and the LightOwls team."
-						TextColor="Black"
-						FontSize="20"
-						/>
+					<Label  Text="About Us!" TextColor="Black" FontSize="32" 
+                            FontAttributes="Bold"/>
+					<Label  Text="Learn more about Sensate and the LightOwls team." 
+							TextColor="Black" FontSize="20"/>
 				</StackLayout>
 			</Frame>
             <ScrollView>
-                <Frame 
-				BackgroundColor="#00AEF9" 
-				VerticalOptions="FillAndExpand"
-				>
-
-                    <FlexLayout
-					Direction="Column"
-					JustifyContent="Start"
-					>
-
+                <Frame BackgroundColor="#00AEF9" VerticalOptions="FillAndExpand">
+                    <FlexLayout Direction="Column" JustifyContent="Start">
                         <!--Items portion-->
-                        <Frame
-						BackgroundColor="#7AD6FE"
-						Margin="0, 10, 0, 10"
-						>
+                        <Frame BackgroundColor="#7AD6FE" Margin="0, 10, 0, 10">
                             <StackLayout>
-
-                                <Label 
-								Text="About Sensate"
-								TextColor="#17749C"
-								FontSize="20"
-                                FontAttributes="Bold"
-								/>
-                                <ScrollView
-								HeightRequest="200"
-								VerticalOptions="Start"
-								>
-                                    <Label TextType="Html">
-                                        <x:String>
-                                            <![CDATA[
-												<h3>Sensate is an AI-powered assistive Android mobile application for people with low vision and colorblindness. The term 'Sensate' means 'perceived by the senses'. The application provides assistance to the users with the recognition mode and color enhancement features, specifically designed for the visually impaired users. To maximize the utility on their other senses, things are made easy with interactive user interfaces in which they are given the ease of use in this application, such as audio, vibrational feedbacks and shortcuts. Sensate is powered by Google Vision AI which is one of the leading computer vision product. Integrated on the recognition mode fearure, it can now detect a wide range of objects, emotions on faces, printed and handwritten textx, and popular products. With the color enhancement feature, users with colorblindness can now be assisted when it comes to differentiating colors. What are you waiting for? You should try them now!</h3>
-									]]>
-                                        </x:String>
-                                    </Label>
-                                </ScrollView>
+                                <Label  Text="About Sensate" TextColor="#17749C"
+								        FontSize="20" FontAttributes="Bold"/>
+								<ScrollView HeightRequest="200" VerticalOptions="Start">
+									<StackLayout>
+										<StackLayout Orientation="Horizontal">
+										    <Image Source="{xct:ImageResource Id=Sensate.Assets.For_Darkblue_Background.png}"
+											       WidthRequest="80"/>
+											<Label Text="Sensate Logo" VerticalOptions="Center" FontSize="20"/>
+										</StackLayout>
+										<Label TextType="Html">
+                                            <x:String>
+                                                <![CDATA[
+												    <h3>Sensate is an AI-powered assistive Android mobile application for people with low vision and colorblindness. The term 'Sensate' means 'perceived by the senses'. The application provides assistance to the users with the recognition mode and color enhancement features, specifically designed for the visually impaired users. To maximize the utility on their other senses, things are made easy with interactive user interfaces in which they are given the ease of use in this application, such as audio, vibrational feedbacks and shortcuts. Sensate is powered by Google Vision AI which is one of the leading computer vision product. Integrated on the recognition mode fearure, it can now detect a wide range of objects, emotions on faces, printed and handwritten textx, and popular products. With the color enhancement feature, users with colorblindness can now be assisted when it comes to differentiating colors. What are you waiting for? You should try them now!</h3>
+									    ]]>
+                                            </x:String>
+                                        </Label>
+									</StackLayout>
+								</ScrollView>
                             </StackLayout>
 
                         </Frame>
-                        <Frame
-						BackgroundColor="#7AD6FE"
-						Margin="0, 10, 0, 10"
-						>
+                        <Frame BackgroundColor="#7AD6FE" Margin="0, 10, 0, 10">
                             <StackLayout>
-
-                                <Label 
-								Text="About LighOwls"
-								TextColor="#17749C"
-								FontSize="20"
-                                FontAttributes="Bold"
-								/>
-                                <ScrollView
-								HeightRequest="170"
-								VerticalOptions="Start"
-								>
-
-                                    <Label TextType="Html">
-                                        <x:String>
-                                            <![CDATA[
-												<h3>LightOwls is the development team that made Sensate possible. The team aims to provide light that serves as a guidance for the users, just like the owls that signify wisdom and vision, to design an application that will help the visually-impaired community.</h3>
-											]]>
-                                        </x:String>
-                                    </Label>
-
-
-                                </ScrollView>
+                                <Label  Text="About LighOwls" TextColor="#17749C" FontSize="20"
+                                        FontAttributes="Bold"/>
+                                <ScrollView     HeightRequest="170" VerticalOptions="Start">
+									<StackLayout>
+										<StackLayout Orientation="Horizontal">
+											<Image Source="{xct:ImageResource Id=Sensate.Assets.LightOwls_Logo_new_DBlueVersion.png}"
+											       WidthRequest="80"/>
+											<Label Text="LightOwls Logo" VerticalOptions="Center" FontSize="20"/>
+										</StackLayout>
+                                        <Label TextType="Html">
+                                            <x:String>
+                                                <![CDATA[
+												    <h3>LightOwls is the development team that made Sensate possible. The team aims to provide light that serves as a guidance for the users, just like the owls that signify wisdom and vision, to design an application that will help the visually-impaired community.</h3>
+											    ]]>
+                                            </x:String>
+                                        </Label>
+									</StackLayout>
+								</ScrollView>
                             </StackLayout>
                         </Frame>
-                        <Frame
-						BackgroundColor="#7AD6FE"
-						Margin="0, 10, 0, 10"
-						>
+                        <Frame BackgroundColor="#7AD6FE" Margin="0, 10, 0, 10" HeightRequest="160">
                             <StackLayout>
-
-                                <Label 
-								Text="Contact Us!"
-								TextColor="#17749C"
-								FontSize="20"
-                                FontAttributes="Bold"
-								/>
-                                <ScrollView
-								HeightRequest="80"
-								VerticalOptions="Start"
-								>
+                                <Label  Text="Contact Us!" TextColor="#17749C" FontSize="20"
+                                        FontAttributes="Bold"/>
+                                <ScrollView VerticalOptions="Start">
                                     <Label TextType="Html">
                                         <x:String>
                                             <![CDATA[
@@ -123,24 +81,11 @@
                                         </x:String>
                                     </Label>
                                 </ScrollView>
-                               
                             </StackLayout>
-                            
-                        </Frame>
-                        <Frame HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Transparent"
-                               WidthRequest="100" HeightRequest="80" Margin="30">
-                            <Image Source="{xct:ImageResource Id=Sensate.Assets.sensate-logo1.png}"
-								 Aspect="AspectFit" Scale="1.8" HorizontalOptions="Center"/>
-                            
                         </Frame>
                     </FlexLayout>
-                   
                 </Frame>
-               
-                   
-                
             </ScrollView>
-
         </StackLayout>
 	</ContentPage.Content>
 </ContentPage>

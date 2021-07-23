@@ -5,22 +5,11 @@
 			 x:Class="Sensate.Views.FAQPage">
     <ContentPage.Content>
         <StackLayout Padding="0" Margin="0" Spacing="0" BackgroundColor="#00AEF9">
-            <Frame 
-				BackgroundColor="White" 
-				HeightRequest="200" 
-				VerticalOptions="Fill">
-
+            <Frame  BackgroundColor="White"  HeightRequest="125" VerticalOptions="Fill">
                 <StackLayout>
-                    <Label 
-						Text="FAQs"
-						TextColor="Black"
-						FontSize="32"
-						/>
-                    <Label 
-						Text="Frequently asked questions about Sensate."
-						TextColor="Black"
-						FontSize="24"
-						/>
+                    <Label  Text="FAQs" TextColor="Black" FontSize="24" x:Name="textTitle"/>
+                    <Label  Text="Frequently asked questions about Sensate." TextColor="Black" FontSize="20"
+							x:Name="textSubtitle"/> 
                 </StackLayout>
             </Frame>
 
@@ -70,8 +59,6 @@
 					</DataTemplate>
 				</ListView.GroupHeaderTemplate>
 			</ListView>
-
-
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

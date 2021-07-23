@@ -10,9 +10,11 @@
     <PackageReference Include="FirebaseAuthentication.net" Version="3.7.1" />
     <PackageReference Include="FirebaseDatabase.net" Version="4.0.6" />
     <PackageReference Include="Google.Cloud.Vision.V1" Version="2.3.0" />
-    <PackageReference Include="Grpc.Core.Xamarin" Version="2.38.0" />
-    <PackageReference Include="SkiaSharp" Version="2.80.2" />
-    <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.2" />
+    <PackageReference Include="Grpc.Core.Xamarin" Version="2.38.1" />
+    <PackageReference Include="Plugin.MediaManager" Version="1.0.9" />
+    <PackageReference Include="Plugin.MediaManager.Forms" Version="1.0.9" />
+    <PackageReference Include="SkiaSharp" Version="2.80.3" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.3" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
     <None Remove="Assets\arrow-back.png" />
     <None Remove="Assets\arrow-down-circle.png" />
@@ -31,9 +33,13 @@
     <None Remove="Assets\faq-down.png" />
     <None Remove="Assets\faq-up.png" />
     <None Remove="Assets\flash.png" />
+    <None Remove="Assets\For_Blue_Background.png" />
+    <None Remove="Assets\For_Darkblue_Background.png" />
     <None Remove="Assets\gender-male.png" />
     <None Remove="Assets\hamburger.png" />
     <None Remove="Assets\info-small.png" />
+    <None Remove="Assets\LightOwls_Logo_new_DBlueVersion.png" />
+    <None Remove="Assets\LightOwls_Logo_new_outline.png" />
 	  
     <None Remove="Assets\loading.png" />
 	  
@@ -54,6 +60,7 @@
     <None Remove="Assets\shutter.png" />
     <None Remove="Assets\upload-image-default.png" />
     <None Remove="Assets\upload.png" />
+    <None Remove="Assets\videos\tutorial_generalobject.mp4" />
     <None Remove="Assets\waves.png" />
     <None Remove="Assets\zoom-in.png" />
     <None Remove="Assets\zoom-out.png" />
@@ -76,9 +83,13 @@
     <EmbeddedResource Include="Assets\faq-down.png" />
     <EmbeddedResource Include="Assets\faq-up.png" />
     <EmbeddedResource Include="Assets\flash.png" />
+    <EmbeddedResource Include="Assets\For_Blue_Background.png" />
+    <EmbeddedResource Include="Assets\For_Darkblue_Background.png" />
     <EmbeddedResource Include="Assets\gender-male.png" />
     <EmbeddedResource Include="Assets\hamburger.png" />
     <EmbeddedResource Include="Assets\info-small.png" />
+    <EmbeddedResource Include="Assets\LightOwls_Logo_new_DBlueVersion.png" />
+    <EmbeddedResource Include="Assets\LightOwls_Logo_new_outline.png" />
     <EmbeddedResource Include="Assets\loading.png" />
     <EmbeddedResource Include="Assets\navigation-settings.png" />
     <EmbeddedResource Include="Assets\recognition-face.png" />
@@ -92,6 +103,7 @@
     <EmbeddedResource Include="Assets\shutter.png" />
     <EmbeddedResource Include="Assets\upload-image-default.png" />
     <EmbeddedResource Include="Assets\upload.png" />
+    <EmbeddedResource Include="Assets\videos\tutorial_generalobject.mp4" />
     <EmbeddedResource Include="Assets\waves.png" />
     <EmbeddedResource Include="Assets\zoom-in.png" />
     <EmbeddedResource Include="Assets\zoom-out.png" />
@@ -99,12 +111,13 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Cloud.Vision.V1" Version="2.3.0" />
-    <PackageReference Include="Grpc.Core" Version="2.38.0" />
+    <PackageReference Include="Grpc.Core" Version="2.38.1" />
     <PackageReference Include="System.Speech" Version="5.0.0" />
+    <PackageReference Include="Xam.Plugins.TextToSpeech" Version="4.0.0.7" />
 
-    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.1.0" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />  
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.2.0" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />  
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
   </ItemGroup>
 
   <ItemGroup>

@@ -13,7 +13,7 @@
 
 			<Label Text="Interactive Settings"
 				   FontSize="40" TextColor="Black"
-				   Margin="10"/>
+				   Margin="10" x:Name="textTitle"/>
 
 			<StackLayout Spacing="0" Margin="0,20,0,0"
 						 BackgroundColor="#00AEF9" VerticalOptions="FillAndExpand">
@@ -23,7 +23,7 @@
 							   xct:IconTintColorEffect.TintColor="#00577D"
 							   WidthRequest="70" HeightRequest="70" />
 						<Label Text="Feedback" FontSize="32" TextColor="White"
-							   VerticalOptions="Center"/>
+							   VerticalOptions="Center" x:Name="textFeedbackOption"/>
 						<Image Source="{xct:ImageResource Id=Sensate.Assets.arrow-right.png}" 
 							   xct:IconTintColorEffect.TintColor="#007AAE"
 							   HorizontalOptions="EndAndExpand"
@@ -37,7 +37,7 @@
 							   xct:IconTintColorEffect.TintColor="#00577D"
 							   WidthRequest="70" HeightRequest="70" />
 						<Label Text="Navigation" FontSize="32" TextColor="White"
-							   VerticalOptions="Center"/>
+							   VerticalOptions="Center" x:Name="textNavigationOption"/>
 						<Image Source="{xct:ImageResource Id=Sensate.Assets.arrow-right.png}" 
 							   xct:IconTintColorEffect.TintColor="#007AAE"
 							   HorizontalOptions="EndAndExpand"
@@ -51,7 +51,7 @@
 							   xct:IconTintColorEffect.TintColor="#00577D"
 							   WidthRequest="70" HeightRequest="70" />
 						<Label Text="Display" FontSize="32" TextColor="White"
-							   VerticalOptions="Center"/>
+							   VerticalOptions="Center" x:Name="textDisplayOption"/>
 						<Image Source="{xct:ImageResource Id=Sensate.Assets.arrow-right.png}" 
 							   xct:IconTintColorEffect.TintColor="#007AAE"
 							   HorizontalOptions="EndAndExpand"

@@ -14,15 +14,34 @@ namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class FAQPage : ContentPage {
 
-		private ObservableCollection<FAQViewModel> getContents;
+		private readonly ObservableCollection<FAQViewModel> getContents;
 		private ObservableCollection<FAQViewModel> _expandedContent;
+		private readonly SyncHelper.Settings _settings;
 
 		public FAQPage() {
 			InitializeComponent();
 			//this.BindingContext = new FAQViewModel();
 			getContents = FAQViewModel.Contents;
 			UpdateListContent();
+
+			_settings = SyncHelper.GetCurrentSettings();
 		}
+
+		protected override void OnAppearing() {
+			base.OnAppearing();
+
+			if (_settings.TextSize == 0) {
+				textTitle.FontSize = 22;
+				textSubtitle.FontSize = 18;
+			} else if (_settings.TextSize == 0) {
+				textTitle.FontSize = 24;
+				textSubtitle.FontSize = 20;
+			} else {
+				textTitle.FontSize = 26;
+				textSubtitle.FontSize = 22;
+			}
+		}
+
 		private void HeaderTapped(object sender, EventArgs args){
 			int ListSelectedIndex = _expandedContent.IndexOf(((FAQViewModel)((Button)sender).CommandParameter));
 			getContents[ListSelectedIndex].Expanded = !getContents[ListSelectedIndex].Expanded;

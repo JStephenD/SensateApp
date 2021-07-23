@@ -6,43 +6,21 @@
              Shell.NavBarIsVisible="False">
 	<ContentPage.Content>
 		<StackLayout Padding="40" Spacing="20" Background="White">
-			<Frame 
-				BackgroundColor="#00AEF9"
-				CornerRadius="25"
-				Margin="0,20,0,0"
-				>
-				<StackLayout
-					Orientation="Horizontal"
-					HorizontalOptions="Center"
-					>
-					<Label 
-						Text="Low Vision"
-						TextColor="White"
-						FontSize="32"
-						/>
+			<Frame	BackgroundColor="#00AEF9" CornerRadius="25" Margin="0,20,0,0">
+				<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+					<Label Text="Low Vision" TextColor="White" FontSize="32"/>
 				</StackLayout>
 			</Frame>
 			
 			
 			<Label 
 				Text="Let us learn about you more. Please answer  the following..."
-				TextColor="Black"
-				FontSize="22"
-				/>
-			<FlexLayout
-				Direction="Column"
-				VerticalOptions="FillAndExpand"
-				JustifyContent="SpaceAround"
-				>
-				<Frame 
-					BackgroundColor="White"
-					BorderColor="Black"
-					CornerRadius="25"
-					Padding="20,10"
-					>
-					<StackLayout
-						Orientation="Horizontal"
-						>
+				TextColor="Black" FontSize="22"/>
+			<FlexLayout Direction="Column" VerticalOptions="FillAndExpand"
+				JustifyContent="SpaceAround" >
+				<Frame BackgroundColor="White" BorderColor="Black" CornerRadius="25"
+					Padding="20,10">
+					<StackLayout Orientation="Horizontal">
 						<Picker x:Name="LVCause"
 								Title="Cause of Low Vision"
 								TitleColor="Gray"
@@ -53,101 +31,49 @@
 							>
 							<Picker.ItemsSource>
 								<x:Array Type="{x:Type x:String}">
-									<x:String>From Birth</x:String>
-									<x:String>From Accident</x:String>
-									<x:String>From Disease</x:String>
+									<x:String>Farsightedness</x:String>
+									<x:String>Eye-Related Injury</x:String>
+									<x:String>Diabetes</x:String>
+									<x:String>Age-Related Macular Degenaration</x:String>
+									<x:String>Glaucoma</x:String>
+									<x:String>Eye Cancer</x:String>
+									<x:String>Inherited Eye Disorder</x:String>
+									<x:String>Refractive Errors</x:String>
+									<x:String>Albinism</x:String>
+									<x:String>Others</x:String>
+									<x:String>I'd rather not to say</x:String>
 								</x:Array>
 							</Picker.ItemsSource>
 						</Picker>
-						<Label 
-							Text=">"
-							TextColor="Black"
-							HorizontalOptions="End"
-							FontSize="30"
-							/>
+						<Label  Text=">" TextColor="Black" HorizontalOptions="End" FontSize="30"/>
 					</StackLayout>
 				</Frame>
 
-				<Frame 
-					BackgroundColor="White"
-					BorderColor="Black"
-					CornerRadius="25"
-					Padding="20,10"
-					>
-					<StackLayout
-						Orientation="Horizontal"
-						>
+				<Frame  BackgroundColor="White" BorderColor="Black" CornerRadius="25" Padding="20,10">
+					<StackLayout Orientation="Horizontal">
 						<Picker x:Name="LVSeverity"
-								Title="Severity of Condition"
-								TitleColor="Gray"
-								TextColor="Black"
-								HorizontalOptions="StartAndExpand"
-								VerticalOptions="Center"
-								FontSize="22"
-							>
+								Title="Severity of Condition" TitleColor="Gray"
+								TextColor="Black" HorizontalOptions="StartAndExpand"
+								VerticalOptions="Center" FontSize="22">
 							<Picker.ItemsSource>
 								<x:Array Type="{x:Type x:String}">
-									<x:String>Near Sighted</x:String>
-									<x:String>Far Sighted</x:String>
-									<x:String>Blurry Vision</x:String>
+									<x:String>Mild</x:String>
+									<x:String>Moderate</x:String>
+									<x:String>Severe</x:String>
 								</x:Array>
 							</Picker.ItemsSource>
 						</Picker>
-						<Label 
-							Text=">"
-							TextColor="Black"
-							HorizontalOptions="End"
-							FontSize="30"
-							/>
+						<Label  Text=">" TextColor="Black" HorizontalOptions="End"
+							FontSize="30"/>
 					</StackLayout>
 				</Frame>
 
-				<Frame 
-					BackgroundColor="White"
-					BorderColor="Black"
-					CornerRadius="25"
-					Padding="20,10"
-					>
-					<StackLayout
-						Orientation="Horizontal"
-						>
-						<Picker x:Name="AssistanceLevel"
-								Title="Assistance Level"
-								TitleColor="Gray"
-								TextColor="Black"
-								HorizontalOptions="StartAndExpand"
-								VerticalOptions="Center"
-								FontSize="22"
-							>
-							<Picker.ItemsSource>
-								<x:Array Type="{x:Type x:String}">
-									<x:String>With Assistance</x:String>
-									<x:String>No Assistance</x:String>
-								</x:Array>
-							</Picker.ItemsSource>
-						</Picker>
-						<Label 
-							Text=">"
-							TextColor="Black"
-							HorizontalOptions="End"
-							FontSize="30"
-							/>
-					</StackLayout>
-				</Frame>
 			</FlexLayout>
 
-			<Frame
-				BackgroundColor="#FF881A"
-				CornerRadius="25"
-				VerticalOptions="EndAndExpand"
-				Padding="20,10"
-				>
-				<Label
-					Text="Confirm"
-					TextColor="White"
-					FontSize="28"
-					HorizontalTextAlignment="Center"
-					/>
+			<Frame BackgroundColor="#FF881A" CornerRadius="25" VerticalOptions="EndAndExpand"
+				   Padding="20,10">
+				<Label Text="Confirm" TextColor="White"
+					FontSize="28" HorizontalTextAlignment="Center"/>
 				<Frame.GestureRecognizers>
 					<TapGestureRecognizer
 						Tapped="Confirm"
@@ -155,26 +81,14 @@
 				</Frame.GestureRecognizers>
 			</Frame>
 
-			<StackLayout 
-				HorizontalOptions="Center"
-				VerticalOptions="EndAndExpand"
-				Orientation="Horizontal" 
-				>
-				<Ellipse 
-					WidthRequest="17" 
-					HeightRequest="17"
-					Fill="#C4C4C4"
-					/>
-				<Ellipse 
-					WidthRequest="17" 
-					HeightRequest="17"
-					Fill="#00AEF9"
-					/>
-				<Ellipse 
-					WidthRequest="17" 
-					HeightRequest="17"
-					Fill="#C4C4C4"
-					/>
+			<StackLayout  HorizontalOptions="Center" VerticalOptions="EndAndExpand"
+				Orientation="Horizontal" >
+				<Ellipse WidthRequest="17" HeightRequest="17"
+					Fill="#C4C4C4"/>
+				<Ellipse WidthRequest="17" HeightRequest="17"
+					Fill="#00AEF9"/>
+				<Ellipse WidthRequest="17" HeightRequest="17"
+					Fill="#C4C4C4"/>
 			</StackLayout>
 		</StackLayout>
 	</ContentPage.Content>

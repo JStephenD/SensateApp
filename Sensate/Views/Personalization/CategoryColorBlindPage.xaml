@@ -89,8 +89,8 @@
 							>
 							<Picker.ItemsSource>
 								<x:Array Type="{x:Type x:String}">
-									<x:String>With Assistance</x:String>
-									<x:String>No Assistance</x:String>
+									<x:String>Weak</x:String>
+									<x:String>Strong</x:String>
 								</x:Array>
 							</Picker.ItemsSource>
 						</Picker>

@@ -12,6 +12,7 @@ using System.IO;
 using Firebase.Auth;
 using Xamarin.Essentials;
 using Newtonsoft.Json;
+using Plugin.TextToSpeech;
 
 namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
@@ -53,11 +54,23 @@ namespace Sensate.Views {
 			Preferences.Set("AccountBirthdate", birthdate.Date.ToString(), "UserAccount");
 			Preferences.Set("UserCategory", usertype.SelectedItem.ToString(), "GeneralSettings");
 
-			await DisplayAlert("","Saved","ok");
+			await DisplayAlert("", "Saved", "ok");
 
 			await SyncHelper.UploadSettings();
 
 			OnAppearing();
+
+			Console.WriteLine(Shell.Current.Items);
+			foreach (var x in Shell.Current.Items) {
+				if (x.Title == "Account") {
+					Console.WriteLine(x);
+					Console.WriteLine(x.Icon);
+				}
+			}
+
+			Application.Current.MainPage = new AppShell();
+			await Shell.Current.GoToAsync(nameof(EditProfilePage));
+			Shell.Current.CurrentItem = Shell.Current.Items.FirstOrDefault(r => r.Title == "Account");
 		}
 		public async void BackClick(object s, EventArgs e) {
 			await Shell.Current.GoToAsync($"//{nameof(AccountPage)}");

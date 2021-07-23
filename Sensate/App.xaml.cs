@@ -1,4 +1,5 @@
 ﻿using System;
+using MediaManager;
 using Sensate.Services;
 using Sensate.Views;
 using Xamarin.Essentials;

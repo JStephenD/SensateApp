@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31129.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sensate.Android", "Sensate.Android\Sensate.Android.csproj", "{31644AFD-56A7-4F43-84CE-DB624CAD5F6B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sensate", "Sensate\Sensate.csproj", "{78601B21-F38E-4131-8477-10C59880BE70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sensate", "Sensate\Sensate.csproj", "{78601B21-F38E-4131-8477-10C59880BE70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

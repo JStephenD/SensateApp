@@ -15,14 +15,14 @@ namespace Sensate.Views {
 		public static string FirebaseAPIKey = "AIzaSyCCVSTuyUOF9KVv6fZJywVHckk4PttsUw8";
 		public static FirebaseAuthProvider authProvider = new FirebaseAuthProvider(new FirebaseConfig(FirebaseAPIKey));
 
-		private static string firestore_url = @"https://sensatefirebase-a7ef8-default-rtdb.asia-southeast1.firebasedatabase.app/";
-		private static FirebaseClient firebase = new FirebaseClient(firestore_url);
+		private static readonly string firestore_url = @"https://sensatefirebase-a7ef8-default-rtdb.asia-southeast1.firebasedatabase.app/";
+		private static readonly FirebaseClient firebase = new FirebaseClient(firestore_url);
 
-		private static string UID = Preferences.Get("UID", "");
+		private static readonly string UID = Preferences.Get("UID", "");
 
 		public static async Task UploadSettings() {
 			if (UID == "") return;
-			
+
 			var toupdateuser = (await firebase
 				.Child("Users")
 				.OnceAsync<Users>()).Where(a => a.Object.UID == UID).FirstOrDefault();
@@ -31,41 +31,34 @@ namespace Sensate.Views {
 				.Child("Settings")
 				.OnceAsync<Settings>()).Where(a => a.Object.UID == UID).FirstOrDefault();
 
-			await firebase
-			  .Child("Settings")
-			  .Child(toupdateuser.Key)
-			  .PutAsync(new Users {
-				  UID = Preferences.Get("UID", ""),
-				  Name = Preferences.Get("AccountName", "", "UserAccount"),
-				  Birthdate = Preferences.Get("AccountBirthdate", "", "UserAccount"),
-				  Sex = Preferences.Get("AccountGender", "", "UserAccount"),
-			  });
+			var u = new Users {
+				UID = Preferences.Get("UID", ""),
+				Name = Preferences.Get("AccountName", "", "UserAccount"),
+				Birthdate = Preferences.Get("AccountBirthdate", "", "UserAccount"),
+				Sex = Preferences.Get("AccountGender", "", "UserAccount"),
+			};
+			try {
+				await firebase
+				  .Child("Users")
+				  .Child(toupdateuser.Key)
+				  .PutAsync(u);
+			} catch {
+				await firebase
+				  .Child("Users")
+				  .PostAsync(u);
+			}
 
-			await firebase
-			  .Child("Settings")
-			  .Child(toupdatesettings.Key)
-			  .PutAsync(new Settings {
-				  UID = Preferences.Get("UID", ""),
-
-				  UserCategory = Preferences.Get("UserCategory", "Default", "GeneralSettings"),
-
-				  CBType = Preferences.Get("CBType", "Default", "CBSettings"),
-
-				  LVCause = Preferences.Get("LVCause", "Default", "LVSettings"),
-				  LVSeverity = Preferences.Get("LVSeverity", "Default", "LVSettings"),
-
-				  AssistanceLevel = Preferences.Get("AssistanceLevel", "Default", "GeneralSettings"),
-
-				  AudioFeedback = Preferences.Get("AudioFeedback", false, "GeneralSettings"),
-				  VibrationFeedback = Preferences.Get("VibrationFeedback", false, "GeneralSettings"),
-
-				  BoldText = Preferences.Get("BoldText", false, "GeneralSettings"),
-				  NightMode = Preferences.Get("NightMode", false, "GeneralSettings"),
-
-				  Shortcuts = Preferences.Get("Shortcuts", false, "GeneralSettings"),
-				  HardwareButtons = Preferences.Get("HardwareButtons", false, "GeneralSettings"),
-				  Gesture = Preferences.Get("Gesture", false, "GeneralSettings"),
-			  });
+			var s = GetCurrentSettings();
+			try {
+				await firebase
+				  .Child("Settings")
+				  .Child(toupdatesettings.Key)
+				  .PutAsync(s);
+			} catch {
+				await firebase
+				  .Child("Settings")
+				  .PostAsync(s);
+			}
 		}
 
 		public static async Task LoadSettings() {
@@ -85,7 +78,7 @@ namespace Sensate.Views {
 				.OnceAsync<Settings>()).FirstOrDefault(a => a.Object.UID == UID);
 			var so = settings.Object;
 
-			Console.WriteLine(new object[]{so.UserCategory, so.CBType, so.AudioFeedback, so.Shortcuts});
+			Console.WriteLine(new object[] { so.UserCategory, so.CBType, so.AudioFeedback, so.Shortcuts });
 
 			// Category 
 			Preferences.Set("UserCategory", so.UserCategory, "GeneralSettings");
@@ -103,10 +96,13 @@ namespace Sensate.Views {
 			// Display Settings
 			Preferences.Set("BoldText", so.BoldText, "GeneralSettings");
 			Preferences.Set("NightMode", so.NightMode, "GeneralSettings");
+			Preferences.Set("TextSize", so.TextSize, "GeneralSettings");
 
 			// Feedback Settings
 			Preferences.Set("AudioFeedback", so.AudioFeedback, "GeneralSettings");
 			Preferences.Set("VibrationFeedback", so.VibrationFeedback, "GeneralSettings");
+
+			Preferences.Set("VoiceSpeed", so.VoiceSpeed, "GeneralSettings");
 
 			// Navigation
 			Preferences.Set("Shortcuts", so.Shortcuts, "GeneralSettings");
@@ -118,7 +114,7 @@ namespace Sensate.Views {
 			return (await firebase
 				.Child("Users")
 				.OnceAsync<Users>())
-					.Select(item => new Users{ 
+					.Select(item => new Users {
 						UID = item.Object.UID,
 						Name = item.Object.Name,
 						Birthdate = item.Object.Birthdate,
@@ -133,7 +129,7 @@ namespace Sensate.Views {
 				.OnceAsync<Users>()).Where(a => a.Object.UID == UID).FirstOrDefault();
 			var uo = user.Object;
 
-			return new Users { 
+			return new Users {
 				UID = uo.UID,
 				Age = uo.Age,
 				Birthdate = uo.Birthdate,
@@ -161,6 +157,12 @@ namespace Sensate.Views {
 						AudioFeedback = item.Object.AudioFeedback,
 						VibrationFeedback = item.Object.VibrationFeedback,
 
+						VoiceSpeed = item.Object.VoiceSpeed,
+
+						BoldText = item.Object.BoldText,
+						NightMode = item.Object.NightMode,
+						TextSize = item.Object.TextSize,
+
 						Shortcuts = item.Object.Shortcuts,
 						HardwareButtons = item.Object.HardwareButtons,
 						Gesture = item.Object.Gesture,
@@ -172,7 +174,35 @@ namespace Sensate.Views {
 			return allsettings.Where(a => a.UID == UID).FirstOrDefault();
 		}
 
-		public class Settings { 
+		public static Settings GetCurrentSettings() { 
+			return new Settings {
+				UID = Preferences.Get("UID", ""),
+
+				UserCategory = Preferences.Get("UserCategory", "Default", "GeneralSettings"),
+
+				CBType = Preferences.Get("CBType", "Default", "CBSettings"),
+
+				LVCause = Preferences.Get("LVCause", "Default", "LVSettings"),
+				LVSeverity = Preferences.Get("LVSeverity", "Default", "LVSettings"),
+
+				AssistanceLevel = Preferences.Get("AssistanceLevel", "Default", "GeneralSettings"),
+
+				AudioFeedback = Preferences.Get("AudioFeedback", false, "GeneralSettings"),
+				VibrationFeedback = Preferences.Get("VibrationFeedback", false, "GeneralSettings"),
+
+				VoiceSpeed = Preferences.Get("VoiceSpeed", 1, "GeneralSettings"),
+
+				BoldText = Preferences.Get("BoldText", false, "GeneralSettings"),
+				NightMode = Preferences.Get("NightMode", false, "GeneralSettings"),
+				TextSize = Preferences.Get("TextSize", 1, "GeneralSettings"),
+
+				Shortcuts = Preferences.Get("Shortcuts", false, "GeneralSettings"),
+				HardwareButtons = Preferences.Get("HardwareButtons", false, "GeneralSettings"),
+				Gesture = Preferences.Get("Gesture", false, "GeneralSettings"),
+			};
+		}
+
+		public class Settings {
 			public string UID { get; set; }
 
 			public string UserCategory { get; set; }
@@ -186,12 +216,15 @@ namespace Sensate.Views {
 			public bool AudioFeedback { get; set; }
 			public bool VibrationFeedback { get; set; }
 
+			public int VoiceSpeed { get; set; } // 0 1 2 slow normal fast
+
 			public bool BoldText { get; set; }
 			public bool NightMode { get; set; }
+			public int TextSize { get; set; } // 0 1 2 small normal large
 
 			public bool Shortcuts { get; set; }
 			public bool HardwareButtons { get; set; }
 			public bool Gesture { get; set; }
 		}
-	}	
+	}
 }

@@ -45,15 +45,6 @@
 							</Frame>
 						</StackLayout>
 
-						<Label  Text="Contrast Intensity" TextColor="Black"
-								FontSize="22" x:Name="textContrast"/>
-						<Frame BackgroundColor="#80D7FC" CornerRadius="30">
-							<Slider x:Name="ContrastIntensity"
-									Minimum="0"
-									Maximum="10"
-									ValueChanged="ChangeContrastIntensity"/>
-						</Frame>
-
 						<Label  Text="Text Size" TextColor="Black"
 								FontSize="22" x:Name="textTextSize"/>
 						<Frame BackgroundColor="#80D7FC" CornerRadius="30" x:Name="textsizeFrame">
