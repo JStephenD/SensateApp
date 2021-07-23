@@ -4,7 +4,6 @@
 			 xmlns:viewmodels="clr-namespace:Sensate.ViewModels"
 			 xmlns:mm="clr-namespace:MediaManager.Forms;assembly=MediaManager.Forms"
 			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-			 x:DataType="viewmodels:TutorialViewModel"
              x:Class="Sensate.Views.TutorialPage">
 	<ContentPage.Content>
 		<ScrollView>
@@ -20,9 +19,6 @@
 					<StackLayout>
 						<!--Items portion-->
 
-						<!--<mm:VideoView VerticalOptions="FillAndExpand" x:Name="tutorial1Video" />-->
-
-
 						<Frame BackgroundColor="#7AD6FE" CornerRadius="50" HeightRequest="20" 
 								Margin="10, 10" x:Name="tutorial1">
 							<FlexLayout  Direction="Row" JustifyContent="SpaceBetween">
@@ -32,8 +28,18 @@
 							</FlexLayout>
 						</Frame>
 						<StackLayout x:Name="tutorial1Content" HeightRequest="500">
-							<mm:VideoView  x:Name="tutorial1Video" VerticalOptions="FillAndExpand"
-									ShowControls="True"/>
+							<CarouselView ItemsSource="{Binding Tutorial1Content}">
+								<CarouselView.ItemTemplate>
+									<DataTemplate>
+										<StackLayout>
+											<Label Text="abscs"/>
+											<Label Text="{Binding Title}"/>
+											<Label Text="{Binding Details}"/>
+											<Image Source="{Binding Image}"/>
+										</StackLayout>
+									</DataTemplate>
+								</CarouselView.ItemTemplate>
+							</CarouselView>
 						</StackLayout>
 						
 						<Frame BackgroundColor="#7AD6FE" CornerRadius="50" HeightRequest="20" 

@@ -19,6 +19,7 @@ namespace Sensate.Views {
 		readonly string vision_authfile;
 		readonly string json_creds;
 		readonly bool isVibration;
+		readonly bool isGesture;
 		readonly Xamarin.Forms.ImageSource icon_general, icon_text, icon_face, icon_product;
 		readonly private SyncHelper.Settings _settings;
 		readonly float speakRate;
@@ -80,19 +81,24 @@ namespace Sensate.Views {
 			mode = detectionmode.SelectedItem.ToString();
 
 			isVibration = Preferences.Get("VibrationFeedback", false, "GeneralSettings");
+			isGesture = Preferences.Get("Gesture", false, "GeneralSettings");
 			#endregion defaults
 		}
 
 		protected override void OnAppearing() {
 			base.OnAppearing();
-			Accelerometer.ShakeDetected += Accelerometer_ShakeDetected;
-			Accelerometer.Start(SensorSpeed.Game);
+			if (isGesture) {
+				Accelerometer.ShakeDetected += Accelerometer_ShakeDetected;
+				Accelerometer.Start(SensorSpeed.Game);
+			}
 		}
 
 		protected override void OnDisappearing() {
 			base.OnDisappearing();
-			Accelerometer.Stop();
-			Accelerometer.ShakeDetected -= Accelerometer_ShakeDetected;
+			if (isGesture) {
+				Accelerometer.Stop();
+				Accelerometer.ShakeDetected -= Accelerometer_ShakeDetected;
+			}
 		}
 
 		#region zooming
@@ -125,7 +131,7 @@ namespace Sensate.Views {
 			} catch {
 				cameraView.CameraOptions = (cameraView.CameraOptions == CameraOptions.Front) ?
 					CameraOptions.Back : CameraOptions.Front;
-			} 
+			}
 			zoomSlider.Maximum = cameraView.MaxZoom;
 		}
 		public async void FlashFrameClick(object s, EventArgs e) {
@@ -134,18 +140,18 @@ namespace Sensate.Views {
 			Console.WriteLine("hello");
 			if (isFlashlight)
 				await Flashlight.TurnOffAsync();
-			else 
+			else
 				await Flashlight.TurnOnAsync();
 			isFlashlight = !isFlashlight;
 		}
 		public void DetectionModeSelectClick(object s, EventArgs e) {
 			detectionmode.Focus();
 		}
-		public void DetectionModeChange(object s, EventArgs e) { 
+		public void DetectionModeChange(object s, EventArgs e) {
 			mode = detectionmode.SelectedItem.ToString();
 			if (mode == "General Object Detection") {
 				detectionmodeimage.Source = icon_general;
-			} else if (mode == "Text Detection") { 
+			} else if (mode == "Text Detection") {
 				detectionmodeimage.Source = icon_text;
 			} else if (mode == "Face Detection") {
 				detectionmodeimage.Source = icon_face;
@@ -179,9 +185,9 @@ namespace Sensate.Views {
 		private void DoCameraThingsClicked(object sender, EventArgs e) {
 			cameraView.Shutter();
 		}
-		
+
 		public void CameraView_OnAvailable(object sender, bool e) {
-			
+
 		}
 
 		public async void CameraView_MediaCaptured(object sender, MediaCapturedEventArgs e) {
@@ -191,7 +197,7 @@ namespace Sensate.Views {
 			previewImage.IsVisible = true;
 
 			if (isVibration) Vibration.Vibrate();
-			
+
 			await CrossTextToSpeech.Current.Speak("Captured Image", speakRate: speakRate);
 			//await TextToSpeech.SpeakAsync("Captured Image");
 
@@ -204,7 +210,7 @@ namespace Sensate.Views {
 					e.ImageData.AsMemory().ToArray()),
 				Features = {
 					new Feature {
-						Type = 
+						Type =
 							(mode == "General Object Detection") ? Feature.Types.Type.LabelDetection :
 							(mode == "Text Detection") ? Feature.Types.Type.TextDetection :
 							(mode == "Face Detection") ? Feature.Types.Type.FaceDetection :
@@ -238,11 +244,12 @@ namespace Sensate.Views {
 				List<Result> results = new List<Result>();
 				if (detectedobject)
 					await CrossTextToSpeech.Current.Speak("Related terms to Object can be", speakRate: speakRate);
-					//await TextToSpeech.SpeakAsync("Related terms to Object can be");
+				//await TextToSpeech.SpeakAsync("Related terms to Object can be");
 				foreach (EntityAnnotation annotation in response.LabelAnnotations) {
-					results.Add(new Result{ 
-						desc= annotation.Description, score = annotation.Score
-						}
+					results.Add(new Result {
+						desc = annotation.Description,
+						score = annotation.Score
+					}
 					);
 					detectedlabel = true;
 				}
@@ -261,10 +268,10 @@ namespace Sensate.Views {
 					if (limit-- == 0) break;
 				}
 
-				if (!detectedlabel && !detectedobject) 
-					await CrossTextToSpeech.Current.Speak("No object found in the captured image.", 
+				if (!detectedlabel && !detectedobject)
+					await CrossTextToSpeech.Current.Speak("No object found in the captured image.",
 						speakRate: speakRate);
-					//await TextToSpeech.SpeakAsync("No object found in the captured image.");
+				//await TextToSpeech.SpeakAsync("No object found in the captured image.");
 			}
 			if (mode == "Text Detection") {
 				var detected = false;
@@ -289,23 +296,23 @@ namespace Sensate.Views {
 					if (face.JoyLikelihood >= Likelihood.Possible)
 						await CrossTextToSpeech.Current.Speak("It looks like a joyful person",
 											speakRate: speakRate);
-						//await TextToSpeech.SpeakAsync("It looks like a joyful person");
+					//await TextToSpeech.SpeakAsync("It looks like a joyful person");
 					if (face.AngerLikelihood >= Likelihood.Possible)
 						await CrossTextToSpeech.Current.Speak("It looks like a mad person",
 											speakRate: speakRate);
-						//await TextToSpeech.SpeakAsync("It looks like a mad person");
+					//await TextToSpeech.SpeakAsync("It looks like a mad person");
 					if (face.SorrowLikelihood >= Likelihood.Possible)
 						await CrossTextToSpeech.Current.Speak("It looks like a sad person",
 											speakRate: speakRate);
-						//await TextToSpeech.SpeakAsync("It looks like a sad person");
+					//await TextToSpeech.SpeakAsync("It looks like a sad person");
 					if (face.SurpriseLikelihood >= Likelihood.Possible)
 						await CrossTextToSpeech.Current.Speak("It looks like a surprised person",
 											speakRate: speakRate);
-						//await TextToSpeech.SpeakAsync("It looks like a surprised person");
+					//await TextToSpeech.SpeakAsync("It looks like a surprised person");
 					if (face.HeadwearLikelihood >= Likelihood.Possible)
 						await CrossTextToSpeech.Current.Speak("It also seems like the person is wearing a headgear",
 											speakRate: speakRate);
-						//await TextToSpeech.SpeakAsync("It also seems like the person is wearing a headgear");
+					//await TextToSpeech.SpeakAsync("It also seems like the person is wearing a headgear");
 				}
 				if (!detected) await CrossTextToSpeech.Current.Speak("No face found in the captured image.",
 									speakRate: speakRate);
@@ -333,7 +340,7 @@ namespace Sensate.Views {
 		}
 		#endregion camera
 
-		public class Result { 
+		public class Result {
 			public string desc;
 			public double score;
 		}

@@ -60,7 +60,6 @@
     <None Remove="Assets\shutter.png" />
     <None Remove="Assets\upload-image-default.png" />
     <None Remove="Assets\upload.png" />
-    <None Remove="Assets\videos\tutorial_generalobject.mp4" />
     <None Remove="Assets\waves.png" />
     <None Remove="Assets\zoom-in.png" />
     <None Remove="Assets\zoom-out.png" />
@@ -103,7 +102,6 @@
     <EmbeddedResource Include="Assets\shutter.png" />
     <EmbeddedResource Include="Assets\upload-image-default.png" />
     <EmbeddedResource Include="Assets\upload.png" />
-    <EmbeddedResource Include="Assets\videos\tutorial_generalobject.mp4" />
     <EmbeddedResource Include="Assets\waves.png" />
     <EmbeddedResource Include="Assets\zoom-in.png" />
     <EmbeddedResource Include="Assets\zoom-out.png" />
@@ -202,6 +200,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Assets\tutorial\" />
     <Folder Include="ViewModels\Personalization\" />
     <Folder Include="Views\LowVision\" />
   </ItemGroup>
