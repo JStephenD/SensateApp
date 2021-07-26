@@ -12,7 +12,10 @@ namespace Sensate.ViewModels {
 	public class SigninViewModel : INotifyPropertyChanged {
 
 		public event PropertyChangedEventHandler PropertyChanged;
-		public SigninViewModel() { }
+		private SyncHelper.Settings _settings;
+		public SigninViewModel() { 
+			_settings = SyncHelper.GetCurrentSettings();
+		}
 
 		private string email;
 		public string Email {
@@ -50,6 +53,8 @@ namespace Sensate.ViewModels {
 				var auth = await authProvider.SignInWithEmailAndPasswordAsync(email, password);
 				var content = await auth.GetFreshAuthAsync();
 				var serializedcontent = JsonConvert.SerializeObject(content);
+				if (_settings.VibrationFeedback) Vibration.Vibrate();
+
 				Preferences.Set("UID", auth.User.LocalId);
 				Preferences.Set("MyFirebaseRefreshToken", serializedcontent);
 				await App.Current.MainPage.DisplayAlert("Welcome back!", "You are logged in again.", "OK");
@@ -57,11 +62,13 @@ namespace Sensate.ViewModels {
 				Application.Current.MainPage = new AppShell();
 
 			} catch (Exception) {
+				if (_settings.VibrationFeedback) Vibration.Vibrate();
 				await App.Current.MainPage.DisplayAlert("Alert!", "Invalid Email/Password.", "Ok");
 			}
 		}
 
 		private async void OnSignupClicked(object obj) {
+			if (_settings.VibrationFeedback) Vibration.Vibrate();
 			await App.Current.MainPage.Navigation.PushModalAsync(new SignupPage());
 		}
 	}

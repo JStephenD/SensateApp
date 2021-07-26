@@ -63,6 +63,8 @@
     <None Remove="Assets\tutorial\tutorial1_02.jpg" />
     <None Remove="Assets\tutorial\tutorial1_03.jpg" />
     <None Remove="Assets\tutorial\tutorial1_04.jpg" />
+    <None Remove="Assets\tutorial_colorblind.png" />
+    <None Remove="Assets\tutorial_recognition.png" />
     <None Remove="Assets\upload-image-default.png" />
     <None Remove="Assets\upload.png" />
     <None Remove="Assets\waves.png" />
@@ -110,6 +112,8 @@
     <EmbeddedResource Include="Assets\tutorial\tutorial1_02.jpg" />
     <EmbeddedResource Include="Assets\tutorial\tutorial1_03.jpg" />
     <EmbeddedResource Include="Assets\tutorial\tutorial1_04.jpg" />
+    <EmbeddedResource Include="Assets\tutorial_colorblind.png" />
+    <EmbeddedResource Include="Assets\tutorial_recognition.png" />
     <EmbeddedResource Include="Assets\upload-image-default.png" />
     <EmbeddedResource Include="Assets\upload.png" />
     <EmbeddedResource Include="Assets\waves.png" />
@@ -134,6 +138,21 @@
     </Compile>
     <Compile Update="Views\Help\TestFirestore.xaml.cs">
       <DependentUpon>TestFirestore.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Help\Tutorial5Page.xaml.cs">
+      <DependentUpon>Tutorial5Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Help\Tutorial4Page.xaml.cs">
+      <DependentUpon>Tutorial4Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Help\Tutorial3Page.xaml.cs">
+      <DependentUpon>Tutorial3Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Help\Tutorial2Page.xaml.cs">
+      <DependentUpon>Tutorial2Page.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Help\Tutorial1Page.xaml.cs">
+      <DependentUpon>Tutorial1Page.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Intro\IntroPage3.xaml.cs">
       <DependentUpon>IntroPage3.xaml</DependentUpon>

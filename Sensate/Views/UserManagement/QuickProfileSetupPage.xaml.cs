@@ -14,12 +14,20 @@ namespace Sensate.Views {
 
 		private int age;
 
+		private SyncHelper.Settings _settings;
+
 		public QuickProfileSetupPage() {
 			InitializeComponent();
 
 			accountname.Text = Preferences.Get("AccountName", "", "UserAccount");
 			gender.SelectedItem = Preferences.Get("AccountGender", "", "UserAccount");
 			birthdate.Date = DateTime.Parse(Preferences.Get("AccountBirthdate", DateTime.Now.ToString(), "UserAccount"));
+		}
+
+		protected override void OnAppearing() {
+			base.OnAppearing();
+
+			_settings = SyncHelper.GetCurrentSettings();
 		}
 
 		private async void ConfirmCommand(object sender, EventArgs e) {
@@ -35,6 +43,8 @@ namespace Sensate.Views {
 				Birthdate = birthdate.Date.ToString()
 				}
 			);
+
+			if (_settings.VibrationFeedback) Vibration.Vibrate();
 
 			Preferences.Set("AccountName", accountname.Text, "UserAccount");
 			Preferences.Set("AccountGender", gender.SelectedItem.ToString(), "UserAccount");

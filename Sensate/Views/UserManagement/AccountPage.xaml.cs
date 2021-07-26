@@ -17,6 +17,7 @@ namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AccountPage : ContentPage {
 
+		private SyncHelper.Settings _settings;
 		public AccountPage() {
 			InitializeComponent();
 
@@ -43,6 +44,9 @@ namespace Sensate.Views {
 
 		protected override void OnAppearing() { 
 			base.OnAppearing();
+
+			_settings = SyncHelper.GetCurrentSettings();
+
 			if (Preferences.Get("UID", "") == "") { 
 				logoutFrameText.Text = "Sign in";
 			} else { 
@@ -55,6 +59,7 @@ namespace Sensate.Views {
 
 		#region gesturerecognizer functions
 		public async void SynchronizeFrameClick(object s, EventArgs e) {
+			if (_settings.VibrationFeedback) Vibration.Vibrate();
 			if (Preferences.Get("UID", "") == "") {
 				// not logged in
 			} else { 
@@ -63,9 +68,11 @@ namespace Sensate.Views {
 			}
 		}
 		public void EditAccountFrameClick(object s, EventArgs e) {
+			if (_settings.VibrationFeedback) Vibration.Vibrate();
 			Shell.Current.GoToAsync(nameof(EditProfilePage));
 		}
 		public void LogoutFrameClick(object s, EventArgs e) {
+			if (_settings.VibrationFeedback) Vibration.Vibrate();
 			if (logoutFrameText.Text == "Sign in") { 
 				Shell.Current.GoToAsync(nameof(SigninPage));
 			} else { 

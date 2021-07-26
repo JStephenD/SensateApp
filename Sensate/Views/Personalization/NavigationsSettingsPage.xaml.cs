@@ -13,7 +13,7 @@ namespace Sensate.Views {
 
 		#region variables
 		private readonly Label[] labels;
-		private readonly SyncHelper.Settings _settings;
+		private SyncHelper.Settings _settings;
 		private readonly bool introDone;
 
 		#endregion variables
@@ -26,7 +26,6 @@ namespace Sensate.Views {
 			labels = new Label[] {
 				textTitle, InfoText1, InfoText2, textShortcuts, textGesture, textHardware, 
 			};
-			_settings = SyncHelper.GetCurrentSettings();
 
 			introDone = Preferences.Get("IntroDone", false);
 			#endregion initalize variables
@@ -44,7 +43,34 @@ namespace Sensate.Views {
 		protected override void OnAppearing() {
 			base.OnAppearing();
 
-			SettingsHelper.ApplyDisplaySettings(labels: labels);
+			_settings = SyncHelper.GetCurrentSettings();
+			switch (_settings.TextSize) {
+				case 0:
+					textTitle.FontSize = 26;
+					InfoText1.FontSize = 14;
+					InfoText2.FontSize = 14;
+					textShortcuts.FontSize = 22;
+					textGesture.FontSize = 20;
+					textHardware.FontSize = 20;
+					break;
+				case 1:
+					textTitle.FontSize = 28;
+					InfoText1.FontSize = 16;
+					InfoText2.FontSize = 16;
+					textShortcuts.FontSize = 24;
+					textGesture.FontSize = 22;
+					textHardware.FontSize = 22;
+					break;
+				case 2:
+					textTitle.FontSize = 30;
+					InfoText1.FontSize = 18;
+					InfoText2.FontSize = 18;
+					textShortcuts.FontSize = 26;
+					textGesture.FontSize = 24;
+					textHardware.FontSize = 24;
+					break;
+			}
+
 
 			Shortcuts.IsToggled = Preferences.Get("Shortcuts", false, "GeneralSettings");
 			Gesture.IsToggled = Preferences.Get("Gesture", false, "GeneralSettings");
@@ -62,6 +88,7 @@ namespace Sensate.Views {
 		}
 
 		private void ToggledShortcuts() {
+			if (_settings.VibrationFeedback) Vibration.Vibrate();
 			Shortcuts.IsToggled = !Shortcuts.IsToggled;
 			var istoggled = Shortcuts.IsToggled;
 			Preferences.Set("Shortcuts", istoggled, "GeneralSettings");
@@ -73,16 +100,19 @@ namespace Sensate.Views {
 		}
 
 		private void ToggledGesture() {
+			if (_settings.VibrationFeedback) Vibration.Vibrate();
 			Gesture.IsToggled = !Gesture.IsToggled;
 			Preferences.Set("Gesture", Gesture.IsToggled, "GeneralSettings");
 		}
 
 		private void ToggledHardwareButtons() {
+			if (_settings.VibrationFeedback) Vibration.Vibrate();
 			HardwareButtons.IsToggled = ! HardwareButtons.IsToggled;
 			Preferences.Set("HardwareButtons", HardwareButtons.IsToggled, "GeneralSettings");
 		}
 
 		private async void Next(object s = null, EventArgs e = null) {
+			if (_settings.VibrationFeedback) Vibration.Vibrate();
 			await SyncHelper.UploadSettings();
 			await Shell.Current.GoToAsync(nameof(DisplaySettingsPage));
 		}
@@ -102,6 +132,7 @@ namespace Sensate.Views {
 
 		private async void Confirm(object sender, EventArgs e) {
 			try {
+				if (_settings.VibrationFeedback) Vibration.Vibrate();
 				await SyncHelper.UploadSettings();
 				Console.WriteLine("Confirm button");
 				await Shell.Current.GoToAsync($"//{nameof(MainSettingsPage)}");

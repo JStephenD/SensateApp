@@ -34,7 +34,8 @@
 							</StackLayout>
 						</Frame>
 						<StackLayout Spacing="10" x:Name="MoreAudioSettings" Margin="0,10">
-							<StackLayout Orientation="Horizontal" Spacing="20" Margin="20,0,0,0">
+							<StackLayout Orientation="Horizontal" Spacing="20" Margin="20,0,0,0"
+										 x:Name="voicegenderStack">
 								<Ellipse	WidthRequest="17" HeightRequest="17" Fill="#80D7FC"
 											VerticalOptions="Center"/>
 								<Frame	BackgroundColor="#FF881A" Opacity="50" CornerRadius="30"

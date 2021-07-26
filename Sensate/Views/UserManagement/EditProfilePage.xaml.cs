@@ -18,6 +18,7 @@ namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class EditProfilePage : ContentPage {
 
+		private SyncHelper.Settings _settings;
 		public EditProfilePage() {
 			InitializeComponent();
 
@@ -39,6 +40,9 @@ namespace Sensate.Views {
 
 		protected override void OnAppearing() {
 			base.OnAppearing();
+
+			_settings = SyncHelper.GetCurrentSettings();
+
 			#region defaults
 			accountName.Text = Preferences.Get("AccountName", "", "UserAccount");
 			gender.SelectedItem = Preferences.Get("AccountGender", "", "UserAccount");
@@ -53,6 +57,8 @@ namespace Sensate.Views {
 			Preferences.Set("AccountGender", gender.SelectedItem.ToString(), "UserAccount");
 			Preferences.Set("AccountBirthdate", birthdate.Date.ToString(), "UserAccount");
 			Preferences.Set("UserCategory", usertype.SelectedItem.ToString(), "GeneralSettings");
+
+			if (_settings.VibrationFeedback) Vibration.Vibrate();
 
 			await DisplayAlert("", "Saved", "ok");
 
@@ -73,9 +79,11 @@ namespace Sensate.Views {
 			Shell.Current.CurrentItem = Shell.Current.Items.FirstOrDefault(r => r.Title == "Account");
 		}
 		public async void BackClick(object s, EventArgs e) {
+			if (_settings.VibrationFeedback) Vibration.Vibrate();
 			await Shell.Current.GoToAsync($"//{nameof(AccountPage)}");
 		}
 		public async void EditAccountClick(object s, EventArgs e) {
+			if (_settings.VibrationFeedback) Vibration.Vibrate();
 			await Shell.Current.GoToAsync($"{nameof(EditAccountPage)}");
 		}
 		#endregion gesturerecognizer functions

@@ -10,6 +10,7 @@ namespace Sensate.Views {
 	public partial class MainSettingsPage : ContentPage {
 
 		private Label[] labels;
+		private SyncHelper.Settings _settings;
 
 		public MainSettingsPage() {
 			InitializeComponent();
@@ -38,11 +39,33 @@ namespace Sensate.Views {
 		protected override void OnAppearing() {
 			base.OnAppearing();
 
-			SettingsHelper.ApplyDisplaySettings(labels: labels);
+			_settings = SyncHelper.GetCurrentSettings();
+
+			switch (_settings.TextSize) {
+				case 0:
+					textTitle.FontSize = 32;
+					textFeedbackOption.FontSize = 30;
+					textNavigationOption.FontSize = 30;
+					textDisplayOption.FontSize = 30;
+					break;
+				case 1:
+					textTitle.FontSize = 34;
+					textFeedbackOption.FontSize = 32;
+					textNavigationOption.FontSize = 32;
+					textDisplayOption.FontSize = 32;
+					break;
+				case 2:
+					textTitle.FontSize = 36;
+					textFeedbackOption.FontSize = 34;
+					textNavigationOption.FontSize = 34;
+					textDisplayOption.FontSize = 34;
+					break;
+			}
 		}
 
 		#region gesturerecognizer functions
 		public async void FeedbackFrameClick(object s, EventArgs e) {
+			if (_settings.VibrationFeedback) Vibration.Vibrate();
 			Console.WriteLine("feedbackclick");
 			try {
 				await Shell.Current.GoToAsync(nameof(FeedbackSettingsPage)); 
@@ -52,10 +75,12 @@ namespace Sensate.Views {
 		}
 
 		public async void NavigationFrameClick(object s, EventArgs e) {
+			if (_settings.VibrationFeedback) Vibration.Vibrate();
 			await Shell.Current.GoToAsync(nameof(NavigationsSettingsPage));
 		}
 
 		public async void DisplayFrameClick(object s, EventArgs e) {
+			if (_settings.VibrationFeedback) Vibration.Vibrate();
 			await Shell.Current.GoToAsync(nameof(DisplaySettingsPage));
 		}
 

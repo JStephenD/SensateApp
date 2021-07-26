@@ -20,5 +20,9 @@ namespace Sensate.Views {
 			this.BindingContext = new SignupViewModel();
 		}
 
+		protected override void OnAppearing() {
+			base.OnAppearing();
+
+		}
 	}
 }

@@ -194,8 +194,9 @@ namespace Sensate.Views {
 		public async void CameraView_MediaCaptured(object sender, MediaCapturedEventArgs e) {
 			mode = detectionmode.SelectedItem.ToString();
 
-			previewImage.Source = e.Image;
 			previewImage.Rotation = e.Rotation;
+			previewImage.Source = e.Image;
+			previewImage.VerticalOptions = LayoutOptions.FillAndExpand;
 			previewImage.IsVisible = true;
 
 			if (isVibration) Vibration.Vibrate();

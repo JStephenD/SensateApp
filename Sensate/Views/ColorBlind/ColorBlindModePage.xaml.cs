@@ -180,6 +180,8 @@ namespace Sensate.Views {
 			IconTintColorEffect.SetTintColor(cameraImage, Color.White);
 			IconTintColorEffect.SetTintColor(uploadImage, Color.FromHex("#00384F"));
 
+			if (isVibration) Vibration.Vibrate();
+
 			togglefilter.IsVisible = false;
 			togglefilterFrame.IsVisible = false;
 			toggleFilterStackFrame.IsVisible = false;
@@ -194,6 +196,8 @@ namespace Sensate.Views {
 			cameraFrame.BackgroundColor = Color.FromHex("#EFEFEF");
 			IconTintColorEffect.SetTintColor(uploadImage, Color.White);
 			IconTintColorEffect.SetTintColor(cameraImage, Color.FromHex("#00384F"));
+
+			if (isVibration) Vibration.Vibrate();
 
 			togglefilter.IsVisible = true;
 			togglefilterFrame.IsVisible = true;
@@ -212,8 +216,11 @@ namespace Sensate.Views {
 
 			await MediaPicker.PickPhotoAsync()
 				.ContinueWith(async t => {
-					if (t.IsCanceled)
+					if (t.IsCanceled) {
+						CameraFrameClick(null, null);
+						if (isVibration) Vibration.Vibrate();
 						return;
+					}
 					var result = t.Result;
 
 					using (MemoryStream ms = new MemoryStream()) {

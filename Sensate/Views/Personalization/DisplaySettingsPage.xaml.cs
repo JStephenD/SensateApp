@@ -12,6 +12,7 @@ namespace Sensate.Views {
 
 		#region variables
 		private Label[] labels;
+		private Label[] textsizex;
 		private SyncHelper.Settings _settings;
 		private bool introDone;
 		#endregion variables
@@ -25,7 +26,7 @@ namespace Sensate.Views {
 				textTitle, textBased, textBold, textNight, textTextSize,
 				textSizeSmall, textSizeNormal, textSizeLarge
 			};
-			_settings = SyncHelper.GetCurrentSettings();
+			textsizex = new Label[] {textSizeSmall, textSizeNormal, textSizeLarge};
 
 			introDone = Preferences.Get("IntroDone", false);
 
@@ -33,29 +34,43 @@ namespace Sensate.Views {
 			#endregion initialize variables
 
 			#region gesturerecognizers
-			var tapslide = new TapGestureRecognizer();
-			tapslide.Tapped += SliderDone;
-			var dragslide = new DragGestureRecognizer();
-			dragslide.DropCompleted += SliderDone;
-			TextSize.GestureRecognizers.Add(tapslide);
-			TextSize.GestureRecognizers.Add(dragslide);
-			textsizeFrame.GestureRecognizers.Add(tapslide);
-			textsizeFrame.GestureRecognizers.Add(dragslide);
 			#endregion gesturerecognizers
 		}
 
 		#region gesturerecognizers
-		public void SliderDone(object s, EventArgs e) { 
-			var val = TextSize.Value;
-			TextSize.Value = Math.Round(val);
-			Console.WriteLine("sliderdone");
-		}
 		#endregion gesturerecognizers
 
 		protected override void OnAppearing() {
 			base.OnAppearing();
 
-			SettingsHelper.ApplyDisplaySettings(labels: labels);
+			_settings = SyncHelper.GetCurrentSettings();
+
+			switch (_settings.TextSize) {
+				case 0:
+					textTitle.FontSize = 26;
+					textBased.FontSize = 14;
+					textBold.FontSize = 16;
+					textNight.FontSize = 16;
+					textTextSize.FontSize = 20;
+					foreach (var lab in textsizex) lab.FontSize = 20;
+					break;
+				case 1:
+					textTitle.FontSize = 28;
+					textBased.FontSize = 16;
+					textBold.FontSize = 18;
+					textNight.FontSize = 18;
+					textTextSize.FontSize = 22;
+					foreach (var lab in textsizex) lab.FontSize = 22;
+					break;
+				case 2:
+					textTitle.FontSize = 30;
+					textBased.FontSize = 18;
+					textBold.FontSize = 20;
+					textNight.FontSize = 20;
+					textTextSize.FontSize = 24;
+					foreach (var lab in textsizex) lab.FontSize = 24;
+					break;
+			}
 
 			BoldText.IsToggled = Preferences.Get("BoldText", false, "GeneralSettings");
 			NightMode.IsToggled = Preferences.Get("NightMode", false, "GeneralSettings");
@@ -71,6 +86,7 @@ namespace Sensate.Views {
 
 		private void ToggledBoldText(object sender, ToggledEventArgs e) {
 			try {
+				if (_settings.VibrationFeedback) Vibration.Vibrate();
 				var newval = e.Value;
 				Preferences.Set("BoldText", newval, "GeneralSettings");
 				OnAppearing();
@@ -80,6 +96,7 @@ namespace Sensate.Views {
 		}
 
 		private void ToggledNightMode(object sender, ToggledEventArgs e) {
+			if (_settings.VibrationFeedback) Vibration.Vibrate();
 			var newval = e.Value;
 			Preferences.Set("NightMode", newval, "GeneralSettings");
 			OnAppearing();
@@ -89,13 +106,39 @@ namespace Sensate.Views {
 			try {
 				var newval = (int)Math.Round(e.NewValue);
 				Preferences.Set("TextSize", newval, "GeneralSettings");
-				OnAppearing();
+				switch (newval) {
+					case 0:
+						textTitle.FontSize = 26;
+						textBased.FontSize = 14;
+						textBold.FontSize = 16;
+						textNight.FontSize = 16;
+						textTextSize.FontSize = 20;
+						foreach (var lab in textsizex) lab.FontSize = 20;
+						break;
+					case 1:
+						textTitle.FontSize = 28;
+						textBased.FontSize = 16;
+						textBold.FontSize = 18;
+						textNight.FontSize = 18;
+						textTextSize.FontSize = 22;
+						foreach (var lab in textsizex) lab.FontSize = 22;
+						break;
+					case 2:
+						textTitle.FontSize = 30;
+						textBased.FontSize = 18;
+						textBold.FontSize = 20;
+						textNight.FontSize = 20;
+						textTextSize.FontSize = 24;
+						foreach (var lab in textsizex) lab.FontSize = 24;
+						break;
+				}
 			} catch {
 				Console.WriteLine("error here");
 			}
 		}
 
 		private async void Next(object sender, EventArgs e) {
+			if (_settings.VibrationFeedback) Vibration.Vibrate();
 			Preferences.Set("IntroDone", true);
 			await SyncHelper.UploadSettings();
 			Application.Current.MainPage = new AppShell();
@@ -103,6 +146,7 @@ namespace Sensate.Views {
 
 		private async void Confirm(object sender, EventArgs e) {
 			try {
+				if (_settings.VibrationFeedback) Vibration.Vibrate();
 				await SyncHelper.UploadSettings();
 				Console.WriteLine("Confirm button");
 				await Shell.Current.GoToAsync($"//{nameof(MainSettingsPage)}");

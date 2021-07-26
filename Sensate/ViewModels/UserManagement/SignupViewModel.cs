@@ -12,7 +12,11 @@ using Xamarin.Forms;
 namespace Sensate.ViewModels {
 	public class SignupViewModel : BaseViewModel {
 
-		public SignupViewModel() { }
+		private SyncHelper.Settings _settings;
+
+		public SignupViewModel() { 
+			_settings = SyncHelper.GetCurrentSettings();
+		}
 
 		private string email;
 		public string Email {
@@ -41,6 +45,7 @@ namespace Sensate.ViewModels {
 		}
 
 		private async void OnSigninClicked(object obj) {
+			if (_settings.VibrationFeedback) Vibration.Vibrate();
 			await App.Current.MainPage.Navigation.PushModalAsync(new SigninPage());
 		}
 
@@ -60,6 +65,7 @@ namespace Sensate.ViewModels {
 							var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(email, password);
 							var content = await auth.GetFreshAuthAsync();
 							var serializedcontent = JsonConvert.SerializeObject(content);
+							if (_settings.VibrationFeedback) Vibration.Vibrate();
 							Preferences.Set("UID", auth.User.LocalId);
 							Preferences.Set("MyFirebaseRefreshToken", serializedcontent);
 							//string gettoken = auth.FirebaseToken;
@@ -68,16 +74,20 @@ namespace Sensate.ViewModels {
 							await SyncHelper.UploadSettings();
 							await Shell.Current.GoToAsync(nameof(QuickProfileSetupPage));
 						} else {
+							if (_settings.VibrationFeedback) Vibration.Vibrate();
 							await App.Current.MainPage.DisplayAlert("Alert", "Password and confirm password don't not match.", "OK");
 						}
 					} else {
+						if (_settings.VibrationFeedback) Vibration.Vibrate();
 						await App.Current.MainPage.DisplayAlert("Alert!", "Password must contain atleast 6 characters.", "OK");
 					}
 				} else {
+					if (_settings.VibrationFeedback) Vibration.Vibrate();
 					await App.Current.MainPage.DisplayAlert("Alert!", "Email must not be empty.", "OK");
 				}
 
 			} catch (Exception ex) {
+				if (_settings.VibrationFeedback) Vibration.Vibrate();
 				await App.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
 			}
 

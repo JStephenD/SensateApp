@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:viewmodels="clr-namespace:Sensate.ViewModels"
+			 xmlns:mm="clr-namespace:MediaManager.Forms;assembly=MediaManager.Forms"
+			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="Sensate.Views.Tutorial4Page">
+	<ContentPage.Content>
+		<StackLayout BackgroundColor="#00AEF9" VerticalOptions="FillAndExpand">
+			<StackLayout BackgroundColor="#005A81">
+				<Image Source="{xct:ImageResource Id=Sensate.Assets.arrow-left.png}" 
+					   WidthRequest="28" HorizontalOptions="Start" Margin="20,20,0,0"
+					   x:Name="backImage"/>
+				<Label Text="Recognition Mode" TextColor="White"
+					   FontSize="28" Margin="20,20,0,20"/>
+			</StackLayout>
+
+			<CarouselView ItemsSource="{Binding TutorialContent}" Margin="20,20,20,0"
+						  x:Name="carousel" CurrentItemChanged="carousel_CurrentItemChanged">
+				<CarouselView.ItemTemplate>
+					<DataTemplate>
+						<StackLayout BackgroundColor="#005A81">
+							<Grid RowDefinitions="*,*,*,*,*,*,*" 
+								  ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
+								  RowSpacing="0" ColumnSpacing="0" HorizontalOptions="FillAndExpand"
+								  HeightRequest="80" Margin="10,15,10,0" Padding="0">
+								<Frame Grid.Column="1" Grid.Row="1"
+									   Grid.RowSpan="6" Grid.ColumnSpan="19"
+									HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+									BackgroundColor="#2A86AD"></Frame>
+								<Frame Grid.Column="0" Grid.Row="0"
+									   Grid.RowSpan="6" Grid.ColumnSpan="19"
+									HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+									BackgroundColor="White">
+									<Label Text="{Binding Title}" TextColor="Black"
+										   FontSize="{Binding TitleSize}"
+										   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+								</Frame>
+							</Grid>
+
+							<Label Text="{Binding Subtitle}"
+								   TextColor="White" FontSize="{Binding SubtitleSize}"
+								   HorizontalTextAlignment="Center" Margin="20"/>
+
+							<StackLayout Orientation="Horizontal">
+								<Image Source="{Binding Image}"
+									   WidthRequest="{Binding ImageWidth}"/>
+								<Label Text="{Binding Details}"
+									   TextColor="White" FontSize="{Binding DetailsSize}"/>
+							</StackLayout>
+						</StackLayout>
+					</DataTemplate>
+				</CarouselView.ItemTemplate>
+			</CarouselView>
+
+			<StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" 
+						 VerticalOptions="EndAndExpand" Margin="0,10,0,10">
+				<Ellipse WidthRequest="20" HeightRequest="20" x:Name="circle1" Fill="#53CAFD"/>
+				<Ellipse WidthRequest="20" HeightRequest="20" x:Name="circle2" Fill="#53CAFD"/>
+				<Ellipse WidthRequest="20" HeightRequest="20" x:Name="circle3" Fill="#53CAFD"/>
+			</StackLayout>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

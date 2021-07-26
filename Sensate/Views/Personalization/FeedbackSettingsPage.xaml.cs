@@ -36,8 +36,34 @@ namespace Sensate.Views {
 		protected override void OnAppearing() {
 			base.OnAppearing();
 
+			// voice gender not supported yer
+			voicegenderStack.IsVisible = false;
+
 			_settings = SyncHelper.GetCurrentSettings();
-			SettingsHelper.ApplyDisplaySettings(labels: labels);
+
+			switch (_settings.TextSize) {
+				case 0:
+					textTitle.FontSize = 26;
+					textInfo1.FontSize = 14;
+					textInfo2.FontSize = 14;
+					textAudioFeedback.FontSize = 22;
+					textVibrationFeedback.FontSize = 22;
+					break;
+				case 1:
+					textTitle.FontSize = 28;
+					textInfo1.FontSize = 16;
+					textInfo2.FontSize = 16;
+					textAudioFeedback.FontSize = 24;
+					textVibrationFeedback.FontSize = 24;
+					break;
+				case 2:
+					textTitle.FontSize = 30;
+					textInfo1.FontSize = 18;
+					textInfo2.FontSize = 18;
+					textAudioFeedback.FontSize = 26;
+					textVibrationFeedback.FontSize = 26;
+					break;
+			}
 
 			AudioFeedback.IsToggled = Preferences.Get("AudioFeedback", false, "GeneralSettings");
 			VibrationFeedback.IsToggled = Preferences.Get("VibrationFeedback", false, "GeneralSettings");
@@ -56,6 +82,7 @@ namespace Sensate.Views {
 
 		private void ToggledAudio(object sender, ToggledEventArgs e) {
 			try {
+				if (_settings.VibrationFeedback) Vibration.Vibrate();
 				var newval = e.Value;
 				Preferences.Set("AudioFeedback", newval, "GeneralSettings");
 
@@ -69,6 +96,7 @@ namespace Sensate.Views {
 			try {
 				var newval = e.Value;
 				Preferences.Set("VibrationFeedback", newval, "GeneralSettings");
+				if (_settings.VibrationFeedback) Vibration.Vibrate();
 
 				OnAppearing();
 			} catch {
@@ -81,10 +109,14 @@ namespace Sensate.Views {
 
 			var newval = ((Picker)s).SelectedIndex;
 			Preferences.Set("VoiceSpeed", newval, "GeneralSettings");
+			if (_settings.VibrationFeedback) Vibration.Vibrate();
+
 			OnAppearing();
 		}
 
 		private async void Next(object sender, EventArgs e) {
+			if (_settings.VibrationFeedback) Vibration.Vibrate();
+
 			Console.WriteLine("hello world");
 			await SyncHelper.UploadSettings();
 
@@ -93,6 +125,7 @@ namespace Sensate.Views {
 
 		private async void Confirm(object sender, EventArgs e) {
 			try {
+				if (_settings.VibrationFeedback) Vibration.Vibrate();
 				await SyncHelper.UploadSettings();
 				Console.WriteLine("Confirm button");
 				await Shell.Current.GoToAsync($"//{nameof(MainSettingsPage)}");

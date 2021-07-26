@@ -17,6 +17,8 @@ namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class EditAccountPage : ContentPage {
 
+		private SyncHelper.Settings settings;
+
 		public EditAccountPage() {
 			InitializeComponent();
 
@@ -40,16 +42,25 @@ namespace Sensate.Views {
 			#endregion defaults
 		}
 
+		protected override void OnAppearing() {
+			base.OnAppearing();
+
+			settings = SyncHelper.GetCurrentSettings();
+		}
+
 		#region gesturerecognizer functions
 		public async void ConfirmButtonClick(object s, EventArgs e) {
+			if (settings.VibrationFeedback) Vibration.Vibrate();
 			await DisplayAlert("","Saved","ok");
 
 			await SyncHelper.UploadSettings();
 		}
 		public async void BackClick(object s, EventArgs e) {
+			if (settings.VibrationFeedback) Vibration.Vibrate();
 			await Shell.Current.GoToAsync($"//{nameof(AccountPage)}");
 		}
 		public void DeleteAccountClick(object s, EventArgs e) {
+			if (settings.VibrationFeedback) Vibration.Vibrate();
 			Console.WriteLine("a");
 		}
 		#endregion gesturerecognizer functions

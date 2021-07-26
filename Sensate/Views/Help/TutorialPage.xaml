@@ -35,7 +35,7 @@
 							   x:Name="tutorial2Frame">
 							<StackLayout Orientation="Horizontal" Spacing="20" Margin="20,0,0,0">
 								<ImageButton 
-									Source="{xct:ImageResource Id=Sensate.Assets.display-settings.png}"
+									Source="{xct:ImageResource Id=Sensate.Assets.tutorial_recognition.png}"
 									BackgroundColor="Transparent" Scale="1.4"/>
 								<Label Text="Recognition Mode" TextColor="#004867" x:Name="textTutorial2"/>
 							</StackLayout>
@@ -46,7 +46,7 @@
 							   x:Name="tutorial3Frame">
 							<StackLayout Orientation="Horizontal" Spacing="20" Margin="20,0,0,0">
 								<ImageButton 
-									Source="{xct:ImageResource Id=Sensate.Assets.display-settings.png}"
+									Source="{xct:ImageResource Id=Sensate.Assets.tutorial_colorblind.png}"
 									BackgroundColor="Transparent" Scale="1.4"/>
 								<Label Text="Color Enhancement" TextColor="#004867" x:Name="textTutorial3"/>
 							</StackLayout>

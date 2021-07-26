@@ -3,55 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 xmlns:local="clr-namespace:Sensate"
 			 xmlns:vm="clr-namespace:Sensate.ViewModels" 
+			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
 			 x:DataType="vm:Intro2ViewModel"
 			 x:Class="Sensate.Views.IntroPage2"
-			 Shell.NavBarIsVisible="False"
-			 >
+			 Shell.NavBarIsVisible="False">
     <ContentPage.Content>
-		<FlexLayout
-			Direction="Column"
-			BackgroundColor="#00567A"
-			AlignItems="Center"
-			JustifyContent="SpaceAround"
-			>
-			<Image 
-				WidthRequest="200"
-				HeightRequest="250"
-				Source="{local:ImageResource Sensate.Assets.sensate-logo2.png}"
-				/>
-			<Label 
-				Text="Welcome!"
-				TextColor="White"
-				FontFamily="Abel"
-				FontSize="48"
-				/>
-			<Label 
-				Text="We're here to help you see the world. We recommend you to have an assistant for setting up this app."
-				TextColor="White"
-				HorizontalTextAlignment="Center"
-				FontFamily="Abel"
-				FontSize="18"
-				Padding="20,0"
-				/>
-			<StackLayout 
-				HorizontalOptions="Center"
-				Orientation="Horizontal" 
-				>
-				<Ellipse 
-					WidthRequest="17" 
-					HeightRequest="17"
-					Fill="#FF881A"
-					/>
-				<Ellipse 
-					WidthRequest="17" 
-					HeightRequest="17"
-					Fill="#C4C4C4"
-					/>
-				<Ellipse 
-					WidthRequest="17" 
-					HeightRequest="17"
-					Fill="#C4C4C4"
-					/>
+		<FlexLayout Direction="Column" BackgroundColor="#00567A"
+					AlignItems="Center" JustifyContent="SpaceAround">
+			<Image  WidthRequest="200" HeightRequest="250"
+					Source="{xct:ImageResource Id=Sensate.Assets.For_Darkblue_Background.png}"/>
+			<Label  Text="Welcome!" TextColor="White"
+					FontFamily="Abel" FontSize="48"/>
+			<Label  Text="We're here to help you see the world. We recommend you to have an assistant for setting up this app."
+					TextColor="White" HorizontalTextAlignment="Center" FontFamily="Abel"
+					FontSize="18" Padding="20,0"/>
+			<StackLayout  HorizontalOptions="Center" Orientation="Horizontal" >
+				<Ellipse  WidthRequest="17"  HeightRequest="17" Fill="#FF881A"/>
+				<Ellipse  WidthRequest="17"  HeightRequest="17" Fill="#C4C4C4"/>
+				<Ellipse  WidthRequest="17"  HeightRequest="17" Fill="#C4C4C4"/>
 			</StackLayout>
 
 			<FlexLayout.GestureRecognizers>

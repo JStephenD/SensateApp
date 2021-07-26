@@ -27,6 +27,12 @@ namespace Sensate {
 			Routing.RegisterRoute(nameof(SensateAboutPage), typeof(SensateAboutPage));
 			Routing.RegisterRoute(nameof(TutorialPage), typeof(TutorialPage));
 
+			Routing.RegisterRoute(nameof(Tutorial1Page), typeof(Tutorial1Page));
+			Routing.RegisterRoute(nameof(Tutorial2Page), typeof(Tutorial2Page));
+			Routing.RegisterRoute(nameof(Tutorial3Page), typeof(Tutorial3Page));
+			Routing.RegisterRoute(nameof(Tutorial4Page), typeof(Tutorial4Page));
+			Routing.RegisterRoute(nameof(Tutorial5Page), typeof(Tutorial5Page));
+
 			Routing.RegisterRoute(nameof(CategorizePage), typeof(CategorizePage));
 			Routing.RegisterRoute(nameof(CategoryColorBlindPage), typeof(CategoryColorBlindPage));
 			Routing.RegisterRoute(nameof(CategoryLowVisionPage), typeof(CategoryLowVisionPage));
