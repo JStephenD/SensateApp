@@ -46,8 +46,6 @@
 									<Button HorizontalOptions="EndAndExpand" Image="{Binding StateIcon}"
 											VerticalOptions="FillAndExpand"
 											BackgroundColor="Transparent"
-											BorderColor="White"
-											BorderWidth="2"
                                             WidthRequest="30"
                                             
                                             CornerRadius="10"
