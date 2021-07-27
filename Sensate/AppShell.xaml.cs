@@ -55,10 +55,12 @@ namespace Sensate {
 				MainFeature.Route = nameof(RecognitionModePage);
 				MainFeature.ContentTemplate = new DataTemplate(typeof(RecognitionModePage));
 				MainFeatureTitle.Title = "Recognition Mode";
+				MainFeatureTitle.Icon = ImageSource.FromResource("Sensate.Assets.icon_lv.png", typeof(AppShell).Assembly);
 			} else {
 				MainFeature.Route = nameof(ColorBlindModePage);
 				MainFeature.ContentTemplate = new DataTemplate(typeof(ColorBlindModePage));
 				MainFeatureTitle.Title = "Colorblind Mode";
+				MainFeatureTitle.Icon = ImageSource.FromResource("Sensate.Assets.icon_cb.png", typeof(AppShell).Assembly);
 			}
 		}
 
@@ -72,12 +74,12 @@ namespace Sensate {
 				MainFeature.Route = nameof(RecognitionModePage);
 				MainFeature.ContentTemplate = new DataTemplate(typeof(RecognitionModePage));
 				MainFeatureTitle.Title = "Recognition Mode";
-				MainFeatureTitle.Icon = ImageSource.FromResource("icon_lv.png");
+				MainFeatureTitle.Icon = ImageSource.FromResource("Sensate.Assets.icon_lv.png", typeof(AppShell).Assembly);
 			} else {
 				MainFeature.Route = nameof(ColorBlindModePage);
 				MainFeature.ContentTemplate = new DataTemplate(typeof(ColorBlindModePage));
 				MainFeatureTitle.Title = "Colorblind Mode";
-				MainFeatureTitle.Icon = ImageSource.FromResource("icon_cb.png");
+				MainFeatureTitle.Icon = ImageSource.FromResource("Sensate.Assets.icon_cb.png", typeof(AppShell).Assembly);
 			}
 		}
 

@@ -38,7 +38,6 @@ namespace Sensate.Views {
 			#endregion gesturerecognizers
 
 			#region defaults
-			accountName.Text = Preferences.Get("AccountName", "", "UserAccount");
 			#endregion defaults
 		}
 
@@ -48,13 +47,20 @@ namespace Sensate.Views {
 			_settings = SyncHelper.GetCurrentSettings();
 
 			if (Preferences.Get("UID", "") == "") { 
-				logoutFrameText.Text = "Sign in";
+				logoutFrameText.Text = "SIGN IN";
 			} else { 
-				logoutFrameText.Text = "Log out";
+				logoutFrameText.Text = "LOG OUT";
 			}
 			var birthdate = Preferences.Get("AccountBirthdate", DateTime.Now.ToString(), "UserAccount");
+			accountName.Text = Preferences.Get("AccountName", "", "UserAccount");
 			ageText.Text = (DateTime.Now.Year - DateTime.Parse(birthdate).Year).ToString();
 			accountName.Text = Preferences.Get("AccountName", "", "UserAccount");
+			genderIcon.Source = (Preferences.Get("AccountGender", "Others", "UserAccount") == "Male") ?
+									ImageSource.FromResource("Sensate.Assets.gender-male.png", typeof(AccountPage).Assembly) :
+								(Preferences.Get("AccountGender", "Others", "UserAccount") == "Female") ?
+									ImageSource.FromResource("Sensate.Assets.gender-female.png", typeof(AccountPage).Assembly) :
+
+									ImageSource.FromResource("Sensate.Assets.gender-neutral.png", typeof(AccountPage).Assembly);			
 		}
 
 		#region gesturerecognizer functions

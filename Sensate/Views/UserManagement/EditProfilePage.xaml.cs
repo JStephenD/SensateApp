@@ -59,25 +59,20 @@ namespace Sensate.Views {
 			Preferences.Set("AccountBirthdate", birthdate.Date.ToString(), "UserAccount");
 			Preferences.Set("UserCategory", usertype.SelectedItem.ToString(), "GeneralSettings");
 
+			await SyncHelper.UploadSettings();
 			if (_settings.VibrationFeedback) Vibration.Vibrate();
 
-			await DisplayAlert("", "Saved", "ok");
-
-			await SyncHelper.UploadSettings();
-
-			OnAppearing();
-
-			Console.WriteLine(Shell.Current.Items);
-			foreach (var x in Shell.Current.Items) {
-				if (x.Title == "Account") {
-					Console.WriteLine(x);
-					Console.WriteLine(x.Icon);
-				}
-			}
+			//Console.WriteLine(Shell.Current.Items);
+			//foreach (var x in Shell.Current.Items) {
+			//	if (x.Title == "Account") {
+			//		Console.WriteLine(x);
+			//		Console.WriteLine(x.Icon);
+			//	}
+			//}
 
 			Application.Current.MainPage = new AppShell();
-			await Shell.Current.GoToAsync(nameof(EditProfilePage));
 			Shell.Current.CurrentItem = Shell.Current.Items.FirstOrDefault(r => r.Title == "Account");
+			await Shell.Current.GoToAsync($"//{nameof(AccountPage)}");
 		}
 		public async void BackClick(object s, EventArgs e) {
 			if (_settings.VibrationFeedback) Vibration.Vibrate();

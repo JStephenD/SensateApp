@@ -93,7 +93,7 @@
 		</StackLayout>
 	</Shell.FlyoutHeader>
 	
-	<FlyoutItem x:Name="MainFeatureTitle" Title="Recognition Mode" Icon="icon_lv.png">
+	<FlyoutItem x:Name="MainFeatureTitle" Title="Recognition Mode">
 		<ShellContent x:Name="MainFeature" Route="Test1" ContentTemplate="{DataTemplate local:RecognitionModePage}" />
 	</FlyoutItem>
 	<FlyoutItem Title="Account" Icon="icon_account.png">

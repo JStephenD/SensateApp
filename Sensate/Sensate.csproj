@@ -35,8 +35,12 @@
     <None Remove="Assets\flash.png" />
     <None Remove="Assets\For_Blue_Background.png" />
     <None Remove="Assets\For_Darkblue_Background.png" />
+    <None Remove="Assets\gender-female.png" />
     <None Remove="Assets\gender-male.png" />
+    <None Remove="Assets\gender-neutral.png" />
     <None Remove="Assets\hamburger.png" />
+    <None Remove="Assets\icon_cb.png" />
+    <None Remove="Assets\icon_lv.png" />
     <None Remove="Assets\info-small.png" />
     <None Remove="Assets\LightOwls_Logo_new_DBlueVersion.png" />
     <None Remove="Assets\LightOwls_Logo_new_outline.png" />
@@ -94,8 +98,12 @@
     <EmbeddedResource Include="Assets\flash.png" />
     <EmbeddedResource Include="Assets\For_Blue_Background.png" />
     <EmbeddedResource Include="Assets\For_Darkblue_Background.png" />
+    <EmbeddedResource Include="Assets\gender-female.png" />
     <EmbeddedResource Include="Assets\gender-male.png" />
+    <EmbeddedResource Include="Assets\gender-neutral.png" />
     <EmbeddedResource Include="Assets\hamburger.png" />
+    <EmbeddedResource Include="Assets\icon_cb.png" />
+    <EmbeddedResource Include="Assets\icon_lv.png" />
     <EmbeddedResource Include="Assets\info-small.png" />
     <EmbeddedResource Include="Assets\LightOwls_Logo_new_DBlueVersion.png" />
     <EmbeddedResource Include="Assets\LightOwls_Logo_new_outline.png" />

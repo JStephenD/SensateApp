@@ -25,7 +25,8 @@
 				<FlexLayout Direction="Row" JustifyContent="SpaceEvenly">
 					<Frame BackgroundColor="#7BD7FF" CornerRadius="30">
 						<Image Source="{xct:ImageResource Id=Sensate.Assets.gender-male.png}"
-							   xct:IconTintColorEffect.TintColor="#36668B"/>
+							   xct:IconTintColorEffect.TintColor="#36668B" x:Name="genderIcon"
+							   WidthRequest="30"/>
 					</Frame>
 
 					<Frame BackgroundColor="#7BD7FF" CornerRadius="30">
@@ -40,23 +41,20 @@
 
 				<FlexLayout Direction="Row" JustifyContent="SpaceEvenly">
 					<Frame BackgroundColor="#005A81" CornerRadius="30" x:Name="synchronizeFrame">
-						<Label Text="Synchronize" FontSize="24" TextColor="White"
+						<Label Text="SYNCHRONIZE" FontSize="18" TextColor="White"
 							   HorizontalOptions="Center" VerticalOptions="Center"/>
 					</Frame>
 
 					<Frame BackgroundColor="#005A81" CornerRadius="30" x:Name="editprofileFrame">
-						<Label Text="Edit Profile" FontSize="24" TextColor="White"
+						<Label Text="EDIT PROFILE" FontSize="18" TextColor="White"
 							   HorizontalOptions="Center" VerticalOptions="Center"/>
 					</Frame>
 				</FlexLayout>
 
-				<Frame BackgroundColor="#000000" CornerRadius="30" x:Name="logoutframe" Margin="60,0">
-					<Label Text="Log out" FontSize="24" TextColor="#00AEF9" x:Name="logoutFrameText"
+				<Frame BackgroundColor="#000000" CornerRadius="30" x:Name="logoutframe" Margin="60,0,60,50">
+					<Label Text="LOG OUT" FontSize="18" TextColor="#00AEF9" x:Name="logoutFrameText"
 						   HorizontalOptions="Center" VerticalOptions="Center"/>
 				</Frame>
-
-				<Label Text="Delete Account" FontSize="18" TextColor="Red"
-						HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,20"/>
 			</StackLayout>
 		</StackLayout>
     </ContentPage.Content>

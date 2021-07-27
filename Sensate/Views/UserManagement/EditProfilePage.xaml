@@ -77,7 +77,8 @@
 							BorderColor="Black" CornerRadius="30" BackgroundColor="#FF881A"
 							   HorizontalOptions="FillAndExpand" VerticalOptions="End">
 						<Button x:Name="confirmButton" Text="CONFIRM"
-								BackgroundColor="Transparent" FontSize="20"/>
+								BackgroundColor="Transparent" FontSize="20"
+								Clicked="ConfirmButtonClick"/>
 					</Frame>
 
 					<Frame x:Name="editAccountFrame"
