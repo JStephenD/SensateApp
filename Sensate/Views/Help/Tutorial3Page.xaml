@@ -60,6 +60,7 @@
 				<Ellipse WidthRequest="20" HeightRequest="20" x:Name="circle1" Fill="#53CAFD"/>
 				<Ellipse WidthRequest="20" HeightRequest="20" x:Name="circle2" Fill="#53CAFD"/>
 				<Ellipse WidthRequest="20" HeightRequest="20" x:Name="circle3" Fill="#53CAFD"/>
+				<Ellipse WidthRequest="20" HeightRequest="20" x:Name="circle4" Fill="#53CAFD"/>
 			</StackLayout>
 		</StackLayout>
 	</ContentPage.Content>
