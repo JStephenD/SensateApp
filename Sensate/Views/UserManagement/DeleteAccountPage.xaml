@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="Sensate.Views.DeleteAccountPage"
+			 mc:Ignorable="d"
+             Shell.NavBarIsVisible="False">
+	<ContentPage.Content>
+		<StackLayout Padding="0" Margin="0" Spacing="0" BackgroundColor="#005A81">
+			<Image Source="{xct:ImageResource Id=Sensate.Assets.arrow-back.png}"
+				   WidthRequest="50" HeightRequest="50" x:Name="back"
+				   HorizontalOptions="Start" Margin="10"/>
+
+			<StackLayout Spacing="0" Margin="20,10">
+				<Label Text="Delete Account" TextColor="white" FontSize="28"
+					   x:Name="textTitle"/>
+				<Label Text="Are you sure to delete your account?" TextColor="white" FontSize="18"
+					   x:Name="textSubtitle"/>
+			</StackLayout>
+
+
+			<ScrollView BackgroundColor="White" VerticalOptions="FillAndExpand">
+				<StackLayout Spacing="18" Margin="20,0" Padding="0,20,0,20">
+					<Label Text="This means you will lose your account and all of the information." 
+						   TextColor="black" FontSize="18" x:Name="textInfo"/> 
+
+					<Frame x:Name="reasonFrame" BorderColor="Black" CornerRadius="30">
+						<Picker x:Name="reasonPicker"
+								Title="Reason for account deletion" TitleColor="Gray"
+								TextColor="Black" FontSize="18">
+							<Picker.ItemsSource>
+								<x:Array Type="{x:Type x:String}">
+									<x:String>Uninstalling the App</x:String>
+									<x:String>Taking a break</x:String>
+									<x:String>I don't feel safe</x:String>
+									<x:String>Use another account</x:String>
+									<x:String>I'd rather not say</x:String>
+								</x:Array>
+							</Picker.ItemsSource>
+						</Picker>
+					</Frame>
+
+
+					<Frame x:Name="confirmButtonFrame"
+							BorderColor="Red" CornerRadius="30" BackgroundColor="Transparent"
+							   HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
+						<Button x:Name="confirmbutton" Text="Confirm" TextColor="Red"
+								BackgroundColor="Transparent" FontSize="20"/>
+					</Frame>
+
+					<Frame x:Name="cancelButtonFrame"
+							BorderColor="Black" CornerRadius="30" BackgroundColor="#FF881A"
+							HorizontalOptions="FillAndExpand" VerticalOptions="End">
+						<Button x:Name="cancelButton" Text="Cancel" TextColor="White"
+								BackgroundColor="Transparent" FontSize="20"
+								Clicked="CancelClick"/>
+					</Frame>
+				</StackLayout>
+			</ScrollView>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

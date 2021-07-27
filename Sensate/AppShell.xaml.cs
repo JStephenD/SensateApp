@@ -16,6 +16,7 @@ namespace Sensate {
 			Routing.RegisterRoute(nameof(SigninPage), typeof(SigninPage));
 			Routing.RegisterRoute(nameof(SignupPage), typeof(SignupPage));
 			Routing.RegisterRoute(nameof(QuickProfileSetupPage), typeof(QuickProfileSetupPage));
+			Routing.RegisterRoute(nameof(DeleteAccountPage), typeof(DeleteAccountPage));
 
 			Routing.RegisterRoute(nameof(CategorizePage), typeof(CategorizePage));
 			Routing.RegisterRoute(nameof(CategoryLowVisionPage), typeof(CategoryLowVisionPage));

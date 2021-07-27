@@ -73,16 +73,20 @@
 						</Picker>
 					</Frame>
 
-					<Frame x:Name="confirmbuttonFrame"
+					<Frame x:Name="confirmButtonFrame"
 							BorderColor="Black" CornerRadius="30" BackgroundColor="#FF881A"
-							   HorizontalOptions="Center">
-						<Button x:Name="confirmbutton" Text="Confirm"
+							   HorizontalOptions="FillAndExpand" VerticalOptions="End">
+						<Button x:Name="confirmButton" Text="CONFIRM"
 								BackgroundColor="Transparent" FontSize="20"/>
 					</Frame>
 
-					<Label	x:Name="editAccount"
-							Text="Edit Account" FontSize="18" TextColor="Red"
-							HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,20"/>
+					<Frame x:Name="editAccountFrame"
+							BorderColor="Blue" CornerRadius="30" BackgroundColor="Transparent"
+							   HorizontalOptions="FillAndExpand" VerticalOptions="End">
+						<Button x:Name="editAccountButton" Text="EDIT ACCOUNT" TextColor="Blue"
+								BackgroundColor="Transparent" FontSize="20" 
+								Clicked="EditAccountClick"/>
+					</Frame>
 				</StackLayout>
 			</ScrollView>
 		</StackLayout>

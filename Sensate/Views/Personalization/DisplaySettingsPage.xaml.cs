@@ -138,6 +138,7 @@ namespace Sensate.Views {
 						foreach (var lab in textsizex) lab.FontSize = 24;
 						break;
 				}
+				TextSize.Value = newval;
 			} catch {
 				Console.WriteLine("error here");
 			}

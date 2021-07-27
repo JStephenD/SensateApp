@@ -48,7 +48,7 @@ namespace Sensate.Views {
 			TutorialContent.Add(new TutorialContentModel{ 
 				Title = "Recognition Mode", TitleSize = titlesize,
 				Subtitle = "Welcome to the tutorial page of the Recognition Mode", SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.For_Blue_Background.png"),
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-ce-1.png"),
 				ImageWidth = 100,
 				Details = "Note: Your Mobile phone camera must have at least 5 megapixels resolution. Listen Well to the audio feedback of Sensate during this mode. It is recommended to capture an object very near to you so that it will be recognized better. Also, make sure to have a stable internet connection.",
 				DetailsSize = detailssize
@@ -59,7 +59,7 @@ namespace Sensate.Views {
 				TitleSize = titlesize,
 				Subtitle = "Welcome to the tutorial page of the Recognition Mode",
 				SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.For_Blue_Background.png"),
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-ce-1.png"),
 				ImageWidth = 100,
 				Details = "Note: Your Mobile phone camera must have at least 5 megapixels resolution. Listen Well to the audio feedback of Sensate during this mode. It is recommended to capture an object very near to you so that it will be recognized better. Also, make sure to have a stable internet connection.",
 				DetailsSize = detailssize
@@ -70,7 +70,7 @@ namespace Sensate.Views {
 				TitleSize = titlesize,
 				Subtitle = "Welcome to the tutorial page of the Recognition Mode",
 				SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.For_Blue_Background.png"),
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-ce-1.png"),
 				ImageWidth = 100,
 				Details = "Note: Your Mobile phone camera must have at least 5 megapixels resolution. Listen Well to the audio feedback of Sensate during this mode. It is recommended to capture an object very near to you so that it will be recognized better. Also, make sure to have a stable internet connection.",
 				DetailsSize = detailssize

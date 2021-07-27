@@ -19,36 +19,38 @@
 						  x:Name="carousel" CurrentItemChanged="carousel_CurrentItemChanged">
 				<CarouselView.ItemTemplate>
 					<DataTemplate>
-						<StackLayout BackgroundColor="#005A81">
-							<Grid RowDefinitions="*,*,*,*,*,*,*" 
+						<ScrollView>
+							<StackLayout BackgroundColor="#005A81">
+								<Grid RowDefinitions="*,*,*,*,*,*,*" 
 								  ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
 								  RowSpacing="0" ColumnSpacing="0" HorizontalOptions="FillAndExpand"
 								  HeightRequest="80" Margin="10,15,10,0" Padding="0">
-								<Frame Grid.Column="1" Grid.Row="1"
+									<Frame Grid.Column="1" Grid.Row="1"
 									   Grid.RowSpan="6" Grid.ColumnSpan="19"
 									HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
 									BackgroundColor="#2A86AD"></Frame>
-								<Frame Grid.Column="0" Grid.Row="0"
+									<Frame Grid.Column="0" Grid.Row="0"
 									   Grid.RowSpan="6" Grid.ColumnSpan="19"
 									HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
 									BackgroundColor="White">
-									<Label Text="{Binding Title}" TextColor="Black"
+										<Label Text="{Binding Title}" TextColor="Black"
 										   FontSize="{Binding TitleSize}"
 										   HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-								</Frame>
-							</Grid>
+									</Frame>
+								</Grid>
 
-							<Label Text="{Binding Subtitle}"
+								<Label Text="{Binding Subtitle}"
 								   TextColor="White" FontSize="{Binding SubtitleSize}"
 								   HorizontalTextAlignment="Center" Margin="20"/>
 
-							<StackLayout Orientation="Horizontal">
-								<Image Source="{Binding Image}"
+								<StackLayout Orientation="Horizontal">
+									<Image Source="{Binding Image}"
 									   WidthRequest="{Binding ImageWidth}"/>
-								<Label Text="{Binding Details}"
+									<Label Text="{Binding Details}"
 									   TextColor="White" FontSize="{Binding DetailsSize}"/>
+								</StackLayout>
 							</StackLayout>
-						</StackLayout>
+						</ScrollView>
 					</DataTemplate>
 				</CarouselView.ItemTemplate>
 			</CarouselView>

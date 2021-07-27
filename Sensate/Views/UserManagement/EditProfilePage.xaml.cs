@@ -29,12 +29,13 @@ namespace Sensate.Views {
 
 			var confirmbuttonclick = new TapGestureRecognizer();
 			confirmbuttonclick.Tapped += ConfirmButtonClick;
-			confirmbuttonFrame.GestureRecognizers.Add(confirmbuttonclick);
-			confirmbutton.Clicked += ConfirmButtonClick;
+			confirmButtonFrame.GestureRecognizers.Add(confirmbuttonclick);
+			confirmButton.GestureRecognizers.Add(confirmbuttonclick);
 
 			var editaccountclick = new TapGestureRecognizer();
 			editaccountclick.Tapped += EditAccountClick;
-			editAccount.GestureRecognizers.Add(editaccountclick);
+			editAccountFrame.GestureRecognizers.Add(editaccountclick);
+			editAccountButton.GestureRecognizers.Add(editaccountclick);
 			#endregion gesturerecognizers
 		}
 

@@ -44,16 +44,20 @@
 					</Frame>
 
 
-					<Frame x:Name="confirmbuttonFrame"
+					<Frame x:Name="confirmButtonFrame"
 							BorderColor="Black" CornerRadius="30" BackgroundColor="#FF881A"
-							   HorizontalOptions="CenterAndExpand">
+							   HorizontalOptions="FillAndExpand" VerticalOptions="End">
 						<Button x:Name="confirmbutton" Text="Confirm"
 								BackgroundColor="Transparent" FontSize="20"/>
 					</Frame>
 
-					<Label	x:Name="deleteAccount"
-							Text="Delete Account" FontSize="18" TextColor="Red"
-							HorizontalOptions="Center" VerticalOptions="Center" Margin="0,0,0,20"/>
+					<Frame x:Name="deleteAccountFrame"
+							BorderColor="Red" CornerRadius="30" BackgroundColor="Transparent"
+							   HorizontalOptions="FillAndExpand" VerticalOptions="End">
+						<Button x:Name="deleteAccountButton" Text="DELETE ACCOUNT" TextColor="Red"
+								BackgroundColor="Transparent" FontSize="20"
+								Clicked="DeleteAccountClick"/>
+					</Frame>
 				</StackLayout>
 			</ScrollView>
 		</StackLayout>
