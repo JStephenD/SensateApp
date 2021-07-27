@@ -46,33 +46,55 @@ namespace Sensate.Views {
 							20;
 
 			TutorialContent.Add(new TutorialContentModel{ 
-				Title = "Recognition Mode", TitleSize = titlesize,
-				Subtitle = "Welcome to the tutorial page of the Recognition Mode", SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-rm-1.png"),
+				Title = "Interactive Settings", TitleSize = titlesize,
+				Subtitle = "Welcome to the tutorial page of the Interactive Settings", SubtitleSize = subtitlesize,
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-is-1.png"),
 				ImageWidth = 100,
-				Details = "Note: Your Mobile phone camera must have at least 5 megapixels resolution. Listen Well to the audio feedback of Sensate during this mode. It is recommended to capture an object very near to you so that it will be recognized better. Also, make sure to have a stable internet connection.",
+				Details = "Note: The interactive settings is configured after setting up the profile. Users with low vision are still advised to be guided by a trusted person with normal vision so that the settings are properly configured. For future reconfigurations, users could just visit the settings anytime through the menu bar.",
 				DetailsSize = detailssize
 			});
 
 			TutorialContent.Add(new TutorialContentModel {
-				Title = "Recognition Mode",
+				Title = "User categorization.",
 				TitleSize = titlesize,
-				Subtitle = "Welcome to the tutorial page of the Recognition Mode",
+				Subtitle = "The user must choose from the three types of Sensate user such as low vision, colorblind or with normal vision.",
 				SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-rm-1.png"),
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-is-2.jpg"),
 				ImageWidth = 100,
-				Details = "Note: Your Mobile phone camera must have at least 5 megapixels resolution. Listen Well to the audio feedback of Sensate during this mode. It is recommended to capture an object very near to you so that it will be recognized better. Also, make sure to have a stable internet connection.",
+				Details = "Low vision users are those who suffer from conditions such as farsightedness, age-related blindness, disease-related blindness, blurry visions, and any more. For colorblindness, Sensate only provides assistance on three types such as protanopia, deuteranopia, and tritanopia. Colorblind users are advised to be aware of their conditions before using Sensate. Select the button of your choice and you will be directed to a form specific on your condition, to determine your assistance level.",
 				DetailsSize = detailssize
 			});
 
 			TutorialContent.Add(new TutorialContentModel {
-				Title = "Recognition Mode",
+				Title = "Feedback settings.",
 				TitleSize = titlesize,
-				Subtitle = "Welcome to the tutorial page of the Recognition Mode",
+				Subtitle = "The feeback settings include audio feedback and vibration feedback, which is suitable for low vision users.",
 				SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-am-1.png"),
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-is-3.jpg"),
 				ImageWidth = 100,
-				Details = "Note: Your Mobile phone camera must have at least 5 megapixels resolution. Listen Well to the audio feedback of Sensate during this mode. It is recommended to capture an object very near to you so that it will be recognized better. Also, make sure to have a stable internet connection.",
+				Details = "After user categorization, the feedback settings will show you the default configurations based on your user type and condition, you have to review it before proceeding to the next settings. You can make changes if you would like on the audio and vibration feedback.",
+				DetailsSize = detailssize
+			});
+
+			TutorialContent.Add(new TutorialContentModel {
+				Title = "Navigation settings.",
+				TitleSize = titlesize,
+				Subtitle = "The navigation settings include shortcuts while using Sensate, which are gesture-based.",
+				SubtitleSize = subtitlesize,
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-is-4.jpg"),
+				ImageWidth = 100,
+				Details = "After the feedback settings, the navigation settings will show you the default configurations based on your user type and condition, you have to review it before proceeding to the next settings. You can make changes if you would like on the shortcuts. A shortcut chart is also provided for more details.",
+				DetailsSize = detailssize
+			});
+
+			TutorialContent.Add(new TutorialContentModel {
+				Title = "Display settings.",
+				TitleSize = titlesize,
+				Subtitle = "The display settings include bold text display and text size for users who would like to see bigger font size.",
+				SubtitleSize = subtitlesize,
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-is-5.jpg"),
+				ImageWidth = 100,
+				Details = "After the navigation settings, the display settings will show you the default configurations based on your user type and condition, you have to review it before proceeding to the main page. You can make changes if you would like on the bold text and text size settings.",
 				DetailsSize = detailssize
 			});
 
@@ -100,6 +122,8 @@ namespace Sensate.Views {
 			circle1.Fill = (index == 0) ? Brush.White : Brush.LightSkyBlue;
 			circle2.Fill = (index == 1) ? Brush.White : Brush.LightSkyBlue;
 			circle3.Fill = (index == 2) ? Brush.White : Brush.LightSkyBlue;
+			circle4.Fill = (index == 3) ? Brush.White : Brush.LightSkyBlue;
+			circle5.Fill = (index == 4) ? Brush.White : Brush.LightSkyBlue;
 		}
 	}
 }
