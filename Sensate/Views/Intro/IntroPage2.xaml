@@ -6,7 +6,8 @@
 			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
 			 x:DataType="vm:Intro2ViewModel"
 			 x:Class="Sensate.Views.IntroPage2"
-			 Shell.NavBarIsVisible="False">
+			 Shell.NavBarIsVisible="False"
+			 Shell.FlyoutBehavior="Disabled">
     <ContentPage.Content>
 		<FlexLayout Direction="Column" BackgroundColor="#00567A"
 					AlignItems="Center" JustifyContent="SpaceAround">

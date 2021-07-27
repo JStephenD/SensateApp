@@ -11,9 +11,9 @@ namespace Sensate.Views {
 	public partial class FeedbackSettingsPage : ContentPage {
 
 		#region variables
-		private Label[] labels;
+		private readonly Label[] labels;
 		private SyncHelper.Settings _settings;
-		private bool introDone;
+		private readonly bool introDone;
 		#endregion variables
 
 		public FeedbackSettingsPage() {

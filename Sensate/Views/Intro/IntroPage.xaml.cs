@@ -19,10 +19,11 @@ namespace Sensate.Views {
 		protected override void OnAppearing() {
 			base.OnAppearing();
 
-			Device.StartTimer(TimeSpan.FromMilliseconds(5000), () => {
-				Shell.Current.GoToAsync(nameof(IntroPage2));
-				return false;
-			});
+			//Device.StartTimer(TimeSpan.FromMilliseconds(5000), () => {
+			//	if (Shell.Current.CurrentPage != new IntroPage2())
+			//		Shell.Current.GoToAsync(nameof(IntroPage2));
+			//	return false;
+			//});
 		}
 	}
 }

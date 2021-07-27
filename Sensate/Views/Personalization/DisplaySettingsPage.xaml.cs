@@ -11,26 +11,27 @@ namespace Sensate.Views {
 	public partial class DisplaySettingsPage : ContentPage {
 
 		#region variables
-		private Label[] labels;
-		private Label[] textsizex;
+		private readonly Label[] labels;
+		private readonly Label[] textsizex;
 		private SyncHelper.Settings _settings;
-		private bool introDone;
+		private readonly bool introDone;
 		#endregion variables
 
 
 		public DisplaySettingsPage() {
-			InitializeComponent();
+			try {
+				InitializeComponent();
+			} catch { Console.WriteLine("error initialize component display settings"); }
 
 			#region initialize variables
 			labels = new Label[] {
 				textTitle, textBased, textBold, textNight, textTextSize,
 				textSizeSmall, textSizeNormal, textSizeLarge
 			};
-			textsizex = new Label[] {textSizeSmall, textSizeNormal, textSizeLarge};
+			textsizex = new Label[] { textSizeSmall, textSizeNormal, textSizeLarge };
 
 			introDone = Preferences.Get("IntroDone", false);
 
-			TextSize.Value = _settings.TextSize;
 			#endregion initialize variables
 
 			#region gesturerecognizers
@@ -43,35 +44,40 @@ namespace Sensate.Views {
 		protected override void OnAppearing() {
 			base.OnAppearing();
 
+			try {
 			_settings = SyncHelper.GetCurrentSettings();
+			} catch { Console.WriteLine("error getting current settings"); }
 
-			switch (_settings.TextSize) {
-				case 0:
-					textTitle.FontSize = 26;
-					textBased.FontSize = 14;
-					textBold.FontSize = 16;
-					textNight.FontSize = 16;
-					textTextSize.FontSize = 20;
-					foreach (var lab in textsizex) lab.FontSize = 20;
-					break;
-				case 1:
-					textTitle.FontSize = 28;
-					textBased.FontSize = 16;
-					textBold.FontSize = 18;
-					textNight.FontSize = 18;
-					textTextSize.FontSize = 22;
-					foreach (var lab in textsizex) lab.FontSize = 22;
-					break;
-				case 2:
-					textTitle.FontSize = 30;
-					textBased.FontSize = 18;
-					textBold.FontSize = 20;
-					textNight.FontSize = 20;
-					textTextSize.FontSize = 24;
-					foreach (var lab in textsizex) lab.FontSize = 24;
-					break;
-			}
+			try {
+				switch (_settings.TextSize) {
+					case 0:
+						textTitle.FontSize = 26;
+						textBased.FontSize = 14;
+						textBold.FontSize = 16;
+						textNight.FontSize = 16;
+						textTextSize.FontSize = 20;
+						foreach (var lab in textsizex) lab.FontSize = 20;
+						break;
+					case 1:
+						textTitle.FontSize = 28;
+						textBased.FontSize = 16;
+						textBold.FontSize = 18;
+						textNight.FontSize = 18;
+						textTextSize.FontSize = 22;
+						foreach (var lab in textsizex) lab.FontSize = 22;
+						break;
+					case 2:
+						textTitle.FontSize = 30;
+						textBased.FontSize = 18;
+						textBold.FontSize = 20;
+						textNight.FontSize = 20;
+						textTextSize.FontSize = 24;
+						foreach (var lab in textsizex) lab.FontSize = 24;
+						break;
+				}
+			} catch { Console.WriteLine("error text stuff"); }
 
+			TextSize.Value = _settings.TextSize;
 			BoldText.IsToggled = Preferences.Get("BoldText", false, "GeneralSettings");
 			NightMode.IsToggled = Preferences.Get("NightMode", false, "GeneralSettings");
 
@@ -104,7 +110,7 @@ namespace Sensate.Views {
 
 		private void ChangeTextSize(object sender, ValueChangedEventArgs e) {
 			try {
-				var newval = (int)Math.Round(e.NewValue);
+				var newval = (int) Math.Round(e.NewValue);
 				Preferences.Set("TextSize", newval, "GeneralSettings");
 				switch (newval) {
 					case 0:

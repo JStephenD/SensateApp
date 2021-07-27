@@ -37,7 +37,6 @@
     <EnableLLVM>false</EnableLLVM>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <BundleAssemblies>false</BundleAssemblies>
-    <AndroidLinkTool>r8</AndroidLinkTool>
     <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
     <MandroidI18n />
     <AndroidSupportedAbis />

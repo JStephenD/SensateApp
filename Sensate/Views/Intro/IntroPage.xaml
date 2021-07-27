@@ -7,7 +7,7 @@
 			 x:DataType="vm:IntroViewModel"
 			 x:Class="Sensate.Views.IntroPage"
 			 Shell.NavBarIsVisible="False"
-			 >
+			 Shell.FlyoutBehavior="Disabled">
     <ContentPage.Content>
 		<FlexLayout Direction="Column" BackgroundColor="#12ABED"
 					AlignItems="Center" JustifyContent="SpaceAround">

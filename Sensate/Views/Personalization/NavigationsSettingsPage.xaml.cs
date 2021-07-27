@@ -114,7 +114,11 @@ namespace Sensate.Views {
 		private async void Next(object s = null, EventArgs e = null) {
 			if (_settings.VibrationFeedback) Vibration.Vibrate();
 			await SyncHelper.UploadSettings();
-			await Shell.Current.GoToAsync(nameof(DisplaySettingsPage));
+			try	{
+				await Shell.Current.GoToAsync($"{nameof(DisplaySettingsPage)}");
+			} catch {
+				Console.WriteLine("error transition");
+			}
 		}
 
 		private void ElementTapHandler(object sender, EventArgs e) {
