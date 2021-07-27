@@ -46,27 +46,38 @@ namespace Sensate.Views {
 							20;
 
 			TutorialContent.Add(new TutorialContentModel{ 
-				Title = "Recognition Mode", TitleSize = titlesize,
-				Subtitle = "Welcome to the tutorial page of the Recognition Mode", SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.For_Blue_Background.png"),
+				Title = "Color Enhancement", TitleSize = titlesize,
+				Subtitle = "Welcome to the tutorial page of the Color Enhancement", SubtitleSize = subtitlesize,
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-ce-1.png"),
 				ImageWidth = 100,
-				Details = "Note: Your Mobile phone camera must have at least 5 megapixels resolution. Listen Well to the audio feedback of Sensate during this mode. It is recommended to capture an object very near to you so that it will be recognized better. Also, make sure to have a stable internet connection.",
+				Details = "Note: Your mobile phone camera must have at least 5 megapixels resolution. The filters will help you discern colors, therefore, you must be aware of your condition so that we will know what filter is the best for you.",
 				DetailsSize = detailssize
 			});
 
 			TutorialContent.Add(new TutorialContentModel {
-				Title = "Recognition Mode",
+				Title = "Filter on camera.",
 				TitleSize = titlesize,
-				Subtitle = "Welcome to the tutorial page of the Recognition Mode",
+				Subtitle = "The user must pan the camera around to the objects or scenery of interest.",
+				SubtitleSize = subtitlesize,
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-ce-1.png"),
+				ImageWidth = 100,
+				Details = "Clicking the color enhancement toggle button switches the color enhancement filter on and off. To change the filter, just go the settings and reconfigure your colorblindness type. ",
+				DetailsSize = detailssize
+			});
+
+			TutorialContent.Add(new TutorialContentModel {
+				Title = "Filter on image-upload.",
+				TitleSize = titlesize,
+				Subtitle = "The user must click the image-upload button and upload a picture of interest.",
 				SubtitleSize = subtitlesize,
 				Image = ImageSource.FromResource("Sensate.Assets.For_Blue_Background.png"),
 				ImageWidth = 100,
-				Details = "Note: Your Mobile phone camera must have at least 5 megapixels resolution. Listen Well to the audio feedback of Sensate during this mode. It is recommended to capture an object very near to you so that it will be recognized better. Also, make sure to have a stable internet connection.",
+				Details = "Clicking the color enhancement toggle button switches the color enhancement filter on and off.",
 				DetailsSize = detailssize
 			});
 
 			TutorialContent.Add(new TutorialContentModel {
-				Title = "Recognition Mode",
+				Title = "Other functionalities.",
 				TitleSize = titlesize,
 				Subtitle = "Welcome to the tutorial page of the Recognition Mode",
 				SubtitleSize = subtitlesize,
@@ -100,6 +111,7 @@ namespace Sensate.Views {
 			circle1.Fill = (index == 0) ? Brush.White : Brush.LightSkyBlue;
 			circle2.Fill = (index == 1) ? Brush.White : Brush.LightSkyBlue;
 			circle3.Fill = (index == 2) ? Brush.White : Brush.LightSkyBlue;
+			circle4.Fill = (index == 3) ? Brush.White : Brush.LightSkyBlue;
 		}
 	}
 }
