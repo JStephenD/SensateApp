@@ -25,7 +25,8 @@ namespace Sensate.Views {
 		private bool iscapturemode = true;
 		private bool isuploadmode = false;
 		private bool isbusy = false;
-		private bool isVibration;
+		private readonly bool isVibration;
+		private bool isBackCam = true;
 		private Assembly assembly;
 
 		private static readonly float[] Protanopia = {
@@ -154,10 +155,13 @@ namespace Sensate.Views {
 			Shell.Current.FlyoutIsPresented = true;
 		}
 		public void RotateCamFrameClick(object s, EventArgs e) {
+			isbusy = true;
 			if (cameraView.CameraOptions == CameraOptions.Back)
 				cameraView.CameraOptions = CameraOptions.Front;
 			else
 				cameraView.CameraOptions = CameraOptions.Back;
+			isBackCam = !isBackCam;
+			isbusy = false;
 		}
 		public void FlashFrameClick(object s, EventArgs e) {
 			if (cameraView.FlashMode == CameraFlashMode.Off)
@@ -292,20 +296,19 @@ namespace Sensate.Views {
 			if (bitmap != null) {
 				if (isuploadmode) {
 					Console.WriteLine(cbmode);
-					canvas.DrawBitmap(bitmap, info.Rect, BitmapStretch.AspectFit, 
+					canvas.DrawBitmap(bitmap, info.Rect, BitmapStretch.AspectFit,
 						paint: (cbmode == "Protanopia") ? paintProtanopia :
 								(cbmode == "Deuteranopia") ? paintDeuteranopia :
 								(cbmode == "Tritanopia") ? paintTritanopia :
 								null);
 				} else {
 					SKBitmap rotatedBitmap;
-					rotatedBitmap = Rotate2(bitmap, 90);
+					rotatedBitmap = Rotate2(bitmap, (cameraView.CameraOptions == CameraOptions.Back) ? 90 : -90);
 					canvas.DrawBitmap(rotatedBitmap, info.Rect, BitmapStretch.AspectFill,
-						paint: (cbmode == "Protanopia") ? paintProtanopia :
-								(cbmode == "Deuteranopia") ? paintDeuteranopia :
-								(cbmode == "Tritanopia") ? paintTritanopia :
-								null);
-					
+					paint: (cbmode == "Protanopia") ? paintProtanopia :
+							(cbmode == "Deuteranopia") ? paintDeuteranopia :
+							(cbmode == "Tritanopia") ? paintTritanopia :
+							null);
 				}
 			}
 		}

@@ -30,6 +30,7 @@
     <None Remove="Assets\default-avatar.png" />
     <None Remove="Assets\display-settings.png" />
     <None Remove="Assets\eye-censored.png" />
+    <None Remove="Assets\eye-glow.png" />
     <None Remove="Assets\faq-down.png" />
     <None Remove="Assets\faq-up.png" />
     <None Remove="Assets\flash.png" />
@@ -63,6 +64,7 @@
     <None Remove="Assets\sensate-logo2.png" />
     <None Remove="Assets\shutter.png" />
     <None Remove="Assets\star.png" />
+    <None Remove="Assets\tri-color.png" />
     <None Remove="Assets\tutorial\tutorial-am-1.png" />
     <None Remove="Assets\tutorial\tutorial-ce-1.png" />
     <None Remove="Assets\tutorial\tutorial-rm-1.png" />
@@ -93,6 +95,7 @@
     <EmbeddedResource Include="Assets\colors.png" />
     <EmbeddedResource Include="Assets\default-avatar.png" />
     <EmbeddedResource Include="Assets\display-settings.png" />
+    <EmbeddedResource Include="Assets\eye-glow.png" />
     <EmbeddedResource Include="Assets\faq-down.png" />
     <EmbeddedResource Include="Assets\faq-up.png" />
     <EmbeddedResource Include="Assets\flash.png" />
@@ -119,6 +122,7 @@
     <EmbeddedResource Include="Assets\sensate-logo2.png" />
     <EmbeddedResource Include="Assets\shutter.png" />
     <EmbeddedResource Include="Assets\star.png" />
+    <EmbeddedResource Include="Assets\tri-color.png" />
     <EmbeddedResource Include="Assets\tutorial\tutorial-am-1.png" />
     <EmbeddedResource Include="Assets\tutorial\tutorial-ce-1.png" />
     <EmbeddedResource Include="Assets\tutorial\tutorial-rm-1.png" />
