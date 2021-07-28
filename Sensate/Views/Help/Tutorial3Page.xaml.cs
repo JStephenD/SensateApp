@@ -78,7 +78,7 @@ namespace Sensate.Views {
 
 			TutorialContent.Add(new TutorialContentModel{ 
 				Title = "Other functionalities to use.", 
-				TitleSize = titlesize,
+				TitleSize = titlesize - 2,
 				Subtitle = "The interface provides more buttons and a slider to personalize the capture.", 
 				SubtitleSize = subtitlesize,
 				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-rm-4.png"),

@@ -52,11 +52,12 @@
 							</StackLayout>
 
 							<StackLayout Orientation="Horizontal" Spacing="20" Margin="20,0,0,0"
-										 HeightRequest="50">
+										 >
 								<Ellipse	WidthRequest="17" HeightRequest="17" Fill="#80D7FC"
 											VerticalOptions="Center"/>
 								<Frame	BackgroundColor="#FF881A" Opacity="50" CornerRadius="30" 
-										HorizontalOptions="FillAndExpand" Padding="20,0"
+										HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+										Padding="20,0"
 										x:Name="HardwareButtonsFrame">
 									<StackLayout Orientation="Horizontal">
 										<Label	Text="Hardware Buttons" TextColor="Black"

@@ -69,6 +69,10 @@
     <None Remove="Assets\tutorial\icon_cb.png" />
     <None Remove="Assets\tutorial\icon_lv.png" />
     <None Remove="Assets\tutorial\tutorial-am-1.png" />
+    <None Remove="Assets\tutorial\tutorial-am-2.jpg" />
+    <None Remove="Assets\tutorial\tutorial-am-3.jpg" />
+    <None Remove="Assets\tutorial\tutorial-am-4.jpg" />
+    <None Remove="Assets\tutorial\tutorial-am-5.jpg" />
     <None Remove="Assets\tutorial\tutorial-am-6.jpg" />
     <None Remove="Assets\tutorial\tutorial-am-7.jpg" />
     <None Remove="Assets\tutorial\tutorial-am-8.jpg" />
@@ -76,6 +80,7 @@
     <None Remove="Assets\tutorial\tutorial-is-1.png" />
     <None Remove="Assets\tutorial\tutorial-is-2.jpg" />
     <None Remove="Assets\tutorial\tutorial-is-3.jpg" />
+    <None Remove="Assets\tutorial\tutorial-is-4.jpg" />
     <None Remove="Assets\tutorial\tutorial-is-5.jpg" />
     <None Remove="Assets\tutorial\tutorial-rm-1.png" />
     <None Remove="Assets\tutorial\tutorial-rm-2.png" />
@@ -140,6 +145,10 @@
     <EmbeddedResource Include="Assets\tutorial\icon_cb.png" />
     <EmbeddedResource Include="Assets\tutorial\icon_lv.png" />
     <EmbeddedResource Include="Assets\tutorial\tutorial-am-1.png" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-am-2.jpg" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-am-3.jpg" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-am-4.jpg" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-am-5.jpg" />
     <EmbeddedResource Include="Assets\tutorial\tutorial-am-6.jpg" />
     <EmbeddedResource Include="Assets\tutorial\tutorial-am-7.jpg" />
     <EmbeddedResource Include="Assets\tutorial\tutorial-am-8.jpg" />
@@ -147,6 +156,7 @@
     <EmbeddedResource Include="Assets\tutorial\tutorial-is-1.png" />
     <EmbeddedResource Include="Assets\tutorial\tutorial-is-2.jpg" />
     <EmbeddedResource Include="Assets\tutorial\tutorial-is-3.jpg" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-is-4.jpg" />
     <EmbeddedResource Include="Assets\tutorial\tutorial-is-5.jpg" />
     <EmbeddedResource Include="Assets\tutorial\tutorial-rm-1.png" />
     <EmbeddedResource Include="Assets\tutorial\tutorial-rm-2.png" />

@@ -24,7 +24,7 @@
 								<Grid RowDefinitions="*,*,*,*,*,*,*" 
 								  ColumnDefinitions="*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*"
 								  RowSpacing="0" ColumnSpacing="0" HorizontalOptions="FillAndExpand"
-								  HeightRequest="80" Margin="10,15,10,0" Padding="0">
+								  HeightRequest="100" Margin="10,15,10,0" Padding="0">
 									<Frame Grid.Column="1" Grid.Row="1"
 									   Grid.RowSpan="6" Grid.ColumnSpan="19"
 									HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
@@ -43,7 +43,7 @@
 								   TextColor="White" FontSize="{Binding SubtitleSize}"
 								   HorizontalTextAlignment="Center" Margin="20"/>
 
-								<StackLayout Orientation="Horizontal">
+								<StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
 									<Image Source="{Binding Image}"
 									   WidthRequest="{Binding ImageWidth}"/>
 									<Label Text="{Binding Details}"

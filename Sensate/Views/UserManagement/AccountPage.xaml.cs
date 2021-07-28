@@ -71,11 +71,13 @@ namespace Sensate.Views {
 
 		#region gesturerecognizer functions
 		public async void SynchronizeFrameClick(object s, EventArgs e) {
-			if (_settings.VibrationFeedback) Vibration.Vibrate();
 			if (Preferences.Get("UID", "") == "") {
 				// not logged in
+				if (_settings.VibrationFeedback) Vibration.Vibrate();
+				
 			} else { 
 				await SyncHelper.LoadSettings();
+				if (_settings.VibrationFeedback) Vibration.Vibrate();
 				this.OnAppearing();
 			}
 		}
@@ -85,7 +87,7 @@ namespace Sensate.Views {
 		}
 		public void LogoutFrameClick(object s, EventArgs e) {
 			if (_settings.VibrationFeedback) Vibration.Vibrate();
-			if (logoutFrameText.Text == "Sign in") { 
+			if (logoutFrameText.Text == "SIGN IN") { 
 				Shell.Current.GoToAsync(nameof(SigninPage));
 			} else { 
 				Preferences.Set("UID", "");

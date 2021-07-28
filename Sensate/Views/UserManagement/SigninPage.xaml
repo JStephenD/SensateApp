@@ -10,83 +10,41 @@
              Shell.NavBarIsVisible="False">
 	<ContentPage.Content>
 		<StackLayout Padding="0" Margin="0" Spacing="0">
-			<Frame 
-				BackgroundColor="#00AEF9" 
-				HeightRequest="200" 
-				VerticalOptions="Fill">
+			<Frame  BackgroundColor="#00AEF9"  HeightRequest="200"  VerticalOptions="Fill">
 
 				<StackLayout>
-					<StackLayout
-						Orientation="Horizontal">
+					<StackLayout Orientation="Horizontal">
 						<ImageButton 
 							HeightRequest="50" WidthRequest="50" HorizontalOptions="StartAndExpand"
 							BackgroundColor="Transparent"
 							Source="{xct:ImageResource Id=Sensate.Assets.arrow-back.png}"/>
-                        <Button 
-							BackgroundColor="#FF881A"
-                            HorizontalOptions="EndAndExpand"
-							CornerRadius="50"
-							VerticalOptions="Center" 
-							Text="SIGN UP" 
-							HeightRequest="40"
-							FontSize="18"
-							Command="{Binding SignupCommand}"/>
+                        <Button  BackgroundColor="#FF881A" HorizontalOptions="EndAndExpand" 
+								 CornerRadius="50" VerticalOptions="Center"  Text="SIGN UP"  
+								 HeightRequest="40" FontSize="18" Command="{Binding SignupCommand}"/>
                     </StackLayout>
-					<Label 
-						Text="Sign In"
-						TextColor="Black"
-						FontSize="32"
-						/>
-					<Label 
-						Text="Sign in to Sensate to syncronize your settings and your data."
-						TextColor="Black"
-						FontSize="24"
-						/>
+					<Label  Text="Sign In" TextColor="Black" FontSize="32" />
+					<Label  Text="Sign in to Sensate to syncronize your settings and your data." 
+							TextColor="Black" FontSize="24" />
 				</StackLayout>
 			</Frame>
 
-			<Frame 
-				BackgroundColor="#FFFFFF" 
-				VerticalOptions="FillAndExpand">
-				<FlexLayout
-					Direction="Column"
-					JustifyContent="SpaceAround"
-					>
+			<Frame  BackgroundColor="#FFFFFF"  VerticalOptions="FillAndExpand">
+				<FlexLayout Direction="Column" JustifyContent="SpaceAround" >
 					<!--entry portion-->
 					<StackLayout>
-						<Frame
-							CornerRadius="50"
-							BorderColor="Black"
-							Padding="20,5"
-							>
-							<Entry
-								Text = "{Binding Email}" 
-								Placeholder="Email"
-                                x:Name="SignInEmail"
-								PlaceholderColor="Gray"
-								TextColor="Black"
-								/>
+						<Frame CornerRadius="50" BorderColor="Black" Padding="20,5" >
+							<Entry Text = "{Binding Email}"  Placeholder="Email" 
+								   x:Name="SignInEmail" PlaceholderColor="Gray" 
+								   TextColor="Black" />
 						</Frame>
-						<Frame
-							CornerRadius="50"
-							BorderColor="Black"
-							Padding="20,5"
-							>
-							<Entry
-								Text = "{Binding Password}" 
-								IsPassword="True"
-								Placeholder="Password"
-                                x:Name="SignInPassword"
-								PlaceholderColor="Gray"
-								TextColor="Black"
-								/>
+						<Frame CornerRadius="50" BorderColor="Black" Padding="20,5" >
+							<Entry Text = "{Binding Password}"  IsPassword="True" 
+								   Placeholder="Password" x:Name="SignInPassword" 
+								   PlaceholderColor="Gray" TextColor="Black" />
 						</Frame>
 
-						<Label 
-							HorizontalOptions="End"
-							Text="Forgot Password?"
-							TextColor="Blue"
-							/>
+						<!--to be implemented-->
+						<!--<Label  HorizontalOptions="End" Text="Forgot Password?" TextColor="Blue" />-->
 
                         <!--
                         <Label 
@@ -100,34 +58,15 @@
 
 					<!--Bottom portion - login and dots-->
 					<StackLayout VerticalOptions="End">
-						<Button 
-							BackgroundColor="#FF881A"
-							CornerRadius="50"
-							VerticalOptions="Center" 
-							Text="Sign in" 
-							HeightRequest="60"
-							FontSize="24"
-							Command = "{Binding SigninCommand}"
-							/>
+						<Button  BackgroundColor="#FF881A" CornerRadius="50" 
+								 VerticalOptions="Center"  Text="Sign in" 
+								 HeightRequest="60" FontSize="24" 
+								 Command = "{Binding SigninCommand}" />
 
-						<StackLayout 
-							HorizontalOptions="Center"
-							Orientation="Horizontal" >
-							<Ellipse 
-								WidthRequest="17" 
-								HeightRequest="17"
-								Fill="#C4C4C4"
-								/>
-							<Ellipse 
-								WidthRequest="17" 
-								HeightRequest="17"
-								Fill="#C4C4C4"
-								/>
-							<Ellipse 
-								WidthRequest="17" 
-								HeightRequest="17"
-								Fill="#FF881A"
-								/>
+						<StackLayout  HorizontalOptions="Center" Orientation="Horizontal" >
+							<Ellipse WidthRequest="17" HeightRequest="17" Fill="#C4C4C4"/>
+							<Ellipse WidthRequest="17" HeightRequest="17" Fill="#C4C4C4"/>
+							<Ellipse WidthRequest="17" HeightRequest="17" Fill="#FF881A"/>
 						</StackLayout>
 					</StackLayout>
 				</FlexLayout>

@@ -56,10 +56,10 @@ namespace Sensate.Views {
 
 			TutorialContent.Add(new TutorialContentModel {
 				Title = "Sign-up for an account.",
-				TitleSize = titlesize,
+				TitleSize = titlesize - 2,
 				Subtitle = "After the loading and welcome page, Sensate will ask you to either sign-up or skip the process. Click the sign-up button. Sensate will now show a sign-up form for you to fill in.",
 				SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-am-2.png"),
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-am-2.jpg"),
 				ImageWidth = 100,
 				Details = "Enter the your desired username or email. Password and confirm password should match and must be more than 6 characters. Click the confirm button. An alert will notify you if the sign-up is successful or not.",
 				DetailsSize = detailssize
@@ -70,7 +70,7 @@ namespace Sensate.Views {
 				TitleSize = titlesize,
 				Subtitle = "After sign-up or if you already have an existing account, you can sign-in using your registered credentials.",
 				SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-am-3.png"),
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-am-3.jpg"),
 				ImageWidth = 100,
 				Details = "On the sign-in form, just enter your registered username or email, and your password. Make sure to remember and protect your credentials.",
 				DetailsSize = detailssize
@@ -81,7 +81,7 @@ namespace Sensate.Views {
 				TitleSize = titlesize,
 				Subtitle = "After your first sign-up and sign-in, Sensate will display a quick profile setup page.",
 				SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-am-4.png"),
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-am-4.jpg"),
 				ImageWidth = 100,
 				Details = "Just enter your name (full name or a nickname), sex, and birthdate. Click the confirm button to confirm your profile entries.",
 				DetailsSize = detailssize
@@ -92,7 +92,7 @@ namespace Sensate.Views {
 				TitleSize = titlesize,
 				Subtitle = "While you're on the main interface (recognition mode or color enhancement mode), just click the menu button on the upper left corner and click \"Account\".",
 				SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-am-5.png"),
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-am-5.jpg"),
 				ImageWidth = 100,
 				Details = "You can now view your profile details such as name, sex, age, user type. You can also sycnhronize your account and edit your profile. Pressing the sign-out button signs out your account from the device.",
 				DetailsSize = detailssize
