@@ -9,21 +9,26 @@ using Google.Cloud.Vision.V1;
 using System.Linq;
 using System.Collections.Generic;
 using Plugin.TextToSpeech;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class RecognitionModePage : ContentPage {
 		string mode;
-		readonly Assembly assembly;
-		readonly string[] resources;
-		readonly string vision_authfile;
-		readonly string json_creds;
-		readonly bool isVibration;
-		readonly bool isGesture;
-		readonly Xamarin.Forms.ImageSource icon_general, icon_text, icon_face, icon_product;
-		readonly private SyncHelper.Settings _settings;
-		readonly float speakRate;
+		Assembly assembly;
+		string[] resources;
+		string vision_authfile;
+		string json_creds;
+		bool isVibration;
+		bool isGesture;
+		Xamarin.Forms.ImageSource icon_general, icon_text, icon_face, icon_product;
+		private SyncHelper.Settings _settings;
+		float speakRate;
 		private bool isFlashlight = false;
+		private bool isSpeaking = false;
+
+		private CancellationTokenSource _cts;
 
 		public RecognitionModePage() {
 			InitializeComponent();
@@ -56,6 +61,10 @@ namespace Sensate.Views {
 			detectionmodeselectclick.Tapped += DetectionModeSelectClick;
 			detectionmodeselect.GestureRecognizers.Add(detectionmodeselectclick);
 			#endregion gesturerecognizers
+		}
+
+		protected override void OnAppearing() {
+			base.OnAppearing();
 
 			#region defaults
 			_settings = SyncHelper.GetCurrentSettings();
@@ -82,11 +91,10 @@ namespace Sensate.Views {
 
 			isVibration = Preferences.Get("VibrationFeedback", false, "GeneralSettings");
 			isGesture = Preferences.Get("Gesture", false, "GeneralSettings");
-			#endregion defaults
-		}
 
-		protected override void OnAppearing() {
-			base.OnAppearing();
+			_cts = new CancellationTokenSource();
+			#endregion defaults
+
 			if (isGesture) {
 				Accelerometer.ShakeDetected += Accelerometer_ShakeDetected;
 				Accelerometer.Start(SensorSpeed.Game);
@@ -147,7 +155,7 @@ namespace Sensate.Views {
 		public void DetectionModeSelectClick(object s, EventArgs e) {
 			detectionmode.Focus();
 		}
-		public void DetectionModeChange(object s, EventArgs e) {
+		public async void DetectionModeChange(object s, EventArgs e) {
 			mode = detectionmode.SelectedItem.ToString();
 			if (mode == "General Object Detection") {
 				detectionmodeimage.Source = icon_general;
@@ -158,6 +166,8 @@ namespace Sensate.Views {
 			} else if (mode == "Logo Detection") {
 				detectionmodeimage.Source = icon_product;
 			}
+
+			await Speak($"{mode}");
 		}
 
 		#endregion navigation
@@ -201,7 +211,7 @@ namespace Sensate.Views {
 
 			if (isVibration) Vibration.Vibrate();
 
-			try { 
+			try {
 				await CrossTextToSpeech.Current.Speak("Captured Image", speakRate: speakRate);
 				//await TextToSpeech.SpeakAsync("Captured Image");
 
@@ -240,15 +250,13 @@ namespace Sensate.Views {
 						string output = $"Object Identified: {annotation.Name}";
 						Console.WriteLine(output);
 						//if (annotation.Score >= .80)
-						await CrossTextToSpeech.Current.Speak(output, speakRate: speakRate);
-						//await TextToSpeech.SpeakAsync(output);
+						await Speak(output);
 					}
 
 					Console.WriteLine(response.LabelAnnotations);
 					List<Result> results = new List<Result>();
 					if (detectedobject)
-						await CrossTextToSpeech.Current.Speak("Related terms to Object can be", speakRate: speakRate);
-					//await TextToSpeech.SpeakAsync("Related terms to Object can be");
+						await Speak("Related terms to Object can be");
 					foreach (EntityAnnotation annotation in response.LabelAnnotations) {
 						results.Add(new Result {
 							desc = annotation.Description,
@@ -267,15 +275,13 @@ namespace Sensate.Views {
 						} else {
 							output = $"Object Identified: {r.desc}";
 						}
-						await CrossTextToSpeech.Current.Speak(output, speakRate: speakRate);
+						await Speak(output);
 						//await TextToSpeech.SpeakAsync(output);
 						if (limit-- == 0) break;
 					}
 
 					if (!detectedlabel && !detectedobject)
-						await CrossTextToSpeech.Current.Speak("No object found in the captured image.",
-							speakRate: speakRate);
-					//await TextToSpeech.SpeakAsync("No object found in the captured image.");
+						await Speak("No object found in the captured image.");
 				}
 				if (mode == "Text Detection") {
 					var detected = false;
@@ -283,45 +289,35 @@ namespace Sensate.Views {
 					foreach (EntityAnnotation text in response.TextAnnotations) {
 						detected = true;
 						Console.WriteLine($"Description: {text.Description}");
-						await CrossTextToSpeech.Current.Speak(text.Description, speakRate: speakRate);
-						//await TextToSpeech.SpeakAsync(text.Description);
+						await Speak(text.Description);
 						break;
 					}
-					if (!detected) await CrossTextToSpeech.Current.Speak("No text found in the captured image.",
-										speakRate: speakRate);
-					//if (!detected) await TextToSpeech.SpeakAsync("No text found in the captured image.");
-
+					if (!detected) await Speak("No text found in the captured image.");
 				}
 				if (mode == "Face Detection") {
 					var detected = false;
+					var detectedemotion = false;
 					Console.WriteLine(response.FaceAnnotations);
 					foreach (FaceAnnotation face in response.FaceAnnotations) {
 						detected = true;
-						if (face.JoyLikelihood >= Likelihood.Possible)
-							await CrossTextToSpeech.Current.Speak("It looks like a joyful person",
-												speakRate: speakRate);
-						//await TextToSpeech.SpeakAsync("It looks like a joyful person");
-						if (face.AngerLikelihood >= Likelihood.Possible)
-							await CrossTextToSpeech.Current.Speak("It looks like a mad person",
-												speakRate: speakRate);
-						//await TextToSpeech.SpeakAsync("It looks like a mad person");
-						if (face.SorrowLikelihood >= Likelihood.Possible)
-							await CrossTextToSpeech.Current.Speak("It looks like a sad person",
-												speakRate: speakRate);
-						//await TextToSpeech.SpeakAsync("It looks like a sad person");
-						if (face.SurpriseLikelihood >= Likelihood.Possible)
-							await CrossTextToSpeech.Current.Speak("It looks like a surprised person",
-												speakRate: speakRate);
-						//await TextToSpeech.SpeakAsync("It looks like a surprised person");
-						if (face.HeadwearLikelihood >= Likelihood.Possible)
-							await CrossTextToSpeech.Current.Speak("It also seems like the person is wearing a headgear",
-												speakRate: speakRate);
-						//await TextToSpeech.SpeakAsync("It also seems like the person is wearing a headgear");
+						if (face.JoyLikelihood >= Likelihood.Possible) {
+							await Speak("It looks like a joyful person"); detectedemotion = true;
+						}
+						if (face.AngerLikelihood >= Likelihood.Possible) {
+							await Speak("It looks like a mad person"); detectedemotion = true;
+						}
+						if (face.SorrowLikelihood >= Likelihood.Possible) {
+							await Speak("It looks like a sad person"); detectedemotion = true;
+						}
+						if (face.SurpriseLikelihood >= Likelihood.Possible) {
+							await Speak("It looks like a surprised person"); detectedemotion = true;
+						}
+						if (face.HeadwearLikelihood >= Likelihood.Possible) {
+							await Speak("It also seems like the person is wearing a headgear"); detectedemotion = true;
+						}
 					}
-					if (!detected) await CrossTextToSpeech.Current.Speak("No face found in the captured image.",
-										speakRate: speakRate);
-					//if (!detected) await TextToSpeech.SpeakAsync("No face found in the captured image.");
-
+					if (!detectedemotion) await Speak("Face found but could not identify emotion.");
+					else if (!detected) await Speak("No face found in the captured image.");
 				}
 				if (mode == "Logo Detection") {
 					var detected = false;
@@ -330,14 +326,9 @@ namespace Sensate.Views {
 					foreach (EntityAnnotation logo in response.LogoAnnotations) {
 						detected = true;
 						Console.WriteLine($"Description: {logo.Description}");
-						await CrossTextToSpeech.Current.Speak($"Possible Brand: {logo.Description}",
-											speakRate: speakRate);
-						//await TextToSpeech.SpeakAsync($"Possible Brand: {logo.Description}");
+						await Speak($"Possible Logo: {logo.Description}");
 					}
-					if (!detected) await CrossTextToSpeech.Current.Speak("No logo found in the captured image.",
-										speakRate: speakRate);
-					//if (!detected) await TextToSpeech.SpeakAsync("No logo found in the captured image.");
-
+					if (!detected) await Speak("No logo found in the captured image.");
 				}
 			} catch {
 				Console.WriteLine("error");
@@ -346,6 +337,24 @@ namespace Sensate.Views {
 			previewImage.IsVisible = false;
 		}
 		#endregion camera
+
+		private async Task Speak(string output) {
+			if (isSpeaking) {
+				try {
+					if (_cts.Token.CanBeCanceled) {
+						_cts.Cancel();
+					} else
+						Console.WriteLine("cannot be cancelled");
+				} catch (Exception e) { Console.WriteLine("error speak"); Console.WriteLine(e.Message); }
+			}
+			isSpeaking = true;
+			_cts = new CancellationTokenSource();
+			try {
+				await CrossTextToSpeech.Current.Speak(output, speakRate: speakRate, cancelToken: _cts.Token);
+			} catch (TaskCanceledException tce) { Console.WriteLine("speak cancelled"); Console.WriteLine(tce.Message);
+			} catch (Exception) { Console.WriteLine("speak cancelled error"); }
+			isSpeaking = false;
+		}
 
 		public class Result {
 			public string desc;
