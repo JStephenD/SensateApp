@@ -23,23 +23,28 @@
 
 			<ScrollView BackgroundColor="White" VerticalOptions="FillAndExpand">
 				<StackLayout Spacing="18" Margin="20,0" Padding="0,20,0,20">
-					<Label Text="This means you will lose your account and all of the information." 
+					<Label Text="Your account on the cloud will be gone, but some information in this device remains." 
 						   TextColor="black" FontSize="18" x:Name="textInfo"/> 
 
 					<Frame x:Name="reasonFrame" BorderColor="Black" CornerRadius="30">
-						<Picker x:Name="reasonPicker"
-								Title="Reason for account deletion" TitleColor="Gray"
-								TextColor="Black" FontSize="18">
-							<Picker.ItemsSource>
-								<x:Array Type="{x:Type x:String}">
-									<x:String>Uninstalling the App</x:String>
-									<x:String>Taking a break</x:String>
-									<x:String>I don't feel safe</x:String>
-									<x:String>Use another account</x:String>
-									<x:String>I'd rather not say</x:String>
-								</x:Array>
-							</Picker.ItemsSource>
-						</Picker>
+						<StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand">
+							<Picker x:Name="reasonPicker"
+									Title="Reason for account deletion" TitleColor="Gray"
+									TextColor="Black" FontSize="18"
+									HorizontalOptions="StartAndExpand">
+								<Picker.ItemsSource>
+									<x:Array Type="{x:Type x:String}">
+										<x:String>Uninstalling the App</x:String>
+										<x:String>Taking a break</x:String>
+										<x:String>I don't feel safe</x:String>
+										<x:String>Use another account</x:String>
+										<x:String>I'd rather not say</x:String>
+									</x:Array>
+								</Picker.ItemsSource>
+							</Picker>
+							<Image Source="{xct:ImageResource Id=Sensate.Assets.arrow-down.png}"
+							   WidthRequest="30" HorizontalOptions="End"/>
+						</StackLayout>
 					</Frame>
 
 

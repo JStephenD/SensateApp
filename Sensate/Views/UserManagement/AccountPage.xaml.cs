@@ -91,6 +91,7 @@ namespace Sensate.Views {
 				Shell.Current.GoToAsync(nameof(SigninPage));
 			} else { 
 				Preferences.Set("UID", "");
+				Preferences.Set("FirebaseToken", "");
 				this.OnAppearing();
 			}
 		}

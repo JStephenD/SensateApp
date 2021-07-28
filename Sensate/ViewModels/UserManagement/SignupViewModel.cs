@@ -14,7 +14,7 @@ namespace Sensate.ViewModels {
 
 		private SyncHelper.Settings _settings;
 
-		public SignupViewModel() { 
+		public SignupViewModel() {
 			_settings = SyncHelper.GetCurrentSettings();
 		}
 
@@ -67,6 +67,7 @@ namespace Sensate.ViewModels {
 							var serializedcontent = JsonConvert.SerializeObject(content);
 							if (_settings.VibrationFeedback) Vibration.Vibrate();
 							Preferences.Set("UID", auth.User.LocalId);
+							Preferences.Set("FirebaseToken", auth.FirebaseToken);
 							Preferences.Set("MyFirebaseRefreshToken", serializedcontent);
 							//string gettoken = auth.FirebaseToken;
 							await App.Current.MainPage.DisplayAlert("Success!", "Welcome to Sensate! Please remember your credentials for future log-ins.", "OK");
@@ -87,13 +88,16 @@ namespace Sensate.ViewModels {
 				}
 
 			} catch (Exception ex) {
+				Console.WriteLine(ex);
 				if (_settings.VibrationFeedback) Vibration.Vibrate();
-				await App.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
+				if (ex.Message.Contains("EMAIL_EXISTS")) {
+					await App.Current.MainPage.DisplayAlert("Alert", "Email Exists", "OK");
+				} else {
+					await App.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
+				}
 			}
 
 		}
-
-
 
 	}
 }

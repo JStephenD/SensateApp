@@ -56,6 +56,7 @@ namespace Sensate.ViewModels {
 				if (_settings.VibrationFeedback) Vibration.Vibrate();
 
 				Preferences.Set("UID", auth.User.LocalId);
+				Preferences.Set("FirebaseToken", auth.FirebaseToken);
 				Preferences.Set("MyFirebaseRefreshToken", serializedcontent);
 				await App.Current.MainPage.DisplayAlert("Welcome back!", "You are logged in again.", "OK");
 				//enters the homepage
