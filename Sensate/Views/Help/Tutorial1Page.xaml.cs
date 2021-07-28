@@ -6,6 +6,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Reflection;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using System.Threading;
+using Plugin.TextToSpeech;
 
 namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
@@ -15,6 +18,8 @@ namespace Sensate.Views {
 			new ObservableCollection<TutorialContentModel>();
 
 		private SyncHelper.Settings _settings;
+		private float speakRate;
+		private CancelMe cancelme;
 
 		public Tutorial1Page() {
 			InitializeComponent();
@@ -33,6 +38,12 @@ namespace Sensate.Views {
 			base.OnAppearing();
 
 			_settings = SyncHelper.GetCurrentSettings();
+			cancelme = new CancelMe();
+
+			speakRate = (_settings.VoiceSpeed == 0) ? .7f :
+						(_settings.VoiceSpeed == 1) ? 1f :
+													1.3f;
+
 			var titlesize = (_settings.TextSize == 0) ? 20 :
 							(_settings.TextSize == 1) ? 22 :
 							24;
@@ -61,7 +72,7 @@ namespace Sensate.Views {
 				SubtitleSize = subtitlesize,
 				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-am-2.jpg"),
 				ImageWidth = 100,
-				Details = "Enter the your desired username or email. Password and confirm password should match and must be more than 6 characters. Click the confirm button. An alert will notify you if the sign-up is successful or not.",
+				Details = "Enter your desired email. Password and confirm password should match and must be more than 6 characters. Click the confirm button. An alert will notify you if the sign-up is successful or not.",
 				DetailsSize = detailssize
 			});
 
@@ -137,16 +148,18 @@ namespace Sensate.Views {
 		protected override void OnDisappearing() {
 			base.OnDisappearing();
 			TutorialContent.Clear();
+			cancelme.CancelToken();
 		}
 
 		private async void Back(object s, EventArgs e) { 
 			await Shell.Current.GoToAsync($"//{nameof(TutorialPage)}");
 		}
 
-		private void carousel_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e) {
+		private async void carousel_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e) {
 			for (int i=0; i<TutorialContent.Count; i++) { 
 				if (e.CurrentItem.Equals(TutorialContent[i])) {
 					SetCircleFill(i);
+					await cancelme.Speak($"{TutorialContent[i].Details}", speakRate);
 				}
 			}
 		}
@@ -161,5 +174,6 @@ namespace Sensate.Views {
 			circle7.Fill = (index == 6) ? Brush.White : Brush.LightSkyBlue;
 			circle8.Fill = (index == 7) ? Brush.White : Brush.LightSkyBlue;
 		}
+
 	}
 }

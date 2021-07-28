@@ -25,6 +25,7 @@ namespace Sensate.Views {
 		Xamarin.Forms.ImageSource icon_general, icon_text, icon_face, icon_product;
 		private SyncHelper.Settings _settings;
 		float speakRate;
+		CancelMe cancelme;
 		private bool isFlashlight = false;
 		private bool isSpeaking = false;
 
@@ -68,6 +69,8 @@ namespace Sensate.Views {
 
 			#region defaults
 			_settings = SyncHelper.GetCurrentSettings();
+			cancelme = new CancelMe();
+
 			speakRate = (_settings.VoiceSpeed == 0) ? .7f :
 						(_settings.VoiceSpeed == 1) ? 1f :
 													1.3f;
@@ -107,6 +110,7 @@ namespace Sensate.Views {
 				Accelerometer.Stop();
 				Accelerometer.ShakeDetected -= Accelerometer_ShakeDetected;
 			}
+			cancelme.CancelToken();
 		}
 
 		#region zooming
@@ -212,8 +216,7 @@ namespace Sensate.Views {
 			if (isVibration) Vibration.Vibrate();
 
 			try {
-				await CrossTextToSpeech.Current.Speak("Captured Image", speakRate: speakRate);
-				//await TextToSpeech.SpeakAsync("Captured Image");
+				await cancelme.Speak("Captured Image", speakRate);
 
 				ImageAnnotatorClientBuilder builder = new ImageAnnotatorClientBuilder {
 					JsonCredentials = json_creds
@@ -339,21 +342,7 @@ namespace Sensate.Views {
 		#endregion camera
 
 		private async Task Speak(string output) {
-			if (isSpeaking) {
-				try {
-					if (_cts.Token.CanBeCanceled) {
-						_cts.Cancel();
-					} else
-						Console.WriteLine("cannot be cancelled");
-				} catch (Exception e) { Console.WriteLine("error speak"); Console.WriteLine(e.Message); }
-			}
-			isSpeaking = true;
-			_cts = new CancellationTokenSource();
-			try {
-				await CrossTextToSpeech.Current.Speak(output, speakRate: speakRate, cancelToken: _cts.Token);
-			} catch (TaskCanceledException tce) { Console.WriteLine("speak cancelled"); Console.WriteLine(tce.Message);
-			} catch (Exception) { Console.WriteLine("speak cancelled error"); }
-			isSpeaking = false;
+			await cancelme.Speak(output, speakRate);
 		}
 
 		public class Result {
