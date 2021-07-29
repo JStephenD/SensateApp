@@ -325,6 +325,19 @@ namespace Sensate.Views {
 					}
 				}
 			}
+
+
+
+
+
+
+
+
+
+
+
+
+
 		}
 
 		public static SKBitmap Rotate(SKBitmap bitmap, double angle) {
