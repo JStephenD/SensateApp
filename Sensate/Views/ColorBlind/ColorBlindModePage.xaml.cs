@@ -156,10 +156,13 @@ namespace Sensate.Views {
 		}
 		public void RotateCamFrameClick(object s, EventArgs e) {
 			isbusy = true;
-			if (cameraView.CameraOptions == CameraOptions.Back)
-				cameraView.CameraOptions = CameraOptions.Front;
-			else
-				cameraView.CameraOptions = CameraOptions.Back;
+			try {
+				cameraView.CameraOptions = (cameraView.CameraOptions == CameraOptions.Front) ?
+					CameraOptions.Back : CameraOptions.Front;
+			} catch {
+				cameraView.CameraOptions = (cameraView.CameraOptions == CameraOptions.Front) ?
+					CameraOptions.Back : CameraOptions.Front;
+			}
 			isBackCam = !isBackCam;
 			isbusy = false;
 		}
@@ -291,7 +294,7 @@ namespace Sensate.Views {
 			SKSurface surface = e.Surface;
 			SKCanvas canvas = surface.Canvas;
 
-			canvas.Clear(SKColors.White);
+			canvas.Clear();
 
 			if (bitmap != null) {
 				if (isuploadmode) {
@@ -302,13 +305,24 @@ namespace Sensate.Views {
 								(cbmode == "Tritanopia") ? paintTritanopia :
 								null);
 				} else {
+					Console.WriteLine($"is back cam {isBackCam}");
 					SKBitmap rotatedBitmap;
-					rotatedBitmap = Rotate2(bitmap, (cameraView.CameraOptions == CameraOptions.Back) ? 90 : -90);
-					canvas.DrawBitmap(rotatedBitmap, info.Rect, BitmapStretch.AspectFill,
-					paint: (cbmode == "Protanopia") ? paintProtanopia :
-							(cbmode == "Deuteranopia") ? paintDeuteranopia :
-							(cbmode == "Tritanopia") ? paintTritanopia :
-							null);
+					if (isBackCam) {
+						rotatedBitmap = Rotate2(bitmap, 90);
+						canvas.DrawBitmap(rotatedBitmap, info.Rect, BitmapStretch.AspectFill,
+						paint: (cbmode == "Protanopia") ? paintProtanopia :
+								(cbmode == "Deuteranopia") ? paintDeuteranopia :
+								(cbmode == "Tritanopia") ? paintTritanopia :
+								null);
+					} else {
+						rotatedBitmap = Rotate2(bitmap, 90);
+						rotatedBitmap = Rotate2(rotatedBitmap, 180);
+						canvas.DrawBitmap(rotatedBitmap, info.Rect, BitmapStretch.AspectFill,
+						paint: (cbmode == "Protanopia") ? paintProtanopia :
+								(cbmode == "Deuteranopia") ? paintDeuteranopia :
+								(cbmode == "Tritanopia") ? paintTritanopia :
+								null);
+					}
 				}
 			}
 		}
