@@ -33,7 +33,11 @@ namespace Sensate.Views {
 		private async void ConfirmCommand(object sender, EventArgs e) {
 			//-----insert to database-----
 			FirebaseClient firebaseClient = new FirebaseClient(@"https://sensatefirebase-a7ef8-default-rtdb.asia-southeast1.firebasedatabase.app/");
+			
+			//age calc
 			age = DateTime.Now.Year - birthdate.Date.Year;
+			if (DateTime.Now.Month < birthdate.Date.Month || (DateTime.Now.Month == birthdate.Date.Month && DateTime.Now.Day < birthdate.Date.Day))
+        		age--; 
 
 			await firebaseClient.Child("Users").PostAsync(new Users {
 				UID = Preferences.Get("UID", ""),
