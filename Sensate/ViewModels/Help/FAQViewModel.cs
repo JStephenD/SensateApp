@@ -64,6 +64,15 @@ namespace Sensate.ViewModels {
 				new FAQViewModel("What do you mean by sensory-oriented UI?"){
 					new FAQClassModel { Description = "Sensory-oriented UI means that Sensate's user interfaces do not only focus on visual or display. Since our target users are people with low vision and colorblindness, we also integrate audio and tactile interfaces. Examples are the audio and vibrational feedback catered in this application. Also, with shortcuts, navigation is more efficient. To learn more about the shortcuts, just visit the tutorial section of Sensate.  "}
 				},
+				new FAQViewModel("What happens if I activate the audio feedback?"){
+					new FAQClassModel { Description = "Activating the audio feedback provides more assistance such as you could personalize the audio speed you prefer. Also, the audio feedback reads out what is displayed on the screen, such as what interface are you in, and many more."}
+				},
+				new FAQViewModel("What can I do more with the display settings?"){
+					new FAQClassModel { Description = "The display settings lets you set your prefered text size and that if you prefer a bolder font. This could help users with low vision while using the app."}
+				},
+				new FAQViewModel("What is the purpose of vibration feedback?"){
+					new FAQClassModel { Description = "Some users, especially those with low vision might struggle in clicking a button. With the help of vibration feedback, it will make them aware that they have successfully pressed a certain button."}
+				},
 				new FAQViewModel("What do you mean by synchronization?"){
 					new FAQClassModel { Description = "Synchronization happens when the user made an update or changes on the configuration settings, and these updates are saved under the user's account. There might be instances that the users will migrate to a new mobile device, so instead of manually setting up again, they could just sign-in their account and all changes made on the previous will be also reflected on the new device. "}
 				},
