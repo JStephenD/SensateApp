@@ -34,7 +34,8 @@
 											Toggled="ToggledBoldText"/>
 								</StackLayout>
 							</Frame>
-							<Frame BackgroundColor="#80D7FC" CornerRadius="30">
+							<!--not yet supported-->
+							<Frame BackgroundColor="#80D7FC" CornerRadius="30" IsVisible="false">
 								<StackLayout Orientation="Horizontal">
 									<Label  Text="Night Mode" TextColor="Black"
 											HorizontalOptions="StartAndExpand"

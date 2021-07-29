@@ -31,7 +31,7 @@
 
 					<Frame BackgroundColor="#7BD7FF" CornerRadius="30">
 						<Image Source="{xct:ImageResource Id=Sensate.Assets.eye-censored.png}"
-							   xct:IconTintColorEffect.TintColor="#36668B"/>
+							   xct:IconTintColorEffect.TintColor="#36668B" x:Name="categoryIcon"/>
 					</Frame>
 
 					<Frame BackgroundColor="#7BD7FF" CornerRadius="30">

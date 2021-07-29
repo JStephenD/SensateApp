@@ -12,10 +12,21 @@ using System.IO;
 using Firebase.Auth;
 using Xamarin.Essentials;
 using Newtonsoft.Json;
+using Firebase.Database;
+using Firebase.Database.Query;
 
 namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DeleteAccountPage : ContentPage {
+
+		public static string FirebaseAPIKey = "AIzaSyCCVSTuyUOF9KVv6fZJywVHckk4PttsUw8";
+		public static FirebaseAuthProvider authProvider = new FirebaseAuthProvider(new FirebaseConfig(FirebaseAPIKey));
+
+		private static readonly string firestore_url = @"https://sensatefirebase-a7ef8-default-rtdb.asia-southeast1.firebasedatabase.app/";
+		private static readonly FirebaseClient firebase = new FirebaseClient(firestore_url);
+
+		private static readonly string UID = Preferences.Get("UID", "");
+		private static readonly string FirebaseToken = Preferences.Get("FirebaseToken", "");
 
 		private SyncHelper.Settings settings;
 
@@ -78,8 +89,28 @@ namespace Sensate.Views {
 				return;
 			}
 
-			if (settings.VibrationFeedback) Vibration.Vibrate();
-			await DisplayAlert("", "Saved", "ok");
+			if (UID == "" || FirebaseToken == "") {
+				if (settings.VibrationFeedback) Vibration.Vibrate();
+				await DisplayAlert("", "You are not logged in", "ok");
+				return;
+			}
+
+			try {
+				await authProvider.DeleteUserAsync(FirebaseToken);
+				Preferences.Set("UID", "");
+				Preferences.Set("FirebaseToken", "");
+				await firebase
+				  .Child("DeleteAccountReason")
+				  .PostAsync(new {
+					  UID,
+					  Reason = reasonPicker.SelectedItem.ToString()
+				  });
+
+				if (settings.VibrationFeedback) Vibration.Vibrate();
+				await Shell.Current.GoToAsync($"//{nameof(AccountPage)}");
+			} catch (Exception currerror) { Console.WriteLine("error"); Console.WriteLine(currerror.Message); }
+
+			
 		}
 		public async void BackClick(object s, EventArgs e) {
 			if (settings.VibrationFeedback) Vibration.Vibrate();
@@ -94,5 +125,8 @@ namespace Sensate.Views {
 			reasonPicker.Focus();
 		}
 		#endregion gesturerecognizer functions
+	}
+	public class IdTokenModel {
+		public string IdToken { get; set; }
 	}
 }

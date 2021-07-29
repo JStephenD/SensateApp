@@ -2,57 +2,30 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sensate.Views.CategoryColorBlindPage"
+			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
 			 xmlns:viewmodels="clr-namespace:Sensate.ViewModels"
              Shell.NavBarIsVisible="False">
 	<ContentPage.Content>
-		<StackLayout Padding="40" Spacing="20" Background="White">
-			<Frame 
-				BackgroundColor="#17749C"
-				CornerRadius="25"
-				Margin="0,20,0,0"
-				>
-				<StackLayout
-					Orientation="Horizontal"
-					HorizontalOptions="Center"
-					>
-					<Label 
-						Text="Color Blind"
-						TextColor="White"
-						HorizontalOptions="StartAndExpand"
-						FontSize="32"
-						/>
+		<StackLayout Padding="20,40" Spacing="20" Background="White">
+			<Frame  BackgroundColor="#8BBACE" CornerRadius="25" Margin="0,20,0,0">
+				<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+					<Image Source="{xct:ImageResource Id=Sensate.Assets.tri-color.png}"
+						   WidthRequest="60"/>
+					<Label  Text="Color Blind" TextColor="White" HorizontalOptions="StartAndExpand"
+							FontSize="30"/>
 				</StackLayout>
 			</Frame>
 			
 			
-			<Label 
-				Text="Let us learn about you more. Please answer  the following..."
-				TextColor="Black"
-				FontSize="22"
-				/>
+			<Label  Text="Let us learn about you more. Please answer  the following..."
+					TextColor="Black" FontSize="22"/>
 
-			<FlexLayout
-				Direction="Column"
-				VerticalOptions="FillAndExpand"
-				JustifyContent="SpaceAround"
-				>
-				<Frame 
-					BackgroundColor="White"
-					BorderColor="Black"
-					CornerRadius="25"
-					Padding="20,10"
-					>
-					<StackLayout
-						Orientation="Horizontal"
-						>
-						<Picker x:Name="CBType"
-								Title="Color Blindness Type"
-								TitleColor="Gray"
-								TextColor="Black"
-								HorizontalOptions="StartAndExpand"
-								VerticalOptions="Center"
-								FontSize="22"
-							>
+			<FlexLayout Direction="Column" VerticalOptions="FillAndExpand" JustifyContent="SpaceAround">
+				<Frame  BackgroundColor="White" BorderColor="Black" CornerRadius="25" Padding="20,10">
+					<StackLayout Orientation="Horizontal">
+						<Picker x:Name="CBType" FontSize="22"
+								Title="Color Blindness Type" TitleColor="Gray" TextColor="Black"
+								HorizontalOptions="StartAndExpand" VerticalOptions="Center">
 							<Picker.ItemsSource>
 								<x:Array Type="{x:Type x:String}">
 									<x:String>Protanopia</x:String>
@@ -61,32 +34,16 @@
 								</x:Array>
 							</Picker.ItemsSource>
 						</Picker>
-						<Label 
-							Text=">"
-							TextColor="Black"
-							HorizontalOptions="End"
-							FontSize="30"
-							/>
+						<Image Source="{xct:ImageResource Id=Sensate.Assets.arrow-down.png}"
+							   WidthRequest="30" HorizontalOptions="End"/>
 					</StackLayout>
 				</Frame>
 
-				<Frame 
-					BackgroundColor="White"
-					BorderColor="Black"
-					CornerRadius="25"
-					Padding="20,10"
-					>
-					<StackLayout
-						Orientation="Horizontal"
-						>
-						<Picker x:Name="AssistanceLevel"
-								Title="Assistance Level"
-								TitleColor="Gray"
-								TextColor="Black"
-								HorizontalOptions="StartAndExpand"
-								VerticalOptions="Center"
-								FontSize="22"
-							>
+				<Frame  BackgroundColor="White" BorderColor="Black" CornerRadius="25" Padding="20,10">
+					<StackLayout Orientation="Horizontal">
+						<Picker x:Name="AssistanceLevel" FontSize="22"
+								Title="Assistance Level" TitleColor="Gray" TextColor="Black"
+								HorizontalOptions="StartAndExpand" VerticalOptions="Center">
 							<Picker.ItemsSource>
 								<x:Array Type="{x:Type x:String}">
 									<x:String>Weak</x:String>
@@ -94,12 +51,8 @@
 								</x:Array>
 							</Picker.ItemsSource>
 						</Picker>
-						<Label 
-							Text=">"
-							TextColor="Black"
-							HorizontalOptions="End"
-							FontSize="30"
-							/>
+						<Image Source="{xct:ImageResource Id=Sensate.Assets.arrow-down.png}"
+							   WidthRequest="30" HorizontalOptions="End"/>
 					</StackLayout>
 				</Frame>
 			</FlexLayout>

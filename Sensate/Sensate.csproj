@@ -30,6 +30,7 @@
     <None Remove="Assets\default-avatar.png" />
     <None Remove="Assets\display-settings.png" />
     <None Remove="Assets\eye-censored.png" />
+    <None Remove="Assets\eye-glow.png" />
     <None Remove="Assets\faq-down.png" />
     <None Remove="Assets\faq-up.png" />
     <None Remove="Assets\flash.png" />
@@ -44,6 +45,7 @@
     <None Remove="Assets\info-small.png" />
     <None Remove="Assets\LightOwls_Logo_new_DBlueVersion.png" />
     <None Remove="Assets\LightOwls_Logo_new_outline.png" />
+    <None Remove="Assets\loading.gif" />
 	  
     <None Remove="Assets\loading.png" />
 	  
@@ -63,9 +65,27 @@
     <None Remove="Assets\sensate-logo2.png" />
     <None Remove="Assets\shutter.png" />
     <None Remove="Assets\star.png" />
+    <None Remove="Assets\tri-color.png" />
+    <None Remove="Assets\tutorial\icon_cb.png" />
+    <None Remove="Assets\tutorial\icon_lv.png" />
     <None Remove="Assets\tutorial\tutorial-am-1.png" />
+    <None Remove="Assets\tutorial\tutorial-am-2.jpg" />
+    <None Remove="Assets\tutorial\tutorial-am-3.jpg" />
+    <None Remove="Assets\tutorial\tutorial-am-4.jpg" />
+    <None Remove="Assets\tutorial\tutorial-am-5.jpg" />
+    <None Remove="Assets\tutorial\tutorial-am-6.jpg" />
+    <None Remove="Assets\tutorial\tutorial-am-7.jpg" />
+    <None Remove="Assets\tutorial\tutorial-am-8.jpg" />
     <None Remove="Assets\tutorial\tutorial-ce-1.png" />
+    <None Remove="Assets\tutorial\tutorial-is-1.png" />
+    <None Remove="Assets\tutorial\tutorial-is-2.jpg" />
+    <None Remove="Assets\tutorial\tutorial-is-3.jpg" />
+    <None Remove="Assets\tutorial\tutorial-is-4.jpg" />
+    <None Remove="Assets\tutorial\tutorial-is-5.jpg" />
     <None Remove="Assets\tutorial\tutorial-rm-1.png" />
+    <None Remove="Assets\tutorial\tutorial-rm-2.png" />
+    <None Remove="Assets\tutorial\tutorial-rm-3.jpg" />
+    <None Remove="Assets\tutorial\tutorial-rm-4.png" />
     <None Remove="Assets\tutorial\tutorial1_01.jpg" />
     <None Remove="Assets\tutorial\tutorial1_02.jpg" />
     <None Remove="Assets\tutorial\tutorial1_03.jpg" />
@@ -93,6 +113,7 @@
     <EmbeddedResource Include="Assets\colors.png" />
     <EmbeddedResource Include="Assets\default-avatar.png" />
     <EmbeddedResource Include="Assets\display-settings.png" />
+    <EmbeddedResource Include="Assets\eye-glow.png" />
     <EmbeddedResource Include="Assets\faq-down.png" />
     <EmbeddedResource Include="Assets\faq-up.png" />
     <EmbeddedResource Include="Assets\flash.png" />
@@ -107,6 +128,7 @@
     <EmbeddedResource Include="Assets\info-small.png" />
     <EmbeddedResource Include="Assets\LightOwls_Logo_new_DBlueVersion.png" />
     <EmbeddedResource Include="Assets\LightOwls_Logo_new_outline.png" />
+    <EmbeddedResource Include="Assets\loading.gif" />
     <EmbeddedResource Include="Assets\loading.png" />
     <EmbeddedResource Include="Assets\navigation-settings.png" />
     <EmbeddedResource Include="Assets\recognition-face.png" />
@@ -119,9 +141,27 @@
     <EmbeddedResource Include="Assets\sensate-logo2.png" />
     <EmbeddedResource Include="Assets\shutter.png" />
     <EmbeddedResource Include="Assets\star.png" />
+    <EmbeddedResource Include="Assets\tri-color.png" />
+    <EmbeddedResource Include="Assets\tutorial\icon_cb.png" />
+    <EmbeddedResource Include="Assets\tutorial\icon_lv.png" />
     <EmbeddedResource Include="Assets\tutorial\tutorial-am-1.png" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-am-2.jpg" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-am-3.jpg" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-am-4.jpg" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-am-5.jpg" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-am-6.jpg" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-am-7.jpg" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-am-8.jpg" />
     <EmbeddedResource Include="Assets\tutorial\tutorial-ce-1.png" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-is-1.png" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-is-2.jpg" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-is-3.jpg" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-is-4.jpg" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-is-5.jpg" />
     <EmbeddedResource Include="Assets\tutorial\tutorial-rm-1.png" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-rm-2.png" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-rm-3.jpg" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-rm-4.png" />
     <EmbeddedResource Include="Assets\tutorial\tutorial1_01.jpg" />
     <EmbeddedResource Include="Assets\tutorial\tutorial1_02.jpg" />
     <EmbeddedResource Include="Assets\tutorial\tutorial1_03.jpg" />

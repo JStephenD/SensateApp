@@ -2,55 +2,29 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sensate.Views.CategoryNormalPage"
+			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
 			 xmlns:viewmodels="clr-namespace:Sensate.ViewModels"
              Shell.NavBarIsVisible="False">
 	<ContentPage.Content>
-		<StackLayout Padding="40" Spacing="20" Background="White">
-			<Frame 
-				BackgroundColor="#FF881A"
-				CornerRadius="25"
-				Margin="0,20,0,0"
-				>
-				<StackLayout
-					Orientation="Horizontal"
-					HorizontalOptions="Center"
-					>
-					<Label 
-						Text="Normal Vision"
-						TextColor="White"
-						FontSize="32"
-						/>
+		<StackLayout Padding="20,40" Spacing="20" Background="White">
+			<Frame  BackgroundColor="#FF881A" CornerRadius="25" Margin="0,20,0,0">
+				<StackLayout Orientation="Horizontal" HorizontalOptions="Center" >
+					<Image Source="{xct:ImageResource Id=Sensate.Assets.eye-glow.png}"
+							   WidthRequest="60" />
+					<Label  Text="Normal Vision" TextColor="White" FontSize="30" />
 				</StackLayout>
 			</Frame>
 			
 			
-			<Label 
-				Text="Let us learn about you more. Please answer  the following..."
-				TextColor="Black"
-				FontSize="22"
-				/>
-			<FlexLayout
-				Direction="Column"
-				VerticalOptions="FillAndExpand"
-				JustifyContent="SpaceAround"
-				>
-				<Frame 
-					BackgroundColor="White"
-					BorderColor="Black"
-					CornerRadius="25"
-					Padding="20,10"
-					>
-					<StackLayout
-						Orientation="Horizontal"
-						>
-						<Picker x:Name="Purpose"
-								Title="Purpose of Installing"
-								TitleColor="Gray"
-								TextColor="Black"
-								HorizontalOptions="StartAndExpand"
-								VerticalOptions="Center"
-								FontSize="22"
-							>
+			<Label  Text="Let us learn about you more. Please answer  the following..." 
+					TextColor="Black" FontSize="22" />
+			<FlexLayout Direction="Column" VerticalOptions="FillAndExpand" JustifyContent="SpaceAround" >
+				<Frame  BackgroundColor="White" BorderColor="Black" CornerRadius="25" Padding="20,10" >
+					<StackLayout Orientation="Horizontal" >
+						<Picker x:Name="Purpose" Title="Purpose of Installing" 
+								TitleColor="Gray" TextColor="Black" 
+								HorizontalOptions="StartAndExpand" VerticalOptions="Center" 
+								FontSize="22" >
 							<Picker.ItemsSource>
 								<x:Array Type="{x:Type x:String}">
 									<x:String>Research</x:String>
@@ -59,28 +33,15 @@
 								</x:Array>
 							</Picker.ItemsSource>
 						</Picker>
-						<Label 
-							Text=">"
-							TextColor="Black"
-							HorizontalOptions="End"
-							FontSize="30"
-							/>
+						<Image Source="{xct:ImageResource Id=Sensate.Assets.arrow-down.png}"
+							   WidthRequest="30" HorizontalOptions="End"/>
 					</StackLayout>
 				</Frame>
 			</FlexLayout>
 
-			<Frame
-				BackgroundColor="#FF881A"
-				CornerRadius="25"
-				VerticalOptions="EndAndExpand"
-				Padding="20,10"
-				>
-				<Label
-					Text="Confirm"
-					TextColor="White"
-					FontSize="28"
-					HorizontalTextAlignment="Center"
-					/>
+			<Frame BackgroundColor="#FF881A" CornerRadius="25" VerticalOptions="EndAndExpand" Padding="20,10" >
+				<Label Text="Confirm" TextColor="White" FontSize="28"
+					HorizontalTextAlignment="Center" />
 				<Frame.GestureRecognizers>
 					<TapGestureRecognizer
 						Tapped="Confirm"

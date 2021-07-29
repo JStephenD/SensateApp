@@ -60,16 +60,24 @@ namespace Sensate.Views {
 								(Preferences.Get("AccountGender", "Others", "UserAccount") == "Female") ?
 									ImageSource.FromResource("Sensate.Assets.gender-female.png", typeof(AccountPage).Assembly) :
 
-									ImageSource.FromResource("Sensate.Assets.gender-neutral.png", typeof(AccountPage).Assembly);			
+									ImageSource.FromResource("Sensate.Assets.gender-neutral.png", typeof(AccountPage).Assembly);
+			categoryIcon.Source = (Preferences.Get("UserCategory", "LowVision", "GeneralSettings") == "LowVision") ? 
+									ImageSource.FromResource("Sensate.Assets.eye-censored.png", typeof(AccountPage).Assembly) : 
+								  (Preferences.Get("UserCategory", "LowVision", "GeneralSettings") == "ColorBlind") ?
+								   ImageSource.FromResource("Sensate.Assets.tri-color.png", typeof(AccountPage).Assembly) :
+
+								   ImageSource.FromResource("Sensate.Assets.eye-glow.png", typeof(AccountPage).Assembly);
 		}
 
 		#region gesturerecognizer functions
 		public async void SynchronizeFrameClick(object s, EventArgs e) {
-			if (_settings.VibrationFeedback) Vibration.Vibrate();
 			if (Preferences.Get("UID", "") == "") {
 				// not logged in
+				if (_settings.VibrationFeedback) Vibration.Vibrate();
+				
 			} else { 
 				await SyncHelper.LoadSettings();
+				if (_settings.VibrationFeedback) Vibration.Vibrate();
 				this.OnAppearing();
 			}
 		}
@@ -79,10 +87,11 @@ namespace Sensate.Views {
 		}
 		public void LogoutFrameClick(object s, EventArgs e) {
 			if (_settings.VibrationFeedback) Vibration.Vibrate();
-			if (logoutFrameText.Text == "Sign in") { 
+			if (logoutFrameText.Text == "SIGN IN") { 
 				Shell.Current.GoToAsync(nameof(SigninPage));
 			} else { 
 				Preferences.Set("UID", "");
+				Preferences.Set("FirebaseToken", "");
 				this.OnAppearing();
 			}
 		}

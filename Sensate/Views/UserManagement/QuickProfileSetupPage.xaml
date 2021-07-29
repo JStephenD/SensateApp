@@ -6,10 +6,8 @@
 			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              Shell.NavBarIsVisible="False">
 	<ContentPage.Content>
-		<StackLayout Padding="0" Margin="0" Spacing="0">
-			<Frame 
-				BackgroundColor="#005A81" HeightRequest="200" VerticalOptions="Fill">
-
+		<StackLayout Padding="0" Margin="0" Spacing="0" VerticalOptions="FillAndExpand">
+			<Frame  BackgroundColor="#005A81" HeightRequest="200" VerticalOptions="Fill">
 				<StackLayout>
 					<StackLayout Orientation="Horizontal">
 						<ImageButton 
@@ -26,69 +24,54 @@
 				</StackLayout>
 			</Frame>
 
-			<Frame  BackgroundColor="#FFFFFF"  VerticalOptions="FillAndExpand">
-				<FlexLayout Direction="Column" JustifyContent="SpaceAround">
-					<!--entry portion-->
-					<StackLayout>
-                        <Frame CornerRadius="50" BorderColor="Black" Padding="20,5">
-                            <Entry Placeholder="Name" PlaceholderColor="Gray" 
-                                Text="" TextColor="Black" x:Name="accountname"/>
-                        </Frame>
-
-						<FlexLayout JustifyContent="SpaceBetween">
-							<Frame CornerRadius="30" BorderColor="Black" Padding="20,5">
-								<Picker x:Name="gender" HorizontalOptions="StartAndExpand"
-									Title="Gender" TitleColor="Gray" TextColor="Black">
-									<Picker.Items>
-										<x:String>Male</x:String>
-										<x:String>Female</x:String>
-										<x:String>Others</x:String>
-									</Picker.Items>
-								</Picker>
+			<Frame  BackgroundColor="White"  VerticalOptions="FillAndExpand">
+				<StackLayout Spacing="0" VerticalOptions="FillAndExpand">
+					<FlexLayout Direction="Column" JustifyContent="SpaceEvenly" 
+								VerticalOptions="FillAndExpand">
+						<!--entry portion-->
+						<StackLayout Spacing="50">
+							<Frame CornerRadius="50" BorderColor="Black" Padding="20,5">
+								<Entry Placeholder="Name" PlaceholderColor="Gray" 
+									Text="" TextColor="Black" x:Name="accountname"/>
 							</Frame>
 
-							<Frame x:Name="birthdateFrame" BorderColor="Black" CornerRadius="30"
-								   HorizontalOptions="EndAndExpand">
-								<DatePicker x:Name="birthdate"
-											Format="MM/dd/yyyy" MinimumDate="01/01/1970"
-											TextColor="Black" FontSize="18" Visual="Material"
-											Style="{DynamicResource DatePicker}"/>
-							</Frame>
-						</FlexLayout>
-					</StackLayout>
+							<FlexLayout JustifyContent="SpaceBetween">
+								<Frame CornerRadius="30" BorderColor="Black" Padding="20,5">
+									<Picker x:Name="gender" HorizontalOptions="StartAndExpand"
+										Title="Gender" TitleColor="Gray" TextColor="Black">
+										<Picker.Items>
+											<x:String>Male</x:String>
+											<x:String>Female</x:String>
+											<x:String>Others</x:String>
+										</Picker.Items>
+									</Picker>
+								</Frame>
 
+								<Frame x:Name="birthdateFrame" BorderColor="Black" CornerRadius="30"
+									   HorizontalOptions="EndAndExpand">
+									<DatePicker x:Name="birthdate"
+												Format="MM/dd/yyyy" MinimumDate="01/01/1970"
+												TextColor="Black" FontSize="18" Visual="Material"
+												Style="{DynamicResource DatePicker}"/>
+								</Frame>
+							</FlexLayout>
+						</StackLayout>
+					</FlexLayout>
+					
 					<!--Bottom portion - singup and dots-->
 					<StackLayout VerticalOptions="End">
-						<Button 
-							BackgroundColor="#FF881A"
-							CornerRadius="50"
-							VerticalOptions="Center" 
-							Text="Confirm" 
-							HeightRequest="60"
-							FontSize="24"
-							Clicked="ConfirmCommand"/>
+						<Button  BackgroundColor="#FF881A" CornerRadius="50" 
+									VerticalOptions="Center"  Text="Confirm"  
+									HeightRequest="60" FontSize="24" 
+									Clicked="ConfirmCommand"/>
 
-						<StackLayout 
-							HorizontalOptions="Center"
-							Orientation="Horizontal" >
-							<Ellipse 
-								WidthRequest="17" 
-								HeightRequest="17"
-								Fill="#C4C4C4"
-								/>
-							<Ellipse 
-								WidthRequest="17" 
-								HeightRequest="17"
-								Fill="#C4C4C4"
-								/>
-							<Ellipse 
-								WidthRequest="17" 
-								HeightRequest="17"
-								Fill="#FF881A"
-								/>
+						<StackLayout  HorizontalOptions="Center" Orientation="Horizontal" VerticalOptions="End">
+							<Ellipse  WidthRequest="17"  HeightRequest="17" Fill="#C4C4C4" />
+							<Ellipse  WidthRequest="17"  HeightRequest="17" Fill="#C4C4C4" />
+							<Ellipse  WidthRequest="17"  HeightRequest="17" Fill="#FF881A" />
 						</StackLayout>
 					</StackLayout>
-				</FlexLayout>
+				</StackLayout>
 			</Frame>
 		</StackLayout>
 	</ContentPage.Content>

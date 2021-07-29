@@ -15,6 +15,8 @@ namespace Sensate.Views {
 			new ObservableCollection<TutorialContentModel>();
 
 		private SyncHelper.Settings _settings;
+		private float speakRate;
+		private CancelMe cancelme;
 
 		public Tutorial3Page() {
 			InitializeComponent();
@@ -33,6 +35,12 @@ namespace Sensate.Views {
 			base.OnAppearing();
 
 			_settings = SyncHelper.GetCurrentSettings();
+			cancelme = new CancelMe();
+
+			speakRate = (_settings.VoiceSpeed == 0) ? .7f :
+						(_settings.VoiceSpeed == 1) ? 1f :
+													1.3f;
+
 			var titlesize = (_settings.TextSize == 0) ? 20 :
 							(_settings.TextSize == 1) ? 22 :
 							24;
@@ -78,7 +86,7 @@ namespace Sensate.Views {
 
 			TutorialContent.Add(new TutorialContentModel{ 
 				Title = "Other functionalities to use.", 
-				TitleSize = titlesize,
+				TitleSize = titlesize - 2,
 				Subtitle = "The interface provides more buttons and a slider to personalize the capture.", 
 				SubtitleSize = subtitlesize,
 				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-rm-4.png"),
@@ -93,16 +101,18 @@ namespace Sensate.Views {
 		protected override void OnDisappearing() {
 			base.OnDisappearing();
 			TutorialContent.Clear();
+			cancelme.CancelToken();
 		}
 
 		private async void Back(object s, EventArgs e) { 
 			await Shell.Current.GoToAsync($"//{nameof(TutorialPage)}");
 		}
 
-		private void carousel_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e) {
+		private async void carousel_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e) {
 			for (int i=0; i<TutorialContent.Count; i++) { 
 				if (e.CurrentItem.Equals(TutorialContent[i])) {
 					SetCircleFill(i);
+					await cancelme.Speak($"{TutorialContent[i].Details}", speakRate);
 				}
 			}
 		}

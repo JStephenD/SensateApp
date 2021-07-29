@@ -6,6 +6,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Reflection;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
+using System.Threading;
+using Plugin.TextToSpeech;
 
 namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
@@ -15,6 +18,8 @@ namespace Sensate.Views {
 			new ObservableCollection<TutorialContentModel>();
 
 		private SyncHelper.Settings _settings;
+		private float speakRate;
+		private CancelMe cancelme;
 
 		public Tutorial1Page() {
 			InitializeComponent();
@@ -33,6 +38,12 @@ namespace Sensate.Views {
 			base.OnAppearing();
 
 			_settings = SyncHelper.GetCurrentSettings();
+			cancelme = new CancelMe();
+
+			speakRate = (_settings.VoiceSpeed == 0) ? .7f :
+						(_settings.VoiceSpeed == 1) ? 1f :
+													1.3f;
+
 			var titlesize = (_settings.TextSize == 0) ? 20 :
 							(_settings.TextSize == 1) ? 22 :
 							24;
@@ -56,12 +67,12 @@ namespace Sensate.Views {
 
 			TutorialContent.Add(new TutorialContentModel {
 				Title = "Sign-up for an account.",
-				TitleSize = titlesize,
+				TitleSize = titlesize - 2,
 				Subtitle = "After the loading and welcome page, Sensate will ask you to either sign-up or skip the process. Click the sign-up button. Sensate will now show a sign-up form for you to fill in.",
 				SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-am-2.png"),
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-am-2.jpg"),
 				ImageWidth = 100,
-				Details = "Enter the your desired username or email. Password and confirm password should match and must be more than 6 characters. Click the confirm button. An alert will notify you if the sign-up is successful or not.",
+				Details = "Enter your desired email. Password and confirm password should match and must be more than 6 characters. Click the confirm button. An alert will notify you if the sign-up is successful or not.",
 				DetailsSize = detailssize
 			});
 
@@ -70,7 +81,7 @@ namespace Sensate.Views {
 				TitleSize = titlesize,
 				Subtitle = "After sign-up or if you already have an existing account, you can sign-in using your registered credentials.",
 				SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-am-3.png"),
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-am-3.jpg"),
 				ImageWidth = 100,
 				Details = "On the sign-in form, just enter your registered username or email, and your password. Make sure to remember and protect your credentials.",
 				DetailsSize = detailssize
@@ -81,7 +92,7 @@ namespace Sensate.Views {
 				TitleSize = titlesize,
 				Subtitle = "After your first sign-up and sign-in, Sensate will display a quick profile setup page.",
 				SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-am-4.png"),
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-am-4.jpg"),
 				ImageWidth = 100,
 				Details = "Just enter your name (full name or a nickname), sex, and birthdate. Click the confirm button to confirm your profile entries.",
 				DetailsSize = detailssize
@@ -92,7 +103,7 @@ namespace Sensate.Views {
 				TitleSize = titlesize,
 				Subtitle = "While you're on the main interface (recognition mode or color enhancement mode), just click the menu button on the upper left corner and click \"Account\".",
 				SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-am-5.png"),
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-am-5.jpg"),
 				ImageWidth = 100,
 				Details = "You can now view your profile details such as name, sex, age, user type. You can also sycnhronize your account and edit your profile. Pressing the sign-out button signs out your account from the device.",
 				DetailsSize = detailssize
@@ -137,16 +148,18 @@ namespace Sensate.Views {
 		protected override void OnDisappearing() {
 			base.OnDisappearing();
 			TutorialContent.Clear();
+			cancelme.CancelToken();
 		}
 
 		private async void Back(object s, EventArgs e) { 
 			await Shell.Current.GoToAsync($"//{nameof(TutorialPage)}");
 		}
 
-		private void carousel_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e) {
+		private async void carousel_CurrentItemChanged(object sender, CurrentItemChangedEventArgs e) {
 			for (int i=0; i<TutorialContent.Count; i++) { 
 				if (e.CurrentItem.Equals(TutorialContent[i])) {
 					SetCircleFill(i);
+					await cancelme.Speak($"{TutorialContent[i].Details}", speakRate);
 				}
 			}
 		}
@@ -161,5 +174,6 @@ namespace Sensate.Views {
 			circle7.Fill = (index == 6) ? Brush.White : Brush.LightSkyBlue;
 			circle8.Fill = (index == 7) ? Brush.White : Brush.LightSkyBlue;
 		}
+
 	}
 }

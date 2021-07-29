@@ -70,6 +70,7 @@ namespace Sensate {
 		}
 
 		protected override void OnAppearing() {
+			Console.WriteLine("flyout open");
 			if (Preferences.Get("UserCategory", "Normal", "GeneralSettings") == "LowVision") {
 				MainFeature.Route = nameof(RecognitionModePage);
 				MainFeature.ContentTemplate = new DataTemplate(typeof(RecognitionModePage));
@@ -82,6 +83,7 @@ namespace Sensate {
 				MainFeatureTitle.Icon = ImageSource.FromResource("Sensate.Assets.icon_cb.png", typeof(AppShell).Assembly);
 			}
 		}
+
 
 		public void CloseMenu(object s, EventArgs e) { 
 			Shell.Current.FlyoutIsPresented = false;
