@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using Plugin.TextToSpeech;
 using System.Threading;
 using System.Threading.Tasks;
+using SkiaSharp;
+using SkiaSharp.Views.Forms;
 
 namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
@@ -27,7 +29,9 @@ namespace Sensate.Views {
 		float speakRate;
 		CancelMe cancelme;
 		private bool isFlashlight = false;
+		private SKBitmap bitmap;
 		private bool isSpeaking = false;
+		private bool isBackCam = true;
 
 		private CancellationTokenSource _cts;
 
@@ -145,15 +149,16 @@ namespace Sensate.Views {
 					CameraOptions.Back : CameraOptions.Front;
 			}
 			zoomSlider.Maximum = cameraView.MaxZoom;
+			isBackCam = !isBackCam;
 		}
 		public async void FlashFrameClick(object s, EventArgs e) {
-			//cameraView.FlashMode = (cameraView.FlashMode == CameraFlashMode.Off) ?
-			//	CameraFlashMode.Torch : CameraFlashMode.Off;
+			cameraView.FlashMode = (cameraView.FlashMode == CameraFlashMode.Off) ?
+				CameraFlashMode.Torch : CameraFlashMode.Off;
 			Console.WriteLine("hello");
-			if (isFlashlight)
-				await Flashlight.TurnOffAsync();
-			else
-				await Flashlight.TurnOnAsync();
+			//if (isFlashlight)
+			//	await Flashlight.TurnOffAsync();
+			//else
+			//	await Flashlight.TurnOnAsync();
 			isFlashlight = !isFlashlight;
 		}
 		public void DetectionModeSelectClick(object s, EventArgs e) {
@@ -208,23 +213,30 @@ namespace Sensate.Views {
 		public async void CameraView_MediaCaptured(object sender, MediaCapturedEventArgs e) {
 			mode = detectionmode.SelectedItem.ToString();
 
-			previewImage.Rotation = e.Rotation;
-			previewImage.Source = e.Image;
-			previewImage.VerticalOptions = LayoutOptions.FillAndExpand;
-			previewImage.IsVisible = true;
+			//previewImage.Rotation = e.Rotation;
+			//previewImage.Source = e.Image;
+			//previewImage.VerticalOptions = LayoutOptions.FillAndExpand;
+			//previewImage.IsVisible = true;
+
+			var imagedata = e.ImageData;
+
+			bitmap = SKBitmap.Decode(imagedata);
+			canvasView.InvalidateSurface();
+			canvasView.IsVisible = true;
 
 			if (isVibration) Vibration.Vibrate();
 
 			try {
 				await cancelme.Speak("Captured Image", speakRate);
 
+				var watch = System.Diagnostics.Stopwatch.StartNew();
 				ImageAnnotatorClientBuilder builder = new ImageAnnotatorClientBuilder {
 					JsonCredentials = json_creds
 				};
 				ImageAnnotatorClient client = await builder.BuildAsync();
 				AnnotateImageRequest request = new AnnotateImageRequest {
 					Image = Google.Cloud.Vision.V1.Image.FromBytes(
-						e.ImageData.AsMemory().ToArray()),
+						imagedata.AsMemory().ToArray()),
 					Features = {
 						new Feature {
 							Type =
@@ -243,6 +255,9 @@ namespace Sensate.Views {
 				};
 
 				AnnotateImageResponse response = await client.AnnotateAsync(request);
+				watch.Stop();
+				Console.WriteLine($"ellapsed time for recog mode {watch.ElapsedMilliseconds}");
+
 				if (mode == "General Object Detection") {
 					var detectedlabel = false;
 					var detectedobject = false;
@@ -338,7 +353,23 @@ namespace Sensate.Views {
 			}
 
 			previewImage.IsVisible = false;
+			canvasView.IsVisible = false;
 		}
+
+		private void canvasView_PaintSurface(object sender, SKPaintSurfaceEventArgs e) {
+			SKImageInfo info = e.Info;
+			SKSurface surface = e.Surface;
+			SKCanvas canvas = surface.Canvas;
+
+			canvas.Clear();
+
+			if (bitmap != null) {
+				var rotatedbitmap = (isBackCam) ? Rotate2(bitmap, 90) : Rotate(bitmap, 270);
+				canvas.DrawBitmap(rotatedbitmap, info.Rect, BitmapStretch.AspectFill
+					);
+			}
+		}
+
 		#endregion camera
 
 		private async Task Speak(string output) {
@@ -348,6 +379,38 @@ namespace Sensate.Views {
 		public class Result {
 			public string desc;
 			public double score;
+		}
+
+		public static SKBitmap Rotate(SKBitmap bitmap, double angle) {
+			double radians = Math.PI * angle / 180;
+			float sine = (float) Math.Abs(Math.Sin(radians));
+			float cosine = (float) Math.Abs(Math.Cos(radians));
+			int originalWidth = bitmap.Width;
+			int originalHeight = bitmap.Height;
+			int rotatedWidth = (int) (cosine * originalWidth + sine * originalHeight);
+			int rotatedHeight = (int) (cosine * originalHeight + sine * originalWidth);
+
+			var rotatedBitmap = new SKBitmap(rotatedWidth, rotatedHeight);
+
+			using (var surface = new SKCanvas(rotatedBitmap)) {
+				surface.Translate(rotatedWidth / 2, rotatedHeight / 2);
+				surface.RotateDegrees((float) angle);
+				surface.Translate(-originalWidth / 2, -originalHeight / 2);
+				surface.DrawBitmap(bitmap, new SKPoint());
+			}
+			return rotatedBitmap;
+		}
+
+		public static SKBitmap Rotate2(SKBitmap bitmap, double angle) {
+			var rotated = new SKBitmap(bitmap.Height, bitmap.Width);
+
+			using (var surface = new SKCanvas(rotated)) {
+				surface.Translate(rotated.Width, 0);
+				surface.RotateDegrees((float) angle);
+				surface.DrawBitmap(bitmap, 0, 0);
+			}
+
+			return rotated;
 		}
 	}
 }

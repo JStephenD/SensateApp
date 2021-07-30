@@ -315,8 +315,8 @@ namespace Sensate.Views {
 								(cbmode == "Tritanopia") ? paintTritanopia :
 								null);
 					} else {
-						rotatedBitmap = Rotate2(bitmap, 90);
-						rotatedBitmap = Rotate2(rotatedBitmap, 180);
+						rotatedBitmap = Rotate(bitmap, 270);
+						//rotatedBitmap = Rotate2(rotatedBitmap, 180);
 						canvas.DrawBitmap(rotatedBitmap, info.Rect, BitmapStretch.AspectFill,
 						paint: (cbmode == "Protanopia") ? paintProtanopia :
 								(cbmode == "Deuteranopia") ? paintDeuteranopia :

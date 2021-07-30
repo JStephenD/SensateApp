@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+			 xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
 			 xmlns:views="clr-namespace:Sensate.Views"
 			 x:Class="Sensate.Views.RecognitionModePage">
 	<ContentPage.Content>
@@ -45,6 +46,13 @@
 					x:Name="cameraView" CaptureMode="Photo" 
 					HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
 					MediaCaptured="CameraView_MediaCaptured" OnAvailable="CameraView_OnAvailable" />
+
+				<skia:SKCanvasView 
+					Grid.Row="0"
+				
+					x:Name="canvasView" PaintSurface="canvasView_PaintSurface"
+					HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+					IsVisible="false"/>
 				<Image	Grid.Row="0" Grid.Column="0"
 						IsVisible="false" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
 						Aspect="AspectFill"
