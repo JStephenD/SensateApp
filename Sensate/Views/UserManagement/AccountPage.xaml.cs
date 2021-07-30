@@ -51,9 +51,16 @@ namespace Sensate.Views {
 			} else { 
 				logoutFrameText.Text = "LOG OUT";
 			}
-			var birthdate = Preferences.Get("AccountBirthdate", DateTime.Now.ToString(), "UserAccount");
+
+			var birthdatestring = Preferences.Get("AccountBirthdate", DateTime.Now.ToString(), "UserAccount");
+			var birthdate = DateTime.Parse(birthdatestring);
+
+			var age = DateTime.Now.Year - birthdate.Date.Year;
+			if (DateTime.Now.Month < birthdate.Date.Month || (DateTime.Now.Month == birthdate.Date.Month && DateTime.Now.Day < birthdate.Date.Day))
+				age--;
+
 			accountName.Text = Preferences.Get("AccountName", "", "UserAccount");
-			ageText.Text = (DateTime.Now.Year - DateTime.Parse(birthdate).Year).ToString();
+			ageText.Text = age + "";
 			accountName.Text = Preferences.Get("AccountName", "", "UserAccount");
 			genderIcon.Source = (Preferences.Get("AccountGender", "Others", "UserAccount") == "Male") ?
 									ImageSource.FromResource("Sensate.Assets.gender-male.png", typeof(AccountPage).Assembly) :
