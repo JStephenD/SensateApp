@@ -253,11 +253,15 @@ namespace Sensate.Views {
 
 		#region threading
 		private void StartCaptureMode() {
-			Device.StartTimer(TimeSpan.FromMilliseconds(1000 / 10), CaptureAndApplyFilter);
+			Device.StartTimer(TimeSpan.FromMilliseconds(1000 / 60), CaptureAndApplyFilter);
 		}
+
+		System.Diagnostics.Stopwatch watch;
+
 		private bool CaptureAndApplyFilter() {
 			if (!isbusy) {
 				isbusy = true;
+				//watch = System.Diagnostics.Stopwatch.StartNew();
 				cameraView.Shutter();
 				canvasView.InvalidateSurface();
 				isbusy = false;
@@ -294,7 +298,7 @@ namespace Sensate.Views {
 			SKSurface surface = e.Surface;
 			SKCanvas canvas = surface.Canvas;
 
-			canvas.Clear();
+			canvas.Clear(SKColors.White);
 
 			if (bitmap != null) {
 				if (isuploadmode) {
@@ -305,7 +309,7 @@ namespace Sensate.Views {
 								(cbmode == "Tritanopia") ? paintTritanopia :
 								null);
 				} else {
-					Console.WriteLine($"is back cam {isBackCam}");
+					//Console.WriteLine($"is back cam {isBackCam}");
 					SKBitmap rotatedBitmap;
 					if (isBackCam) {
 						rotatedBitmap = Rotate2(bitmap, 90);
@@ -325,19 +329,10 @@ namespace Sensate.Views {
 					}
 				}
 			}
-
-
-
-
-
-
-
-
-
-
-
-
-
+			//if (watch != null) {
+			//	watch.Stop();
+			//	Console.WriteLine($"ellapsed time ce mode capture {watch.ElapsedMilliseconds}");
+			//}
 		}
 
 		public static SKBitmap Rotate(SKBitmap bitmap, double angle) {

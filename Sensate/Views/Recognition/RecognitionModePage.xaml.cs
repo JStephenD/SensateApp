@@ -153,7 +153,7 @@ namespace Sensate.Views {
 		}
 		public async void FlashFrameClick(object s, EventArgs e) {
 			cameraView.FlashMode = (cameraView.FlashMode == CameraFlashMode.Off) ?
-				CameraFlashMode.Torch : CameraFlashMode.Off;
+				CameraFlashMode.On : CameraFlashMode.Off;
 			Console.WriteLine("hello");
 			//if (isFlashlight)
 			//	await Flashlight.TurnOffAsync();
@@ -229,7 +229,7 @@ namespace Sensate.Views {
 			try {
 				await cancelme.Speak("Captured Image", speakRate);
 
-				var watch = System.Diagnostics.Stopwatch.StartNew();
+				//var watch = System.Diagnostics.Stopwatch.StartNew();
 				ImageAnnotatorClientBuilder builder = new ImageAnnotatorClientBuilder {
 					JsonCredentials = json_creds
 				};
@@ -255,16 +255,21 @@ namespace Sensate.Views {
 				};
 
 				AnnotateImageResponse response = await client.AnnotateAsync(request);
-				watch.Stop();
-				Console.WriteLine($"ellapsed time for recog mode {watch.ElapsedMilliseconds}");
+				//watch.Stop();
+				//Console.WriteLine($"ellapsed time for recog mode {watch.ElapsedMilliseconds}");
 
 				if (mode == "General Object Detection") {
 					var detectedlabel = false;
 					var detectedobject = false;
+					var packagedgoodsfound = false;
 
 					Console.WriteLine(response.LocalizedObjectAnnotations);
 					foreach (LocalizedObjectAnnotation annotation in response.LocalizedObjectAnnotations) {
 						detectedobject = true;
+						if (annotation.Name.ToLower() == "packaged goods") { 
+							if (packagedgoodsfound) continue;
+							packagedgoodsfound = true;
+						}
 						string output = $"Object Identified: {annotation.Name}";
 						Console.WriteLine(output);
 						//if (annotation.Score >= .80)
