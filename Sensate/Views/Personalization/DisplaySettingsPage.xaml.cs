@@ -75,6 +75,8 @@ namespace Sensate.Views {
 						foreach (var lab in textsizex) lab.FontSize = 24;
 						break;
 				}
+				foreach (var lab in labels) lab.FontAttributes = (_settings.BoldText == true) ?
+														FontAttributes.Bold : FontAttributes.None;
 			} catch { Console.WriteLine("error text stuff"); }
 
 			TextSize.Value = _settings.TextSize;

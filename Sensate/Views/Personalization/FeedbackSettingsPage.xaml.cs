@@ -64,6 +64,8 @@ namespace Sensate.Views {
 					textVibrationFeedback.FontSize = 26;
 					break;
 			}
+			foreach (var lab in labels) lab.FontAttributes = (_settings.BoldText == true) ?
+														FontAttributes.Bold : FontAttributes.None;
 
 			AudioFeedback.IsToggled = Preferences.Get("AudioFeedback", false, "GeneralSettings");
 			VibrationFeedback.IsToggled = Preferences.Get("VibrationFeedback", false, "GeneralSettings");

@@ -70,6 +70,8 @@ namespace Sensate.Views {
 					textHardware.FontSize = 24;
 					break;
 			}
+			foreach (var lab in labels) lab.FontAttributes = (_settings.BoldText == true) ? 
+														FontAttributes.Bold : FontAttributes.None;
 
 
 			Shortcuts.IsToggled = Preferences.Get("Shortcuts", false, "GeneralSettings");
@@ -141,7 +143,7 @@ namespace Sensate.Views {
 				Console.WriteLine("Confirm button");
 				await Shell.Current.GoToAsync($"//{nameof(MainSettingsPage)}");
 			} catch {
-
+				Console.WriteLine("erorr confirm navigation");
 			}
 		}
 	}

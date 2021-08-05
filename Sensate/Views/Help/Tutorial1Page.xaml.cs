@@ -159,7 +159,8 @@ namespace Sensate.Views {
 			for (int i=0; i<TutorialContent.Count; i++) { 
 				if (e.CurrentItem.Equals(TutorialContent[i])) {
 					SetCircleFill(i);
-					await cancelme.Speak($"{TutorialContent[i].Details}", speakRate);
+					if (_settings.AudioFeedback)
+						await cancelme.Speak($"{TutorialContent[i].Details}", speakRate);
 				}
 			}
 		}
@@ -174,6 +175,5 @@ namespace Sensate.Views {
 			circle7.Fill = (index == 6) ? Brush.White : Brush.LightSkyBlue;
 			circle8.Fill = (index == 7) ? Brush.White : Brush.LightSkyBlue;
 		}
-
 	}
 }

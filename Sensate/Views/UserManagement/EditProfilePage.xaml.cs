@@ -50,6 +50,11 @@ namespace Sensate.Views {
 			birthdate.Date = DateTime.Parse(Preferences.Get("AccountBirthdate", DateTime.Now.ToString(), "UserAccount"));
 			usertype.SelectedItem = Preferences.Get("UserCategory", "", "GeneralSettings");
 			#endregion defaults
+
+			if (Preferences.Get("FirebaseToken", "") == "")
+				editAccountFrame.IsVisible = false;
+			else
+				editAccountFrame.IsVisible = true;
 		}
 
 		#region gesturerecognizer functions

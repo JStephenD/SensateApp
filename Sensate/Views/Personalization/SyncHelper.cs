@@ -18,9 +18,9 @@ namespace Sensate.Views {
 		private static readonly string firestore_url = @"https://sensatefirebase-a7ef8-default-rtdb.asia-southeast1.firebasedatabase.app/";
 		private static readonly FirebaseClient firebase = new FirebaseClient(firestore_url);
 
-		private static readonly string UID = Preferences.Get("UID", "");
-
 		public static async Task UploadSettings() {
+			var UID = Preferences.Get("UID", "");
+
 			if (UID == "") return;
 
 			var toupdateuser = (await firebase
@@ -37,37 +37,44 @@ namespace Sensate.Views {
 				Birthdate = Preferences.Get("AccountBirthdate", "", "UserAccount"),
 				Sex = Preferences.Get("AccountGender", "", "UserAccount"),
 			};
-			try {
+			var s = GetCurrentSettings();
+
+			if (s.UID == "") return;
+
+			if (toupdatesettings == null || toupdatesettings.Object.UID == "") {
+				await firebase
+				  .Child("Users")
+				  .PostAsync(u);
+
+				await firebase
+				  .Child("Settings")
+				  .PostAsync(s);
+			} else {
 				await firebase
 				  .Child("Users")
 				  .Child(toupdateuser.Key)
 				  .PutAsync(u);
-			} catch {
-				await firebase
-				  .Child("Users")
-				  .PostAsync(u);
-			}
 
-			var s = GetCurrentSettings();
-			try {
 				await firebase
 				  .Child("Settings")
 				  .Child(toupdatesettings.Key)
 				  .PutAsync(s);
-			} catch {
-				await firebase
-				  .Child("Settings")
-				  .PostAsync(s);
 			}
 		}
 
 		public static async Task LoadSettings() {
+			var UID = Preferences.Get("UID", "");
+
 			Console.WriteLine("loadsettings");
 			Console.WriteLine(Preferences.Get("UID", ""));
 			var uid = Preferences.Get("UID", "");
 
 			// load user configs
 			var user = await GetUsers(UID);
+			var user1 = (await firebase
+				.Child("Users")
+				.OnceAsync<Users>()).Where(a => a.Object.UID == UID).FirstOrDefault();
+			Console.WriteLine(user1.Object);
 			Preferences.Set("AccountName", user.Name, "UserAccount");
 			Preferences.Set("AccountGender", user.Sex, "UserAccount");
 			Preferences.Set("AccountBirthdate", user.Birthdate, "UserAccount");
@@ -76,38 +83,40 @@ namespace Sensate.Views {
 			var settings = (await firebase
 				.Child("Settings")
 				.OnceAsync<Settings>()).FirstOrDefault(a => a.Object.UID == UID);
-			var so = settings.Object;
+			try {
+				var so = settings.Object;
 
-			Console.WriteLine(new object[] { so.UserCategory, so.CBType, so.AudioFeedback, so.Shortcuts });
+				Console.WriteLine(new object[] { so.UserCategory, so.CBType, so.AudioFeedback, so.Shortcuts });
 
-			// Category 
-			Preferences.Set("UserCategory", so.UserCategory, "GeneralSettings");
+				// Category 
+				Preferences.Set("UserCategory", so.UserCategory, "GeneralSettings");
 
-			// CB Settings
-			Preferences.Set("CBType", so.CBType, "CBSettings");
+				// CB Settings
+				Preferences.Set("CBType", so.CBType, "CBSettings");
 
-			// LV Settings
-			Preferences.Set("LVCause", so.LVCause, "LVSettings");
-			Preferences.Set("LVSeverity", so.LVSeverity, "LVSettings");
+				// LV Settings
+				Preferences.Set("LVCause", so.LVCause, "LVSettings");
+				Preferences.Set("LVSeverity", so.LVSeverity, "LVSettings");
 
-			// Assistance
-			Preferences.Set("AssistanceLevel", so.AssistanceLevel, "GeneralSettings");
+				// Assistance
+				Preferences.Set("AssistanceLevel", so.AssistanceLevel, "GeneralSettings");
 
-			// Display Settings
-			Preferences.Set("BoldText", so.BoldText, "GeneralSettings");
-			Preferences.Set("NightMode", so.NightMode, "GeneralSettings");
-			Preferences.Set("TextSize", so.TextSize, "GeneralSettings");
+				// Display Settings
+				Preferences.Set("BoldText", so.BoldText, "GeneralSettings");
+				Preferences.Set("NightMode", so.NightMode, "GeneralSettings");
+				Preferences.Set("TextSize", so.TextSize, "GeneralSettings");
 
-			// Feedback Settings
-			Preferences.Set("AudioFeedback", so.AudioFeedback, "GeneralSettings");
-			Preferences.Set("VibrationFeedback", so.VibrationFeedback, "GeneralSettings");
+				// Feedback Settings
+				Preferences.Set("AudioFeedback", so.AudioFeedback, "GeneralSettings");
+				Preferences.Set("VibrationFeedback", so.VibrationFeedback, "GeneralSettings");
 
-			Preferences.Set("VoiceSpeed", so.VoiceSpeed, "GeneralSettings");
+				Preferences.Set("VoiceSpeed", so.VoiceSpeed, "GeneralSettings");
 
-			// Navigation
-			Preferences.Set("Shortcuts", so.Shortcuts, "GeneralSettings");
-			Preferences.Set("HardwareButtons", so.HardwareButtons, "GeneralSettings");
-			Preferences.Set("Gesture", so.Gesture, "GeneralSettings");
+				// Navigation
+				Preferences.Set("Shortcuts", so.Shortcuts, "GeneralSettings");
+				Preferences.Set("HardwareButtons", so.HardwareButtons, "GeneralSettings");
+				Preferences.Set("Gesture", so.Gesture, "GeneralSettings");
+			} catch { Console.WriteLine("error finding file"); }
 		}
 
 		public static async Task<List<Users>> GetAllUsers() {
@@ -174,7 +183,7 @@ namespace Sensate.Views {
 			return allsettings.Where(a => a.UID == UID).FirstOrDefault();
 		}
 
-		public static Settings GetCurrentSettings() { 
+		public static Settings GetCurrentSettings() {
 			return new Settings {
 				UID = Preferences.Get("UID", ""),
 

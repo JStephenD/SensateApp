@@ -100,6 +100,8 @@ namespace Sensate.Views {
 			} catch { 
 				await DisplayAlert("Error", "Unsuccessful due to some errors", "Ok");
 			}
+			starSlider.Value = 4;
+			commentEntry.Text = string.Empty;
 		}
 
 		public void SliderValueChange(object s, ValueChangedEventArgs e) { 

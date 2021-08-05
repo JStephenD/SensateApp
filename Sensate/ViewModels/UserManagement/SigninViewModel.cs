@@ -48,6 +48,26 @@ namespace Sensate.ViewModels {
 		private async void OnSigninClicked(object obj) {
 			// Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
 			//await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
+
+			//if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password)) {
+			//	await App.Current.MainPage.DisplayAlert("Alert", "Incomplete fields", "OK");
+			//	return;
+			//}
+
+			if (string.IsNullOrEmpty(email)) {
+				await App.Current.MainPage.DisplayAlert("Alert", "Email must not be empty.", "OK");
+				return;
+			}
+			if (string.IsNullOrEmpty(password)) {
+				await App.Current.MainPage.DisplayAlert("Alert", "Password must not be empty.", "OK");
+				return;
+			}
+			if (password.Length < 6) {
+				await App.Current.MainPage.DisplayAlert("Alert", "Password must contain atleast 6 characters.", "OK");
+				return;
+			}
+
+
 			var authProvider = new FirebaseAuthProvider(new FirebaseConfig(FirebaseAPIKey));
 			try {
 				var auth = await authProvider.SignInWithEmailAndPasswordAsync(email, password);
@@ -58,6 +78,7 @@ namespace Sensate.ViewModels {
 				Preferences.Set("UID", auth.User.LocalId);
 				Preferences.Set("FirebaseToken", auth.FirebaseToken);
 				Preferences.Set("MyFirebaseRefreshToken", serializedcontent);
+				Preferences.Set("IntroDone", true);
 				await App.Current.MainPage.DisplayAlert("Welcome back!", "You are logged in again.", "OK");
 				//enters the homepage
 				Application.Current.MainPage = new AppShell();

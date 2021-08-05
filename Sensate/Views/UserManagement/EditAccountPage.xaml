@@ -24,22 +24,22 @@
 				<StackLayout Spacing="18" Margin="20,0" Padding="0,20,0,20">
 					<Frame x:Name="accountnameFrame"
 						BorderColor="Black" CornerRadius="30">
-						<Entry x:Name="accountName" Placeholder="Email"
-							   TextColor="Black" PlaceholderColor="Gray"
+						<Entry x:Name="accountEmail" Placeholder="Email"
+							   TextColor="Black" PlaceholderColor="Gray" IsEnabled="true"
 							   FontSize="18"/>
 					</Frame>
 
 					<Frame x:Name="passwordFrame"
 						BorderColor="Black" CornerRadius="30">
 						<Entry x:Name="password" Placeholder="Password"
-							   TextColor="Black" PlaceholderColor="Gray"
+							   TextColor="Black" PlaceholderColor="Gray" IsPassword="True"
 							   FontSize="18"/>
 					</Frame>
 
 					<Frame x:Name="confirmpasswordFrame"
 						BorderColor="Black" CornerRadius="30">
 						<Entry x:Name="confirmpassword" Placeholder="Confirm Password"
-							   TextColor="Black" PlaceholderColor="Gray"
+							   TextColor="Black" PlaceholderColor="Gray" IsPassword="True"
 							   FontSize="18"/>
 					</Frame>
 

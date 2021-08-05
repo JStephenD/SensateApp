@@ -56,6 +56,11 @@ namespace Sensate.Views {
 			rotatecamframeclick.Tapped += RotateCamFrameClick;
 			rotatecamFrame.GestureRecognizers.Add(rotatecamframeclick);
 
+			var twotaprotate = new TapGestureRecognizer();
+			twotaprotate.NumberOfTapsRequired = 2;
+			twotaprotate.Tapped += RotateCamFrameClick;
+			cameraView.GestureRecognizers.Add(twotaprotate);
+
 			var flashframeclick = new TapGestureRecognizer();
 			flashframeclick.Tapped += FlashFrameClick;
 			flashFrame.GestureRecognizers.Add(flashframeclick);

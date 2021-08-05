@@ -61,6 +61,8 @@ namespace Sensate.Views {
 					textDisplayOption.FontSize = 34;
 					break;
 			}
+			foreach (var lab in labels) lab.FontAttributes = (_settings.BoldText == true) ?
+														FontAttributes.Bold : FontAttributes.None;
 		}
 
 		#region gesturerecognizer functions

@@ -21,19 +21,19 @@ namespace Sensate.ViewModels {
 		private string email;
 		public string Email {
 			get { return email; }
-			set { email = value; }
+			set { SetProperty(ref email, value); }
 		}
 
 		private string password;
 		public string Password {
 			get { return password; }
-			set { password = value; }
+			set { SetProperty(ref password, value); }
 		}
 
 		private string confirmpassword;
 		public string ConfirmPassword {
 			get { return confirmpassword; }
-			set { confirmpassword = value; }
+			set { SetProperty(ref confirmpassword, value); }
 		}
 
 		public Command SigninCommand {
@@ -54,13 +54,19 @@ namespace Sensate.ViewModels {
 		private async void OnSignupClicked(object obj) {
 			// Prefixing with `//` switches to a different navigation stack instead of pushing to the active one
 			//await Shell.Current.GoToAsync($"//{nameof(AboutPage)}");
+
+			//if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmpassword)) {
+			//	await App.Current.MainPage.DisplayAlert("Alert", "Incomplete fields", "OK");
+			//	return;
+			//}
+
 			try {
 				//credential checker 
 
 				var authProvider = new FirebaseAuthProvider(new FirebaseConfig(FirebaseAPIKey));
 
-				if (email != null) {
-					if (password != null && confirmpassword != null && password.Length > 5) {
+				if (!string.IsNullOrEmpty(email)) {
+					if (!string.IsNullOrEmpty(password) && !string.IsNullOrEmpty(confirmpassword) && password.Length > 5) {
 						if (password == confirmpassword) {
 							var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(email, password);
 							var content = await auth.GetFreshAuthAsync();
@@ -76,7 +82,7 @@ namespace Sensate.ViewModels {
 							await Shell.Current.GoToAsync(nameof(QuickProfileSetupPage));
 						} else {
 							if (_settings.VibrationFeedback) Vibration.Vibrate();
-							await App.Current.MainPage.DisplayAlert("Alert", "Password and confirm password don't not match.", "OK");
+							await App.Current.MainPage.DisplayAlert("Alert", "Password and confirm password don't match.", "OK");
 						}
 					} else {
 						if (_settings.VibrationFeedback) Vibration.Vibrate();
@@ -92,6 +98,8 @@ namespace Sensate.ViewModels {
 				if (_settings.VibrationFeedback) Vibration.Vibrate();
 				if (ex.Message.Contains("EMAIL_EXISTS")) {
 					await App.Current.MainPage.DisplayAlert("Alert", "Email Exists", "OK");
+				} else if (ex.Message.Contains("INVALID_EMAIL")) {
+					await App.Current.MainPage.DisplayAlert("Alert", "Invalid Email", "OK");
 				} else {
 					await App.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
 				}
