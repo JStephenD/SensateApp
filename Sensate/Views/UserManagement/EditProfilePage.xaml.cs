@@ -67,14 +67,6 @@ namespace Sensate.Views {
 			await SyncHelper.UploadSettings();
 			if (_settings.VibrationFeedback) Vibration.Vibrate();
 
-			//Console.WriteLine(Shell.Current.Items);
-			//foreach (var x in Shell.Current.Items) {
-			//	if (x.Title == "Account") {
-			//		Console.WriteLine(x);
-			//		Console.WriteLine(x.Icon);
-			//	}
-			//}
-
 			Application.Current.MainPage = new AppShell();
 			Shell.Current.CurrentItem = Shell.Current.Items.FirstOrDefault(r => r.Title == "Account");
 			await Shell.Current.GoToAsync($"//{nameof(AccountPage)}");
