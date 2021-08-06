@@ -16,7 +16,7 @@
 			<Label  Text="Sensate" TextColor="White" 
 					FontFamily="Leelawadee UI" FontSize="50"/>
 			<Image  WidthRequest="52" 
-					Source="{xct:ImageResource Id=Sensate.Assets.loading.gif}"
+					Source="{xct:ImageResource Id=Sensate.Assets.swipe-left.png}"
 			       		/>
 
 			<FlexLayout.GestureRecognizers>
