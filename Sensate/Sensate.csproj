@@ -65,6 +65,7 @@
     <None Remove="Assets\sensate-logo2.png" />
     <None Remove="Assets\shutter.png" />
     <None Remove="Assets\star.png" />
+    <None Remove="Assets\swipe-left.png" />
     <None Remove="Assets\tri-color.png" />
     <None Remove="Assets\tutorial\icon_cb.png" />
     <None Remove="Assets\tutorial\icon_lv.png" />
@@ -141,6 +142,7 @@
     <EmbeddedResource Include="Assets\sensate-logo2.png" />
     <EmbeddedResource Include="Assets\shutter.png" />
     <EmbeddedResource Include="Assets\star.png" />
+    <EmbeddedResource Include="Assets\swipe-left.png" />
     <EmbeddedResource Include="Assets\tri-color.png" />
     <EmbeddedResource Include="Assets\tutorial\icon_cb.png" />
     <EmbeddedResource Include="Assets\tutorial\icon_lv.png" />
