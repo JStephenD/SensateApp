@@ -10,6 +10,22 @@ namespace Sensate.Views {
 	public partial class CategoryLowVisionPage : ContentPage {
 		public CategoryLowVisionPage() {
 			InitializeComponent();
+
+			var lvcauseclick = new TapGestureRecognizer();
+			lvcauseclick.Tapped += ClickLVCauseArrow;
+			LVCauseArrow.GestureRecognizers.Add(lvcauseclick);
+
+			var lvseverityclick = new TapGestureRecognizer();
+			lvseverityclick.Tapped += ClickLVSeverityArrow;
+			LVSeverityArrow.GestureRecognizers.Add(lvseverityclick);
+		}
+
+		public void ClickLVCauseArrow(object s, EventArgs e) {
+			LVCause.Focus();
+		}
+
+		public void ClickLVSeverityArrow(object s, EventArgs e) {
+			LVSeverity.Focus();
 		}
 
 		private async void Confirm(object sender, EventArgs e) {

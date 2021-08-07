@@ -9,6 +9,14 @@ namespace Sensate.Views {
 	public partial class CategoryNormalPage : ContentPage {
 		public CategoryNormalPage() {
 			InitializeComponent();
+
+			var purposeclick = new TapGestureRecognizer();
+			purposeclick.Tapped += ClickNormalPurposeArrow;
+			PurposeArrow.GestureRecognizers.Add(purposeclick);
+		}
+
+		public void ClickNormalPurposeArrow(object s, EventArgs e) {
+			Purpose.Focus();
 		}
 
 		private async void Confirm(object sender, EventArgs e) {

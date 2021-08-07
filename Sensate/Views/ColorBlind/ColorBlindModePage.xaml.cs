@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Xamarin.CommunityToolkit.UI.Views;
@@ -30,24 +31,24 @@ namespace Sensate.Views {
 		private Assembly assembly;
 
 		private static readonly float[] Protanopia = {
-			0.567F, 0.433F,         0F, 0F, 0,
-			0.558F, 0.442F,         0F, 0F, 0,
-					0F, 0.242F, 0.758F, 0F, 0,
-					0F,         0F,        0F, 1F, 0,
+			0.567F, 0.433F,     0F,		0F,		0,
+			0.558F, 0.442F,     0F,		0F,		0,
+			0F,		0.242F,		0.758F, 0F,		0,
+			0F,     0F,			0F,		1F,		0,
 		};
 
 		private static readonly float[] Deuteranopia = {
-			0.625f,0.375f,0,0,0,
-			0.7f,0.3f,0,0,0,
-			0,0.3f,0.7f,0,0,
-			0,0,0,1,0
+			0.625f,	0.375f,	0,		0,		0,
+			0.7f,	0.3f,	0,		0,		0,
+			0,		0.3f,	0.7f,	0,		0,
+			0,		0,		0,		1,		0
 		};
 
 		private static readonly float[] Tritanopia = {
-			0.95f,0.05f,0,0,0,
-			0,0.433f,0.567f,0,0,
-			0,0.475f,0.525f,0,0,
-			0,0,0,1,0
+			0.95f,	0.05f,		0,		0,		0,
+			0,		0.433f,		0.567f,	0,		0,
+			0,		0.475f,		0.525f,	0,		0,
+			0,		0,			0,		1,		0
 		};
 
 		private readonly SKPaint paintProtanopia = new SKPaint {

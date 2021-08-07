@@ -29,9 +29,12 @@ namespace Sensate.Views {
 
 			VoiceSpeed.SelectedIndexChanged += VoiceSpeedChange;
 			#endregion initalize variables
+
+			var voicespeedclick = new TapGestureRecognizer();
+			voicespeedclick.Tapped += ClickVoiceSpeedArrow;
+			VoiceSpeedArrow.GestureRecognizers.Add(voicespeedclick);
 		}
 
-		
 
 		protected override void OnAppearing() {
 			base.OnAppearing();
@@ -80,6 +83,10 @@ namespace Sensate.Views {
 				confirmFrame.IsVisible = false;
 				nextFrame.IsVisible = true;
 			}
+		}
+
+		public void ClickVoiceSpeedArrow(object s, EventArgs e) {
+			VoiceSpeed.Focus();
 		}
 
 		private void ToggledAudio(object sender, ToggledEventArgs e) {

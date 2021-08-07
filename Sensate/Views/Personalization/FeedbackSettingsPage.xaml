@@ -78,7 +78,8 @@
 											</Picker.ItemsSource>
 										</Picker>
 										<Image HeightRequest="20"
-											Source="{xct:ImageResource Id=Sensate.Assets.arrow-down.png}"/>
+											Source="{xct:ImageResource Id=Sensate.Assets.arrow-down.png}"
+											   x:Name="VoiceSpeedArrow"/>
 									</StackLayout>
 								</Frame>
 							</StackLayout>

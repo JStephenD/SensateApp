@@ -66,8 +66,9 @@ namespace Sensate.Views {
 			var UID = Preferences.Get("UID", "");
 
 			Console.WriteLine("loadsettings");
-			Console.WriteLine(Preferences.Get("UID", ""));
 			var uid = Preferences.Get("UID", "");
+
+			if (UID == "") return;
 
 			// load user configs
 			var user = await GetUsers(UID);

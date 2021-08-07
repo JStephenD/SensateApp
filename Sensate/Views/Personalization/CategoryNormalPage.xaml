@@ -34,7 +34,7 @@
 							</Picker.ItemsSource>
 						</Picker>
 						<Image Source="{xct:ImageResource Id=Sensate.Assets.arrow-down.png}"
-							   WidthRequest="30" HorizontalOptions="End"/>
+							   WidthRequest="30" HorizontalOptions="End" x:Name="PurposeArrow"/>
 					</StackLayout>
 				</Frame>
 			</FlexLayout>

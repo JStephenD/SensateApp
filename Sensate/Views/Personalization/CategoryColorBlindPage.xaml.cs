@@ -9,8 +9,23 @@ namespace Sensate.Views {
 	public partial class CategoryColorBlindPage : ContentPage {
 		public CategoryColorBlindPage() {
 			InitializeComponent();
+
+			var cbtypeclick = new TapGestureRecognizer();
+			cbtypeclick.Tapped += ClickCBTypeArrow;
+			CBTypeArrow.GestureRecognizers.Add(cbtypeclick);
+
+			var assistancelevelclick = new TapGestureRecognizer();
+			assistancelevelclick.Tapped += ClickCBAsstistanceArrow;
+			CBAssistanceArrow.GestureRecognizers.Add(assistancelevelclick);
 		}
 
+		public void ClickCBTypeArrow(object s, EventArgs e) {
+			CBType.Focus();
+		}
+
+		public void ClickCBAsstistanceArrow(object s, EventArgs e) {
+			AssistanceLevel.Focus();
+		}
 		private async void Confirm(object sender, EventArgs e) {
 			if (CBType.SelectedIndex == -1 ||
 				AssistanceLevel.SelectedIndex == -1) {
