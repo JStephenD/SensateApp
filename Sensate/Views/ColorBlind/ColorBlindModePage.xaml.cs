@@ -198,9 +198,9 @@ namespace Sensate.Views {
 			togglefilter.IsVisible = false;
 			togglefilterFrame.IsVisible = false;
 			toggleFilterStackFrame.IsVisible = false;
-			StartCaptureMode();
 			iscapturemode = true;
 			isuploadmode = false;
+			StartCaptureMode();
 
 			debugimage.IsVisible = false;
 		}
@@ -230,11 +230,18 @@ namespace Sensate.Views {
 			await MediaPicker.PickPhotoAsync()
 				.ContinueWith(async t => {
 					if (t.IsCanceled) {
+						Console.WriteLine("cancelled picking photo");
 						CameraFrameClick(null, null);
 						if (isVibration) Vibration.Vibrate();
 						return;
 					}
 					var result = t.Result;
+					if (result == null) {
+						Console.WriteLine("null picking photo");
+						CameraFrameClick(null, null);
+						if (isVibration) Vibration.Vibrate();
+						return;
+					}
 
 					using (MemoryStream ms = new MemoryStream()) {
 						using (Stream stream = await result.OpenReadAsync()) {

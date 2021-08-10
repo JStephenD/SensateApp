@@ -87,6 +87,9 @@
     <None Remove="Assets\tutorial\tutorial-rm-2.png" />
     <None Remove="Assets\tutorial\tutorial-rm-3.jpg" />
     <None Remove="Assets\tutorial\tutorial-rm-4.png" />
+    <None Remove="Assets\tutorial\tutorial-sn-1.png" />
+    <None Remove="Assets\tutorial\tutorial-sn-2.png" />
+    <None Remove="Assets\tutorial\tutorial-sn-3.png" />
     <None Remove="Assets\tutorial\tutorial1_01.jpg" />
     <None Remove="Assets\tutorial\tutorial1_02.jpg" />
     <None Remove="Assets\tutorial\tutorial1_03.jpg" />
@@ -164,6 +167,9 @@
     <EmbeddedResource Include="Assets\tutorial\tutorial-rm-2.png" />
     <EmbeddedResource Include="Assets\tutorial\tutorial-rm-3.jpg" />
     <EmbeddedResource Include="Assets\tutorial\tutorial-rm-4.png" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-sn-1.png" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-sn-2.png" />
+    <EmbeddedResource Include="Assets\tutorial\tutorial-sn-3.png" />
     <EmbeddedResource Include="Assets\tutorial\tutorial1_01.jpg" />
     <EmbeddedResource Include="Assets\tutorial\tutorial1_02.jpg" />
     <EmbeddedResource Include="Assets\tutorial\tutorial1_03.jpg" />

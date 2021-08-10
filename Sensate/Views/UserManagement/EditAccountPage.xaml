@@ -25,13 +25,13 @@
 					<Frame x:Name="accountnameFrame"
 						BorderColor="Black" CornerRadius="30">
 						<Entry x:Name="accountEmail" Placeholder="Email"
-							   TextColor="Black" PlaceholderColor="Gray" IsEnabled="true"
+							   TextColor="Black" PlaceholderColor="Gray" IsEnabled="true" IsReadOnly="True"
 							   FontSize="18"/>
 					</Frame>
 
 					<Frame x:Name="passwordFrame"
 						BorderColor="Black" CornerRadius="30">
-						<Entry x:Name="password" Placeholder="Password"
+						<Entry x:Name="password" Placeholder="New Password"
 							   TextColor="Black" PlaceholderColor="Gray" IsPassword="True"
 							   FontSize="18"/>
 					</Frame>

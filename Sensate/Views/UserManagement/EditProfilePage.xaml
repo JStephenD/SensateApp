@@ -48,12 +48,14 @@
 						</Frame>
 
 						<Frame x:Name="birthdateFrame"
-							BorderColor="Black" CornerRadius="30"
-							   HorizontalOptions="EndAndExpand">
-							<DatePicker x:Name="birthdate"
+								BorderColor="Black" CornerRadius="30" HorizontalOptions="EndAndExpand">
+							<StackLayout Spacing="0">
+								<Label Text="Birth Date" TextColor="Black" FontSize="16"/>
+								<DatePicker x:Name="birthdate"
 										Format="MM/dd/yyyy" MinimumDate="01/01/1970"
 										TextColor="Black" FontSize="18" Visual="Material"
 										Style="{DynamicResource DatePicker}"/>
+							</StackLayout>
 						</Frame>
 					</FlexLayout>
 

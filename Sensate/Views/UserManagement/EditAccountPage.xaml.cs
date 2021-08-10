@@ -94,6 +94,10 @@ namespace Sensate.Views {
 
 			await SyncHelper.UploadSettings();
 			if (settings.VibrationFeedback) Vibration.Vibrate();
+
+			Application.Current.MainPage = new AppShell();
+			Shell.Current.CurrentItem = Shell.Current.Items.FirstOrDefault(r => r.Title == "Account");
+			await Shell.Current.GoToAsync($"//{nameof(AccountPage)}");
 		}
 		public async void BackClick(object s, EventArgs e) {
 			if (settings.VibrationFeedback) Vibration.Vibrate();

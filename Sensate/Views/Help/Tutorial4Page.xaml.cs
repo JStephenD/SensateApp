@@ -84,16 +84,16 @@ namespace Sensate.Views {
 				DetailsSize = detailssize
 			});
 
-			TutorialContent.Add(new TutorialContentModel {
-				Title = "Other functionalities.",
-				TitleSize = titlesize,
-				Subtitle = "Welcome to the tutorial page of the Recognition Mode",
-				SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.For_Blue_Background.png"),
-				ImageWidth = 100,
-				Details = "Note: Your Mobile phone camera must have at least 5 megapixels resolution. Listen Well to the audio feedback of Sensate during this mode. It is recommended to capture an object very near to you so that it will be recognized better. Also, make sure to have a stable internet connection.",
-				DetailsSize = detailssize
-			});
+			//TutorialContent.Add(new TutorialContentModel {
+			//	Title = "Other functionalities.",
+			//	TitleSize = titlesize,
+			//	Subtitle = "Welcome to the tutorial page of the Recognition Mode",
+			//	SubtitleSize = subtitlesize,
+			//	Image = ImageSource.FromResource("Sensate.Assets.For_Blue_Background.png"),
+			//	ImageWidth = 100,
+			//	Details = "Note: Your Mobile phone camera must have at least 5 megapixels resolution. Listen Well to the audio feedback of Sensate during this mode. It is recommended to capture an object very near to you so that it will be recognized better. Also, make sure to have a stable internet connection.",
+			//	DetailsSize = detailssize
+			//});
 
 			SetCircleFill(0);
 		}
@@ -122,7 +122,7 @@ namespace Sensate.Views {
 			circle1.Fill = (index == 0) ? Brush.White : Brush.LightSkyBlue;
 			circle2.Fill = (index == 1) ? Brush.White : Brush.LightSkyBlue;
 			circle3.Fill = (index == 2) ? Brush.White : Brush.LightSkyBlue;
-			circle4.Fill = (index == 3) ? Brush.White : Brush.LightSkyBlue;
+			//circle4.Fill = (index == 3) ? Brush.White : Brush.LightSkyBlue;
 		}
 	}
 }
