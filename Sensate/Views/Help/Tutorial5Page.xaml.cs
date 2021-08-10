@@ -56,7 +56,7 @@ namespace Sensate.Views {
 			TutorialContent.Add(new TutorialContentModel{ 
 				Title = "Shortcuts and Navigation", TitleSize = titlesize,
 				Subtitle = "Welcome to the tutorial page of the Shortcuts and Navigation", SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.For_Blue_Background.png"),
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-sn-1.png"),
 				ImageWidth = 100,
 				Details = "Note: Make sure that the shortcuts are activated on the interactive settings. If you have severe low vision, please be guided by someone who has a normal vision, so that your confugation settings are updated correctly.",
 				DetailsSize = detailssize
@@ -67,7 +67,7 @@ namespace Sensate.Views {
 				TitleSize = titlesize,
 				Subtitle = "This shortcut is applicable on both of the recognition mode and the color enhancment feature for switching modes.",
 				SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.For_Blue_Background.png"),
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-sn-2.png"),
 				ImageWidth = 100,
 				Details = "Just shake your device if you want to switch into a different mode, for example switching from object detection to text detection, or switching filters on the color enhancement feature. Switching or flipping the camera mode from back to front or vice versa, can be done double tapping the camera interface.",
 				DetailsSize = detailssize
@@ -78,7 +78,7 @@ namespace Sensate.Views {
 				TitleSize = titlesize,
 				Subtitle = "The menu bar is an interface that contains different options or list to access other functionalities.",
 				SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.For_Blue_Background.png"),
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-sn-3.png"),
 				ImageWidth = 100,
 				Details = "Just swipe from the left side of the screen going to the right to open the menu bar. To close it, just swipe from right to left.",
 				DetailsSize = detailssize
