@@ -54,11 +54,11 @@ namespace Sensate.Views {
 							20;
 
 			TutorialContent.Add(new TutorialContentModel{ 
-				Title = "Shortcuts and Navigation", TitleSize = titlesize,
+				Title = "Shortcuts and Navigation", TitleSize = titlesize - 2,
 				Subtitle = "Welcome to the tutorial page of the Shortcuts and Navigation", SubtitleSize = subtitlesize,
 				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-sn-1.png"),
 				ImageWidth = 100,
-				Details = "Note: Make sure that the shortcuts are activated on the interactive settings. If you have severe low vision, please be guided by someone who has a normal vision, so that your confugation settings are updated correctly.",
+				Details = "Note: Make sure that the shortcuts are activated on the interactive settings. If you have severe low vision, please be guided by someone who has a normal vision, so that your configuration settings are updated correctly.",
 				DetailsSize = detailssize
 			});
 

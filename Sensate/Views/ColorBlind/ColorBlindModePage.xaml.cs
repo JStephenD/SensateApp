@@ -25,6 +25,7 @@ namespace Sensate.Views {
 		private string cbmode, cbmodeorig;
 		private bool iscapturemode = true;
 		private bool isuploadmode = false;
+		private SyncHelper.Settings _settings;
 		private bool isbusy = false;
 		private readonly bool isVibration;
 		private bool isBackCam = true;
@@ -134,6 +135,26 @@ namespace Sensate.Views {
 			isVibration = Preferences.Get("VibrationFeedback", false, "GeneralSettings");
 		}
 
+		protected override void OnAppearing() {
+			base.OnAppearing();
+
+			_settings = SyncHelper.GetCurrentSettings();
+
+			if (_settings.Gesture) {
+				Accelerometer.ShakeDetected += Accelerometer_ShakeDetected;
+				Accelerometer.Start(SensorSpeed.Game);
+			}
+		}
+
+		protected override void OnDisappearing() {
+			base.OnDisappearing();
+
+			if (_settings.Gesture) {
+				Accelerometer.Stop();
+				Accelerometer.ShakeDetected -= Accelerometer_ShakeDetected;
+			}
+		}
+
 		public void testclick(object s, EventArgs e) {
 			Console.WriteLine(s.ToString());
 		}
@@ -183,6 +204,20 @@ namespace Sensate.Views {
 		}
 		public void ColorModeChange(object s, EventArgs e) {
 			cbmode = cbmodeorig = colormode.SelectedItem.ToString();
+		}
+		void Accelerometer_ShakeDetected(object sender, EventArgs e) {
+			var imode = colormode.SelectedIndex;
+			if (imode == 0) {
+				colormode.SelectedIndex = 1;
+				cbmode = cbmodeorig = "Deuteranopia";
+			} else if (imode == 1) {
+				colormode.SelectedIndex = 2;
+				cbmode = cbmodeorig = "Tritanopia";
+			} else if (imode == 2) {
+				colormode.SelectedIndex = 0;
+				cbmode = cbmodeorig = "Protanopia";
+			}
+			if (isVibration) Vibration.Vibrate();
 		}
 		#endregion navigation
 

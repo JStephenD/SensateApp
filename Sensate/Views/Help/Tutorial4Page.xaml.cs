@@ -78,7 +78,7 @@ namespace Sensate.Views {
 				TitleSize = titlesize,
 				Subtitle = "The user must click the image-upload button and upload a picture of interest.",
 				SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.For_Blue_Background.png"),
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-ce-1.png"),
 				ImageWidth = 100,
 				Details = "Clicking the color enhancement toggle button switches the color enhancement filter on and off.",
 				DetailsSize = detailssize

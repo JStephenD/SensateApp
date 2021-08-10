@@ -202,7 +202,7 @@ namespace Sensate.Views {
 				detectionmode.SelectedIndex = 0;
 				detectionmodeimage.Source = icon_general;
 			}
-			Vibration.Vibrate();
+			if (isVibration) Vibration.Vibrate();
 		}
 		#endregion hardware
 
