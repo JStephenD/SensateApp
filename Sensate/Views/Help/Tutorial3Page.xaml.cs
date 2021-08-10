@@ -65,11 +65,11 @@ namespace Sensate.Views {
 			TutorialContent.Add(new TutorialContentModel {
 				Title = "Switching modes.",
 				TitleSize = titlesize,
-				Subtitle = "You can switch on different detection modes such as objects, texts, faces and brands. Use the shortcuts to switch on different modes.",
+				Subtitle = "Make sure that the shortcuts are activated on the configuration settings.",
 				SubtitleSize = subtitlesize,
 				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-rm-2.png"),
 				ImageWidth = 100,
-				Details = "Switch on object detection by ____. The text detection is activated through ____. Face detection can be done by ___. Finally, you can switch to brand detection by __",
+				Details = "You can switch on different detection modes such as objects, texts, faces and brands. Switch on to different modes by shaking the device. ",
 				DetailsSize = detailssize
 			});
 
