@@ -91,7 +91,7 @@ namespace Sensate.Views {
 				SubtitleSize = subtitlesize,
 				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-ce-4.png"),
 				ImageWidth = 100,
-				Details = "There are two buttons provided on the interface below, the button for camera feed mode (left side) and image upload mode (right side).",
+				Details = "There are two buttons provided on the interface below, the button for camera feed mode (left side) and image upload mode (right side). You can also flip the camera from back to front (or vice versa) using the button on the upper right.",
 				DetailsSize = detailssize
 			});
 
