@@ -71,16 +71,15 @@
                                 <Label  Text="Contact Us!" TextColor="#17749C" FontSize="20"
                                         FontAttributes="Bold"/>
                                 <ScrollView VerticalOptions="Start">
-                                    <Label TextType="Html">
-                                        <x:String>
-                                            <![CDATA[
-													<h3>Email: sensatebylightowls@gmail.com
-													Contact Number: 09123456789
-													Facebook Page: <a href="www.facebook.com">Sensate</a></h3> 
-                                                ]]>
-                                        </x:String>
-                                    </Label>
-                                </ScrollView>
+									<StackLayout Spacing="0">
+										<Label Text="Email: sensatebylightowls@gmail.com" FontSize="18"
+											   x:Name="sensateEmail"/>
+										<Label Text="Contact Number: 09123456789" FontSize="18"
+											   x:Name="sensateContactNumber"/>
+										<Label Text="Facebook Page: Sensate" FontSize="18"
+											   x:Name="sensateFacebook"/>
+									</StackLayout>
+								</ScrollView>
                             </StackLayout>
                         </Frame>
                     </FlexLayout>

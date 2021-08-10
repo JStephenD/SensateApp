@@ -29,6 +29,7 @@
 							<Picker.ItemsSource>
 								<x:Array Type="{x:Type x:String}">
 									<x:String>Farsightedness</x:String>
+									<x:String>Nearsightedness</x:String>
 									<x:String>Eye-Related Injury</x:String>
 									<x:String>Diabetes</x:String>
 									<x:String>Age-Related Macular Degenaration</x:String>

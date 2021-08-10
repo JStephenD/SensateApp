@@ -78,7 +78,18 @@ namespace Sensate.ViewModels {
 				Preferences.Set("UID", auth.User.LocalId);
 				Preferences.Set("FirebaseToken", auth.FirebaseToken);
 				Preferences.Set("MyFirebaseRefreshToken", serializedcontent);
+
+				if (Preferences.Get("IntroDone", false) == false) { 
+					try {
+						await SyncHelper.LoadSettings();
+					} catch {
+						await App.Current.MainPage.DisplayAlert("Error", "Couldn't retrieve user's saved settings.", "OK");
+					}
+				}
+
 				Preferences.Set("IntroDone", true);
+
+
 				await App.Current.MainPage.DisplayAlert("Welcome back!", "You are logged in again.", "OK");
 				//enters the homepage
 				Application.Current.MainPage = new AppShell();

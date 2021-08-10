@@ -30,30 +30,39 @@
 								VerticalOptions="FillAndExpand">
 						<!--entry portion-->
 						<StackLayout Spacing="50">
-							<Frame CornerRadius="50" BorderColor="Black" Padding="20,5">
-								<Entry Placeholder="Name" PlaceholderColor="Gray" 
-									Text="" TextColor="Black" x:Name="accountname"/>
-							</Frame>
+							<StackLayout Spacing="0">
+								<Label Text="Name" TextColor="Black" FontSize="16"/>
+								<Frame CornerRadius="50" BorderColor="Black" Padding="20,5">
+									<Entry Placeholder="Name" PlaceholderColor="Gray" 
+										Text="" TextColor="Black" x:Name="accountname"/>
+								</Frame>
+							</StackLayout>
 
 							<FlexLayout JustifyContent="SpaceBetween">
-								<Frame CornerRadius="30" BorderColor="Black" Padding="20,5">
-									<Picker x:Name="gender" HorizontalOptions="StartAndExpand"
-										Title="Gender" TitleColor="Gray" TextColor="Black">
-										<Picker.Items>
-											<x:String>Male</x:String>
-											<x:String>Female</x:String>
-											<x:String>Others</x:String>
-										</Picker.Items>
-									</Picker>
-								</Frame>
+								<StackLayout Spacing="0">
+									<Label Text="Gender" TextColor="Black" FontSize="16"/>
+									<Frame CornerRadius="30" BorderColor="Black" Padding="20,5">
+										<Picker x:Name="gender" HorizontalOptions="StartAndExpand"
+											Title="Gender" TitleColor="Gray" TextColor="Black">
+											<Picker.Items>
+												<x:String>Male</x:String>
+												<x:String>Female</x:String>
+												<x:String>Others</x:String>
+											</Picker.Items>
+										</Picker>
+									</Frame>
+								</StackLayout>
 
-								<Frame x:Name="birthdateFrame" BorderColor="Black" CornerRadius="30"
-									   HorizontalOptions="EndAndExpand">
-									<DatePicker x:Name="birthdate"
+								<StackLayout Spacing="0">
+									<Label Text="Birth Date" TextColor="Black" FontSize="16"/>
+									<Frame x:Name="birthdateFrame" BorderColor="Black" CornerRadius="30"
+										HorizontalOptions="EndAndExpand">
+										<DatePicker x:Name="birthdate"
 												Format="MM/dd/yyyy" MinimumDate="01/01/1970"
 												TextColor="Black" FontSize="18" Visual="Material"
 												Style="{DynamicResource DatePicker}"/>
-								</Frame>
+									</Frame>
+								</StackLayout>
 							</FlexLayout>
 						</StackLayout>
 					</FlexLayout>

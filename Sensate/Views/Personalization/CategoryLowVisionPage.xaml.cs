@@ -40,8 +40,8 @@ namespace Sensate.Views {
 					Preferences.Set("AudioFeedback", true, "GeneralSettings");
 
 					var birthdate = Preferences.Get("AccountBirthdate", DateTime.Now.ToString(), "UserAccount");
-					if (DateTime.Now.Year - DateTime.Parse(birthdate).Year >= 40) Preferences.Set("VoiceSpeed", 2, "GeneralSettings");
-					else Preferences.Set("VoiceSpeed", 1, "GeneralSettings");
+					if (DateTime.Now.Year - DateTime.Parse(birthdate).Year >= 40) Preferences.Set("VoiceSpeed", 1, "GeneralSettings");
+					else Preferences.Set("VoiceSpeed", 2, "GeneralSettings");
 
 					Preferences.Set("VibrationFeedback", true, "GeneralSettings");
 					Preferences.Set("Shortcuts", false, "GeneralSettings");
@@ -51,8 +51,8 @@ namespace Sensate.Views {
 					Preferences.Set("AudioFeedback", true, "GeneralSettings");
 
 					var birthdate = Preferences.Get("AccountBirthdate", DateTime.Now.ToString(), "UserAccount");
-					if (DateTime.Now.Year - DateTime.Parse(birthdate).Year >= 40) Preferences.Set("VoiceSpeed",1, "GeneralSettings");
-					else Preferences.Set("VoiceSpeed", 0, "GeneralSettings");
+					if (DateTime.Now.Year - DateTime.Parse(birthdate).Year >= 40) Preferences.Set("VoiceSpeed", 0, "GeneralSettings");
+					else Preferences.Set("VoiceSpeed", 1, "GeneralSettings");
 
 					Preferences.Set("VibrationFeedback", true, "GeneralSettings");
 					Preferences.Set("Shortcuts", true, "GeneralSettings");
@@ -60,6 +60,10 @@ namespace Sensate.Views {
 					Preferences.Set("TextSize", 2, "GeneralSettings");
 				} else if (LVSeverity.SelectedIndex == 2) {
 					Preferences.Set("AudioFeedback", true, "GeneralSettings");
+
+					var birthdate = Preferences.Get("AccountBirthdate", DateTime.Now.ToString(), "UserAccount");
+					if (DateTime.Now.Year - DateTime.Parse(birthdate).Year >= 40) Preferences.Set("VoiceSpeed", 0, "GeneralSettings");
+					else Preferences.Set("VoiceSpeed", 1, "GeneralSettings");
 
 					Preferences.Set("VibrationFeedback", true, "GeneralSettings");
 					Preferences.Set("Shortcuts", true, "GeneralSettings");
