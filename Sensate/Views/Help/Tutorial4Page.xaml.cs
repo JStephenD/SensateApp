@@ -67,9 +67,9 @@ namespace Sensate.Views {
 				TitleSize = titlesize,
 				Subtitle = "The user must pan the camera around to the objects or scenery of interest.",
 				SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-ce-1.png"),
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-ce-2.png"),
 				ImageWidth = 100,
-				Details = "Clicking the color enhancement toggle button switches the color enhancement filter on and off. To change the filter, just go the settings and reconfigure your colorblindness type. ",
+				Details =  "The filter is applied in real-time with this mode. To change the filter, just go the settings and reconfigure your colorblindness type.",
 				DetailsSize = detailssize
 			});
 
@@ -78,22 +78,22 @@ namespace Sensate.Views {
 				TitleSize = titlesize,
 				Subtitle = "The user must click the image-upload button and upload a picture of interest.",
 				SubtitleSize = subtitlesize,
-				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-ce-1.png"),
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-ce-3.png"),
 				ImageWidth = 100,
-				Details = "Clicking the color enhancement toggle button switches the color enhancement filter on and off.",
+				Details = "Clicking the color enhancement toggle button switches the color enhancement filter on and off. To change the filter, just go the settings and reconfigure your colorblindness type.",
 				DetailsSize = detailssize
 			});
 
-			//TutorialContent.Add(new TutorialContentModel {
-			//	Title = "Other functionalities.",
-			//	TitleSize = titlesize,
-			//	Subtitle = "Welcome to the tutorial page of the Recognition Mode",
-			//	SubtitleSize = subtitlesize,
-			//	Image = ImageSource.FromResource("Sensate.Assets.For_Blue_Background.png"),
-			//	ImageWidth = 100,
-			//	Details = "Note: Your Mobile phone camera must have at least 5 megapixels resolution. Listen Well to the audio feedback of Sensate during this mode. It is recommended to capture an object very near to you so that it will be recognized better. Also, make sure to have a stable internet connection.",
-			//	DetailsSize = detailssize
-			//});
+			TutorialContent.Add(new TutorialContentModel {
+				Title = "Other functionalities.",
+				TitleSize = titlesize,
+				Subtitle = "Welcome to the tutorial page of the Recognition Mode",
+				SubtitleSize = subtitlesize,
+				Image = ImageSource.FromResource("Sensate.Assets.tutorial.tutorial-ce-4.png"),
+				ImageWidth = 100,
+				Details = "There are two buttons provided on the interface below, the button for camera feed mode (left side) and image upload mode (right side).",
+				DetailsSize = detailssize
+			});
 
 			SetCircleFill(0);
 		}
