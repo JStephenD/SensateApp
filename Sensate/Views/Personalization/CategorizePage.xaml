@@ -3,38 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Sensate.Views.CategorizePage"
              Shell.NavBarIsVisible="False"
-			 NavigationPage.HasNavigationBar="False">
+			 NavigationPage.HasNavigationBar="False"
+			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit">
 	<ContentPage.Content>
 		<StackLayout Padding="40" Spacing="20" Background="White">
-			<Label 
-				Text="Let's categorize you..."
-				TextColor="Black"
-				FontSize="28"
-				/>
-			<Label 
-				Text="Sensate works on the two types of visual impairment. Choose your own classification."
-				TextColor="Black"
-				FontSize="22"
-				/>
-			<Frame 
-				BackgroundColor="#00AEF9"
-				CornerRadius="25"
-				>
-				<StackLayout
-					Orientation="Horizontal"
-					>
-					<Label 
-						Text="Low Vision"
-						TextColor="White"
-						HorizontalOptions="StartAndExpand"
-						FontSize="32"
-						/>
-					<Label 
-						Text=">"
-						TextColor="White"
-						HorizontalOptions="End"
-						FontSize="30"
-						/>
+			<Label  Text="Let's categorize you..." TextColor="Black" FontSize="28" />
+			<Label  Text="Sensate works on the two types of visual impairment. Choose your own classification."
+					TextColor="Black" FontSize="22"/>
+			<Frame	xct:ShadowEffect.Color="Black"
+					BackgroundColor="#00AEF9" CornerRadius="25">
+				<StackLayout Orientation="Horizontal">
+					<Label  Text="Low Vision" TextColor="White"
+							HorizontalOptions="StartAndExpand" FontSize="32"/>
+					<Label  Text=">" TextColor="White"	
+							HorizontalOptions="End" FontSize="30"/>
 				</StackLayout>
 				<Frame.GestureRecognizers>
 					<TapGestureRecognizer
@@ -43,25 +25,13 @@
 				</Frame.GestureRecognizers>
 			</Frame>
 
-			<Frame 
-				BackgroundColor="#17749C"
-				CornerRadius="25"
-				>
-				<StackLayout
-					Orientation="Horizontal"
-					>
-					<Label 
-						Text="Color Blind"
-						TextColor="White"
-						HorizontalOptions="StartAndExpand"
-						FontSize="32"
-						/>
-					<Label 
-						Text=">"
-						TextColor="White"
-						HorizontalOptions="End"
-						FontSize="30"
-						/>
+			<Frame  xct:ShadowEffect.Color="Gray"
+					BackgroundColor="#17749C" CornerRadius="25">
+				<StackLayout Orientation="Horizontal">
+					<Label  Text="Color Blind" TextColor="White"
+							HorizontalOptions="StartAndExpand" FontSize="32"/>
+					<Label  Text=">" TextColor="White" 
+							HorizontalOptions="End" FontSize="30"/>
 				</StackLayout>
 				<Frame.GestureRecognizers>
 					<TapGestureRecognizer
@@ -70,25 +40,13 @@
 				</Frame.GestureRecognizers>
 			</Frame>
 
-			<Frame 
-				BackgroundColor="#FF881A"
-				CornerRadius="25"
-				>
-				<StackLayout
-					Orientation="Horizontal"
-					>
-					<Label 
-						Text="Normal Vision"
-						TextColor="White"
-						HorizontalOptions="StartAndExpand"
-						FontSize="32"
-						/>
-					<Label 
-						Text=">"
-						TextColor="White"
-						HorizontalOptions="End"
-						FontSize="30"
-						/>
+			<Frame	xct:ShadowEffect.Color="Gray"
+					BackgroundColor="#FF881A" CornerRadius="25">
+				<StackLayout Orientation="Horizontal">
+					<Label  Text="Normal Vision" TextColor="White"
+							HorizontalOptions="StartAndExpand" FontSize="32"/>
+					<Label  Text=">" TextColor="White"
+							HorizontalOptions="End" FontSize="30"/>
 				</StackLayout>
 				<Frame.GestureRecognizers>
 					<TapGestureRecognizer

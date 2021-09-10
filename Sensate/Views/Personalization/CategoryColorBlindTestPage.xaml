@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Sensate.Views.CategoryColorBlindTestPage"
+			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+			 xmlns:viewmodels="clr-namespace:Sensate.ViewModels"
+             Shell.NavBarIsVisible="False">
+	<ContentPage.Content>
+		<StackLayout Padding="20,40" Spacing="20" Background="White">
+			<Frame  BackgroundColor="#8BBACE" CornerRadius="25" Margin="0,20,0,0">
+				<StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+					<Image Source="{xct:ImageResource Id=Sensate.Assets.tri-color.png}"
+						   WidthRequest="60"/>
+					<Label  Text="Color Blind" TextColor="White" HorizontalOptions="StartAndExpand"
+							FontSize="30"/>
+				</StackLayout>
+			</Frame>
+			
+			
+			<Label  Text="Let us learn about you more. Please answer  the following..."
+					TextColor="Black" FontSize="22"/>
+
+			<FlexLayout Direction="Column" VerticalOptions="FillAndExpand" JustifyContent="SpaceAround">
+				<Frame  xct:ShadowEffect.Color="Gray"
+						BackgroundColor="White" BorderColor="Black" 
+						CornerRadius="25" Padding="20,10" x:Name="enchromaFrame">
+					<StackLayout Orientation="Horizontal">
+						<Image Source="{xct:ImageResource Id=Sensate.Assets.enchroma.png}"
+							   HorizontalOptions="CenterAndExpand" x:Name="imgEnchroma"/>
+					</StackLayout>
+				</Frame>
+
+				<Frame  xct:ShadowEffect.Color="Gray"
+						BackgroundColor="White" BorderColor="Black" 
+						CornerRadius="25" Padding="20,10" x:Name="eyequeFrame">
+					<StackLayout Orientation="Horizontal">
+						<Image Source="{xct:ImageResource Id=Sensate.Assets.eyeque.png}" 
+							   HorizontalOptions="CenterAndExpand" x:Name="imgEyeQue"/>
+					</StackLayout>
+				</Frame>
+			</FlexLayout>
+
+			<Label  Text="Note: Make sure to read and follow the instructions of the website. The following sites are self-assessment tools only, consult an eyecare professional for more accurate results." 
+					FontAttributes="Italic" TextColor="Black" FontSize="18"/>
+
+			<Frame	xct:ShadowEffect.Color="Gray"
+					BackgroundColor="#FF881A" CornerRadius="25" 
+					VerticalOptions="EndAndExpand" Padding="20,10">
+				<Label Text="Done" TextColor="White" FontSize="28"
+						HorizontalTextAlignment="Center"/>
+				<Frame.GestureRecognizers>
+					<TapGestureRecognizer
+						Tapped="Done"
+						NumberOfTapsRequired="1" />
+				</Frame.GestureRecognizers>
+			</Frame>
+
+			<StackLayout 
+				HorizontalOptions="Center"
+				VerticalOptions="EndAndExpand"
+				Orientation="Horizontal" 
+				>
+				<Ellipse 
+					WidthRequest="17" 
+					HeightRequest="17"
+					Fill="#C4C4C4"
+					/>
+				<Ellipse 
+					WidthRequest="17" 
+					HeightRequest="17"
+					Fill="#00AEF9"
+					/>
+				<Ellipse 
+					WidthRequest="17" 
+					HeightRequest="17"
+					Fill="#C4C4C4"
+					/>
+			</StackLayout>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>

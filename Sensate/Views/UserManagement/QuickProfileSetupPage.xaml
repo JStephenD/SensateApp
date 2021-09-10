@@ -69,10 +69,11 @@
 					
 					<!--Bottom portion - singup and dots-->
 					<StackLayout VerticalOptions="End">
-						<Button  BackgroundColor="#FF881A" CornerRadius="50" 
-									VerticalOptions="Center"  Text="Confirm"  
-									HeightRequest="60" FontSize="24" 
-									Clicked="ConfirmCommand"/>
+						<Button xct:ShadowEffect.Color="Gray" 
+								BackgroundColor="#FF881A" CornerRadius="50" 
+								VerticalOptions="Center"  Text="Confirm"  
+								HeightRequest="60" FontSize="24" 
+								Clicked="ConfirmCommand"/>
 
 						<StackLayout  HorizontalOptions="Center" Orientation="Horizontal" VerticalOptions="End">
 							<Ellipse  WidthRequest="17"  HeightRequest="17" Fill="#C4C4C4" />

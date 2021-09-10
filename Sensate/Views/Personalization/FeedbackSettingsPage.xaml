@@ -105,7 +105,8 @@
 				Source="{xct:ImageResource Id=Sensate.Assets.arrow-right-circle.png}"
 				x:Name="nextFrame" IsVisible="false"/>
 
-			<Frame	BackgroundColor="#FF881A" CornerRadius="25" VerticalOptions="Center"
+			<Frame	xct:ShadowEffect.Color="Gray"
+					BackgroundColor="#FF881A" CornerRadius="25" VerticalOptions="Center"
 					Padding="20,10" Margin="50,10" x:Name="confirmFrame" IsVisible="false">
 				<Label Text="Confirm" TextColor="White" FontSize="28" HorizontalTextAlignment="Center"/>
 				<Frame.GestureRecognizers>

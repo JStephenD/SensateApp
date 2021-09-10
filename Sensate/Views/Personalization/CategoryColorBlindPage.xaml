@@ -21,7 +21,8 @@
 					TextColor="Black" FontSize="22"/>
 
 			<FlexLayout Direction="Column" VerticalOptions="FillAndExpand" JustifyContent="SpaceAround">
-				<Frame  BackgroundColor="White" BorderColor="Black" CornerRadius="25" Padding="20,10">
+				<Frame  xct:ShadowEffect.Color="Gray"
+						BackgroundColor="White" BorderColor="Black" CornerRadius="25" Padding="20,10">
 					<StackLayout Orientation="Horizontal">
 						<Picker x:Name="CBType" FontSize="22"
 								Title="Color Blindness Type" TitleColor="Gray" TextColor="Black"
@@ -39,7 +40,8 @@
 					</StackLayout>
 				</Frame>
 
-				<Frame  BackgroundColor="White" BorderColor="Black" CornerRadius="25" Padding="20,10">
+				<Frame  xct:ShadowEffect.Color="Gray"
+						BackgroundColor="White" BorderColor="Black" CornerRadius="25" Padding="20,10">
 					<StackLayout Orientation="Horizontal">
 						<Picker x:Name="AssistanceLevel" FontSize="22"
 								Title="Assistance Level" TitleColor="Gray" TextColor="Black"
@@ -57,18 +59,14 @@
 				</Frame>
 			</FlexLayout>
 
-			<Frame
-				BackgroundColor="#FF881A"
-				CornerRadius="25"
-				VerticalOptions="EndAndExpand"
-				Padding="20,10"
-				>
-				<Label
-					Text="Confirm"
-					TextColor="White"
-					FontSize="28"
-					HorizontalTextAlignment="Center"
-					/>
+			<Label  Text="I would like to take a test first." TextDecorations="Underline"
+					TextColor="Black" FontSize="22" x:Name="textTakeTest"/>
+
+			<Frame	xct:ShadowEffect.Color="Gray"
+					BackgroundColor="#FF881A" CornerRadius="25"
+					VerticalOptions="EndAndExpand" Padding="20,10">
+				<Label Text="Confirm" TextColor="White"
+						FontSize="28" HorizontalTextAlignment="Center"/>
 				<Frame.GestureRecognizers>
 					<TapGestureRecognizer
 						Tapped="Confirm"

@@ -22,15 +22,11 @@
 							HeightRequest="50" WidthRequest="50" HorizontalOptions="StartAndExpand"
 							BackgroundColor="Transparent"
 							Source="{xct:ImageResource Id=Sensate.Assets.arrow-back.png}"/>
-                        <Button 
-							BackgroundColor="#FF881A"
-                            HorizontalOptions="EndAndExpand"
-							CornerRadius="50"
-							VerticalOptions="Center" 
-							Text="SIGN IN" 
-							HeightRequest="40"
-							FontSize="18"
-							Command="{Binding SigninCommand}"/>
+						<Button	xct:ShadowEffect.Color="Gray"
+								BackgroundColor="#FF881A" HorizontalOptions="EndAndExpand"
+								CornerRadius="50" VerticalOptions="Center" 
+								Text="SIGN IN" HeightRequest="40" FontSize="18"
+								Command="{Binding SigninCommand}"/>
                        
                     </StackLayout>
 					<Label 
@@ -109,14 +105,10 @@
 
 					<!--Bottom portion - singup and dots-->
 					<StackLayout VerticalOptions="End">
-                        <Button 
-							BackgroundColor="#FF881A"
-							CornerRadius="50"
-							VerticalOptions="Center" 
-							Text="Sign up" 
-							HeightRequest="60"
-							FontSize="24"
-							Command="{Binding SignupCommand}"/>
+                        <Button	xct:ShadowEffect.Color="Gray"
+								BackgroundColor="#FF881A" CornerRadius="50" VerticalOptions="Center" 
+								Text="Sign up" HeightRequest="60" FontSize="24"
+								Command="{Binding SignupCommand}"/>
 
 						<StackLayout 
 							HorizontalOptions="Center"

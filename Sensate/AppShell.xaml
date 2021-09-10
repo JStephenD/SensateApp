@@ -88,7 +88,7 @@
 	<Shell.FlyoutHeader>
 		<StackLayout HeightRequest="100">
 			<ImageButton Source="{xct:ImageResource Id=Sensate.Assets.hamburger.png}"
-						 Clicked="CloseMenu" Scale="1.8"
+						 Clicked="CloseMenu" Scale="1.8" BackgroundColor="Transparent"
 						 HorizontalOptions="End" Margin="20"/>
 		</StackLayout>
 	</Shell.FlyoutHeader>
@@ -118,7 +118,7 @@
 	<Shell.FlyoutFooter>
 		<FlexLayout Direction="Row" JustifyContent="SpaceAround" Padding="10">
 			<StackLayout Orientation="Horizontal">
-				<Image Source="{xct:ImageResource Id=Sensate.Assets.For_Blue_Background.png}"
+				<Image	Source="{xct:ImageResource Id=Sensate.Assets.For_Blue_Background.png}"
 						HeightRequest="53"/>
 				<Label Text="Sensate" VerticalOptions="Center"/>
 			</StackLayout>

@@ -17,7 +17,8 @@
 
 			<StackLayout Spacing="0" Margin="0,20,0,0"
 						 BackgroundColor="#00AEF9" VerticalOptions="FillAndExpand">
-				<Frame x:Name="FeedbackFrame" BackgroundColor="#00AEF9">
+				<Frame	xct:ShadowEffect.Color="Gray"
+						x:Name="FeedbackFrame" BackgroundColor="#00AEF9">
 					<StackLayout Orientation="Horizontal" Spacing="20" BackgroundColor="#00AEF9">
 						<Image Source="{xct:ImageResource Id=Sensate.Assets.waves.png}" 
 							   xct:IconTintColorEffect.TintColor="#00577D"
@@ -31,7 +32,8 @@
 					</StackLayout>	
 				</Frame>
 
-				<Frame x:Name="NavigationFrame" BackgroundColor="#00AEF9">
+				<Frame	xct:ShadowEffect.Color="Gray"
+						x:Name="NavigationFrame" BackgroundColor="#00AEF9">
 					<StackLayout Orientation="Horizontal" Spacing="20" BackgroundColor="#00AEF9">
 						<Image Source="{xct:ImageResource Id=Sensate.Assets.navigation-settings.png}" 
 							   xct:IconTintColorEffect.TintColor="#00577D"
@@ -45,7 +47,8 @@
 					</StackLayout>
 				</Frame>
 
-				<Frame x:Name="DisplayFrame" BackgroundColor="#00AEF9">
+				<Frame	xct:ShadowEffect.Color="Gray"
+						x:Name="DisplayFrame" BackgroundColor="#00AEF9">
 					<StackLayout Orientation="Horizontal" Spacing="20" BackgroundColor="#00AEF9">
 						<Image Source="{xct:ImageResource Id=Sensate.Assets.display-settings.png}" 
 							   xct:IconTintColorEffect.TintColor="#00577D"

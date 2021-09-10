@@ -17,6 +17,10 @@ namespace Sensate.Views {
 			var assistancelevelclick = new TapGestureRecognizer();
 			assistancelevelclick.Tapped += ClickCBAsstistanceArrow;
 			CBAssistanceArrow.GestureRecognizers.Add(assistancelevelclick);
+
+			var takeTestclick = new TapGestureRecognizer();
+			takeTestclick.Tapped += TakeTestClick;
+			textTakeTest.GestureRecognizers.Add(takeTestclick);
 		}
 
 		public void ClickCBTypeArrow(object s, EventArgs e) {
@@ -26,6 +30,11 @@ namespace Sensate.Views {
 		public void ClickCBAsstistanceArrow(object s, EventArgs e) {
 			AssistanceLevel.Focus();
 		}
+
+		public async void TakeTestClick(object s, EventArgs e) { 
+			await Shell.Current.GoToAsync(nameof(CategoryColorBlindTestPage));
+		}
+
 		private async void Confirm(object sender, EventArgs e) {
 			if (CBType.SelectedIndex == -1 ||
 				AssistanceLevel.SelectedIndex == -1) {

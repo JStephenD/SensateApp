@@ -20,7 +20,8 @@
 					TextColor="Black" FontSize="22"/>
 			<FlexLayout Direction="Column" VerticalOptions="FillAndExpand"
 					JustifyContent="SpaceAround" >
-				<Frame BackgroundColor="White" BorderColor="Black" CornerRadius="25"
+				<Frame	xct:ShadowEffect.Color="Gray"
+						BackgroundColor="White" BorderColor="Black" CornerRadius="25"
 					Padding="20,10">
 					<StackLayout Orientation="Horizontal">
 						<Picker x:Name="LVCause" Title="Cause of Low Vision" TitleColor="Gray" 
@@ -48,7 +49,8 @@
 					</StackLayout>
 				</Frame>
 
-				<Frame  BackgroundColor="White" BorderColor="Black" CornerRadius="25" Padding="20,10">
+				<Frame	xct:ShadowEffect.Color="Gray"
+						BackgroundColor="White" BorderColor="Black" CornerRadius="25" Padding="20,10">
 					<StackLayout Orientation="Horizontal">
 						<Picker x:Name="LVSeverity"
 								Title="Severity of Condition" TitleColor="Gray"
@@ -69,8 +71,9 @@
 
 			</FlexLayout>
 
-			<Frame BackgroundColor="#FF881A" CornerRadius="25" VerticalOptions="EndAndExpand"
-				   Padding="20,10">
+			<Frame	xct:ShadowEffect.Color="Gray"
+					BackgroundColor="#FF881A" CornerRadius="25" VerticalOptions="EndAndExpand"
+					Padding="20,10">
 				<Label Text="Confirm" TextColor="White"
 					FontSize="28" HorizontalTextAlignment="Center"/>
 				<Frame.GestureRecognizers>

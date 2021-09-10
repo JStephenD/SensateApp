@@ -84,10 +84,11 @@
 
 			<StackLayout BackgroundColor="#004867">
 				<StackLayout Orientation="Horizontal" Padding="30,10,30,0">
-					<Frame	CornerRadius="50" HorizontalOptions="End" BackgroundColor="#FF881A"
-						WidthRequest="23" HeightRequest="23" x:Name="zoomOutFrame">
-						<Image Source="{xct:ImageResource Id=Sensate.Assets.zoom-out.png}" 
-						   Aspect="AspectFit" Scale="2"/>
+					<Frame	xct:ShadowEffect.Color="Gray"
+							CornerRadius="50" HorizontalOptions="End" BackgroundColor="#FF881A"
+							WidthRequest="23" HeightRequest="23" x:Name="zoomOutFrame">
+							<Image Source="{xct:ImageResource Id=Sensate.Assets.zoom-out.png}" 
+								Aspect="AspectFit" Scale="2"/>
 					</Frame>
 
 
@@ -102,12 +103,13 @@
 							ThumbColor="White" HeightRequest="5"
 							ValueChanged="ZoomSlider_ValueChanged" Value="1"/>
 					</Grid>
-					
-					
-					<Frame	CornerRadius="50" HorizontalOptions="End" BackgroundColor="#FF881A"
-						WidthRequest="23" HeightRequest="23" x:Name="zoomInFrame">
-						<Image Source="{xct:ImageResource Id=Sensate.Assets.zoom-in.png}" 
-						   Aspect="AspectFit" Scale="2"/>
+
+
+					<Frame	xct:ShadowEffect.Color="Gray"
+							CornerRadius="50" HorizontalOptions="End" BackgroundColor="#FF881A"
+							WidthRequest="23" HeightRequest="23" x:Name="zoomInFrame">
+							<Image Source="{xct:ImageResource Id=Sensate.Assets.zoom-in.png}" 
+								Aspect="AspectFit" Scale="2"/>
 					</Frame>
 				</StackLayout>
 
@@ -117,19 +119,21 @@
 					<Image Grid.Row="0" Grid.Column="0"
 							Source="{xct:ImageResource Id=Sensate.Assets.For_Darkblue_Background.png}"
 						   WidthRequest="25" HorizontalOptions="Start"/>
-					
-					<Frame Grid.Row="0" Grid.Column="1" HorizontalOptions="Start"
-						   WidthRequest="35" HeightRequest="15" Padding="20,0"
-						   CornerRadius="20" x:Name="cameraFrame" BackgroundColor="#FF881A">
-						<Image Source="{xct:ImageResource Id=Sensate.Assets.camera.png}"
-							   Aspect="AspectFit" x:Name="cameraImage"/>
+
+					<Frame	xct:ShadowEffect.Color="Gray"
+							Grid.Row="0" Grid.Column="1" HorizontalOptions="Start"
+							WidthRequest="35" HeightRequest="15" Padding="20,0"
+							CornerRadius="20" x:Name="cameraFrame" BackgroundColor="#FF881A">
+							<Image Source="{xct:ImageResource Id=Sensate.Assets.camera.png}"
+								Aspect="AspectFit" x:Name="cameraImage"/>
 					</Frame>
 
-					<Frame Grid.Row="0" Grid.Column="1" HorizontalOptions="End"
-						   WidthRequest="35" HeightRequest="15" Padding="20,0"
-						   CornerRadius="20" x:Name="uploadFrame" BackgroundColor="#EFEFEF">
-						<Image Source="{xct:ImageResource Id=Sensate.Assets.upload.png}"
-							   Aspect="AspectFit" x:Name="uploadImage"/>
+					<Frame	xct:ShadowEffect.Color="Gray"
+							Grid.Row="0" Grid.Column="1" HorizontalOptions="End"
+							WidthRequest="35" HeightRequest="15" Padding="20,0"
+							CornerRadius="20" x:Name="uploadFrame" BackgroundColor="#EFEFEF">
+							<Image Source="{xct:ImageResource Id=Sensate.Assets.upload.png}"
+								Aspect="AspectFit" x:Name="uploadImage"/>
 					</Frame>
 				</Grid>
 			</StackLayout>

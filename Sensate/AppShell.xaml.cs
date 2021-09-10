@@ -36,6 +36,7 @@ namespace Sensate {
 
 			Routing.RegisterRoute(nameof(CategorizePage), typeof(CategorizePage));
 			Routing.RegisterRoute(nameof(CategoryColorBlindPage), typeof(CategoryColorBlindPage));
+			Routing.RegisterRoute(nameof(CategoryColorBlindTestPage), typeof(CategoryColorBlindTestPage));
 			Routing.RegisterRoute(nameof(CategoryLowVisionPage), typeof(CategoryLowVisionPage));
 			Routing.RegisterRoute(nameof(CategoryNormalPage), typeof(CategoryNormalPage));
 

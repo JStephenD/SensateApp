@@ -29,8 +29,10 @@
     <None Remove="Assets\colors.png" />
     <None Remove="Assets\default-avatar.png" />
     <None Remove="Assets\display-settings.png" />
+    <None Remove="Assets\enchroma.png" />
     <None Remove="Assets\eye-censored.png" />
     <None Remove="Assets\eye-glow.png" />
+    <None Remove="Assets\eyeque.png" />
     <None Remove="Assets\faq-down.png" />
     <None Remove="Assets\faq-up.png" />
     <None Remove="Assets\flash.png" />
@@ -117,7 +119,9 @@
     <EmbeddedResource Include="Assets\colors.png" />
     <EmbeddedResource Include="Assets\default-avatar.png" />
     <EmbeddedResource Include="Assets\display-settings.png" />
+    <EmbeddedResource Include="Assets\enchroma.png" />
     <EmbeddedResource Include="Assets\eye-glow.png" />
+    <EmbeddedResource Include="Assets\eyeque.png" />
     <EmbeddedResource Include="Assets\faq-down.png" />
     <EmbeddedResource Include="Assets\faq-up.png" />
     <EmbeddedResource Include="Assets\flash.png" />
@@ -224,6 +228,9 @@
     </Compile>
     <Compile Update="Views\Intro\IntroPage.xaml.cs">
       <DependentUpon>IntroPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Personalization\CategoryColorBlindTestPage.xaml.cs">
+      <DependentUpon>CategoryColorBlindTestPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Personalization\MainSettingsPage.xaml.cs">
       <DependentUpon>MainSettingsPage.xaml</DependentUpon>

@@ -75,7 +75,8 @@
 						</Picker>
 					</Frame>
 
-					<Frame x:Name="confirmButtonFrame"
+					<Frame	xct:ShadowEffect.Color="Gray"
+							x:Name="confirmButtonFrame"
 							BorderColor="Black" CornerRadius="30" BackgroundColor="#FF881A"
 							   HorizontalOptions="FillAndExpand" VerticalOptions="End">
 						<Button x:Name="confirmButton" Text="CONFIRM"
@@ -83,9 +84,10 @@
 								Clicked="ConfirmButtonClick"/>
 					</Frame>
 
-					<Frame x:Name="editAccountFrame"
-							BorderColor="Blue" CornerRadius="30" BackgroundColor="Transparent"
-							   HorizontalOptions="FillAndExpand" VerticalOptions="End">
+					<Frame	xct:ShadowEffect.Color="Gray"
+							x:Name="editAccountFrame"
+							BorderColor="Blue" CornerRadius="30"
+							HorizontalOptions="FillAndExpand" VerticalOptions="End">
 						<Button x:Name="editAccountButton" Text="EDIT ACCOUNT" TextColor="Blue"
 								BackgroundColor="Transparent" FontSize="20" 
 								Clicked="EditAccountClick"/>

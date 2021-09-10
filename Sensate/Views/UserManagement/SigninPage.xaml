@@ -18,9 +18,10 @@
 							HeightRequest="50" WidthRequest="50" HorizontalOptions="StartAndExpand"
 							BackgroundColor="Transparent"
 							Source="{xct:ImageResource Id=Sensate.Assets.arrow-back.png}"/>
-                        <Button  BackgroundColor="#FF881A" HorizontalOptions="EndAndExpand" 
-								 CornerRadius="50" VerticalOptions="Center"  Text="SIGN UP"  
-								 HeightRequest="40" FontSize="18" Command="{Binding SignupCommand}"/>
+						<Button xct:ShadowEffect.Color="Gray" 
+								BackgroundColor="#FF881A" HorizontalOptions="EndAndExpand" 
+								CornerRadius="50" VerticalOptions="Center"  Text="SIGN UP"  
+								HeightRequest="40" FontSize="18" Command="{Binding SignupCommand}"/>
                     </StackLayout>
 					<Label  Text="Sign In" TextColor="Black" FontSize="32" />
 					<Label  Text="Sign in to Sensate to syncronize your settings and your data." 
@@ -58,10 +59,12 @@
 
 					<!--Bottom portion - login and dots-->
 					<StackLayout VerticalOptions="End">
-						<Button  BackgroundColor="#FF881A" CornerRadius="50" 
-								 VerticalOptions="Center"  Text="Sign in" 
-								 HeightRequest="60" FontSize="24" 
-								 Command = "{Binding SigninCommand}" />
+						<Button xct:ShadowEffect.Color="Gray" 
+								BackgroundColor="#FF881A" CornerRadius="50" 
+								VerticalOptions="Center"  Text="Sign in" 
+								HeightRequest="60" FontSize="24" 
+								Margin="0,0,0,10"
+								Command = "{Binding SigninCommand}" />
 
 						<StackLayout  HorizontalOptions="Center" Orientation="Horizontal" >
 							<Ellipse WidthRequest="17" HeightRequest="17" Fill="#C4C4C4"/>

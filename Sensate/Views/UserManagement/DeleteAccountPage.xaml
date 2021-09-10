@@ -24,9 +24,10 @@
 			<ScrollView BackgroundColor="White" VerticalOptions="FillAndExpand">
 				<StackLayout Spacing="18" Margin="20,0" Padding="0,20,0,20">
 					<Label Text="Your account on the cloud will be gone, but some information in this device remains." 
-						   TextColor="black" FontSize="18" x:Name="textInfo"/> 
+						   TextColor="black" FontSize="18" x:Name="textInfo"/>
 
-					<Frame x:Name="reasonFrame" BorderColor="Black" CornerRadius="30">
+					<Frame	xct:ShadowEffect.Color="Gray"
+							x:Name="reasonFrame" BorderColor="Black" CornerRadius="30">
 						<StackLayout Orientation="Horizontal" Spacing="0" HorizontalOptions="FillAndExpand">
 							<Picker x:Name="reasonPicker"
 									Title="Reason for account deletion" TitleColor="Gray"
@@ -48,14 +49,16 @@
 					</Frame>
 
 
-					<Frame x:Name="confirmButtonFrame"
-							BorderColor="Red" CornerRadius="30" BackgroundColor="Transparent"
+					<Frame	xct:ShadowEffect.Color="Gray"
+							x:Name="confirmButtonFrame"
+							BorderColor="Red" CornerRadius="30"
 							   HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand">
 						<Button x:Name="confirmbutton" Text="Confirm" TextColor="Red"
 								BackgroundColor="Transparent" FontSize="20"/>
 					</Frame>
 
-					<Frame x:Name="cancelButtonFrame"
+					<Frame	xct:ShadowEffect.Color="Gray"
+							x:Name="cancelButtonFrame"
 							BorderColor="Black" CornerRadius="30" BackgroundColor="#FF881A"
 							HorizontalOptions="FillAndExpand" VerticalOptions="End">
 						<Button x:Name="cancelButton" Text="Cancel" TextColor="White"

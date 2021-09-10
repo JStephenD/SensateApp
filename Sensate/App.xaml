@@ -32,6 +32,7 @@
 			<Style TargetType="NavigationPage">
 				<Setter Property="BarBackgroundColor" Value="#00AEF9"/>
 			</Style>
+
 		</ResourceDictionary>        
     </Application.Resources>
 </Application>

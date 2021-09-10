@@ -61,10 +61,11 @@
 
 			<StackLayout BackgroundColor="#004867">
 				<StackLayout Orientation="Horizontal" Padding="30,10,30,0">
-					<Frame	CornerRadius="50" HorizontalOptions="End" BackgroundColor="#FF881A"
-						WidthRequest="23" HeightRequest="23" x:Name="zoomOutFrame">
-						<Image Source="{xct:ImageResource Id=Sensate.Assets.zoom-out.png}" 
-						   Aspect="AspectFit" Scale="2"/>
+					<Frame	xct:ShadowEffect.Color="Gray"
+							CornerRadius="50" HorizontalOptions="End" BackgroundColor="#FF881A"
+							WidthRequest="23" HeightRequest="23" x:Name="zoomOutFrame">
+							<Image Source="{xct:ImageResource Id=Sensate.Assets.zoom-out.png}" 
+								Aspect="AspectFit" Scale="2"/>
 					</Frame>
 
 					<Grid RowSpacing="0" ColumnSpacing="0"
@@ -78,12 +79,13 @@
 							ThumbColor="White" HeightRequest="5"
 							ValueChanged="ZoomSlider_ValueChanged" Value="1"/>
 					</Grid>
-					
-					
-					<Frame	CornerRadius="50" HorizontalOptions="End" BackgroundColor="#FF881A"
-						WidthRequest="23" HeightRequest="23" x:Name="zoomInFrame">
-						<Image Source="{xct:ImageResource Id=Sensate.Assets.zoom-in.png}" 
-						   Aspect="AspectFit" Scale="2"/>
+
+
+					<Frame	xct:ShadowEffect.Color="Gray"
+							CornerRadius="50" HorizontalOptions="End" BackgroundColor="#FF881A"
+							WidthRequest="23" HeightRequest="23" x:Name="zoomInFrame">
+							<Image Source="{xct:ImageResource Id=Sensate.Assets.zoom-in.png}" 
+								Aspect="AspectFit" Scale="2"/>
 					</Frame>
 				</StackLayout>
 

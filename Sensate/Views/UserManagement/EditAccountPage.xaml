@@ -44,15 +44,17 @@
 					</Frame>
 
 
-					<Frame x:Name="confirmButtonFrame"
+					<Frame	xct:ShadowEffect.Color="Gray"
+							x:Name="confirmButtonFrame"
 							BorderColor="Black" CornerRadius="30" BackgroundColor="#FF881A"
 							   HorizontalOptions="FillAndExpand" VerticalOptions="End">
 						<Button x:Name="confirmbutton" Text="Confirm"
 								BackgroundColor="Transparent" FontSize="20"/>
 					</Frame>
 
-					<Frame x:Name="deleteAccountFrame"
-							BorderColor="Red" CornerRadius="30" BackgroundColor="Transparent"
+					<Frame	xct:ShadowEffect.Color="Gray"
+							x:Name="deleteAccountFrame"
+							BorderColor="Red" CornerRadius="30" 
 							   HorizontalOptions="FillAndExpand" VerticalOptions="End">
 						<Button x:Name="deleteAccountButton" Text="DELETE ACCOUNT" TextColor="Red"
 								BackgroundColor="Transparent" FontSize="20"
