@@ -13,6 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
+using System.Text.Json;
 
 namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
@@ -34,6 +35,10 @@ namespace Sensate.Views {
 		private bool isBackCam = true;
 
 		private CancellationTokenSource _cts;
+
+		private static string filedir = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+		private string resultsfile = Path.Combine(filedir, "RecognitionResults.json");
+		private string tempgeneralLabel = "";
 
 		public RecognitionModePage() {
 			InitializeComponent();
@@ -111,6 +116,27 @@ namespace Sensate.Views {
 				Accelerometer.ShakeDetected += Accelerometer_ShakeDetected;
 				Accelerometer.Start(SensorSpeed.Game);
 			}
+
+			//Debug
+
+			//List<Result> results = new List<Result> {
+			//	new Result {
+			//		desc = "shoe",
+			//		score = 74.9
+			//	}
+			//};
+
+			//RecognitionResult newresult = new RecognitionResult {
+			//	fname = "hello.txt",
+			//	generalLabel = "purchased goods",
+			//	results = results
+			//};
+
+			//RecognitionResults recognitionResults = new RecognitionResults();
+			//recognitionResults.results.Add(newresult);
+			//Console.WriteLine("add new result");
+			//Console.WriteLine(JsonSerializer.Serialize(newresult));
+			//Console.WriteLine(JsonSerializer.Serialize(recognitionResults));
 		}
 
 		protected override void OnDisappearing() {
@@ -127,10 +153,12 @@ namespace Sensate.Views {
 			cameraView.Zoom = zoomSlider.Value;
 		}
 
-		public void ZoomInClick(object s, EventArgs e) {
-			double currval = zoomSlider.Value, maxzoom = cameraView.MaxZoom;
-			cameraView.Zoom = Math.Min(currval + 1, maxzoom);
-			zoomSlider.Value = cameraView.Zoom;
+		public async void ZoomInClick(object s, EventArgs e) {
+			await Shell.Current.GoToAsync(nameof(RecognitionResultPage));
+
+			//double currval = zoomSlider.Value, maxzoom = cameraView.MaxZoom;
+			//cameraView.Zoom = Math.Min(currval + 1, maxzoom);
+			//zoomSlider.Value = cameraView.Zoom;
 		}
 
 		public void ZoomOutClick(object s, EventArgs e) {
@@ -267,7 +295,7 @@ namespace Sensate.Views {
 					var detectedlabel = false;
 					var detectedobject = false;
 					var packagedgoodsfound = false;
-
+					
 					Console.WriteLine(response.LocalizedObjectAnnotations);
 					foreach (LocalizedObjectAnnotation annotation in response.LocalizedObjectAnnotations) {
 						detectedobject = true;
@@ -276,7 +304,10 @@ namespace Sensate.Views {
 							packagedgoodsfound = true;
 						}
 						string output = $"Object Identified: {annotation.Name}";
+						tempgeneralLabel = annotation.Name;
 						Console.WriteLine(output);
+						Console.WriteLine("---------------------------------------------------------------");
+						Console.WriteLine(tempgeneralLabel);
 						//if (annotation.Score >= .80)
 						await Speak(output);
 					}
@@ -295,6 +326,7 @@ namespace Sensate.Views {
 					}
 					results.OrderBy(x => x.score);
 
+					List<Result> finalresults = new List<Result>();
 					var limit = 3;
 					foreach (var r in results) {
 						string output;
@@ -303,10 +335,47 @@ namespace Sensate.Views {
 						} else {
 							output = $"Object Identified: {r.desc}";
 						}
+						finalresults.Add(r);
 						await Speak(output);
 						//await TextToSpeech.SpeakAsync(output);
 						if (limit-- == 0) break;
 					}
+
+					string fname = $"{Guid.NewGuid()}.jpg";
+					string saveto = Path.Combine(filedir, fname);
+					File.WriteAllBytes(saveto, imagedata);
+
+					RecognitionResult newresult = new RecognitionResult{
+						fname = fname,
+						generalLabel = tempgeneralLabel,
+						results = finalresults
+					};
+
+					if (File.Exists(resultsfile)) { 
+						Console.WriteLine("file exists");
+						string readfile = File.ReadAllText(resultsfile);
+						RecognitionResults recognitionResults = JsonSerializer.Deserialize<RecognitionResults>(readfile);
+						recognitionResults.results.Add(newresult);
+						string serialized = JsonSerializer.Serialize(recognitionResults);
+						File.WriteAllText(resultsfile, serialized);
+					} else {
+						Console.WriteLine("file not exists");
+						RecognitionResults recognitionResults = new RecognitionResults();
+						recognitionResults.results.Add(newresult);
+						string serialized = JsonSerializer.Serialize(recognitionResults);
+						File.WriteAllText(resultsfile, serialized);
+					}
+
+					//Console.WriteLine("new results");
+					//Console.WriteLine(File.ReadAllText(resultsfile));
+
+					//Console.WriteLine("retrieving image");
+					//byte[] newimagedata = File.ReadAllBytes(saveto);
+					//Console.WriteLine("retrieved image");
+
+					//bitmap = SKBitmap.Decode(newimagedata);
+					//canvasView.InvalidateSurface();
+					//canvasView.IsVisible = true;
 
 					if (!detectedlabel && !detectedobject)
 						await Speak("No object found in the captured image.");
@@ -375,8 +444,7 @@ namespace Sensate.Views {
 
 			if (bitmap != null) {
 				var rotatedbitmap = (isBackCam) ? Rotate2(bitmap, 90) : Rotate(bitmap, 270);
-				canvas.DrawBitmap(rotatedbitmap, info.Rect, BitmapStretch.AspectFill
-					);
+				canvas.DrawBitmap(rotatedbitmap, info.Rect, BitmapStretch.AspectFill);
 			}
 		}
 
@@ -384,11 +452,6 @@ namespace Sensate.Views {
 
 		private async Task Speak(string output) {
 			await cancelme.Speak(output, speakRate);
-		}
-
-		public class Result {
-			public string desc;
-			public double score;
 		}
 
 		public static SKBitmap Rotate(SKBitmap bitmap, double angle) {

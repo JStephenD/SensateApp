@@ -51,6 +51,7 @@ namespace Sensate {
 
 			Routing.RegisterRoute(nameof(ColorBlindModePage), typeof(ColorBlindModePage));
 			Routing.RegisterRoute(nameof(RecognitionModePage), typeof(RecognitionModePage));
+			Routing.RegisterRoute(nameof(RecognitionResultPage), typeof(RecognitionResultPage));
 
 			if (Preferences.Get("UserCategory", "Normal", "GeneralSettings") == "LowVision") {
 				MainFeature.Route = nameof(RecognitionModePage);

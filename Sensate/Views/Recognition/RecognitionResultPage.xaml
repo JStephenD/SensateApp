@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+			 xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+			 xmlns:views="clr-namespace:Sensate.Views"
+			 x:Class="Sensate.Views.RecognitionResultPage">
+	<ContentPage.Content>
+		<StackLayout Spacing="0">
+			<StackLayout	Orientation="Horizontal" Background="#004867"
+							Padding="10">
+				<Frame	CornerRadius="50" HorizontalOptions="Start" BackgroundColor="Transparent"
+						WidthRequest="23" HeightRequest="23" x:Name="OpenNavFrame">
+					<Image Source="{xct:ImageResource Id=Sensate.Assets.hamburger.png}"
+						   Aspect="AspectFill" Scale="1.8"/>
+				</Frame>
+				<Frame	CornerRadius="50" HorizontalOptions="Start" BackgroundColor="White"
+						WidthRequest="23" HeightRequest="23" x:Name="detectionmodeselect">
+					<Image Source="{xct:ImageResource Id=Sensate.Assets.recognition-general.png}"
+						   Aspect="AspectFit" Scale="1.5" x:Name="detectionmodeimage"/>
+				</Frame>
+			</StackLayout>
+
+			<Grid RowDefinitions="*,*" ColumnDefinitions="*"
+				HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"
+				  BackgroundColor="#00B2FF">
+
+				<Image	Grid.Row="0"
+						Source="{xct:ImageResource Id=Sensate.Assets.For_Blue_Background.png}"/>
+
+				<StackLayout Grid.Row="1" Padding="20">
+					<Label Text="Bottled Water" TextColor="White"/>
+
+					<StackLayout Orientation="Horizontal">
+						<Label Text="Container" TextColor="White"/>
+						<Label Text="64%" TextColor="White" HorizontalOptions="EndAndExpand"/>
+					</StackLayout>
+					<StackLayout Orientation="Horizontal">
+						<Label Text="Drink" TextColor="White"/>
+						<Label Text="85%" TextColor="White" HorizontalOptions="EndAndExpand"/>
+					</StackLayout>
+					<StackLayout Orientation="Horizontal">
+						<Label Text="Bottle" TextColor="White"/>
+						<Label Text="83%" TextColor="White" HorizontalOptions="EndAndExpand"/>
+					</StackLayout>
+					<StackLayout Orientation="Horizontal">
+						<Label Text="Water" TextColor="White"/>
+						<Label Text="75%" TextColor="White" HorizontalOptions="EndAndExpand"/>
+					</StackLayout>
+					
+				</StackLayout>
+				
+			</Grid>
+		</StackLayout>
+	</ContentPage.Content>
+</ContentPage>
