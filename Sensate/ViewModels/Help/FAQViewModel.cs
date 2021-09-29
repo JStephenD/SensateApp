@@ -64,6 +64,9 @@ namespace Sensate.ViewModels {
 				new FAQViewModel("What is the colorblind condition Protanopia?"){
 					new FAQClassModel { Description = "It makes you unable to tell the difference between red and green at all."}
 				},
+				new FAQViewModel("What if I both have low vision and colorblindness?"){
+					new FAQClassModel { Description = "The developers are currently searching for supporting studies if both conditions could exist together. In this application, we only limit to let users select one. If the case is you have both, please determine which condition is more serious or severe and select that as your type of condition."}
+				},
 				new FAQViewModel("What is the colorblind condition Tritanopia?"){
 					new FAQClassModel { Description = "It makes you unable to tell the difference between blue and green, purple and red, and yellow and pink. It also makes colors look less bright."}
 				},
