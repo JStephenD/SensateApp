@@ -37,6 +37,8 @@
 						</Picker>
 						<Image Source="{xct:ImageResource Id=Sensate.Assets.arrow-down.png}"
 							   WidthRequest="30" HorizontalOptions="End" x:Name="CBTypeArrow"/>
+						<Image Source="{xct:ImageResource Id=Sensate.Assets.info_icon.png}"
+							   WidthRequest="30" HorizontalOptions="End" x:Name="infoIcon"/>
 					</StackLayout>
 				</Frame>
 

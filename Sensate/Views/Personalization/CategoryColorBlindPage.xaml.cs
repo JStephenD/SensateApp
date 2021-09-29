@@ -21,6 +21,10 @@ namespace Sensate.Views {
 			var takeTestclick = new TapGestureRecognizer();
 			takeTestclick.Tapped += TakeTestClick;
 			textTakeTest.GestureRecognizers.Add(takeTestclick);
+
+			var infoIconClick = new TapGestureRecognizer();
+			infoIconClick.Tapped += InfoIconClick;
+			infoIcon.GestureRecognizers.Add(infoIconClick);
 		}
 
 		public void ClickCBTypeArrow(object s, EventArgs e) {
@@ -33,6 +37,11 @@ namespace Sensate.Views {
 
 		public async void TakeTestClick(object s, EventArgs e) { 
 			await Shell.Current.GoToAsync(nameof(CategoryColorBlindTestPage));
+		}
+		
+		public async void InfoIconClick(object s, EventArgs e) { 
+			await Browser.OpenAsync("https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/color-blindness/types-color-blindness", 
+				BrowserLaunchMode.SystemPreferred);
 		}
 
 		private async void Confirm(object sender, EventArgs e) {

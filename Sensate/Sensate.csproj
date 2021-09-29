@@ -45,6 +45,7 @@
     <None Remove="Assets\icon_cb.png" />
     <None Remove="Assets\icon_lv.png" />
     <None Remove="Assets\info-small.png" />
+    <None Remove="Assets\info_icon.png" />
     <None Remove="Assets\LightOwls_Logo_new_DBlueVersion.png" />
     <None Remove="Assets\LightOwls_Logo_new_outline.png" />
     <None Remove="Assets\loading.gif" />
@@ -137,6 +138,7 @@
     <EmbeddedResource Include="Assets\icon_cb.png" />
     <EmbeddedResource Include="Assets\icon_lv.png" />
     <EmbeddedResource Include="Assets\info-small.png" />
+    <EmbeddedResource Include="Assets\info_icon.png" />
     <EmbeddedResource Include="Assets\LightOwls_Logo_new_DBlueVersion.png" />
     <EmbeddedResource Include="Assets\LightOwls_Logo_new_outline.png" />
     <EmbeddedResource Include="Assets\loading.gif" />

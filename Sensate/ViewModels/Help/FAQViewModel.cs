@@ -58,6 +58,15 @@ namespace Sensate.ViewModels {
 				new FAQViewModel("How can the colorblind users use Sensate?"){
 					new FAQClassModel { Description = "After categorizing the user type and configuring the settings, colorblind users are recommended to utilize the color enhancement feature, while the recognition mode becomes a supplementary only. With color enhancement, users are provided a camera display or interface in which they have to look around and focus on a certain scene which they feel like they need some clarifications for when it comes to color recognition. The camera is provided with a filter based on the colorblindness type of the user upon categorization, that enhances the color of a certain scene.  "}
 				},
+				new FAQViewModel("What is the colorblind condition Deuteranopia?"){
+					new FAQClassModel { Description = "It makes you unable to tell the difference between red and green at all."}
+				},
+				new FAQViewModel("What is the colorblind condition Protanopia?"){
+					new FAQClassModel { Description = "It makes you unable to tell the difference between red and green at all."}
+				},
+				new FAQViewModel("What is the colorblind condition Tritanopia?"){
+					new FAQClassModel { Description = "It makes you unable to tell the difference between blue and green, purple and red, and yellow and pink. It also makes colors look less bright."}
+				},
 				new FAQViewModel("Can normal vision users use Sensate too?"){
 					new FAQClassModel { Description = "Users with normal vision are welcomed to use Sensate for the purposes of simulating the application, understanding the struggles of the visually-impaired users or to check the features of the application before recommending it to someone they know who struggles with low vision or color blindness."}
 				},
