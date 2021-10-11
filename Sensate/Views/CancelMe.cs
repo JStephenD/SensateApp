@@ -29,7 +29,7 @@ namespace Sensate.Views {
 		public async Task Speak(string output, float speakRate) {
 			CancelToken();
 			try {
-				await CrossTextToSpeech.Current.Speak($"...{output}", speakRate: speakRate, cancelToken: GetNewTokenSource().Token);
+				await CrossTextToSpeech.Current.Speak($"{output}", speakRate: speakRate, cancelToken: GetNewTokenSource().Token);
 			} catch (TaskCanceledException tce) {
 				Console.WriteLine("speak cancelled"); Console.WriteLine(tce.Message);
 			} catch (Exception) { Console.WriteLine("speak cancelled error"); }

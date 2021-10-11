@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using System.Text.Json;
+using Google.Protobuf.Collections;
 
 namespace Sensate.Views {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
@@ -154,11 +155,11 @@ namespace Sensate.Views {
 		}
 
 		public async void ZoomInClick(object s, EventArgs e) {
-			await Shell.Current.GoToAsync(nameof(RecognitionResultPage));
+			//await Shell.Current.GoToAsync(nameof(RecognitionResultPage));
 
-			//double currval = zoomSlider.Value, maxzoom = cameraView.MaxZoom;
-			//cameraView.Zoom = Math.Min(currval + 1, maxzoom);
-			//zoomSlider.Value = cameraView.Zoom;
+			double currval = zoomSlider.Value, maxzoom = cameraView.MaxZoom;
+			cameraView.Zoom = Math.Min(currval + 1, maxzoom);
+			zoomSlider.Value = cameraView.Zoom;
 		}
 
 		public void ZoomOutClick(object s, EventArgs e) {
@@ -243,6 +244,92 @@ namespace Sensate.Views {
 
 		}
 
+		public async Task ProcessObjectRecognitionResponse(
+				RepeatedField<LocalizedObjectAnnotation> objectAnnotations,
+				RepeatedField<EntityAnnotation> labelAnnotations) {
+
+			var detectedHand = false;
+			var tooGeneralObject = false;
+
+			//[1] hand presence
+			foreach (EntityAnnotation annotation in labelAnnotations) {
+				if (annotation.Description.ToLower() == "hand") {
+					detectedHand = true;
+					break;
+				}
+			}
+			await Speak((detectedHand) ? "i can see someone holding" : "i can see");
+
+			//[2] obj loc
+			Dictionary<string, int> counts = new Dictionary<string, int>();
+			foreach (LocalizedObjectAnnotation annotation in objectAnnotations) {
+				var key = annotation.Name;
+				if (counts.ContainsKey(key)) {
+					counts[key] += 1;
+				} else { 
+					counts[key] = 1;
+				}
+			}
+
+			var addAnd = false;
+			foreach (var kvp in counts) { 
+				if (addAnd) await Speak("and");
+
+				if (kvp.Key == "packaged goods") {
+					await Speak("a packaged good which is an item that is inside a container, such as consumer goods or products");
+					tooGeneralObject = true;
+				} else if (kvp.Key == "food") {
+					await Speak("a food which is something that we consume or eat");
+					tooGeneralObject = true;
+				} else if (kvp.Key == "dishware" || kvp.Key == "tableware") {
+					await Speak("an item that we see on a table such as utensils or tools for dining");
+					tooGeneralObject = true;
+				} else if (kvp.Key == "animal") {
+					await Speak("an animal or a living creature");
+					tooGeneralObject = true;
+				} else if (kvp.Key == "communication device") {
+					await Speak("a device that we use for communications");
+					tooGeneralObject = true;
+				} else if (kvp.Key == "person" && kvp.Key == "top") {
+					await Speak("a person wearing a top or t-shirt");
+					tooGeneralObject = true;
+				} else if (kvp.Key == "bags" || kvp.Key == "luggage") {
+					await Speak("a bag");
+					tooGeneralObject = true;
+				} else {
+					if (kvp.Value > 1) {
+						await Speak(kvp.Key);
+					} else {
+						await Speak(kvp.Value.ToString() + " " + kvp.Key);
+					}
+				}
+				addAnd = true;
+			}
+
+
+			//[3] labels
+			List<Result> results = new List<Result>();
+			foreach (EntityAnnotation annotation in labelAnnotations) {
+				results.Add(new Result {
+					desc = annotation.Description,
+					score = annotation.Score
+				}
+				);
+			}
+			results.OrderBy(x => x.score);
+
+			await Speak((tooGeneralObject) 
+				? "i am not really about sure this item but the terms related to what i can see are" 
+				: "the terms related to what i can see are");
+
+			var limit = 3;
+			foreach (var r in results) {
+				await Speak(r.desc);
+				if (limit-- == 0) break;
+			}
+		}
+
+
 		public async void CameraView_MediaCaptured(object sender, MediaCapturedEventArgs e) {
 			mode = detectionmode.SelectedItem.ToString();
 
@@ -288,97 +375,35 @@ namespace Sensate.Views {
 				};
 
 				AnnotateImageResponse response = await client.AnnotateAsync(request);
-				//watch.Stop();
-				//Console.WriteLine($"ellapsed time for recog mode {watch.ElapsedMilliseconds}");
 
 				if (mode == "General Object Detection") {
-					var detectedlabel = false;
-					var detectedobject = false;
-					var packagedgoodsfound = false;
-					
-					Console.WriteLine(response.LocalizedObjectAnnotations);
-					foreach (LocalizedObjectAnnotation annotation in response.LocalizedObjectAnnotations) {
-						detectedobject = true;
-						if (annotation.Name.ToLower() == "packaged goods") { 
-							if (packagedgoodsfound) continue;
-							packagedgoodsfound = true;
-						}
-						string output = $"Object Identified: {annotation.Name}";
-						tempgeneralLabel = annotation.Name;
-						Console.WriteLine(output);
-						Console.WriteLine("---------------------------------------------------------------");
-						Console.WriteLine(tempgeneralLabel);
-						//if (annotation.Score >= .80)
-						await Speak(output);
-					}
+					await ProcessObjectRecognitionResponse(
+						response.LocalizedObjectAnnotations, response.LabelAnnotations);
 
-					Console.WriteLine(response.LabelAnnotations);
-					List<Result> results = new List<Result>();
-					if (detectedobject)
-						await Speak("Related terms to Object can be");
-					foreach (EntityAnnotation annotation in response.LabelAnnotations) {
-						results.Add(new Result {
-							desc = annotation.Description,
-							score = annotation.Score
-						}
-						);
-						detectedlabel = true;
-					}
-					results.OrderBy(x => x.score);
+					//string fname = $"{Guid.NewGuid()}.jpg";
+					//string saveto = Path.Combine(filedir, fname);
+					//File.WriteAllBytes(saveto, imagedata);
 
-					List<Result> finalresults = new List<Result>();
-					var limit = 3;
-					foreach (var r in results) {
-						string output;
-						if (detectedobject) {
-							output = $"{r.desc}";
-						} else {
-							output = $"Object Identified: {r.desc}";
-						}
-						finalresults.Add(r);
-						await Speak(output);
-						//await TextToSpeech.SpeakAsync(output);
-						if (limit-- == 0) break;
-					}
+					//RecognitionResult newresult = new RecognitionResult{
+					//	fname = fname,
+					//	generalLabel = tempgeneralLabel,
+					//	results = finalresults
+					//};
 
-					string fname = $"{Guid.NewGuid()}.jpg";
-					string saveto = Path.Combine(filedir, fname);
-					File.WriteAllBytes(saveto, imagedata);
-
-					RecognitionResult newresult = new RecognitionResult{
-						fname = fname,
-						generalLabel = tempgeneralLabel,
-						results = finalresults
-					};
-
-					if (File.Exists(resultsfile)) { 
-						Console.WriteLine("file exists");
-						string readfile = File.ReadAllText(resultsfile);
-						RecognitionResults recognitionResults = JsonSerializer.Deserialize<RecognitionResults>(readfile);
-						recognitionResults.results.Add(newresult);
-						string serialized = JsonSerializer.Serialize(recognitionResults);
-						File.WriteAllText(resultsfile, serialized);
-					} else {
-						Console.WriteLine("file not exists");
-						RecognitionResults recognitionResults = new RecognitionResults();
-						recognitionResults.results.Add(newresult);
-						string serialized = JsonSerializer.Serialize(recognitionResults);
-						File.WriteAllText(resultsfile, serialized);
-					}
-
-					//Console.WriteLine("new results");
-					//Console.WriteLine(File.ReadAllText(resultsfile));
-
-					//Console.WriteLine("retrieving image");
-					//byte[] newimagedata = File.ReadAllBytes(saveto);
-					//Console.WriteLine("retrieved image");
-
-					//bitmap = SKBitmap.Decode(newimagedata);
-					//canvasView.InvalidateSurface();
-					//canvasView.IsVisible = true;
-
-					if (!detectedlabel && !detectedobject)
-						await Speak("No object found in the captured image.");
+					//if (File.Exists(resultsfile)) { 
+					//	Console.WriteLine("file exists");
+					//	string readfile = File.ReadAllText(resultsfile);
+					//	RecognitionResults recognitionResults = JsonSerializer.Deserialize<RecognitionResults>(readfile);
+					//	recognitionResults.results.Add(newresult);
+					//	string serialized = JsonSerializer.Serialize(recognitionResults);
+					//	File.WriteAllText(resultsfile, serialized);
+					//} else {
+					//	Console.WriteLine("file not exists");
+					//	RecognitionResults recognitionResults = new RecognitionResults();
+					//	recognitionResults.results.Add(newresult);
+					//	string serialized = JsonSerializer.Serialize(recognitionResults);
+					//	File.WriteAllText(resultsfile, serialized);
+					//}
 				}
 				if (mode == "Text Detection") {
 					var detected = false;
@@ -386,10 +411,11 @@ namespace Sensate.Views {
 					foreach (EntityAnnotation text in response.TextAnnotations) {
 						detected = true;
 						Console.WriteLine($"Description: {text.Description}");
+						await Speak("i can see some texts, i will read it out loud");
 						await Speak(text.Description);
 						break;
 					}
-					if (!detected) await Speak("No text found in the captured image.");
+					if (!detected) await Speak("No text found in the captured image");
 				}
 				if (mode == "Face Detection") {
 					var detected = false;
@@ -398,23 +424,23 @@ namespace Sensate.Views {
 					foreach (FaceAnnotation face in response.FaceAnnotations) {
 						detected = true;
 						if (face.JoyLikelihood >= Likelihood.Possible) {
-							await Speak("It looks like a joyful person"); detectedemotion = true;
+							await Speak("i can see a face, It looks like a joyful person"); detectedemotion = true;
 						}
 						if (face.AngerLikelihood >= Likelihood.Possible) {
-							await Speak("It looks like a mad person"); detectedemotion = true;
+							await Speak("i can see a face, It looks like a mad person"); detectedemotion = true;
 						}
 						if (face.SorrowLikelihood >= Likelihood.Possible) {
-							await Speak("It looks like a sad person"); detectedemotion = true;
+							await Speak("i can see a face, It looks like a sad person"); detectedemotion = true;
 						}
 						if (face.SurpriseLikelihood >= Likelihood.Possible) {
-							await Speak("It looks like a surprised person"); detectedemotion = true;
+							await Speak("i can see a face, It looks like a surprised person"); detectedemotion = true;
 						}
 						if (face.HeadwearLikelihood >= Likelihood.Possible) {
 							await Speak("It also seems like the person is wearing a headgear"); detectedemotion = true;
 						}
 					}
-					if (!detectedemotion) await Speak("Face found but could not identify emotion.");
-					else if (!detected) await Speak("No face found in the captured image.");
+					if (!detectedemotion) await Speak("Face found but could not identify emotion");
+					else if (!detected) await Speak("No face found in the captured image");
 				}
 				if (mode == "Logo Detection") {
 					var detected = false;
@@ -423,9 +449,9 @@ namespace Sensate.Views {
 					foreach (EntityAnnotation logo in response.LogoAnnotations) {
 						detected = true;
 						Console.WriteLine($"Description: {logo.Description}");
-						await Speak($"Possible Logo: {logo.Description}");
+						await Speak($"i can see a logo of a product, it seems to be {logo.Description}");
 					}
-					if (!detected) await Speak("No logo found in the captured image.");
+					if (!detected) await Speak("No logo found in the captured image");
 				}
 			} catch {
 				Console.WriteLine("error");
